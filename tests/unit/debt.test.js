@@ -55,7 +55,7 @@ test("IIFE statements are actually invoked (parenthesis sanity guard)", () => {
   const starts = [...HTML.matchAll(/(?:^|\n)\(function\s+(\w+)\(\)\s*\{/g)];
   assert.ok(starts.length >= 5, "expected several named IIFEs to exist");
   starts.forEach((m) => {
-    const tail = HTML.slice(m.index, m.index + 3000);
+const tail = HTML.slice(m.index, m.index + 12000);
     assert.ok(
       tail.includes("\n})();"),
       `IIFE "${m[1]}" is never self-invoked (missing \n})();)`

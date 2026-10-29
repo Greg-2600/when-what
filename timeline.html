@@ -517,6 +517,7 @@
   .reader-nav { margin-top: 2rem; display: flex; justify-content: center; gap: 0.6rem; }
   .reader-guide { margin-top: 1.2rem; color: var(--muted); font-size: 0.8rem; }
 
+  .reader-summary { margin: 1.4rem auto 0; max-width: 46rem; color: #aab3c2; font-size: clamp(1rem, 1.8vw, 1.2rem); line-height: 1.65; }
   .reader-inner .glossary-close { position: absolute; top: -1rem; right: -0.5rem; width: 40px; height: 40px; font-size: 1.1rem; background: var(--surface); }
 
   /* print pack layout */
@@ -925,6 +926,7 @@
 <div class="searchbar">
   <input id="search-input" type="search" placeholder="Search events — try “moon”, “oxygen”, “Rome”…" autocomplete="off" spellcheck="false" />
   <button id="quiz-btn" class="seg" type="button" title="Classroom quiz: which came first?" data-i18n="btnQuiz">🎓 Quiz</button>
+  <button id="riddles-btn" class="seg" type="button" title="Riddle mode: guess the event from its clues">🧩 Riddles</button>
   <button id="glossary-btn" class="seg" type="button" title="All words-to-know" data-i18n="btnGlossary">🔤 Glossary</button>
   <button id="tour-btn" class="seg" type="button" title="Step through the whole story automatically" data-i18n="btnTour">▶ Take the tour</button>
   <button id="print-btn" class="seg" title="Print a one-page handout" data-ignore="1" type="button" title="Print a one-page handout for the selected event">🖨 Handout</button>
@@ -940,6 +942,18 @@
     <h2>📘 Era classroom packs</h2>
     <p class="gl-sub">Pick an era — we build a multi-page worksheet (stories, a timeline strip to fill in, discussion questions, words to know, an essay prompt) — then print or save as PDF.</p>
     <div id="packs-list" class="packs-list"></div>
+  </div>
+</div>
+
+<div class="glossary-modal" id="riddles-modal" role="dialog" aria-modal="true" hidden>
+  <div class="glossary-card quiz-card">
+    <button class="glossary-close" id="riddles-close" aria-label="Close riddles">✕</button>
+    <h2>🧩 Riddles</h2>
+    <p class="gl-sub" id="riddles-progress">Riddle 1 of 5 · Score 0</p>
+    <div class="quiz-questions" id="riddles-clues"></div>
+    <div class="quiz-options" id="riddles-options"></div>
+    <div class="quiz-feedback" id="riddles-feedback" hidden></div>
+    <button class="seg quiz-next" id="riddles-next" type="button" hidden>Next riddle ▶</button>
   </div>
 </div>
 
@@ -972,10 +986,12 @@
     <div class="reader-time" id="reader-time"></div>
     <h1 class="reader-title" id="reader-title"></h1>
     <div class="reader-kid" id="reader-kid"></div>
+    <p class="reader-summary" id="reader-summary" hidden></p>
     <div class="reader-nav">
       <button class="nav-btn" id="reader-prev" aria-label="Previous event">‹</button>
       <button class="nav-btn" id="reader-narrate" aria-label="Read aloud">🔊</button>
       <button class="nav-btn" id="reader-next" aria-label="Next event">›</button>
+      <button class="nav-btn" id="reader-full" aria-label="Present full screen">⛶</button>
     </div>
     <p class="reader-guide" id="reader-guide"></p>
   </div>
@@ -2325,6 +2341,116 @@ quizModal.addEventListener("click", function (e) {
   if (e.target === quizModal) closeQuiz();
 });
 
+/* -------------------------------------------------------------
+   Riddle mode: guess the event from clues
+   ------------------------------------------------------------- */
+(function riddlesFeature() {
+  const riddlesBtn = document.getElementById("riddles-btn");
+  const riddlesModal = document.getElementById("riddles-modal");
+  const riddlesClose = document.getElementById("riddles-close");
+  const riddlesProgress = document.getElementById("riddles-progress");
+  const riddlesClues = document.getElementById("riddles-clues");
+  const riddlesOptions = document.getElementById("riddles-options");
+  const riddlesFeedback = document.getElementById("riddles-feedback");
+  const riddlesNext = document.getElementById("riddles-next");
+
+  let riddleQuestions = [];
+  let riddlePos = 0;
+  let riddleScore = 0;
+  let riddleAnswered = false;
+
+  function openRiddles() {
+    riddleQuestions = TimelineCore.makeRiddleGame(5);
+    riddlePos = 0;
+    riddleScore = 0;
+    renderRiddle();
+    riddlesModal.hidden = false;
+    setTimeout(function () { riddlesClose.focus(); }, 60);
+  }
+
+  function closeRiddles() { riddlesModal.hidden = true; stopSpeech(); }
+
+  function renderRiddle() {
+    const q = riddleQuestions[riddlePos];
+    riddlesProgress.textContent = "Riddle " + (riddlePos + 1) + " of " + riddleQuestions.length + " · Score " + riddleScore;
+    riddlesClues.innerHTML = "";
+    q.clues.forEach(function (clue) {
+      const div = document.createElement("div");
+      div.className = "riddle-clue";
+      div.textContent = clue;
+      riddlesClues.appendChild(div);
+    });
+    const head = document.createElement("div");
+    head.className = "quiz-question";
+    head.textContent = "Which event am I?";
+    riddlesClues.insertBefore(head, riddlesClues.firstChild);
+    riddlesFeedback.hidden = true;
+    riddlesNext.hidden = true;
+    riddlesOptions.innerHTML = "";
+    riddleAnswered = false;
+    q.options.forEach(function (opt, idx) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "quiz-option";
+      btn.textContent = opt;
+      btn.addEventListener("click", function () { answerRiddle(q, idx, btn); });
+      riddlesOptions.appendChild(btn);
+    });
+  }
+
+  function answerRiddle(q, idx, btn) {
+    if (riddleAnswered) return;
+    riddleAnswered = true;
+    const buttons = riddlesOptions.querySelectorAll(".quiz-option");
+    buttons.forEach(function (b) { b.disabled = true; });
+    const correct = idx === q.answerIndex;
+    if (correct) riddleScore += 1;
+    buttons[q.answerIndex].classList.add("correct");
+    if (!correct) btn.classList.add("wrong");
+    riddlesFeedback.hidden = false;
+    riddlesFeedback.textContent = (correct ? "✔ Correct! It's " : "✘ It was ") + q.answer + " — " + q.fact;
+    riddlesNext.hidden = false;
+    riddlesNext.textContent = riddlePos + 1 < riddleQuestions.length ? "Next riddle ▶" : "See result ▶";
+    if (NARRATE_ON) speakText(riddlesFeedback.textContent);
+  }
+
+  riddlesNext.addEventListener("click", function () {
+    riddlePos += 1;
+    if (riddlePos >= riddleQuestions.length) {
+      riddlesProgress.textContent = "Score " + riddleScore + " / " + riddleQuestions.length;
+      riddlesClues.innerHTML = "";
+      const head = document.createElement("div");
+      head.className = "quiz-question";
+      head.textContent = "You solved " + riddleScore + " of " + riddleQuestions.length + " riddles!";
+      riddlesClues.appendChild(head);
+      riddlesFeedback.hidden = true;
+      riddlesNext.hidden = true;
+      riddlesOptions.innerHTML = "";
+      const again = document.createElement("button");
+      again.type = "button";
+      again.className = "quiz-option";
+      again.textContent = "🔁 New riddles";
+      again.addEventListener("click", openRiddles);
+      riddlesOptions.appendChild(again);
+      return;
+    }
+    renderRiddle();
+  });
+
+  riddlesBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    riddlesBtn.blur();
+    if (riddlesModal.hidden) openRiddles(); else { riddlesModal.hidden = true; stopSpeech(); }
+  });
+  riddlesClose.addEventListener("click", closeRiddles);
+  riddlesModal.addEventListener("click", function (e) {
+    if (e.target === riddlesModal) closeRiddles();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !riddlesModal.hidden) closeRiddles();
+  });
+})();
+
 I18N = TimelineCore.STRINGS;
 const urlLang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('ct-lang') || 'en';
 let uiLang = (['en','it'].includes(urlLang)) ? urlLang : 'en';
@@ -2373,6 +2499,8 @@ function stopSpeech() {
     document.getElementById('reader-title').textContent = m.title;
     const kidEl = document.getElementById('reader-kid');
     kidEl.textContent = m.kid;
+    const sumEl = document.getElementById('reader-summary');
+    if (sumEl) { sumEl.textContent = m.summary; sumEl.hidden = false; }
     document.getElementById('reader-guide').textContent = TimelineCore.STRINGS[uiLang].readerGuided;
     if (NARRATE_ON) speakText(m.kid);
   }
@@ -2395,6 +2523,11 @@ function stopSpeech() {
   document.getElementById('reader-close').addEventListener('click', closeReader);
   document.getElementById('reader-prev').addEventListener('click', function () { flip(-1); });
   document.getElementById('reader-next').addEventListener('click', function () { flip(1); });
+  document.getElementById('reader-full').addEventListener('click', function () {
+    if (document.documentElement.requestFullscreen) {
+      document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+    }
+  });
   document.getElementById('reader-narrate').addEventListener('click', function () {
     if (NARRATE_ON) { stopSpeech(); NARRATE_ON = false; }
     else { NARRATE_ON = true; speakText(MILESTONES[idx].kid); }

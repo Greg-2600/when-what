@@ -1823,6 +1823,127 @@ const MILESTONES = [
     return questions;
   }
 
+
+  /* -------------------------------------------------------------
+     Riddle mode — hand-authored clue sets for classroom play.
+     clues are statements pulled from the event's nerd-level facts,
+     rearranged so the title is never given away.
+     ------------------------------------------------------------- */
+  const RIDDLES = [
+    { answer: "The Big Bang", era: "Cosmic origins", clues: [
+      "My afterglow is still 2.725 K and fills the whole sky.",
+      "I was overheard as hydrogen and helium in exactly a 75:25 mix.",
+      "Time itself arrives with me — no 'before', as far as we know." ] },
+    { answer: "First Stars Ignite", era: "Cosmic origins", clues: [
+      "For millions of years, me and my twin universe were pitch black.",
+      "My gas clouds had one job: hydrogen.",
+      "The ultraviolet I threw out reionized the whole cosmos." ] },
+    { answer: "First Life Appears", era: "Life", clues: [
+      "I am found next to hot alkaline vents where chemistry has a power gradient.",
+      "My earliest fossils are still alive as stromatolites in Shark Bay.",
+      "Everyone alive today descends from one single being that came after me — LUCA." ] },
+    { answer: "Oxygenation of the Atmosphere", era: "Life", clues: [
+      "I turned the oceans into rust-layered stone.",
+      "I may have frozen the planet more than once as methane collapsed.",
+      "Sulphur isotopes record exactly when I started." ] },
+    { answer: "First Complex Life", era: "Life", clues: [
+      "In a geological blink, nearly every animal body plan appeared.",
+      "Eyes, shells and predators — my sea got dangerous fast.",
+      "The Burgess Shale kept my strangest experiments in stone." ] },
+    { answer: "Dinosaur Extinction", era: "Life", clues: [
+      "I am written in a thin layer of clay worldwide.",
+      "Shocked quartz and an iridium spike accompany me.",
+      "Birds survived me; three quarters of my neighbours did not." ] },
+    { answer: "Homo sapiens", era: "Humans", clues: [
+      "My skull set shows up at Jebel Irhoud, decades before the famous caves of Europe.",
+      "I carry a little Neanderthal DNA from mixing with cousins.",
+      "Long-distance trade in ochre and shells is one of my early signatures." ] },
+    { answer: "Agriculture Begins", era: "Civilization", clues: [
+      "I shifted humanity from chasing dinner to growing it.",
+      "Teosinte became maize through a few key genes.",
+      "Göbekli Tepe suggests monumental building may have come before my fields." ] },
+    { answer: "The Alphabet", era: "Civilization", clues: [
+      "I reduced hundreds of picture-signs to a few sound-letters.",
+      "The Greeks added vowels to my Phoenician ancestor.",
+      "My letter order (A-B-C…) descends from aleph, beth, gimel." ] },
+    { answer: "Printing Press", era: "Modern", clues: [
+      "I combined movable metal type with oil ink and the screw press.",
+      "Luther's theses spread like wildfire because of me.",
+      "Handwriting a single Bible took a monk a year; my shop did hundreds in one." ] },
+    { answer: "Antibiotics Discovered", era: "Modern", clues: [
+      "I started as a mould that wiped out the bacteria around it.",
+      "A decade of chemistry scaled me from lab dish to battlefield medicine.",
+      " Fleming warned the world what overuse would lead to: resistance." ] },
+    { answer: "Moon Landing", era: "Modern", clues: [
+      "My journey began with a rocket that threw 7.6 million pounds of thrust.",
+      "I left reflectors that measure the distance to my destination to the millimetre.",
+      "Footprints survive me — because no wind can disturb them." ] },
+    { answer: "The DNA Double Helix", era: "Modern", clues: [
+      "Photo 51 was my crucial clue.",
+      "I revealed heredity written in a four-letter alphabet.",
+      "Two metres of me fold into a cell's millionth-of-a-metre core." ] },
+    { answer: "Internet & World Wide Web", era: "Modern", clues: [
+      "I crashed two letters in on my very first message (UCLA to SRI).",
+      "Packet switching and decentralised routing were my core ideas.",
+      "The first site posted on me is still online at CERN." ] },
+  ];
+
+  function makeRiddleGame(count, rng) {
+    rng = rng || Math.random;
+    const n = Math.min(Math.max(count || 5, 1), RIDDLES.length);
+    const used = new Set();
+    const questions = [];
+
+    // bounded Fisher-Yates: draw a permutation of riddle indices using the rng,
+    // but cap how many draws we spend so a bad rng can't spin forever.
+    const riddleOrder = [];
+    const remaining = RIDDLES.map(function (_, i) { return i; });
+    while (riddleOrder.length < RIDDLES.length && riddleOrder.length < n + 4) {
+      const idx = Math.floor(rng() * remaining.length);
+      const pick = remaining.splice(idx, 1)[0];
+      if (typeof pick === "number") riddleOrder.push(pick);
+    }
+    // fall back to plain order if the rng produced nothing
+    if (riddleOrder.length === 0) {
+      for (let i = 0; i < RIDDLES.length; i++) riddleOrder.push(i);
+    }
+
+    for (let k = 0; k < n && k < riddleOrder.length; k++) {
+      const rIdx = riddleOrder[k];
+      if (used.has(rIdx)) continue;
+      used.add(rIdx);
+      const riddle = RIDDLES[rIdx];
+      const correctIndex = MILESTONES.findIndex(function (m) { return m.title === riddle.answer; });
+      if (correctIndex === -1) continue;
+      const answer = riddle.answer;
+
+      // deterministic distractors: take three events at evenly spaced offsets
+      // in the milestone list so the choices feel broad without RNG loops.
+      const distractors = [];
+      const step = Math.max(1, Math.floor(MILESTONES.length / 4));
+      for (let d = 0; d < MILESTONES.length && distractors.length < 3; d++) {
+        const candidate = (correctIndex + (d + 1) * step) % MILESTONES.length;
+        const t = MILESTONES[candidate].title;
+        if (t !== answer && distractors.indexOf(t) === -1) distractors.push(t);
+      }
+      const options = shuffle([answer].concat(distractors), rng);
+      const answerIdx = options.indexOf(answer);
+
+      questions.push({
+        question: "Who am I?",
+        clues: riddle.clues.slice(),
+        options: options,
+        answerIndex: answerIdx,
+        answer: answer,
+        fact: answer + " — " + formatTime(MILESTONES[correctIndex].yearsAgo) + " · " +
+          (MILESTONES[correctIndex].summary || "").slice(0, 140) +
+          (MILESTONES[correctIndex].summary && MILESTONES[correctIndex].summary.length > 140 ? "…" : ""),
+      });
+    }
+    return questions;
+  }
+
+
   function slugify(title) {
     return String(title)
       .toLowerCase()
@@ -1961,6 +2082,8 @@ const MILESTONES = [
     CURRICULUM_TAGS: CURRICULUM_TAGS,
     curriculumTagsFor: curriculumTagsFor,
     makeQuiz: makeQuiz,
+    makeRiddleGame: makeRiddleGame,
+    RIDDLES: RIDDLES,
     slugify: slugify,
   };
 });
