@@ -39,6 +39,7 @@ jobs:
         run: |
           mkdir -p _site
           cp -r timeline.html timeline-core.js sw.js manifest.webmanifest icon.svg _site/
+          cp -r img _site/img
           cp -r docs _site/docs
           touch _site/.nojekyll
 
