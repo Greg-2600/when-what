@@ -111,7 +111,7 @@ Then each panel adds:
 
 **Engineering / ship-ability**
 
-- ✅ PWA: installable (`manifest.webmanifest` + SVG icon), service-worker cached shell **and all 77 images** (verified: 23 cache entries) → works fully offline after one visit
+- ✅ PWA: installable (`manifest.webmanifest` + SVG icon), service-worker cached shell **and all 77 images (now served locally from img/)** (verified: 23 cache entries) → works fully offline after one visit
 - ✅ Never caches failed responses (rate-limit 429 poisoning and error-image caching are guarded)
 - ✅ Zero-dependency runtime; no build step; single-page
 - ✅ **70 unit tests** over the extracted pure core (data, scale math, colour algorithms, format tiers, layout algorithm, glossary matching)
@@ -147,6 +147,10 @@ Then each panel adds:
 ├── sw.js                    # service worker (app shell + image runtime cache)
 ├── manifest.webmanifest     # install metadata
 ├── icon.svg                 # PWA icon (five coloured eras on the line)
+├── img/                     # 77 event images (downloaded, resized, optimized locally)
+├── scripts/
+│   ├── download-images.sh   # image pipeline: download + resize + optimize
+│   └── serve.js             # zero-dep static server (correct MIME, safe paths)
 ├── scripts/serve.js         # zero-dep static server (correct MIME, safe paths)
 ├── tests/
 │   ├── unit/                # node --test suite: data, scale, colors, format,
