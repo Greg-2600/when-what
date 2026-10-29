@@ -904,6 +904,14 @@
   <span data-i18n="hint">Scroll horizontally to explore · Click a marker for details · Wheel / pinch / double-click to zoom</span>
   <kbd>← →</kbd>
   <div class="hint-spacer"></div>
+    <span id="progress-badge" style="font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; white-space: nowrap;" title="Events you have read">0 / 94 read</span>
+    <select id="lens-select" class="seg" aria-label="Perspective lens" style="margin-right: 0.5rem;">
+      <option value="scientific">🔬 Scientific</option>
+      <option value="religious">✝️ Religious</option>
+      <option value="indigenous">🌿 Indigenous</option>
+      <option value="chinese">🐉 Chinese</option>
+      <option value="islamic">☪️ Islamic</option>
+    </select>
     <select id="lang-select" class="seg" aria-label="Language">
       <option value="en">EN</option>
       <option value="it">IT</option>
@@ -912,6 +920,7 @@
     <button class="seg on" id="mode-deep" type="button" data-i18n="modeDeep">Deep time</button>
     <button class="seg" id="mode-human" type="button" data-i18n="modeCiv">Civilization</button>
     <button class="seg" id="mode-powers" type="button" title="World superpowers and their large events" data-i18n="modePowers">Powers</button>
+    <button class="seg" id="mode-future" type="button" title="The future: 2026-2100">Future</button>
     <button class="seg" id="zoom-out" type="button" title="Zoom out (mouse wheel too)">➖</button>
     <input id="zoom-slider" type="range" min="35" max="400" value="100" step="1" aria-label="Zoom level" title="Zoom level" style="width:110px;" />
     <span id="zoom-val" class="zoom-val" title="Zoom level" style="font-size:0.75rem; color: var(--muted); min-width: 2.6rem; text-align:center;">100%</span>
@@ -1642,7 +1651,9 @@ function renderDetail(index) {
   const storyH = document.createElement("h3");
   storyH.textContent = (TimelineCore.STRINGS[uiLang] || TimelineCore.STRINGS.en).storyTitle;
   const storyP = document.createElement("p");
-  storyP.textContent = m.summary;
+  const lens = (localStorage.getItem("ct-lens") || "scientific");
+  const perspective = (m.perspectives && m.perspectives[lens]) ? m.perspectives[lens] : m.summary;
+  storyP.textContent = perspective;
   story.appendChild(storyH);
   story.appendChild(storyP);
 
@@ -1718,6 +1729,17 @@ function renderDetail(index) {
   panelBody.appendChild(deep);
   panelBody.appendChild(glossary);
 
+  /* Progress tracking */
+  try {
+    const read = JSON.parse(localStorage.getItem("ct-read") || "[]");
+    if (read.indexOf(m.title) === -1) {
+      read.push(m.title);
+      localStorage.setItem("ct-read", JSON.stringify(read));
+    }
+    const badge = document.getElementById("progress-badge");
+    if (badge) badge.textContent = read.length + " / " + MILESTONES.length + " read";
+  } catch (e) {}
+
   if (LEARN_MORE[m.title]) {
     const more = document.createElement("a");
     more.className = "learn-more";
@@ -1727,7 +1749,28 @@ function renderDetail(index) {
     more.textContent = (TimelineCore.STRINGS[uiLang] || TimelineCore.STRINGS.en).readMore.replace("🔗 Read more", "🔗") + ": " + m.title + " · Wikipedia";
     panelBody.appendChild(more);
   }
-}
+
+  /* See-also cross-references */
+  if (m.seeAlso && m.seeAlso.length) {
+    const sa = document.createElement("div");
+    sa.className = "see-also";
+    const saTitle = document.createElement("span");
+    saTitle.className = "gl-title";
+    saTitle.textContent = "🔗 See also";
+    sa.appendChild(saTitle);
+    m.seeAlso.forEach(function (title) {
+      const idx = MILESTONES.findIndex(function (mm) { return mm.title === title; });
+      if (idx === -1) return;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "glossary-chip";
+      btn.textContent = title;
+      btn.title = formatTime(MILESTONES[idx].yearsAgo);
+      btn.addEventListener("click", function () { selectEvent(idx); });
+      sa.appendChild(btn);
+    });
+    if (sa.children.length > 1) panelBody.appendChild(sa);
+  }
 
 function displayedIndex() {
   return hoveredIndex !== null ? hoveredIndex : pinnedIndex;
@@ -1898,7 +1941,7 @@ const modeHumanBtn = document.getElementById("mode-human");
 const modePowersBtn = document.getElementById("mode-powers");
 const zoomOutBtn = document.getElementById("zoom-out");
 const zoomInBtn = document.getElementById("zoom-in");
-const BASE_VW = { deep: 350, human: 350, powers: 260 };
+const BASE_VW = { deep: 350, human: 350, powers: 260, future: 300 };
 let zoom = 1;
 
 function buildLineGradient() {
@@ -2020,6 +2063,8 @@ function setScaleMode(mode) {
   modeDeepBtn.classList.toggle("on", mode === "deep");
   modeHumanBtn.classList.toggle("on", mode === "human");
   modePowersBtn.classList.toggle("on", mode === "powers");
+  const modeFutureBtn = document.getElementById("mode-future");
+  if (modeFutureBtn) modeFutureBtn.classList.toggle("on", mode === "future");
   viewportEl.scrollLeft = 0;
   const current = displayedIndex();
   if (current !== null && fracFor(current) === null) {
@@ -2037,6 +2082,8 @@ function setScaleMode(mode) {
 modeDeepBtn.addEventListener("click", () => setScaleMode("deep"));
 modeHumanBtn.addEventListener("click", () => setScaleMode("human"));
 modePowersBtn.addEventListener("click", () => setScaleMode("powers"));
+const modeFutureBtn = document.getElementById("mode-future");
+if (modeFutureBtn) modeFutureBtn.addEventListener("click", () => setScaleMode("future"));
 
 /* -------------------------------------------------------------
    Event selection helpers + search + era legend jumps
@@ -2618,6 +2665,19 @@ function stopSpeech() {
 })();
 
 /* -------------------------------------------------------------
+   Lens (perspective) switching
+   ------------------------------------------------------------- */
+(function lensFeature() {
+  const sel = document.getElementById("lens-select");
+  if (!sel) return;
+  sel.value = localStorage.getItem("ct-lens") || "scientific";
+  sel.addEventListener("change", function () {
+    localStorage.setItem("ct-lens", sel.value);
+    if (typeof updatePanel === "function") updatePanel();
+  });
+})();
+
+/* -------------------------------------------------------------
    Era classroom packs — multi-page printable worksheets
    ------------------------------------------------------------- */
 (function packsFeature() {
@@ -2845,7 +2905,7 @@ function restoreFromHash() {
   const mode = params.get("mode");
   const ev = params.get("event");
   let matched = false;
-  if (["deep", "human", "powers"].includes(mode)) {
+  if (["deep", "human", "powers", "future"].includes(mode)) {
     if (mode !== scaleMode) setScaleMode(mode);
     matched = true;
   }
