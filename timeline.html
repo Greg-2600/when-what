@@ -904,7 +904,7 @@
   <span data-i18n="hint">Scroll horizontally to explore · Click a marker for details · Wheel / pinch / double-click to zoom</span>
   <kbd>← →</kbd>
   <div class="hint-spacer"></div>
-    <span id="progress-badge" style="font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; white-space: nowrap;" title="Events you have read">0 / 94 read</span>
+    <span id="progress-badge" style="font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; white-space: nowrap;" title="Events you have read">0 / 101 read</span>
     <select id="lens-select" class="seg" aria-label="Perspective lens" style="margin-right: 0.5rem;">
       <option value="scientific">🔬 Scientific</option>
       <option value="religious">✝️ Religious</option>
@@ -2065,6 +2065,8 @@ function setScaleMode(mode) {
   modePowersBtn.classList.toggle("on", mode === "powers");
   const modeFutureBtn = document.getElementById("mode-future");
   if (modeFutureBtn) modeFutureBtn.classList.toggle("on", mode === "future");
+  const modeFutureBtn = document.getElementById("mode-future");
+  if (modeFutureBtn) modeFutureBtn.classList.toggle("on", mode === "future");
   viewportEl.scrollLeft = 0;
   const current = displayedIndex();
   if (current !== null && fracFor(current) === null) {
@@ -2082,6 +2084,8 @@ function setScaleMode(mode) {
 modeDeepBtn.addEventListener("click", () => setScaleMode("deep"));
 modeHumanBtn.addEventListener("click", () => setScaleMode("human"));
 modePowersBtn.addEventListener("click", () => setScaleMode("powers"));
+const modeFutureBtn = document.getElementById("mode-future");
+if (modeFutureBtn) modeFutureBtn.addEventListener("click", () => setScaleMode("future"));
 const modeFutureBtn = document.getElementById("mode-future");
 if (modeFutureBtn) modeFutureBtn.addEventListener("click", () => setScaleMode("future"));
 

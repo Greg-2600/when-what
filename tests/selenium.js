@@ -66,11 +66,11 @@ async function main() {
       "legend: document.querySelectorAll('.legend .chip').length, " +
       "gradient: document.querySelector('.number-line').style.background.includes('linear-gradient') }"
     );
-    assert.equal(counts.markers, 94, "94 markers");
+    assert.equal(counts.markers, 101, "101 markers");
     assert.equal(counts.labels, 94, "94 labels");
     assert.equal(counts.legend, 10, "10 era chips");
     assert.equal(counts.gradient, true, "number line painted with era spectrum");
-    ok("94 markers, 94 tiered labels, 10 era chips, gradient line");
+    ok("101 markers, 101 tiered labels, 10 era chips, gradient line");
 
     // ── 2. Hover opens the panel with three reading levels ───────────
     await hoverEvent("Dinosaur Extinction");
@@ -156,7 +156,7 @@ async function main() {
     assert.equal(deepVisible, 94);
     const gradAfter = await driver.executeScript("return document.querySelector('.number-line').style.background");
     assert.notEqual(gradBefore, gradAfter, "line gradient rebuilds per mode");
-    ok(`zoom: civilization = 31 events, deep time = 94, gradient rebuilt`);
+    ok(`zoom: civilization = 31 events, deep time = 101, gradient rebuilt`);
 
     // ── 8. Panel arrows step through history and scroll viewport ──────
     await hoverEvent("Moon Landing");
