@@ -1937,9 +1937,6 @@ const MILESTONES = [
       readerGuided: "Usa → o ← per sfogliare · Esc chiude",
     },
   };
-  const CURRENT_LOCALE = "en";
-  const CURRENT_STRINGS_EN = STRINGS[CURRENT_LOCALE];
-  const STRINGS_EN = CURRENT_STRINGS_EN;
 
   return {
     MILESTONES: MILESTONES, STRINGS: STRINGS,

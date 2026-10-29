@@ -316,6 +316,32 @@ async function main() {
       "const sel = document.getElementById('lang-select'); sel.value = 'en'; sel.dispatchEvent(new Event('change'))");
     ok(`language switch verified (Italian: ${itSub.slice(0, 40)}…)`);
 
+    // ── 16d. A11y debt: dialog roles, Escape closes, keyboard legend ─
+    const dialogCount = await driver.executeScript(
+      "return [...document.querySelectorAll('[role=dialog]')].length");
+    assert.equal(dialogCount, 3, "3 modals carry role=dialog");
+
+    /* Escape closes the quiz */
+    await driver.executeScript("document.getElementById('quiz-btn').click()");
+    await waitLoad(250);
+    await driver.executeScript("document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));");
+    const quizClosed = await driver.executeScript("return document.getElementById('quiz-modal').hidden");
+    assert.equal(quizClosed, true, "Escape closes the quiz");
+
+    /* Escape closes the story reader */
+    await driver.executeScript(
+      "window.__storyReader.openReader(0);" +
+      "document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));" +
+      "window.__rdHidden = document.getElementById('story-reader').hidden;");
+    const readerClosed = await driver.executeScript("return window.__rdHidden");;
+    assert.equal(readerClosed, true, "Escape closes the reader");
+
+    /* legend chips are keyboard-focusable buttons */
+    const keyboardLegend = await driver.executeScript(
+      "return !!document.querySelector('.legend .chip[role=button][tabindex]')");
+    assert.equal(keyboardLegend, true, "legend chips keyboard-focusable");
+    ok("a11y: 3 dialogs, Esc closes quiz/reader, keyboard legend chips");
+
     // ── 17. No console errors throughout ────────────────────────────
 
     const logs = (await driver.manage().logs().get("browser").catch(() => [])).filter(

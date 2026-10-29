@@ -852,31 +852,7 @@
   }
 
   /* Empty state */
-  .empty {
-    position: fixed;
-    inset: auto 0 0 0;
-    width: 100%;
-    height: 46vh;
-    max-height: 420px;
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-radius: 16px 16px 0 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    gap: 0.75rem;
-    z-index: 60;
-    transform: translateY(100%);
-    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-    text-align: center;
-    padding: 0 1.5rem;
-  }
 
-  .empty.visible { transform: translateY(0); }
-
-  .empty-icon { font-size: 2.5rem; opacity: 0.5; }
 
   /* Scrollbar hide for track */
   .track::-webkit-scrollbar { display: none; }
@@ -884,7 +860,7 @@
 
   /* Mobile adjustments */
   @media (max-width: 640px) {
-    .panel, .empty { width: 100vw; max-width: 100vw; }
+    .panel { width: 100vw; max-width: 100vw; }
     h1 { font-size: 1.25rem; }
     .track { height: 300px; }
     .number-line { top: 170px; }
@@ -945,7 +921,7 @@
   <div id="search-results" class="search-results" hidden></div>
 </div>
 
-<div class="glossary-modal" id="packs-modal" hidden>
+<div class="glossary-modal" id="packs-modal" role="dialog" aria-modal="true" hidden>
   <div class="glossary-card packs-card">
     <button class="glossary-close" id="packs-close" aria-label="Close packs">✕</button>
     <h2>📘 Era classroom packs</h2>
@@ -954,7 +930,7 @@
   </div>
 </div>
 
-<div class="glossary-modal" id="quiz-modal" hidden>
+<div class="glossary-modal" id="quiz-modal" role="dialog" aria-modal="true" hidden>
   <div class="glossary-card quiz-card">
     <button class="glossary-close" id="quiz-close" aria-label="Close quiz">✕</button>
     <h2>🎓 Which came first?</h2>
@@ -966,7 +942,7 @@
   </div>
 </div>
 
-<div class="glossary-modal" id="glossary-modal" hidden>
+<div class="glossary-modal" id="glossary-modal" role="dialog" aria-modal="true" hidden>
   <div class="glossary-card">
     <button class="glossary-close" id="glossary-close" aria-label="Close glossary">✕</button>
     <h2>Words to know</h2>
@@ -1011,8 +987,7 @@
   <div class="panel-body" id="panel-body"></div>
 </div>
 
-<div class="empty" id="empty">
-  <div class="empty-icon">✦</div>
+
   <div>Click or hover a marker on the timeline to explore details</div>
 </div>
 
@@ -2057,6 +2032,18 @@ function selectEvent(i) {
   })();
 
   /* Era legend chips jump to the first event of that era */
+document.getElementById("legend").addEventListener("keydown", (e) => {
+  if (e.key !== "Enter" && e.key !== " ") return;
+  const chip = e.target.closest(".chip");
+  if (!chip) return;
+  e.preventDefault();
+  const era = chip.dataset.era;
+  if (!era) return;
+  const idx = MILESTONES.findIndex((m) => m.era === era && fracFor(MILESTONES.indexOf(m)) !== null) !== -1
+    ? MILESTONES.findIndex((m) => m.era === era && fracFor(MILESTONES.indexOf(m)) !== null)
+    : MILESTONES.findIndex((m) => m.era === era);
+  if (idx !== -1) selectEvent(idx);
+});
 document.getElementById("legend").addEventListener("click", (e) => {
   const chip = e.target.closest(".chip");
   if (!chip) return;
@@ -2191,6 +2178,7 @@ const glossaryBtn = document.getElementById("glossary-btn");
 const glossaryModal = document.getElementById("glossary-modal");
 const glossaryCloseBtn = document.getElementById("glossary-close");
 const glossaryList = document.getElementById("glossary-list");
+const packsModalShared = document.getElementById("packs-modal");
 
 function openGlossary() {
   glossaryList.innerHTML = "";
@@ -2220,7 +2208,11 @@ glossaryModal.addEventListener("click", function (e) {
   if (e.target === glossaryModal) closeGlossary();
 });
 document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" && !glossaryModal.hidden) closeGlossary();
+  if (e.key === "Escape") {
+    if (!glossaryModal.hidden) closeGlossary();
+    if (!quizModal.hidden) closeQuiz();
+    if (typeof packsModalShared !== "undefined" && !packsModalShared.hidden) packsModalShared.hidden = true;
+  }
 });
 
 /* Any "see all terms" chip opens the modal too */
@@ -2397,6 +2389,7 @@ function stopSpeech() {
     if (!open) return;
     if (e.key === 'ArrowRight') { e.preventDefault(); flip(1); }
     if (e.key === 'ArrowLeft') { e.preventDefault(); flip(-1); }
+    if (e.key === 'Escape') closeReader();
   });
   document.getElementById('read-btn').addEventListener('click', function () {
     openReader(pinnedIndex !== null ? pinnedIndex : 0);
@@ -2438,7 +2431,7 @@ function stopSpeech() {
     applyLang();
     if (typeof updatePanel === 'function') updatePanel();
   });
-});
+})();
 
 /* -------------------------------------------------------------
    Era classroom packs — multi-page printable worksheets
@@ -2698,6 +2691,9 @@ Object.keys(ERA_COLORS).forEach((era) => {
   chip.className = "chip";
   chip.dataset.era = era;
   chip.title = ERA_INFO[era] || era; // era explainer on hover
+  chip.setAttribute("role", "button");
+  chip.setAttribute("tabindex", "0");
+  chip.setAttribute("aria-label", "Jump to " + era);
   const swatch = document.createElement("span");
   swatch.className = "swatch";
   swatch.style.background = ERA_COLORS[era];
