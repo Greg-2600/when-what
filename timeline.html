@@ -2023,12 +2023,9 @@ function baseWidthVw() {
   return BASE_VW[scaleMode];
 }
 
-function zoomSliderEl() { return document.getElementById("zoom-slider"); }
-function zoomValEl() { return document.getElementById("zoom-val"); }
-
 function syncZoomUI() {
-  const slider = zoomSliderEl();
-  const val = zoomValEl();
+  const slider = document.getElementById("zoom-slider");
+  const val = document.getElementById("zoom-val");
   if (slider) slider.value = Math.round(zoom * 100);
   if (val) val.textContent = Math.round(zoom * 100) + "%";
 }
@@ -2059,31 +2056,69 @@ if (zoomSlider) {
   zoomSlider.addEventListener("input", () => setZoom(Number(zoomSlider.value) / 100));
 }
 
-/* Mouse wheel zooms the timeline, anchored at the cursor.
-   shift+wheel still scrolls; trackpad pinch (ctrl+wheel) zooms gently. */
-viewportEl.addEventListener("wheel", (e) => {
+/* ── Coalesced, cursor-anchored zoom ───────────────────────────────
+   Wheel events fire far faster than rAF, so we accumulate deltas into a
+   single target zoom and apply it once per frame. The anchor (content
+   coordinate under the cursor) is captured on the FIRST wheel of a burst
+   so the timeline never drifts or "skips" while scrolling.
+   shift+wheel still scrolls horizontally; trackpad pinch (ctrl+wheel)
+   zooms gently and proportionally. */
+let pendingZoom = null;
+let pendingAnchor = null;
+let zoomRafId = 0;
+
+function scheduleZoom(step, contentX, viewX) {
+  if (pendingZoom === null) {
+    pendingZoom = zoom;
+    pendingAnchor = { contentX: contentX, viewX: viewX };
+  }
+  pendingZoom = Math.min(4, Math.max(0.35, pendingZoom * step));
+  if (!zoomRafId) {
+    zoomRafId = requestAnimationFrame(function () {
+      zoomRafId = 0;
+      const target = pendingZoom;
+      const anchor = pendingAnchor;
+      pendingZoom = null;
+      pendingAnchor = null;
+      setZoom(target, anchor.contentX, anchor.viewX);
+    });
+  }
+}
+
+viewportEl.addEventListener("wheel", function (e) {
   if (e.shiftKey) return;
   if (scaleMode === undefined) return;
   e.preventDefault();
   const vp = viewportEl;
-  const contentX = vp.scrollLeft + (e.clientX - vp.getBoundingClientRect().left);
-  const viewX = e.clientX - vp.getBoundingClientRect().left;
+  const vr = vp.getBoundingClientRect();
+  const contentX = vp.scrollLeft + (e.clientX - vr.left);
+  const viewX = e.clientX - vr.left;
   let step;
   if (e.ctrlKey) {
-    // trackpad pinch: gentle and proportional to finger distance
     step = Math.exp(-e.deltaY * 0.012);
   } else {
     step = e.deltaY > 0 ? 1 / 1.28 : 1.28;
   }
-  setZoom(zoom * step, contentX, viewX);
+  scheduleZoom(step, contentX, viewX);
 }, { passive: false });
 
 /* double-click zooms in, alt+double-click zooms out — anchored at cursor */
-viewportEl.addEventListener("dblclick", (e) => {
+viewportEl.addEventListener("dblclick", function (e) {
   const vp = viewportEl;
-  const contentX = vp.scrollLeft + (e.clientX - vp.getBoundingClientRect().left);
-  setZoom(e.altKey ? zoom / 1.6 : zoom * 1.6, contentX, e.clientX - vp.getBoundingClientRect().left);
+  const vr = vp.getBoundingClientRect();
+  const contentX = vp.scrollLeft + (e.clientX - vr.left);
+  setZoom(e.altKey ? zoom / 1.6 : zoom * 1.6, contentX, e.clientX - vr.left);
 });
+
+/* reset zoom on a double-click of the % readout */
+const zoomValEl = document.getElementById("zoom-val");
+if (zoomValEl) {
+  zoomValEl.style.cursor = "pointer";
+  zoomValEl.title = "Click to reset zoom to 100%";
+  zoomValEl.addEventListener("click", function () {
+    setZoom(1, viewportEl.scrollLeft + viewportEl.clientWidth / 2, viewportEl.clientWidth / 2);
+  });
+}
 
 /* + / - keys zoom when the timeline has focus */
 track.addEventListener("keydown", (e) => {
