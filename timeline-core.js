@@ -1530,7 +1530,7 @@ const MILESTONES = [
     era: "Future",
     seeAlso: ["Moon Landing","First Mars Colony"],
     coords: [-5.5,138],
-    kid: "By the 2030s, a human may set foot on Mars — the first person to stand on a new planet. It's the Moon landing's grandchild: harder (7 months' travel), more dangerous (radiation, dust storms), and more consequential for our species.",
+    kid: "By the 2030s, a human may set foot on Mars — the first person to stand on a new planet. It's the Moon landing's grandchild: harder (7 months' travel), more dangerous (radiation, dust storms), and more consequential for our species!",
     fun: "Mars has about 38% of Earth's gravity — bouncing on Mars would feel like slow-motion trampolining.",
     summary: "NASA's Artemis programme (return to the Moon) is the stepping stone; SpaceX's Starship is the leading vehicle for Mars transit. A crewed Mars landing is projected for the early-to-mid 2030s, with in-situ resource utilisation (ISRU) producing fuel and oxygen from Martian CO2 and water ice.",
     deep: [
@@ -1602,7 +1602,7 @@ const MILESTONES = [
     era: "Future",
     seeAlso: ["Climate Tipping Points","The Modern Era"],
     coords: [0,0],
-    kid: "By 2100, the world will be warmer, wetter in some places and drier in others, with higher seas and more extreme weather. How we respond in the next 20 years decides whether the change is challenging or catastrophic.",
+    kid: "By 2100, the world will be warmer, wetter in some places and drier in others, with higher seas and more extreme weather. How we respond in the next 20 years decides whether the change is challenging or catastrophic!",
     fun: "The IPCC projects 1.5-4.4°C warming by 2100 depending on emissions — the difference between 'adaptable' and 'transformative'.",
     summary: "Climate projections for 2100 range from 1.5°C (Paris-aligned) to 4.4°C (high emissions) above pre-industrial. Sea level rise: 0.3-1.1 m. The key lever is emissions reduction in the 2020s-2030s; the response in the next decade locks in the century.",
     deep: [
@@ -1841,7 +1841,7 @@ const MILESTONES = [
     "AI Passes the Turing Threshold": "https://en.wikipedia.org/wiki/Artificial_general_intelligence",
     "Fusion Energy Goes Commercial": "https://en.wikipedia.org/wiki/Fusion_power",
     "Population Peaks": "https://en.wikipedia.org/wiki/World_population",
-    "First Human on Mars": "https://en.wikipedia.org/wiki/Human_mission_to_Mars",
+    "First Human on Mars": "https://en.wikipedia.org/wiki/Colonization_of_Mars",
     "The 2100 Problem": "https://en.wikipedia.org/wiki/Climate_change",
     "The Modern Era": "https://en.wikipedia.org/wiki/Contemporary_history",
     "Recombination — First Light": "https://en.wikipedia.org/wiki/Recombination_(cosmology)",

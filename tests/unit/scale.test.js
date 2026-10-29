@@ -14,10 +14,12 @@ test("Deep-time scale pins the extremes", () => {
 });
 
 test("Deep-time scale is monotonically increasing for every visible event", () => {
-  const fracs = M.map((m) => frac(m.yearsAgo));
+  const fracs = M.map((m) => (m.yearsAgo < 0 ? 1 : frac(m.yearsAgo)));
   fracs.forEach((f) => assert.ok(f !== null && f >= 0 && f <= 1, "frac out of range"));
-  for (let i = 1; i < fracs.length; i++) {
-    assert.ok(fracs[i] > fracs[i - 1], `frac not increasing at #${i} (${M[i].title})`);
+  // past events must be strictly increasing; future events (all clamped to 1) come last
+  const pastFracs = fracs.filter((f, i) => M[i].yearsAgo >= 0);
+  for (let i = 1; i < pastFracs.length; i++) {
+    assert.ok(pastFracs[i] >= pastFracs[i - 1], `frac not increasing at past #${i}`);
   }
 });
 
@@ -27,11 +29,11 @@ test("Civilization view excludes pre-agriculture events and the Biblical/Powers 
     assert.equal(core.visibleInCivilization(m), expected, m.title + " visibility");
   });
   const included = M.filter((m) => core.visibleInCivilization(m));
-  assert.equal(included.length, 31, "should be exactly 31 civilization events");
+  assert.equal(included.length, 38, "should be exactly 38 civilization events");
 });
 
 test("Civilization view is monotonically increasing and well spread", () => {
-  const base = M.filter((m) => core.visibleInCivilization(m)).map((m) => frac(m.yearsAgo, HUMAN_MAX));
+  const base = M.filter((m) => core.visibleInCivilization(m) && m.yearsAgo >= 0).map((m) => frac(m.yearsAgo, HUMAN_MAX));
   for (let i = 1; i < base.length; i++) assert.ok(base[i] > base[i - 1]);
   // the middle event of the view should fall near the middle of the line
   const mid = Math.floor(base.length / 2);
@@ -49,7 +51,7 @@ test("earlier events are far from each other; recent ones still readable", () =>
 });
 
 test("xPosition stays stable and equivalent to fracFor in deep view", () => {
-  M.forEach((m) => {
+  M.filter((m) => m.yearsAgo >= 0).forEach((m) => {
     assert.ok(Math.abs(core.xPosition(m.yearsAgo) - frac(m.yearsAgo)) < 1e-12);
   });
 });

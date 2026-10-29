@@ -1436,6 +1436,14 @@ function fracFor(i) {
     const oldest = Math.max(...MILESTONES.filter((mm) => mm.era === "World Powers").map((mm) => mm.yearsAgo));
     return TimelineCore.fracFor(m.yearsAgo, oldest); // scale to the Powers range itself
   }
+  if (scaleMode === "future") {
+    if (m.yearsAgo >= 0) return null; // only future events
+    const futureEvents = MILESTONES.filter((mm) => mm.yearsAgo < 0);
+    const minFuture = Math.min(...futureEvents.map((mm) => mm.yearsAgo));
+    return TimelineCore.fracFor(-m.yearsAgo, -minFuture);
+  }
+  // deep time: clamp future events to present
+  if (m.yearsAgo < 0) return 1;
   return TimelineCore.fracFor(m.yearsAgo, MAX_YEARS);
 }
 
@@ -1771,6 +1779,7 @@ function renderDetail(index) {
     });
     if (sa.children.length > 1) panelBody.appendChild(sa);
   }
+}
 
 function displayedIndex() {
   return hoveredIndex !== null ? hoveredIndex : pinnedIndex;
@@ -1945,18 +1954,43 @@ const BASE_VW = { deep: 350, human: 350, powers: 260, future: 300 };
 let zoom = 1;
 
 function buildLineGradient() {
-  const stops = [];
+  // Era-level bands: each era gets a colour stop at its first and last event.
+  // This keeps the gradient string short enough for the browser to parse.
+  const eraStops = [];
+  const eraOrder = [];
+  const eraRanges = {};
   MILESTONES.forEach((m, i) => {
     const f = fracFor(i);
-    if (f === null) return;
-    const p = f * 100;
-    const c = eventColor(i);
-    const lo = Math.max(0, p - 0.9);
-    const hi = Math.min(100, p + 0.9);
-    stops.push(`${c} ${lo.toFixed(2)}%`, `${c} ${hi.toFixed(2)}%`);
+    if (f === null || isNaN(f)) return;
+    if (scaleMode !== "future" && m.era === "Future") return; // future events only show in Future mode
+    if (!eraRanges[m.era]) {
+      eraRanges[m.era] = { first: f, last: f, color: eventColor(i) };
+      eraOrder.push(m.era);
+    } else {
+      eraRanges[m.era].last = f;
+      // keep the colour of the middle-ish event for variety
+    }
+  });
+  // Build stops: at each era boundary, transition to the era colour
+  const stops = [];
+  eraOrder.forEach((era) => {
+    const r = eraRanges[era];
+    const lo = Math.max(0, r.first * 100);
+    const hi = Math.min(100, r.last * 100);
+    const mid = (lo + hi) / 2;
+    stops.push(`${r.color} ${lo.toFixed(2)}%`);
+    stops.push(`${r.color} ${hi.toFixed(2)}%`);
+  });
+  // Sort by position (extract the trailing percentage)
+  stops.sort((a, b) => {
+    const ma = a.match(/([\d.]+)%\s*$/);
+    const mb = b.match(/([\d.]+)%\s*$/);
+    const pa = ma ? parseFloat(ma[1]) : 0;
+    const pb = mb ? parseFloat(mb[1]) : 0;
+    return pa - pb;
   });
   if (stops.length) {
-    numberLineEl.style.background = `linear-gradient(90deg, ${stops.join(", ")})`;
+    numberLineEl.style.backgroundImage = `linear-gradient(90deg, ${stops.join(", ")})`;
   }
 }
 
@@ -2063,9 +2097,6 @@ function setScaleMode(mode) {
   modeDeepBtn.classList.toggle("on", mode === "deep");
   modeHumanBtn.classList.toggle("on", mode === "human");
   modePowersBtn.classList.toggle("on", mode === "powers");
-  const modeFutureBtn = document.getElementById("mode-future");
-  if (modeFutureBtn) modeFutureBtn.classList.toggle("on", mode === "future");
-  const modeFutureBtn = document.getElementById("mode-future");
   if (modeFutureBtn) modeFutureBtn.classList.toggle("on", mode === "future");
   viewportEl.scrollLeft = 0;
   const current = displayedIndex();
@@ -2084,8 +2115,6 @@ function setScaleMode(mode) {
 modeDeepBtn.addEventListener("click", () => setScaleMode("deep"));
 modeHumanBtn.addEventListener("click", () => setScaleMode("human"));
 modePowersBtn.addEventListener("click", () => setScaleMode("powers"));
-const modeFutureBtn = document.getElementById("mode-future");
-if (modeFutureBtn) modeFutureBtn.addEventListener("click", () => setScaleMode("future"));
 const modeFutureBtn = document.getElementById("mode-future");
 if (modeFutureBtn) modeFutureBtn.addEventListener("click", () => setScaleMode("future"));
 

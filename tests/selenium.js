@@ -64,13 +64,13 @@ async function main() {
       "return { markers: document.querySelectorAll('.marker').length, " +
       "labels: document.querySelectorAll('.marker-label').length, " +
       "legend: document.querySelectorAll('.legend .chip').length, " +
-      "gradient: document.querySelector('.number-line').style.background.includes('linear-gradient') }"
+      "gradient: document.querySelector('.number-line').style.backgroundImage.includes('linear-gradient') }"
     );
     assert.equal(counts.markers, 101, "101 markers");
-    assert.equal(counts.labels, 94, "94 labels");
-    assert.equal(counts.legend, 10, "10 era chips");
+    assert.equal(counts.labels, 101, "101 labels");
+    assert.equal(counts.legend, 11, "11 era chips");
     assert.equal(counts.gradient, true, "number line painted with era spectrum");
-    ok("101 markers, 101 tiered labels, 10 era chips, gradient line");
+    ok("101 markers, 101 tiered labels, 11 era chips, gradient line");
 
     // ── 2. Hover opens the panel with three reading levels ───────────
     await hoverEvent("Dinosaur Extinction");
@@ -153,7 +153,7 @@ async function main() {
     const deepVisible = await driver.executeScript(
       "return [...document.querySelectorAll('.marker')].filter(m => m.style.display !== 'none').length"
     );
-    assert.equal(deepVisible, 94);
+    assert.equal(deepVisible, 101);
     const gradAfter = await driver.executeScript("return document.querySelector('.number-line').style.background");
     assert.notEqual(gradBefore, gradAfter, "line gradient rebuilds per mode");
     ok(`zoom: civilization = 31 events, deep time = 101, gradient rebuilt`);
@@ -192,7 +192,7 @@ async function main() {
     const tourLabel1 = await driver.executeScript(
       "return document.getElementById('tour-btn').textContent"
     );
-    assert.ok(tourLabel1.includes("Tour 1/94"), `tour button state unexpected: ${JSON.stringify(tourLabel1)}`);
+    assert.ok(tourLabel1.includes("Tour 1/101"), `tour button state unexpected: ${JSON.stringify(tourLabel1)}`);
     assert.equal(await driver.findElement(By.id("panel-title")).getText(), "The Big Bang", "tour opens event 1");
     await driver.executeScript("document.getElementById('tour-btn').click()"); // stop
     const tourLabel2 = await driver.executeScript(

@@ -9,14 +9,19 @@ test("there are 101 milestones spanning Big Bang → Present", () => {
   assert.equal(M.length, 101);
   assert.equal(M[0].title, "The Big Bang");
   assert.equal(M[0].yearsAgo, 13_800_000_000);
-  assert.equal(M[M.length - 1].yearsAgo, 0);
-  assert.equal(M[M.length - 1].title, "The Modern Era");
+  const modernIdx = M.findIndex((m) => m.title === "The Modern Era");
+  assert.ok(modernIdx !== -1, "Modern Era present");
+  assert.equal(M[modernIdx].yearsAgo, 0);
+  // future events (negative yearsAgo) come after present
+  for (let i = modernIdx + 1; i < M.length; i++) {
+    assert.ok(M[i].yearsAgo < 0, "future event must have negative yearsAgo: " + M[i].title);
+  }
 });
 
 test("every milestone has complete, non-empty content", () => {
   M.forEach((m, i) => {
     assert.ok(m.title && m.title.length > 3, `title missing on #${i}`);
-    assert.ok(typeof m.yearsAgo === "number" && m.yearsAgo >= 0, `yearsAgo bad on #${i}`);
+    assert.ok(typeof m.yearsAgo === "number" && Number.isInteger(m.yearsAgo), `yearsAgo bad on #${i}`);
     assert.ok(ERAS.includes(m.era), `era "${m.era}" unknown on #${i}`);
     assert.ok(m.kid.length > 60, `kid text too short on #${i} (${m.title})`);
     assert.ok(m.fun.length > 30, `fun fact too short on #${i} (${m.title})`);
@@ -36,6 +41,7 @@ test("kid text is genuinely simple (short sentences, no heavy jargon walls)", ()
 
 test("milestones are strictly ordered youngest → oldest (descending age)", () => {
   for (let i = 1; i < M.length; i++) {
+    // future events (negative) come after present (0), but their own order is descending too
     assert.ok(M[i].yearsAgo < M[i - 1].yearsAgo, `out of order at #${i}: ${M[i].title}`);
   }
 });
