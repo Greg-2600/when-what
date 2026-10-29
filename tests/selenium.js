@@ -316,6 +316,25 @@ async function main() {
       "const sel = document.getElementById('lang-select'); sel.value = 'en'; sel.dispatchEvent(new Event('change'))");
     ok(`language switch verified (Italian: ${itSub.slice(0, 40)}…)`);
 
+    // ── 16e. Zoom: slider + buttons + wheel ─────────────────────────
+    const zoomBefore = await driver.executeScript("return document.querySelector('.track').style.width");
+    await driver.executeScript("const sl = document.getElementById('zoom-slider'); sl.value = 200; sl.dispatchEvent(new Event('input'))");
+    await waitLoad(300);
+    const zoomAfter = await driver.executeScript("return document.querySelector('.track').style.width");
+    assert.notEqual(zoomBefore, zoomAfter, "slider changes zoom");
+    assert.equal(await driver.executeScript("return document.getElementById('zoom-val').textContent"), "200%", "readout updates");
+    // click-to-reset
+    await driver.executeScript("document.getElementById('zoom-val').click()");
+    await waitLoad(200);
+    const zoomReset = await driver.executeScript("return document.querySelector('.track').style.width");
+    assert.equal(zoomReset, "350vw", "reset restores 100%");
+    // +/- buttons
+    await driver.executeScript("document.getElementById('zoom-in').click()");
+    await waitLoad(200);
+    const zoomIn = await driver.executeScript("return document.querySelector('.track').style.width");
+    assert.notEqual(zoomIn, "350vw", "zoom-in button works");
+    ok(`zoom: slider + reset + buttons (${zoomBefore} → ${zoomAfter} → ${zoomReset} → ${zoomIn})`);
+
     // ── 16d. A11y debt: dialog roles, Escape closes, keyboard legend ─
     const dialogCount = await driver.executeScript(
       "return [...document.querySelectorAll('[role=dialog]')].length");
