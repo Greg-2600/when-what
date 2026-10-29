@@ -1502,7 +1502,6 @@ updateWash();
    Panel / detail logic
    ------------------------------------------------------------- */
 const panel = document.getElementById("panel");
-const empty = document.getElementById("empty");
 const panelTitle = document.getElementById("panel-title");
 const panelTime = document.getElementById("panel-time");
 const panelBody = document.getElementById("panel-body");
@@ -2194,6 +2193,7 @@ function openGlossary() {
     glossaryList.appendChild(item);
   });
   glossaryModal.hidden = false;
+  setTimeout(function () { glossaryCloseBtn.focus(); }, 60);
 }
 
 function closeGlossary() {
@@ -2242,6 +2242,7 @@ function openQuiz() {
   quizScore = 0;
   renderQuizQuestion();
   quizModal.hidden = false;
+  setTimeout(function () { quizCloseBtn.focus(); }, 60);
 }
 
 function closeQuiz() {
@@ -2458,6 +2459,7 @@ function stopSpeech() {
       packsList.appendChild(btn);
     });
     packsModal.hidden = false;
+    setTimeout(function () { packsClose.focus(); }, 60);
   }
 
   packsBtn.addEventListener("click", function () { packsModal.hidden ? openPacks() : (packsModal.hidden = true); });
