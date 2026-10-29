@@ -114,7 +114,7 @@ Then each panel adds:
 - ✅ PWA: installable (`manifest.webmanifest` + SVG icon), service-worker cached shell **and all 77 images** (verified: 23 cache entries) → works fully offline after one visit
 - ✅ Never caches failed responses (rate-limit 429 poisoning and error-image caching are guarded)
 - ✅ Zero-dependency runtime; no build step; single-page
-- ✅ **57 unit tests** over the extracted pure core (data, scale math, colour algorithms, format tiers, layout algorithm, glossary matching)
+- ✅ **70 unit tests** over the extracted pure core (data, scale math, colour algorithms, format tiers, layout algorithm, glossary matching)
 - ✅ **20-check Selenium E2E suite** in real Chrome (shell, panel, images, glossary, search, legend, zoom, arrows, keyboard, tour, close, PWA caches, console cleanliness)
 - ✅ Hotlinked images use `Special:FilePath` (handles any original size), `referrerpolicy="no-referrer"`, `loading="lazy"`
 
