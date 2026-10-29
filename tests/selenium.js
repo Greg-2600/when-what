@@ -146,17 +146,17 @@ async function main() {
       "return { visible: [...document.querySelectorAll('.marker')].filter(m => m.style.display !== 'none').length, " +
       "grad: document.querySelector('.number-line').style.background.slice(0,22) }"
     );
-    assert.equal(civState.visible, 31, "Civilization view shows 31 events");
-    const gradBefore = (await driver.executeScript("return document.querySelector('.number-line').style.background"));
+    assert.equal(civState.visible, 38, "Civilization view shows 38 events");
+    const gradBefore = (await driver.executeScript("return document.querySelector('.number-line').style.backgroundImage"));
     await driver.executeScript("document.getElementById('mode-deep').click()");
     await waitLoad(300);
     const deepVisible = await driver.executeScript(
       "return [...document.querySelectorAll('.marker')].filter(m => m.style.display !== 'none').length"
     );
     assert.equal(deepVisible, 101);
-    const gradAfter = await driver.executeScript("return document.querySelector('.number-line').style.background");
+    const gradAfter = await driver.executeScript("return document.querySelector('.number-line').style.backgroundImage");
     assert.notEqual(gradBefore, gradAfter, "line gradient rebuilds per mode");
-    ok(`zoom: civilization = 31 events, deep time = 101, gradient rebuilt`);
+    ok(`zoom: civilization = 38 events, deep time = 101, gradient rebuilt`);
 
     // ── 8. Panel arrows step through history and scroll viewport ──────
     await hoverEvent("Moon Landing");
