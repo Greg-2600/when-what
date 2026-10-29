@@ -1,0 +1,65 @@
+import js from "@eslint/js";
+
+export default [
+  js.configs.recommended,
+  {
+    files: ["timeline-core.js", "scripts/**/*.js", "tests/**/*.js"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "script",
+      globals: {
+        // timeline-core.js globals
+        TimelineCore: "readonly",
+        MILESTONES: "readonly",
+        ERA_COLORS: "readonly",
+        ERA_INFO: "readonly",
+        LEARN_MORE: "readonly",
+        GLOSSARY: "readonly",
+        EVENT_COLORS: "readonly",
+        ERA_HUES: "readonly",
+        MAX_YEARS: "readonly",
+        HUMAN_MAX: "readonly",
+        CURRICULUM_TAGS: "readonly",
+        curriculumTagsFor: "readonly",
+        I18N: "readonly",
+        STRINGS: "readonly",
+        // timeline.html globals
+        uiLang: "writable",
+        NARRATE_ON: "writable",
+        zoom: "writable",
+        scaleMode: "writable",
+        pinnedIndex: "writable",
+        hoveredIndex: "writable",
+        activeIndex: "writable",
+        EVENT_MEDIA: "readonly",
+        COMMONS_FILE: "readonly",
+        // Node/test globals
+        console: "readonly",
+        require: "readonly",
+        module: "readonly",
+        exports: "readonly",
+        process: "readonly",
+        __dirname: "readonly",
+        __filename: "readonly",
+        self: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
+        setInterval: "readonly",
+        clearInterval: "readonly",
+        fetch: "readonly",
+        URL: "readonly",
+        URLSearchParams: "readonly",
+      },
+    },
+    rules: {
+      "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+      "no-console": "off",
+      "semi": ["error", "always"],
+      "no-var": "warn",
+      "prefer-const": "warn",
+    },
+  },
+  {
+    ignores: ["node_modules/**", "img/**"],
+  },
+];

@@ -20,7 +20,6 @@ const MILESTONES = [
     yearsAgo: 13_800_000_000,
     era: "Cosmic origins",
     perspectives: {"religious":"For many faith traditions, the Big Bang is the moment of creation — the instant when God spoke and matter, energy, space and time came into being.","indigenous":"Many indigenous traditions describe the universe beginning from a seed, a dream, or a song — the Big Bang as 'the first vibration' resonates with creation stories worldwide.","chinese":"Chinese cosmology describes the universe emerging from the primordial chaos of Hundun, with the first breath (qi) separating into yin and yang.","islamic":"The Quran describes God creating the heavens and the earth, and the Big Bang's singularity is sometimes interpreted as the moment of divine creation."},
-    perspectives: {"religious":"For many faith traditions, the Big Bang is the moment of creation — the instant when God spoke and matter, energy, space and time came into being.","indigenous":"Many indigenous traditions describe the universe beginning from a seed, a dream, or a song — the Big Bang as 'the first vibration' resonates with creation stories worldwide.","chinese":"Chinese cosmology describes the universe emerging from the primordial chaos of Hundun, with the first breath (qi) separating into yin and yang.","islamic":"The Quran describes God creating the heavens and the earth, and the Big Bang's singularity is sometimes interpreted as the moment of divine creation."},
     seeAlso: ["First Stars Ignite","Recombination — First Light"],
     kid: "Everything — every star, every planet, every person — used to be squeezed into a dot smaller than this full stop. Then, WHOOSH! The universe started stretching like an inflating balloon, and it is still stretching right now.",
     fun: "You are made of atoms forged in the Big Bang's very first minutes plus atoms cooked inside stars. You are literally star dust.",
@@ -48,7 +47,6 @@ const MILESTONES = [
       "Before recombination, the universe was a plasma at ~3000 K — hot enough that electrons couldn't bind to nuclei.",
     ],
     links: [{"label":"Cosmic Microwave Background","url":"https://en.wikipedia.org/wiki/Cosmic_microwave_background"}],
-    seeAlso: ["First Stars Ignite","Milky Way Forms"],
   },
   {
     title: "First Stars Ignite",
@@ -109,7 +107,6 @@ const MILESTONES = [
       "The intracluster medium — hot gas between galaxies — is hotter than the Sun's core.",
       "Galaxy clusters are now used as 'cosmic rulers' to measure the universe's expansion history.",
     ],
-    seeAlso: ["Quasars Light Up","Cosmic Noon"],
   },
   {
     title: "Cosmic Noon",
@@ -238,7 +235,6 @@ const MILESTONES = [
     title: "First Life Appears",
     yearsAgo: 3_800_000_000,
     era: "Life",
-    perspectives: {"religious":"Many traditions see life as sacred — a gift or spark of divine intention. The 'breath of life' (Genesis 2:7) frames life's emergence not as accident but as purposeful.","indigenous":"Indigenous knowledge systems often describe life as emerging from the land itself — the Earth as mother, life as her children.","chinese":"Chinese philosophy sees life as the natural expression of qi (life force) in matter — the universe's tendency toward complexity and vitality.","islamic":"The Quran describes God creating life from water ('We made from water every living thing' — Quran 21:30), aligning with the scientific view that life emerged in Earth's oceans."},
     perspectives: {"religious":"Many traditions see life as sacred — a gift or spark of divine intention. The 'breath of life' (Genesis 2:7) frames life's emergence not as accident but as purposeful.","indigenous":"Indigenous knowledge systems often describe life as emerging from the land itself — the Earth as mother, life as her children.","chinese":"Chinese philosophy sees life as the natural expression of qi (life force) in matter — the universe's tendency toward complexity and vitality.","islamic":"The Quran describes God creating life from water ('We made from water every living thing' — Quran 21:30), aligning with the scientific view that life emerged in Earth's oceans."},
     seeAlso: ["Earth Forms","The First Oceans","Photosynthesis Invented"],
     coords: [27,153],
@@ -423,7 +419,6 @@ const MILESTONES = [
     yearsAgo: 66_000_000,
     era: "Life",
     perspectives: {"religious":"Some faiths see extinction events as part of a divine plan — the clearing of the old to make way for the new, a theme of renewal in many religious narratives.","indigenous":"Indigenous traditions hold that the land and its creatures are in relationship — the loss of the dinosaurs reminds us the Earth transforms.","chinese":"Chinese cosmology sees extinction as part of the Dao — the natural cycle where old forms dissolve and new ones emerge.","islamic":"The Quran speaks of species that came before and were destroyed — a reminder that life's history is long and human stewardship (khalifa) carries responsibility."},
-    perspectives: {"religious":"Some faiths see extinction events as part of a divine plan — the clearing of the old to make way for the new, a theme of renewal in many religious narratives.","indigenous":"Indigenous traditions hold that the land and its creatures are in relationship — the loss of the dinosaurs reminds us the Earth transforms.","chinese":"Chinese cosmology sees extinction as part of the Dao — the natural cycle where old forms dissolve and new ones emerge.","islamic":"The Quran speaks of species that came before and were destroyed — a reminder that life's history is long and human stewardship (khalifa) carries responsibility."},
     seeAlso: ["Dinosaurs Appear","Whales Return to the Sea"],
     coords: [21,-90],
     kid: "One very bad day, a giant space rock as big as a mountain smashed into Mexico. The sky went dark, the weather went crazy, and almost every dinosaur died off. But the small, furry, sneaky mammals — our ancestors — made it through!",
@@ -503,7 +498,6 @@ const MILESTONES = [
     yearsAgo: 300_000,
     era: "Humans",
     perspectives: {"religious":"Most faiths hold that humans are special — made in God's image (Genesis 1:27), given a soul, or entrusted with stewardship of creation.","indigenous":"Indigenous traditions often describe humans as the youngest sibling of creation — arriving last and learning from the animals, plants and stones.","chinese":"Confucianism sees humans as the heart of heaven and earth (ren), capable of moral cultivation. Daoism sees humans as part of the natural flow (Dao).","islamic":"The Quran describes God creating Adam from clay and breathing His spirit into him — humans as khalifa (stewards) of the Earth."},
-    perspectives: {"religious":"Most faiths hold that humans are special — made in God's image (Genesis 1:27), given a soul, or entrusted with stewardship of creation.","indigenous":"Indigenous traditions often describe humans as the youngest sibling of creation — arriving last and learning from the animals, plants and stones.","chinese":"Confucianism sees humans as the heart of heaven and earth (ren), capable of moral cultivation. Daoism sees humans as part of the natural flow (Dao).","islamic":"The Quran describes God creating Adam from clay and breathing His spirit into him — humans as khalifa (stewards) of the Earth."},
     seeAlso: ["First Hominids","Fire in Our Hands","Out of Africa"],
     coords: [-30,28],
     kid: "People just like you and me — same brains, same curiosity — appear in Africa. They draw, make jewellery, bury their dead and tell stories around campfires. In time, they walk out of Africa and around the whole world!",
@@ -536,7 +530,6 @@ const MILESTONES = [
     title: "Agriculture Begins",
     yearsAgo: 12_000,
     era: "Civilization",
-    perspectives: {"religious":"Many traditions see farming as a gift from the gods — the bread and wine of communion, harvest festivals, the sabbath rest for the land.","indigenous":"Indigenous agriculture often integrates spiritual practice — the Three Sisters (maize, beans, squash) among Native Americans, or rice-paddy rituals of Southeast Asia.","chinese":"Chinese agriculture was tied to the Mandate of Heaven — the emperor's legitimacy depended on successful harvests.","islamic":"Islam emphasises stewardship of the earth (khalifa) and gratitude for its bounty. The Quran mentions agriculture as a sign of God's providence."},
     perspectives: {"religious":"Many traditions see farming as a gift from the gods — the bread and wine of communion, harvest festivals, the sabbath rest for the land.","indigenous":"Indigenous agriculture often integrates spiritual practice — the Three Sisters (maize, beans, squash) among Native Americans, or rice-paddy rituals of Southeast Asia.","chinese":"Chinese agriculture was tied to the Mandate of Heaven — the emperor's legitimacy depended on successful harvests.","islamic":"Islam emphasises stewardship of the earth (khalifa) and gratitude for its bounty. The Quran mentions agriculture as a sign of God's providence."},
     seeAlso: ["Out of Africa","Writing Invented"],
     coords: [35,36],
@@ -1382,7 +1375,6 @@ const MILESTONES = [
     yearsAgo: 55,
     era: "Modern",
     perspectives: {"religious":"For many, the Moon landing was a moment of awe — seeing Earth as a blue marble in space reinforced the sense of a single, shared creation (Psalm 8).","indigenous":"Indigenous traditions connect the Moon to cycles, seasons and ceremony. The Moon landing reminded us the sky is shared by all peoples and all stories.","chinese":"Chinese tradition names the Moon the 'Taiyin' (Grand Yin). China's rocketry goes back to the 13th century — 'fire arrow' (huo jian).","islamic":"The Quran mentions the Moon as a sign and a measure of time ('He appointed the moon for phases' — Quran 36:39)."},
-    perspectives: {"religious":"For many, the Moon landing was a moment of awe — seeing Earth as a blue marble in space reinforced the sense of a single, shared creation (Psalm 8).","indigenous":"Indigenous traditions connect the Moon to cycles, seasons and ceremony. The Moon landing reminded us the sky is shared by all peoples and all stories.","chinese":"Chinese tradition names the Moon the 'Taiyin' (Grand Yin). China's rocketry goes back to the 13th century — 'fire arrow' (huo jian).","islamic":"The Quran mentions the Moon as a sign and a measure of time ('He appointed the moon for phases' — Quran 36:39)."},
     coords: [28,-97],
     kid: "Two astronauts rode a rocket taller than a football field, left Earth completely, and walked on the Moon! Their friend Michael Collins stayed in orbit above them. Back on Earth, half a billion people watched on TV.",
     fun: "The Moon still has the astronauts' footprints, because there's no wind to blow them away. Only the flags may have faded in the sun.",
@@ -1415,7 +1407,6 @@ const MILESTONES = [
     title: "Internet & World Wide Web",
     yearsAgo: 35,
     era: "Modern",
-    perspectives: {"religious":"Some faiths see the internet as a new Babel — or as a new Pentecost. It connects humanity, but raises questions about truth and what it means to be human.","indigenous":"Indigenous communities use the internet to preserve and share languages, stories and knowledge — a tool for cultural survival.","chinese":"The Great Firewall shows how information and power intertwine. The Chinese internet is its own ecosystem (WeChat, Douyin), shaped by different values.","islamic":"Muslim communities use the internet for prayer times, Quran recitation, halal commerce and connecting the global umma."},
     perspectives: {"religious":"Some faiths see the internet as a new Babel — or as a new Pentecost. It connects humanity, but raises questions about truth and what it means to be human.","indigenous":"Indigenous communities use the internet to preserve and share languages, stories and knowledge — a tool for cultural survival.","chinese":"The Great Firewall shows how information and power intertwine. The Chinese internet is its own ecosystem (WeChat, Douyin), shaped by different values.","islamic":"Muslim communities use the internet for prayer times, Quran recitation, halal commerce and connecting the global umma."},
     coords: [46,-6],
     kid: "Computers all over the world learned to talk to each other. Then a scientist at a physics lab in Switzerland invented a way to share pages of information with clickable links. Now you can look almost anything up from your pocket in a second!",
@@ -1477,7 +1468,6 @@ const MILESTONES = [
     yearsAgo: 0,
     era: "Present",
     perspectives: {"religious":"For many, the modern era is both hopeful and anxious: unprecedented comfort alongside loneliness and meaning-crises.","indigenous":"Indigenous peoples face the modern era as both threat (climate change, extraction) and opportunity (global solidarity, digital tools).","chinese":"China's rise from poverty to superpower in one generation is the modern era's most dramatic story.","islamic":"The Muslim world (1.9 billion people) navigates the modern era across a spectrum from secular Turkey to theocratic Iran."},
-    perspectives: {"religious":"For many, the modern era is both hopeful and anxious: unprecedented comfort alongside loneliness and meaning-crises.","indigenous":"Indigenous peoples face the modern era as both threat (climate change, extraction) and opportunity (global solidarity, digital tools).","chinese":"China's rise from poverty to superpower in one generation is the modern era's most dramatic story.","islamic":"The Muslim world (1.9 billion people) navigates the modern era across a spectrum from secular Turkey to theocratic Iran."},
     coords: [0,0],
     kid: "You're living in the fastest-changing time ever! Robot cars drive on Mars, doctors edit genes to fight diseases, computers can talk to you, and there are more than 8 billion people to share the planet with.",
     fun: "By the time you're an adult today, there may be people living and working on the Moon — just like the explorers of old.",
@@ -1503,8 +1493,6 @@ const MILESTONES = [
       "Radiation on the surface is ~700 mSv/year — about 70x Earth's background; habitats need shielding.",
       "A one-way trip takes ~7 months; communication delay with Earth is 4-24 minutes.",
     ],
-    seeAlso: ["Moon Landing","First Powered Flight"],
-    coords: [-5.5,138],
   },
   {
     title: "AI Passes the Turing Threshold",
@@ -1521,8 +1509,6 @@ const MILESTONES = [
       "The 'alignment problem' is philosophically deep: we don't yet have a formal specification of 'human values'.",
       "AI + synthetic biology is a dual-use concern the biosecurity community is actively monitoring.",
     ],
-    seeAlso: ["Internet & World Wide Web","The Transistor"],
-    coords: [37,-122],
   },
   {
     title: "First Human on Mars",
@@ -1539,8 +1525,6 @@ const MILESTONES = [
       "Radiation on the surface is ~700 mSv/year — about 70x Earth's background; habitats need shielding.",
       "ISRU: making fuel and oxygen from Martian CO2 and water ice is the key to self-sufficiency.",
     ],
-    seeAlso: ["Moon Landing","First Powered Flight"],
-    coords: [-5.5,138],
   },
   {
     title: "Fusion Energy Goes Commercial",
@@ -1557,8 +1541,6 @@ const MILESTONES = [
       "Fusion fuel (deuterium-tritium) is abundant: deuterium is in seawater; tritium is bred from lithium in the reactor blanket.",
       "The 'fusion is 30 years away' joke is finally becoming 'fusion is 10-15 years away' — a real shift.",
     ],
-    seeAlso: ["Industrial Revolution","The Transistor"],
-    coords: [37,-122],
   },
   {
     title: "Climate Tipping Points",
@@ -1575,8 +1557,6 @@ const MILESTONES = [
       "AMOC slowdown is already observed: the circulation has weakened ~15% since 1950.",
       "Tipping points can be good too: renewable energy cost curves crossed coal/gas in the 2010s and accelerated.",
     ],
-    seeAlso: ["The Modern Era"],
-    coords: [0,0],
   },
   {
     title: "Population Peaks",
@@ -1593,8 +1573,6 @@ const MILESTONES = [
       "A shrinking workforce means pension and healthcare systems designed for growth will need redesign.",
       "The demographic dividend: countries with large working-age populations (India, Nigeria, Indonesia) have a window of economic opportunity.",
     ],
-    seeAlso: ["Agriculture Begins"],
-    coords: [0,0],
   },
   {
     title: "The 2100 Problem",
@@ -1611,10 +1589,8 @@ const MILESTONES = [
       "Renewable energy cost curves crossed coal/gas in the 2010s and accelerated — the transition is economic now.",
       "Tipping elements (Amazon, AMOC, ice sheets) are the wild cards — their thresholds are uncertain but their consequences are severe.",
     ],
-    seeAlso: ["Climate Tipping Points","The Modern Era"],
-    coords: [0,0],
   },
-]
+];
 
   /* -------------------------------------------------------------
      Palette: broad era families, one distinct shade per event.
@@ -2108,7 +2084,7 @@ const MILESTONES = [
       if (k % 2 === 0) {
         // Which came first? (larger yearsAgo = older = first)
         const a = randomIndex();
-        let b = randomIndex();
+        const b = randomIndex();
         const first = MILESTONES[a].yearsAgo > MILESTONES[b].yearsAgo ? a : b;
         const second = first === a ? b : a;
         questions.push({
