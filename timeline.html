@@ -565,7 +565,28 @@
     width: 350vw;
     min-width: 350vw;
     height: 340px;
+    transition: width 0.12s ease-out;
   }
+
+  /* Zoom indicator overlay */
+  .zoom-indicator {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    z-index: 15;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgba(11, 13, 16, 0.7);
+    backdrop-filter: blur(4px);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .zoom-indicator.visible { opacity: 1; }
 
   /* Number line */
   .number-line {
@@ -901,7 +922,7 @@
 </header>
 
 <div class="scroll-hint">
-  <span data-i18n="hint">Scroll horizontally to explore · Click a marker for details · Wheel / pinch / double-click to zoom</span>
+  <span data-i18n="hint">Scroll horizontally to explore · Click a marker for details · Wheel / pinch / double-click to zoom · +/- keys</span>
   <kbd>← →</kbd>
   <div class="hint-spacer"></div>
     <span id="progress-badge" style="font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; white-space: nowrap;" title="Events you have read">0 / 101 read</span>
@@ -1037,6 +1058,7 @@
 
 <div class="viewport">
   <div class="track" id="track" tabindex="0">
+    <div class="zoom-indicator" id="zoom-indicator">100%</div>
     <div class="number-line"></div>
     <div class="connectors" id="connectors"></div>
     <div class="markers" id="markers"></div>
@@ -2028,6 +2050,14 @@ function syncZoomUI() {
   const val = document.getElementById("zoom-val");
   if (slider) slider.value = Math.round(zoom * 100);
   if (val) val.textContent = Math.round(zoom * 100) + "%";
+  // flash the zoom indicator
+  const ind = document.getElementById("zoom-indicator");
+  if (ind) {
+    ind.textContent = Math.round(zoom * 100) + "%";
+    ind.classList.add("visible");
+    clearTimeout(ind._hideTimer);
+    ind._hideTimer = setTimeout(() => ind.classList.remove("visible"), 1200);
+  }
 }
 
 /* anchorContentPx: keep this content-x pixel under the same viewport spot after resize */
@@ -2049,8 +2079,8 @@ function setZoom(next, anchorContentPx, anchorViewportX) {
   syncZoomUI();
 }
 
-zoomOutBtn.addEventListener("click", () => setZoom(zoom / 1.4));
-zoomInBtn.addEventListener("click", () => setZoom(zoom * 1.4));
+zoomOutBtn.addEventListener("click", () => setZoom(zoom / 1.25));
+zoomInBtn.addEventListener("click", () => setZoom(zoom * 1.25));
 const zoomSlider = document.getElementById("zoom-slider");
 if (zoomSlider) {
   zoomSlider.addEventListener("input", () => setZoom(Number(zoomSlider.value) / 100));
@@ -2097,7 +2127,7 @@ viewportEl.addEventListener("wheel", function (e) {
   if (e.ctrlKey) {
     step = Math.exp(-e.deltaY * 0.012);
   } else {
-    step = e.deltaY > 0 ? 1 / 1.28 : 1.28;
+    step = e.deltaY > 0 ? 1 / 1.15 : 1.15;
   }
   scheduleZoom(step, contentX, viewX);
 }, { passive: false });
@@ -2107,7 +2137,7 @@ viewportEl.addEventListener("dblclick", function (e) {
   const vp = viewportEl;
   const vr = vp.getBoundingClientRect();
   const contentX = vp.scrollLeft + (e.clientX - vr.left);
-  setZoom(e.altKey ? zoom / 1.6 : zoom * 1.6, contentX, e.clientX - vr.left);
+  setZoom(e.altKey ? zoom / 1.5 : zoom * 1.5, contentX, e.clientX - vr.left);
 });
 
 /* reset zoom on a double-click of the % readout */
@@ -2122,8 +2152,8 @@ if (zoomValEl) {
 
 /* + / - keys zoom when the timeline has focus */
 track.addEventListener("keydown", (e) => {
-  if (e.key === "+" || e.key === "=") { e.preventDefault(); setZoom(zoom * 1.35); }
-  if (e.key === "-" || e.key === "_") { e.preventDefault(); setZoom(zoom / 1.35); }
+  if (e.key === "+" || e.key === "=") { e.preventDefault(); setZoom(zoom * 1.25); }
+  if (e.key === "-" || e.key === "_") { e.preventDefault(); setZoom(zoom / 1.25); }
 });
 
 function setScaleMode(mode) {
