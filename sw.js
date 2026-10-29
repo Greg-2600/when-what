@@ -2,7 +2,7 @@
 const VERSION = "v8";
 const CORE_CACHE = `core-${VERSION}`;
 const RUNTIME_CACHE = `images-${VERSION}`;
-const CORE_URLS = ["./timeline.html"];
+const CORE_URLS = ["./timeline.html", "./timeline-core.js", "./icon.svg", "./manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

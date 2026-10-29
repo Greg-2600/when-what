@@ -1,0 +1,464 @@
+[
+  {
+    "title": "The Big Bang",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/CMB_Timeline75.jpg?width=700",
+    "filename": "the-big-bang.jpg",
+    "index": 0
+  },
+  {
+    "title": "First Stars Ignite",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hubble_ultra_deep_field.jpg?width=700",
+    "filename": "first-stars-ignite.jpg",
+    "index": 1
+  },
+  {
+    "title": "Milky Way Forms",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Milky_Way_Night_Sky_Black_Rock_Desert_Nevada.jpg?width=700",
+    "filename": "milky-way-forms.jpg",
+    "index": 2
+  },
+  {
+    "title": "Solar System Forms",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Solar_System_true_color.jpg?width=700",
+    "filename": "solar-system-forms.jpg",
+    "index": 3
+  },
+  {
+    "title": "Earth Forms",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Earth_seen_from_Apollo_17.jpg?width=700",
+    "filename": "earth-forms.jpg",
+    "index": 4
+  },
+  {
+    "title": "First Life Appears",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromatolites_in_Sharkbay.jpg?width=700",
+    "filename": "first-life-appears.jpg",
+    "index": 5
+  },
+  {
+    "title": "Oxygenation of the Atmosphere",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Banded_iron_formation.jpg?width=700",
+    "filename": "oxygenation-of-the-atmosphere.jpg",
+    "index": 6
+  },
+  {
+    "title": "First Complex Life",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Anomalocaris_canadensis.jpg?width=700",
+    "filename": "first-complex-life.jpg",
+    "index": 7
+  },
+  {
+    "title": "Dinosaurs Appear",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tyrannosaurus_Rex_Holotype.jpg?width=700",
+    "filename": "dinosaurs-appear.jpg",
+    "index": 8
+  },
+  {
+    "title": "Dinosaur Extinction",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thin_white_line%20%3D%20KT%20(now%20K-Pg)%20boundary%20(5090097984).jpg?width=700",
+    "filename": "dinosaur-extinction.jpg",
+    "index": 9
+  },
+  {
+    "title": "First Hominids",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lucy_blackbg.jpg?width=700",
+    "filename": "first-hominids.jpg",
+    "index": 10
+  },
+  {
+    "title": "Homo sapiens",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jebel_Irhoud-1_NMNH.jpg?width=700",
+    "filename": "homo-sapiens.jpg",
+    "index": 11
+  },
+  {
+    "title": "Agriculture Begins",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/G%C3%B6bekli_Tepe.jpg?width=700",
+    "filename": "agriculture-begins.jpg",
+    "index": 12
+  },
+  {
+    "title": "Writing Invented",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cuneiform_script.jpg?width=700",
+    "filename": "writing-invented.jpg",
+    "index": 13
+  },
+  {
+    "title": "Great Pyramid of Giza",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/All_Gizah_Pyramids.jpg?width=700",
+    "filename": "great-pyramid-of-giza.jpg",
+    "index": 14
+  },
+  {
+    "title": "Roman Empire",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Colosseo_2020.jpg?width=700",
+    "filename": "roman-empire.jpg",
+    "index": 15
+  },
+  {
+    "title": "Fall of Rome / Middle Ages",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Canterbury%20Cathedral%20Nave%201%2C%20Kent%2C%20UK%20-%20Diliff.jpg?width=700",
+    "filename": "fall-of-rome-middle-ages.jpg",
+    "index": 16
+  },
+  {
+    "title": "Printing Press",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Gutenberg_press.png?width=700",
+    "filename": "printing-press.jpg",
+    "index": 17
+  },
+  {
+    "title": "Industrial Revolution",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Powerloom_weaving_in_1835.jpg?width=700",
+    "filename": "industrial-revolution.jpg",
+    "index": 18
+  },
+  {
+    "title": "First Powered Flight",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/First_flight2.jpg?width=700",
+    "filename": "first-powered-flight.jpg",
+    "index": 19
+  },
+  {
+    "title": "Moon Landing",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aldrin_Apollo_11_original.jpg?width=700",
+    "filename": "moon-landing.jpg",
+    "index": 20
+  },
+  {
+    "title": "Internet & World Wide Web",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Internet_map_1024_-_transparent%2C_inverted.png?width=700",
+    "filename": "internet-world-wide-web.jpg",
+    "index": 21
+  },
+  {
+    "title": "The Modern Era",
+    "url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Blue_Marble_(remastered).jpg?width=700",
+    "filename": "the-modern-era.jpg",
+    "index": 22
+  },
+  {
+    "title": "Quasars Light Up",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Artist%27s_rendering_ULAS_J1120%2B0641.jpg/3840px-Artist%27s_rendering_ULAS_J1120%2B0641.jpg",
+    "filename": "quasars-light-up.jpg",
+    "index": 23
+  },
+  {
+    "title": "Cosmic Noon",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/46/PIA23865-W51Nebula-StarFactory-20200825.jpg",
+    "filename": "cosmic-noon.jpg",
+    "index": 24
+  },
+  {
+    "title": "The Cosmic Web Forms",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Observable_Universe_with_Measurements_01.png",
+    "filename": "the-cosmic-web-forms.jpg",
+    "index": 25
+  },
+  {
+    "title": "Dark Energy Takes Over",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/WMAP_2012.png/3840px-WMAP_2012.png",
+    "filename": "dark-energy-takes-over.jpg",
+    "index": 26
+  },
+  {
+    "title": "The Moon Forms",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Cara-oculta-luna.jpg",
+    "filename": "the-moon-forms.jpg",
+    "index": 27
+  },
+  {
+    "title": "The First Oceans",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Hadean.png",
+    "filename": "the-first-oceans.jpg",
+    "index": 28
+  },
+  {
+    "title": "Late Heavy Bombardment",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Precambrian_Evolution_of_Life.png",
+    "filename": "late-heavy-bombardment.jpg",
+    "index": 29
+  },
+  {
+    "title": "Photosynthesis Invented",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/15/CSIRO_ScienceImage_4203_A_bluegreen_algae_species_Cylindrospermum_sp_under_magnification.jpg",
+    "filename": "photosynthesis-invented.jpg",
+    "index": 30
+  },
+  {
+    "title": "Complex Cells (Eukaryotes)",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Amoeba_collage.jpg",
+    "filename": "complex-cells-eukaryotes.jpg",
+    "index": 31
+  },
+  {
+    "title": "Cells Begin Pairing Up (Sex Evolves)",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Meiosis_Overview_new.svg/960px-Meiosis_Overview_new.svg.png",
+    "filename": "cells-begin-pairing-up-sex-evolves.jpg",
+    "index": 32
+  },
+  {
+    "title": "Snowball Earth",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Snowball_Huronian.jpg",
+    "filename": "snowball-earth.jpg",
+    "index": 33
+  },
+  {
+    "title": "Plants Cover the Land",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/47/The_ferns_of_Great_Britain%2C_and_their_allies_the_club-mosses%2C_pepperworts%2C_and_horsetails_%28Pl._2%29_%288515393495%29.jpg",
+    "filename": "plants-cover-the-land.jpg",
+    "index": 34
+  },
+  {
+    "title": "Fire in Our Hands",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Campfire_Pinecone.png",
+    "filename": "fire-in-our-hands.jpg",
+    "index": 35
+  },
+  {
+    "title": "The Wheel Turns",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Landesmuseum_W%C3%BCrttemberg_Kelten_011.4.jpg/3840px-Landesmuseum_W%C3%BCrttemberg_Kelten_011.4.jpg",
+    "filename": "the-wheel-turns.jpg",
+    "index": 36
+  },
+  {
+    "title": "The Alphabet",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Phoenician_alphabet.svg/960px-Phoenician_alphabet.svg.png",
+    "filename": "the-alphabet.jpg",
+    "index": 37
+  },
+  {
+    "title": "Two Worlds Collide",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/34/VegCorn_%28cropped%29.jpg",
+    "filename": "two-worlds-collide.jpg",
+    "index": 38
+  },
+  {
+    "title": "Newton Rewrites the Sky",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Portrait_of_Sir_Isaac_Newton%2C_1689_%28brightened%29.jpg",
+    "filename": "newton-rewrites-the-sky.jpg",
+    "index": 39
+  },
+  {
+    "title": "Vaccines Discovered",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Young_girl_about_to_receive_a_vaccine_in_her_upper_arm_%2848545990252%29.jpg",
+    "filename": "vaccines-discovered.jpg",
+    "index": 40
+  },
+  {
+    "title": "The Transistor",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Transbauformen.jpg",
+    "filename": "the-transistor.jpg",
+    "index": 41
+  },
+  {
+    "title": "The DNA Double Helix",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/DNA_Structure%2BKey%2BLabelled.pn_NoBB.png",
+    "filename": "the-dna-double-helix.jpg",
+    "index": 42
+  },
+  {
+    "title": "Smartphones Change Everything",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Wikipedia_homepage_on_a_large_Android_phone%2C_2015-04-16.jpg/3840px-Wikipedia_homepage_on_a_large_Android_phone%2C_2015-04-16.jpg",
+    "filename": "smartphones-change-everything.jpg",
+    "index": 43
+  },
+  {
+    "title": "Fish Walk onto Land",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Tiktaalik_Chicago.JPG",
+    "filename": "fish-walk-onto-land.jpg",
+    "index": 44
+  },
+  {
+    "title": "The Coal Forests",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Lepidodendron_reconstrucci%C3%B3n.jpg",
+    "filename": "the-coal-forests.jpg",
+    "index": 45
+  },
+  {
+    "title": "The Great Dying",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Extinction_intensity.svg/960px-Extinction_intensity.svg.png",
+    "filename": "the-great-dying.jpg",
+    "index": 46
+  },
+  {
+    "title": "Whales Return to the Sea",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg",
+    "filename": "whales-return-to-the-sea.jpg",
+    "index": 47
+  },
+  {
+    "title": "The First Apes",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/013_Alpha_male_chimpanzee_at_Kibale_forest_National_Park_Photo_by_Giles_Laurent.jpg/3840px-013_Alpha_male_chimpanzee_at_Kibale_forest_National_Park_Photo_by_Giles_Laurent.jpg",
+    "filename": "the-first-apes.jpg",
+    "index": 48
+  },
+  {
+    "title": "Out of Africa",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Spreading_homo_sapiens_la.svg/1920px-Spreading_homo_sapiens_la.svg.png",
+    "filename": "out-of-africa.jpg",
+    "index": 49
+  },
+  {
+    "title": "Democracy is Born",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Discurso_funebre_pericles.PNG",
+    "filename": "democracy-is-born.jpg",
+    "index": 50
+  },
+  {
+    "title": "The Islamic Golden Age",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Khalili_Collection_Islamic_Art_sci_0430_back.jpg",
+    "filename": "the-islamic-golden-age.jpg",
+    "index": 51
+  },
+  {
+    "title": "Electricity Lights Up the World",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Light-bulbs.jpg",
+    "filename": "electricity-lights-up-the-world.jpg",
+    "index": 52
+  },
+  {
+    "title": "Antibiotics Discovered",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Penicillium_Pengo.jpg",
+    "filename": "antibiotics-discovered.jpg",
+    "index": 53
+  },
+  {
+    "title": "The Human Genome Mapped",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Logo_HGP.jpg",
+    "filename": "the-human-genome-mapped.jpg",
+    "index": 54
+  },
+  {
+    "title": "Creation",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Tissot_The_Creation.jpg",
+    "filename": "creation.jpg",
+    "index": 55
+  },
+  {
+    "title": "The Great Flood",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Le_d%C3%A9luge_-_mus%C3%A9e_de_beaux_arts_de_Nantes_20091017.jpg",
+    "filename": "the-great-flood.jpg",
+    "index": 56
+  },
+  {
+    "title": "Abraham's Journey",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Guercino_Abramo_ripudia_Agar_%28cropped_2%29.jpg",
+    "filename": "abraham-s-journey.jpg",
+    "index": 57
+  },
+  {
+    "title": "Exodus & Mount Sinai",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/David_Roberts-IsraelitesLeavingEgypt_1828.jpg/3840px-David_Roberts-IsraelitesLeavingEgypt_1828.jpg",
+    "filename": "exodus-mount-sinai.jpg",
+    "index": 58
+  },
+  {
+    "title": "King David Reigns",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/King_David%2C_the_King_of_Israel.jpg",
+    "filename": "king-david-reigns.jpg",
+    "index": 59
+  },
+  {
+    "title": "Solomon's Temple",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Francois_Vatable%2C_reconstructie_van_de_tempel_van_Salomo_%28detail%29.jpg",
+    "filename": "solomon-s-temple.jpg",
+    "index": 60
+  },
+  {
+    "title": "The Babylonian Exile",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Tissot_The_Flight_of_the_Prisoners.jpg",
+    "filename": "the-babylonian-exile.jpg",
+    "index": 61
+  },
+  {
+    "title": "The Return & Second Temple",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Second_Temple.jpg",
+    "filename": "the-return-second-temple.jpg",
+    "index": 62
+  },
+  {
+    "title": "The Birth of Jesus",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Adoration_of_the_sheperds_-_Matthias_Stomer.jpg/3840px-Adoration_of_the_sheperds_-_Matthias_Stomer.jpg",
+    "filename": "the-birth-of-jesus.jpg",
+    "index": 63
+  },
+  {
+    "title": "The Crucifixion & Resurrection",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Cristo_crucificado.jpg",
+    "filename": "the-crucifixion-resurrection.jpg",
+    "index": 64
+  },
+  {
+    "title": "The Second Temple Falls",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/%28Venice%29_La_distruzione_del_tempio_di_Gerusalemme_-Francesco_Hayez_-_gallerie_Accademia_Venice.jpg/3840px-%28Venice%29_La_distruzione_del_tempio_di_Gerusalemme_-Francesco_Hayez_-_gallerie_Accademia_Venice.jpg",
+    "filename": "the-second-temple-falls.jpg",
+    "index": 65
+  },
+  {
+    "title": "Menes Unifies Egypt",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Narmer_palette_%28obverse%29_%28cropped%29.jpg",
+    "filename": "menes-unifies-egypt.jpg",
+    "index": 66
+  },
+  {
+    "title": "Hammurabi's Code",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/P1050763_Louvre_code_Hammurabi_face_rwk.JPG",
+    "filename": "hammurabi-s-code.jpg",
+    "index": 67
+  },
+  {
+    "title": "The Neo-Assyrian Empire",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Map_of_Assyria.png",
+    "filename": "the-neo-assyrian-empire.jpg",
+    "index": 68
+  },
+  {
+    "title": "Darius & the Persian Empire",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Achaemenid_Empire_500_BCE.jpg",
+    "filename": "darius-the-persian-empire.jpg",
+    "index": 69
+  },
+  {
+    "title": "Alexander the Great",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Alexander_Mosaic_detail_of_Alexander_the_Great_%283x4_cropped%29.jpg",
+    "filename": "alexander-the-great.jpg",
+    "index": 70
+  },
+  {
+    "title": "The Caliphates Spread",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Mohammad_adil-Rashidun-empire-at-its-peak-close.PNG",
+    "filename": "the-caliphates-spread.jpg",
+    "index": 71
+  },
+  {
+    "title": "The Mongol Empire",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Expansion_of_the_Mongol_Empire_1206%E2%80%931294.gif",
+    "filename": "the-mongol-empire.jpg",
+    "index": 72
+  },
+  {
+    "title": "The British Empire",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg/1280px-Flag_of_Great_Britain_%281707%E2%80%931800%29.svg.png",
+    "filename": "the-british-empire.jpg",
+    "index": 73
+  },
+  {
+    "title": "The World Wars",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Atomic_bombing_of_Japan.jpg/3840px-Atomic_bombing_of_Japan.jpg",
+    "filename": "the-world-wars.jpg",
+    "index": 74
+  },
+  {
+    "title": "Recombination — First Light",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Cosmic_Microwave_Background_%28CMB%29.jpeg",
+    "filename": "recombination-first-light.jpg",
+    "index": 75
+  },
+  {
+    "title": "First Galaxy Clusters",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/be/BoRG-58.jpg",
+    "filename": "first-galaxy-clusters.jpg",
+    "index": 76
+  }
+]
