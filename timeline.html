@@ -911,7 +911,7 @@
 </header>
 
 <div class="scroll-hint">
-  <span data-i18n="hint">Scroll or swipe horizontally to explore · Click or hover a marker for details · Wheel zooms</span>
+  <span data-i18n="hint">Scroll horizontally to explore · Click a marker for details · Wheel / pinch / double-click to zoom</span>
   <kbd>← →</kbd>
   <div class="hint-spacer"></div>
     <select id="lang-select" class="seg" aria-label="Language">
@@ -923,6 +923,8 @@
     <button class="seg" id="mode-human" type="button" data-i18n="modeCiv">Civilization</button>
     <button class="seg" id="mode-powers" type="button" title="World superpowers and their large events" data-i18n="modePowers">Powers</button>
     <button class="seg" id="zoom-out" type="button" title="Zoom out (mouse wheel too)">➖</button>
+    <input id="zoom-slider" type="range" min="35" max="400" value="100" step="5" aria-label="Zoom level" title="Zoom level" style="width:110px;" />
+    <span id="zoom-val" class="zoom-val" title="Zoom level" style="font-size:0.75rem; color: var(--muted); min-width: 2.6rem; text-align:center;">100%</span>
     <button class="seg" id="zoom-in" type="button" title="Zoom in (mouse wheel too)">➕</button>
   </div>
 </div>
@@ -1893,6 +1895,7 @@ function applyPositions() {
   layoutLabels();
   buildLineGradient();
   updateWash();
+  if (typeof syncZoomUI === "function") syncZoomUI();
 }
 
 function trackWidthVw() {
@@ -1903,41 +1906,77 @@ function baseWidthVw() {
   return BASE_VW[scaleMode];
 }
 
-function setZoom(next) {
+function zoomSliderEl() { return document.getElementById("zoom-slider"); }
+function zoomValEl() { return document.getElementById("zoom-val"); }
+
+function syncZoomUI() {
+  const slider = zoomSliderEl();
+  const val = zoomValEl();
+  if (slider) slider.value = Math.round(zoom * 100);
+  if (val) val.textContent = Math.round(zoom * 100) + "%";
+}
+
+/* anchorContentPx: keep this content-x pixel under the same viewport spot after resize */
+function setZoom(next, anchorContentPx, anchorViewportX) {
   zoom = Math.min(4, Math.max(0.35, next));
   const vp = viewportEl;
   const old = track.getBoundingClientRect().width;
-  const frac = (vp.scrollLeft + vp.clientWidth / 2) / old; // content fraction at centre
+  const aContent = anchorContentPx != null ? anchorContentPx : vp.scrollLeft + vp.clientWidth / 2;
+  const aView = anchorViewportX != null ? anchorViewportX : vp.clientWidth / 2;
   track.style.width = trackWidthVw().toFixed(2) + "vw";
   track.style.minWidth = track.style.width;
-  requestAnimationFrame(() => {
-    vp.scrollLeft = Math.max(
-      0,
-      Math.min(vp.scrollWidth - vp.clientWidth, frac * track.getBoundingClientRect().width - vp.clientWidth / 2)
-    );
-    layoutLabels();
-    updateWash();
-  });
+  // keep the same content point under the same viewport position
+  const newContentX = (aContent / old) * track.getBoundingClientRect().width;
+  vp.scrollLeft = Math.max(
+    0,
+    Math.min(vp.scrollWidth - vp.clientWidth, newContentX - aView)
+  );
+  requestAnimationFrame(() => { layoutLabels(); updateWash(); });
+  syncZoomUI();
 }
 
 zoomOutBtn.addEventListener("click", () => setZoom(zoom / 1.4));
 zoomInBtn.addEventListener("click", () => setZoom(zoom * 1.4));
+const zoomSlider = document.getElementById("zoom-slider");
+if (zoomSlider) {
+  zoomSlider.addEventListener("input", () => setZoom(Number(zoomSlider.value) / 100));
+}
 
-/* Mouse wheel zooms the timeline (shift+wheel still scrolls) */
+/* Mouse wheel zooms the timeline, anchored at the cursor.
+   shift+wheel still scrolls; trackpad pinch (ctrl+wheel) zooms gently. */
 viewportEl.addEventListener("wheel", (e) => {
   if (e.shiftKey) return;
-  if (!document.querySelector(".panel") || document.querySelector(".panel").classList.contains("open") && !false) {
-    // zoom only when the details panel is closed
-  }
+  if (scaleMode === undefined) return;
   e.preventDefault();
-  const factor = e.deltaY > 0 ? 1 / 1.28 : 1.28;
-  setZoom(zoom * factor);
+  const vp = viewportEl;
+  const contentX = vp.scrollLeft + (e.clientX - vp.getBoundingClientRect().left);
+  const viewX = e.clientX - vp.getBoundingClientRect().left;
+  let step;
+  if (e.ctrlKey) {
+    // trackpad pinch: gentle and proportional to finger distance
+    step = Math.exp(-e.deltaY * 0.012);
+  } else {
+    step = e.deltaY > 0 ? 1 / 1.28 : 1.28;
+  }
+  setZoom(zoom * step, contentX, viewX);
 }, { passive: false });
+
+/* double-click zooms in, alt+double-click zooms out — anchored at cursor */
+viewportEl.addEventListener("dblclick", (e) => {
+  const vp = viewportEl;
+  const contentX = vp.scrollLeft + (e.clientX - vp.getBoundingClientRect().left);
+  setZoom(e.altKey ? zoom / 1.6 : zoom * 1.6, contentX, e.clientX - vp.getBoundingClientRect().left);
+});
+
+/* + / - keys zoom when the timeline has focus */
+track.addEventListener("keydown", (e) => {
+  if (e.key === "+" || e.key === "=") { e.preventDefault(); setZoom(zoom * 1.35); }
+  if (e.key === "-" || e.key === "_") { e.preventDefault(); setZoom(zoom / 1.35); }
+});
 
 function setScaleMode(mode) {
   if (scaleMode === mode) return;
   scaleMode = mode;
-  zoom = 1;
   modeDeepBtn.classList.toggle("on", mode === "deep");
   modeHumanBtn.classList.toggle("on", mode === "human");
   modePowersBtn.classList.toggle("on", mode === "powers");
