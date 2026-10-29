@@ -587,9 +587,10 @@
     width: 350vw;
     min-width: 350vw;
     height: 340px;
-    transition: width 0.15s ease-out;
     transform-origin: left center;
   }
+  .track.zooming .marker { transition: transform 0.15s ease-out; }
+  .track.zooming { /* visual feedback during zoom */ }
 
   /* Zoom indicator overlay */
   .zoom-indicator {
