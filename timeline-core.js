@@ -31,6 +31,22 @@ const MILESTONES = [
     ],
   },
   {
+    title: "Recombination — First Light",
+    yearsAgo: 13797000000,
+    era: "Cosmic origins",
+    kid: "For the first 380,000 years, the universe was a fog of hot plasma where light couldn't travel. Then it cooled enough for atoms to form — and the fog cleared! Light raced everywhere for the first time. That ancient light is the cosmic microwave background we still detect today.",
+    fun: "When you tune an old analogue TV to a dead channel, about 1% of the static you see is the Big Bang's afterglow.",
+    summary: "About 380,000 years after the Big Bang, electrons and protons combined into hydrogen atoms and the universe became transparent. The light released then — stretched by expansion into faint microwaves — is the CMB, our most precise picture of the early universe.",
+    deep: [
+      "The CMB has a temperature of 2.725 K — uniform to 1 part in 100,000, with tiny ripples that became galaxies.",
+      "COBE (1992) first measured the ripples; WMAP (2001) and Planck (2009) refined them to exquisite detail.",
+      "The CMB's pattern of hot and cold spots encodes the universe's composition: ~5% normal matter, ~27% dark matter, ~68% dark energy.",
+      "Before recombination, the universe was a plasma at ~3000 K — hot enough that electrons couldn't bind to nuclei.",
+    ],
+    links: [{"label":"Cosmic Microwave Background","url":"https://en.wikipedia.org/wiki/Cosmic_microwave_background"}],
+    seeAlso: ["First Stars Ignite","Milky Way Forms"],
+  },
+  {
     title: "First Stars Ignite",
     yearsAgo: 13_600_000_000,
     era: "Cosmic origins",
@@ -71,6 +87,21 @@ const MILESTONES = [
       "Quasars work as cosmic backlights: shining through clouds of hydrogen, they let astronomers find the universe's missing ordinary matter.",
       "Blasting winds from quasars can blow gas right out of a galaxy - one reason giant galaxies calmed down.",
     ],
+  },
+  {
+    title: "First Galaxy Clusters",
+    yearsAgo: 12800000000,
+    era: "Galaxies",
+    kid: "Galaxies started hanging out in groups! The first clusters — enormous families of thousands of galaxies bound by gravity — began to form. They are the largest structures in the universe that are held together by gravity.",
+    fun: "The largest galaxy cluster we've found, the Shapley Supercluster, contains millions of galaxies.",
+    summary: "By 1 billion years after the Big Bang, galaxies had begun clustering into groups and clusters held together by dark matter's gravity. These are the largest gravitationally bound structures in the universe — some contain thousands of galaxies.",
+    deep: [
+      "The Coma Cluster, 320 million light-years away, was one of the first clusters identified (1785).",
+      "Clusters grow by accreting smaller groups; mergers can take billions of years.",
+      "The intracluster medium — hot gas between galaxies — is hotter than the Sun's core.",
+      "Galaxy clusters are now used as 'cosmic rulers' to measure the universe's expansion history.",
+    ],
+    seeAlso: ["Quasars Light Up","Cosmic Noon"],
   },
   {
     title: "Cosmic Noon",
@@ -1530,6 +1561,8 @@ const MILESTONES = [
     "The Human Genome Mapped": "https://en.wikipedia.org/wiki/Human_Genome_Project",
     "Smartphones Change Everything": "https://en.wikipedia.org/wiki/Smartphone",
     "The Modern Era": "https://en.wikipedia.org/wiki/Contemporary_history",
+    "Recombination — First Light": "https://en.wikipedia.org/wiki/Recombination_(cosmology)",
+    "First Galaxy Clusters": "https://en.wikipedia.org/wiki/Galaxy_cluster",
     "The Ottoman Empire": "https://en.wikipedia.org/wiki/Ottoman_Empire",
     "The Mughal Empire": "https://en.wikipedia.org/wiki/Mughal_Empire",
     "Meiji Japan Industrialises": "https://en.wikipedia.org/wiki/Meiji_Restoration",
@@ -1944,6 +1977,38 @@ const MILESTONES = [
   }
 
 
+  /* -------------------------------------------------------------
+     Voice quality scoring for the Web Speech API voice picker.
+     Pure function: takes a voice descriptor and a target language.
+     ------------------------------------------------------------- */
+  function scoreVoice(v, lang) {
+    if (!v || !v.name) return -Infinity;
+    const name = String(v.name).toLowerCase();
+    const vlang = String(v.lang || "").toLowerCase();
+    const target = String(lang || "en").toLowerCase().split("-")[0];
+    let score = 0;
+    if (vlang === target || vlang.startsWith(target + "-")) score += 40;
+    else if (vlang.startsWith(target)) score += 10;
+    else score -= 60;
+    if (/google/.test(name)) score += 50;
+    if (/premium|enhanced|neural|natural/.test(name)) score += 60;
+    if (/samantha|daniel|karen|moira|tessa|fiona|alex|ava|serena|kate|oliver|tom|zira|hazel/.test(name)) score += 25;
+    if (/espeak|festival|pico|flite/.test(name)) score -= 80;
+    if (v.localService) score += 15;
+    if (v.default) score -= 5;
+    return score;
+  }
+
+  function pickBestVoice(voices, lang) {
+    if (!voices || !voices.length) return -1;
+    let best = -1, bestScore = -Infinity;
+    voices.forEach(function (v, i) {
+      const s = scoreVoice(v, lang);
+      if (s > bestScore) { bestScore = s; best = i; }
+    });
+    return best;
+  }
+
   function slugify(title) {
     return String(title)
       .toLowerCase()
@@ -2084,6 +2149,8 @@ const MILESTONES = [
     makeQuiz: makeQuiz,
     makeRiddleGame: makeRiddleGame,
     RIDDLES: RIDDLES,
+    scoreVoice: scoreVoice,
+    pickBestVoice: pickBestVoice,
     slugify: slugify,
   };
 });

@@ -66,11 +66,11 @@ async function main() {
       "legend: document.querySelectorAll('.legend .chip').length, " +
       "gradient: document.querySelector('.number-line').style.background.includes('linear-gradient') }"
     );
-    assert.equal(counts.markers, 92, "92 markers");
-    assert.equal(counts.labels, 92, "92 labels");
+    assert.equal(counts.markers, 94, "94 markers");
+    assert.equal(counts.labels, 94, "94 labels");
     assert.equal(counts.legend, 10, "10 era chips");
     assert.equal(counts.gradient, true, "number line painted with era spectrum");
-    ok("92 markers, 92 tiered labels, 10 era chips, gradient line");
+    ok("94 markers, 94 tiered labels, 10 era chips, gradient line");
 
     // ── 2. Hover opens the panel with three reading levels ───────────
     await hoverEvent("Dinosaur Extinction");
@@ -153,10 +153,10 @@ async function main() {
     const deepVisible = await driver.executeScript(
       "return [...document.querySelectorAll('.marker')].filter(m => m.style.display !== 'none').length"
     );
-    assert.equal(deepVisible, 92);
+    assert.equal(deepVisible, 94);
     const gradAfter = await driver.executeScript("return document.querySelector('.number-line').style.background");
     assert.notEqual(gradBefore, gradAfter, "line gradient rebuilds per mode");
-    ok(`zoom: civilization = 31 events, deep time = 92, gradient rebuilt`);
+    ok(`zoom: civilization = 31 events, deep time = 94, gradient rebuilt`);
 
     // ── 8. Panel arrows step through history and scroll viewport ──────
     await hoverEvent("Moon Landing");
@@ -192,7 +192,7 @@ async function main() {
     const tourLabel1 = await driver.executeScript(
       "return document.getElementById('tour-btn').textContent"
     );
-    assert.ok(tourLabel1.includes("Tour 1/92"), `tour button state unexpected: ${JSON.stringify(tourLabel1)}`);
+    assert.ok(tourLabel1.includes("Tour 1/94"), `tour button state unexpected: ${JSON.stringify(tourLabel1)}`);
     assert.equal(await driver.findElement(By.id("panel-title")).getText(), "The Big Bang", "tour opens event 1");
     await driver.executeScript("document.getElementById('tour-btn').click()"); // stop
     const tourLabel2 = await driver.executeScript(
@@ -214,11 +214,11 @@ async function main() {
     assert.equal(swOk, true, "service worker registered");
     await driver.wait(async () =>
       driver.executeScript(
-        "return caches.open('images-v4').then(c => c.keys().then(k => k.length))"
+        "return caches.open('images-v7').then(c => c.keys().then(k => k.length))"
       ) > 0 ? true : false, 20000
     ).catch(() => {});
     const cacheCount = await driver.executeScript(
-      "return caches.open('images-v4').then(c => c.keys().then(k => k.length))"
+      "return caches.open('images-v7').then(c => c.keys().then(k => k.length))"
     );
     // Wikimedia throttles bulk fetches from one IP; caching fills as the throttle lifts.
     if (cacheCount < 10) console.log(`  ⚠ image cache warming in progress (${cacheCount}/90) — Wikimedia IP throttle`);
@@ -319,7 +319,7 @@ async function main() {
     // ── 16d. A11y debt: dialog roles, Escape closes, keyboard legend ─
     const dialogCount = await driver.executeScript(
       "return [...document.querySelectorAll('[role=dialog]')].length");
-    assert.equal(dialogCount, 4, "4 modals carry role=dialog");
+    assert.equal(dialogCount, 5, "5 modals carry role=dialog (incl. settings)");
 
     /* Escape closes the quiz */
     await driver.executeScript("document.getElementById('quiz-btn').click()");

@@ -933,6 +933,7 @@
   <button id="packs-btn" class="seg" type="button" title="Multi-page classroom worksheet for an era">📘 Packs</button>
     <button id="read-btn" class="seg" type="button" title="Full-screen reading mode" data-i18n="btnRead">📖 Read</button>
     <button id="narrate-btn" class="seg" type="button" title="Read the story aloud" data-i18n="btnNarrate">🔊 Narrate</button>
+    <button id="settings-btn" class="seg" type="button" title="Audio settings">⚙️ Settings</button>
   <div id="search-results" class="search-results" hidden></div>
 </div>
 
@@ -979,6 +980,34 @@
 </div>
 
 <div id="print-sheet" hidden></div>
+
+<div class="glossary-modal" id="settings-modal" role="dialog" aria-modal="true" hidden>
+  <div class="glossary-card">
+    <button class="glossary-close" id="settings-close" aria-label="Close settings">✕</button>
+    <h2>⚙️ Audio settings</h2>
+    <p class="gl-sub">Pick the voice that sounds best on your device. The default is auto-selected.</p>
+    <div class="setting-row">
+      <label for="voice-select"><b>Voice</b></label>
+      <select id="voice-select" class="seg" style="width: 100%; max-width: 460px;"></select>
+    </div>
+    <div class="setting-row">
+      <label for="rate-slider"><b>Speed: <span id="rate-val">0.95×</span></b></label>
+      <input id="rate-slider" type="range" min="50" max="150" value="95" step="5" style="width: 100%; max-width: 460px;" />
+    </div>
+    <div class="setting-row">
+      <label><b>High-quality cloud voice (ElevenLabs, optional)</b></label>
+      <p class="gl-sub" style="margin: 0.2rem 0 0.6rem;">Paste your own API key from <a href="https://elevenlabs.io" target="_blank" rel="noopener">elevenlabs.io</a>. Stored in this browser only. When enabled, narration uses the neural "Rachel" voice instead of the system voice.</p>
+      <input id="el-key" type="password" placeholder="xi-api-key …" autocomplete="off" style="width: 100%; max-width: 460px; padding: 0.4rem 0.8rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text);" />
+      <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <label style="display: flex; gap: 0.4rem; align-items: center; font-size: 0.85rem; color: var(--text); text-transform: none; letter-spacing: 0;">
+          <input id="el-enabled" type="checkbox" /> Use cloud voice
+        </label>
+        <button id="el-test" class="seg" type="button">Test voice</button>
+        <span id="el-status" style="font-size: 0.8rem; color: var(--muted);"></span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="story-reader" id="story-reader" hidden>
   <div class="reader-inner">
@@ -1369,6 +1398,14 @@ const EVENT_MEDIA = {
   "The World Wars": {
     caption: "The mushroom cloud over Hiroshima — the war's devastating ending",
     url: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Atomic_bombing_of_Japan.jpg/3840px-Atomic_bombing_of_Japan.jpg",
+  },
+  "Recombination — First Light": {
+    caption: "The cosmic microwave background — the oldest light in the universe, mapped across the whole sky",
+    url: "https://upload.wikimedia.org/wikipedia/commons/0/04/Cosmic_Microwave_Background_%28CMB%29.jpeg",
+  },
+  "First Galaxy Clusters": {
+    caption: "A galaxy cluster — thousands of galaxies bound together by gravity, the largest structures in the universe",
+    url: "https://upload.wikimedia.org/wikipedia/commons/b/be/BoRG-58.jpg",
   },
 };
 
