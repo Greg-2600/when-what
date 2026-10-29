@@ -63,6 +63,11 @@ test("IIFE statements are actually invoked (parenthesis sanity guard)", () => {
   });
 });
 
+test("focus-visible styling and ?reset=1 rescue shipped", () => {
+  assert.ok(HTML.includes(":focus-visible"), "focus outlines present");
+  assert.ok(HTML.includes('?reset') && HTML.includes('getRegistrations'), "reset affordance present");
+});
+
 test("dead wheel handler leftovers removed", () => {
   assert.ok(!HTML.includes("zoom only when the details panel is closed"));
 });

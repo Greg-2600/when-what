@@ -185,6 +185,7 @@ SELENIUM_HEADLESS=0 npm run test:e2e   # watch Chrome drive the page
 - Panels reachable & operable entirely by keyboard
 - `role="button"` semantics on interactive dots
 - Honours `prefers-reduced-motion` (transitions and animations disabled)
+- Visible `focus-visible` outlines on every interactive element; Esc closes every modal & the reader; legend chips keyboard-activatable; `?reset=1` clears caches on pinned builds
 - Colour is never the only channel: every marker carries a text label with the era's short timecode
 
 ## Data & sources

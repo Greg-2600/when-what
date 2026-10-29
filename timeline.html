@@ -577,6 +577,19 @@
     border-radius: 2px;
   }
 
+  /* Keyboard focus outlines */
+  .marker:focus-visible,
+  .chip:focus-visible,
+  .tag-chip:focus-visible,
+  .seg:focus-visible,
+  button:focus-visible,
+  [tabindex="0"]:focus-visible,
+  .quiz-option:focus-visible,
+  .search-result:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
   /* Milestone markers */
   .marker {
     position: absolute;
@@ -2711,8 +2724,17 @@ Object.keys(ERA_COLORS).forEach((era) => {
 track.focus();
 
 /* PWA: register the service worker and warm the image cache so
-   the app works offline after the first full pass. */
-if ("serviceWorker" in navigator && (location.protocol === "http:" || location.protocol === "https:")) {
+   the app works offline after the first full pass.
+   ?reset=1 unregisters workers + clears caches (desktop pinned-build rescue). */
+if (new URLSearchParams(location.search).get("reset")) {
+  (async () => {
+    const regs = await navigator.serviceWorker.getRegistrations();
+    regs.forEach((r) => r.unregister());
+    const keys = await caches.keys();
+    keys.forEach((k) => caches.delete(k));
+    location.replace(location.pathname);
+  })();
+} else if ("serviceWorker" in navigator && (location.protocol === "http:" || location.protocol === "https:")) {
   navigator.serviceWorker.register("./sw.js").catch(() => {});
   navigator.serviceWorker.ready.then(async () => {
     // Pre-fetch all event images at a gentle pace so they are cached
