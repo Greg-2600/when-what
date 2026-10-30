@@ -1715,6 +1715,12 @@ function setMarkerActive(index) {
 
 function renderDetail(index) {
   const m = MILESTONES[index];
+  const lang = (typeof uiLang !== "undefined" ? uiLang : "en") || "en";
+  const tr = (m.translations && m.translations[lang]) ? m.translations[lang] : null;
+  const kidText = (tr && tr.kid) ? tr.kid : m.kid;
+  const funText = (tr && tr.fun) ? tr.fun : m.fun;
+  const summaryText = (tr && tr.summary) ? tr.summary : m.summary;
+  const deepTexts = (tr && tr.deep) ? tr.deep : m.deep;
   panelTitle.textContent = m.title;
   panelTime.textContent = formatTime(m.yearsAgo);
 
@@ -1739,10 +1745,10 @@ function renderDetail(index) {
   const kidH = document.createElement("h3");
   kidH.textContent = (TimelineCore.STRINGS[uiLang] || TimelineCore.STRINGS.en).kidTitle;
   const kidP = document.createElement("p");
-  kidP.textContent = m.kid;
+  kidP.textContent = kidText;
   const funP = document.createElement("p");
   funP.className = "fun";
-  funP.textContent = `💡 Did you know? ${m.fun}`;
+  funP.textContent = `💡 Did you know? ${funText}`;
   kid.appendChild(kidH);
   kid.appendChild(kidP);
   kid.appendChild(funP);
@@ -1754,7 +1760,7 @@ function renderDetail(index) {
   storyH.textContent = (TimelineCore.STRINGS[uiLang] || TimelineCore.STRINGS.en).storyTitle;
   const storyP = document.createElement("p");
   const lens = (localStorage.getItem("ct-lens") || "scientific");
-  const perspective = (m.perspectives && m.perspectives[lens]) ? m.perspectives[lens] : m.summary;
+  const perspective = (m.perspectives && m.perspectives[lens]) ? m.perspectives[lens] : summaryText;
   storyP.textContent = perspective;
   story.appendChild(storyH);
   story.appendChild(storyP);
@@ -1770,7 +1776,7 @@ function renderDetail(index) {
   const deepH = document.createElement("h3");
   deepH.textContent = (TimelineCore.STRINGS[uiLang] || TimelineCore.STRINGS.en).deepTitle;
   const ul = document.createElement("ul");
-  m.deep.forEach((d) => {
+  deepTexts.forEach((d) => {
     const li = document.createElement("li");
     li.textContent = d;
     ul.appendChild(li);
@@ -3318,14 +3324,8 @@ if (new URLSearchParams(location.search).get("reset")) {
   })();
 } else if ("serviceWorker" in navigator && (location.protocol === "http:" || location.protocol === "https:")) {
   navigator.serviceWorker.register("./sw.js").catch(() => {});
-  navigator.serviceWorker.ready.then(async () => {
-    // Pre-fetch all event images at a gentle pace so they are cached
-    // for offline use (and so the SW never caches error responses).
-    for (const m of Object.values(EVENT_MEDIA)) {
-      if (!m || !m.url) continue;
-      try { await fetch(m.url, { mode: "no-cors" }); } catch (e) { /* ignore */ }
-    }
-  }).catch(() => {});
+  // Images are cached on demand by the service worker's runtime cache,
+  // so we no longer pre-fetch all 77 (which throttled the Wikimedia IP).
 }
 
 </script>
