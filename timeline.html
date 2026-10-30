@@ -2361,10 +2361,36 @@ function runSearch() {
   const q = searchInput.value.trim().toLowerCase();
   if (!q) { hideResults(); return; }
   const words = q.split(/\s+/).filter(Boolean);
+  const SYNONYMS = {
+    rocket: ["flight", "space", "apollo", "moon"],
+    space: ["rocket", "flight", "moon", "mars", "orbit", "apollo"],
+    moon: ["lunar", "apollo", "space"],
+    life: ["biology", "evolution", "cell", "origin"],
+    war: ["battle", "empire", "conflict"],
+    empire: ["kingdom", "ruler", "conquer", "power"],
+    science: ["discovery", "research", "physics", "chemistry"],
+    medicine: ["health", "vaccine", "antibiotic", "pill"],
+    climate: ["warming", "tipping", "environment", "carbon"],
+    computer: ["transistor", "internet", "web", "smartphone", "ai"],
+    dna: ["genome", "genetics", "double", "helix"],
+    fire: ["cooking", "heat", "flame"],
+    water: ["ocean", "sea", "flood"],
+    star: ["galaxy", "cosmic", "universe"],
+    human: ["homo", "sapiens", "people"],
+    writing: ["alphabet", "script", "literacy"],
+    money: ["trade", "economy", "commerce"],
+    law: ["code", "justice", "rights"],
+    religion: ["faith", "god", "church", "bible"],
+  };
   const matches = [];
   MILESTONES.forEach((m, i) => {
     const hay = `${m.title} ${m.era} ${m.summary} ${m.kid} ${m.fun} ${m.deep.join(" ")} ${m.yearsAgo} ${curriculumTagsFor(m).join(" ")}`.toLowerCase();
-    if (words.every((w) => hay.includes(w))) matches.push(i);
+    const ok = words.every((w) => {
+      if (hay.includes(w)) return true;
+      const syns = SYNONYMS[w] || [];
+      return syns.some((s) => hay.includes(s));
+    });
+    if (ok) matches.push(i);
   });
   searchResults.hidden = false;
   searchResults.innerHTML = "";
