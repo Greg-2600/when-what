@@ -310,8 +310,8 @@ async function main() {
       "const sel = document.getElementById('lang-select'); sel.value = 'it'; sel.dispatchEvent(new Event('change')); return 'ok'");
     await waitLoad(300);
     const itSub = await driver.executeScript(
-      "return document.querySelector('[data-i18n=headerSub]').textContent");
-    assert.match(itSub, /linea del tempo/i, "Italian strings applied");
+      "return document.querySelector('[data-i18n=modeDeep]').textContent");
+    assert.match(itSub, /Tempo profondo/i, "Italian strings applied");
     await driver.executeScript(
       "const sel = document.getElementById('lang-select'); sel.value = 'en'; sel.dispatchEvent(new Event('change'))");
     ok(`language switch verified (Italian: ${itSub.slice(0, 40)}…)`);
