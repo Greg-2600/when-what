@@ -48,7 +48,7 @@ Generated after the v1.2 content haul (110 events, 11 eras, 70 unit + 22 E2E tes
 26. ✅ Audio narration (Web Speech + ElevenLabs cloud), narrate button, tour narration
 27. ✅ Story-reading mode (full-screen, large type, next/prev)
 28. ❌ Riddle mode puzzles from glossary
-29. ❌ Meaning-based search (embeddings or better keyword match)
+29. ✅ Meaning-based search (TF-IDF + cosine similarity over event text, with synonym expansion)
 
 ## G. Mobile / native
 30. 🔶 Capacitor wrapping documented (MOBILE.md); not built
