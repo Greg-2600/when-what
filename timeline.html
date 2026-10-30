@@ -971,18 +971,23 @@
         <input id="zoom-slider" type="range" min="35" max="400" value="100" step="1" aria-label="Zoom level" title="Zoom level" style="width:80px;" />
         <span id="zoom-val" class="zoom-val" title="Zoom level" style="font-size:0.75rem; color: var(--muted); min-width: 2.6rem; text-align:center;">100%</span>
         <button class="seg" id="zoom-in" type="button" title="Zoom in (mouse wheel too)">➕</button>
-        <button class="seg" id="quiz-btn" type="button" title="Classroom quiz: which came first?" data-i18n="btnQuiz">🎓 Quiz</button>
-        <button class="seg" id="teacher-quiz-btn" type="button" title="Teacher mode: choose eras, difficulty and count">👩‍🏫 Teacher quiz</button>
-        <button class="seg" id="order-quiz-btn" type="button" title="Order quiz: tap events in chronological order">🔢 Order quiz</button>
-        <button class="seg" id="image-quiz-btn" type="button" title="Image quiz: name the event from its picture">🖼 Image quiz</button>
-        <button class="seg" id="riddles-btn" type="button" title="Riddle mode: guess the event from its clues">🧩 Riddles</button>
-        <button class="seg" id="glossary-btn" type="button" title="All words-to-know" data-i18n="btnGlossary">🔤 Glossary</button>
-        <button class="seg" id="tour-btn" type="button" title="Step through the whole story automatically" data-i18n="btnTour">▶ Take the tour</button>
-        <button class="seg" id="print-btn" type="button" title="Print a one-page handout for the selected event">🖨 Handout</button>
-        <button class="seg" id="packs-btn" type="button" title="Multi-page classroom worksheet for an era">📘 Packs</button>
-        <button class="seg" id="read-btn" type="button" title="Full-screen reading mode" data-i18n="btnRead">📖 Read</button>
-        <button class="seg" id="narrate-btn" type="button" title="Read the story aloud" data-i18n="btnNarrate">🔊 Narrate</button>
-        <button class="seg" id="settings-btn" type="button" title="Audio settings">⚙️ Settings</button>
+        <details class="more-menu" style="position:relative;display:inline-block;">
+          <summary class="seg" style="cursor:pointer;list-style:none;">⋯ More</summary>
+          <div style="position:absolute;right:0;top:100%;margin-top:0.3rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.4rem;display:flex;flex-direction:column;gap:0.3rem;z-index:80;min-width:180px;box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+            <button class="seg" id="quiz-btn" type="button" title="Classroom quiz: which came first?" data-i18n="btnQuiz">🎓 Quiz</button>
+            <button class="seg" id="teacher-quiz-btn" type="button" title="Teacher mode: choose eras, difficulty and count">👩‍🏫 Teacher quiz</button>
+            <button class="seg" id="order-quiz-btn" type="button" title="Order quiz: tap events in chronological order">🔢 Order quiz</button>
+            <button class="seg" id="image-quiz-btn" type="button" title="Image quiz: name the event from its picture">🖼 Image quiz</button>
+            <button class="seg" id="riddles-btn" type="button" title="Riddle mode: guess the event from its clues">🧩 Riddles</button>
+            <button class="seg" id="glossary-btn" type="button" title="All words-to-know" data-i18n="btnGlossary">🔤 Glossary</button>
+            <button class="seg" id="tour-btn" type="button" title="Step through the whole story automatically" data-i18n="btnTour">▶ Take the tour</button>
+            <button class="seg" id="print-btn" type="button" title="Print a one-page handout for the selected event">🖨 Handout</button>
+            <button class="seg" id="packs-btn" type="button" title="Multi-page classroom worksheet for an era">📘 Packs</button>
+            <button class="seg" id="read-btn" type="button" title="Full-screen reading mode" data-i18n="btnRead">📖 Read</button>
+            <button class="seg" id="narrate-btn" type="button" title="Read the story aloud" data-i18n="btnNarrate">🔊 Narrate</button>
+            <button class="seg" id="settings-btn" type="button" title="Audio settings">⚙️ Settings</button>
+          </div>
+        </details>
       </div>
     </div>
   </div>
@@ -997,10 +1002,7 @@
   <div id="search-results" class="search-results" hidden></div>
 </div>
 
-<div class="searchbar" style="padding: 0.35rem 1.5rem; gap: 0.5rem;">
-  <input id="search-input" type="search" placeholder="Search events — try “moon”, “oxygen”, “Rome”…" autocomplete="off" spellcheck="false" />
-  <div id="search-results" class="search-results" hidden></div>
-</div>
+
 
 <div class="glossary-modal" id="packs-modal" role="dialog" aria-modal="true" hidden>
   <div class="glossary-card packs-card">
@@ -3290,7 +3292,16 @@ function restoreFromHash() {
   return matched;
 }
 
+const _hadHash = !!location.hash;
 restoreFromHash();
+if (!_hadHash && pinnedIndex === null) {
+  // Surface the detail panel on first load so the "meat" is visible
+  // without scrolling; don't pollute the URL hash.
+  pinnedIndex = 0;
+  panel.classList.add("open");
+  setMarkerActive(0);
+  renderDetail(0);
+}
 
 /* Era legend */
 const legend = document.getElementById("legend");
