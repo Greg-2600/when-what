@@ -934,7 +934,7 @@
   @media (min-width: 1100px) {
     .panel {
       inset: 0 0 0 auto;
-      width: 400px;
+      width: var(--panel-width, 480px);
       height: 100vh;
       max-height: none;
       border-top: none;
@@ -944,8 +944,13 @@
       box-shadow: -8px 0 32px rgba(0,0,0,0.35);
     }
     .panel.open { transform: none; }
-    .viewport { margin-right: 400px; }
+    .viewport { margin-right: var(--panel-width, 480px); }
     .panel-body { padding: 1rem 1.25rem; }
+    #panel-resize-handle { display: block; }
+    #panel-resize-handle:hover { background: var(--accent, #38bdf8); opacity: 0.4; }
+  }
+  @media (max-width: 1099px) {
+    #panel-resize-handle { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1152,6 +1157,7 @@
 </div>
 
 <div class="panel" id="panel" aria-live="polite" aria-atomic="false">
+  <div id="panel-resize-handle" title="Drag to resize" style="position:absolute;left:0;top:0;bottom:0;width:6px;cursor:ew-resize;z-index:70;background:transparent;"></div>
   <div class="panel-header">
     <h2 class="panel-title" id="panel-title">Select an event</h2>
     <span class="panel-time" id="panel-time"></span>
@@ -3309,6 +3315,39 @@ function restoreFromHash() {
 }
 
 const _hadHash = !!location.hash;
+/* Panel resize (wide screens) */
+(function panelResize() {
+  const handle = document.getElementById("panel-resize-handle");
+  const panel = document.getElementById("panel");
+  const viewport = document.querySelector(".viewport");
+  if (!handle || !panel) return;
+  const saved = localStorage.getItem("ct-panel-width");
+  if (saved) {
+    const w = Math.max(320, Math.min(720, parseInt(saved, 10)));
+    document.documentElement.style.setProperty("--panel-width", w + "px");
+  }
+  let dragging = false;
+  handle.addEventListener("mousedown", function (e) {
+    dragging = true;
+    document.body.style.cursor = "ew-resize";
+    document.body.style.userSelect = "none";
+    e.preventDefault();
+  });
+  window.addEventListener("mousemove", function (e) {
+    if (!dragging) return;
+    const w = Math.max(320, Math.min(720, window.innerWidth - e.clientX));
+    document.documentElement.style.setProperty("--panel-width", w + "px");
+  });
+  window.addEventListener("mouseup", function () {
+    if (!dragging) return;
+    dragging = false;
+    document.body.style.cursor = "";
+    document.body.style.userSelect = "";
+    const v = getComputedStyle(document.documentElement).getPropertyValue("--panel-width").trim();
+    if (v) localStorage.setItem("ct-panel-width", v);
+  });
+})();
+
 restoreFromHash();
 if (!_hadHash && pinnedIndex === null) {
   // Surface the detail panel on first load so the "meat" is visible
