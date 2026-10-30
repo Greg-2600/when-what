@@ -2894,7 +2894,8 @@ quizModal.addEventListener("click", function (e) {
 })();
 
 I18N = TimelineCore.STRINGS;
-const urlLang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('ct-lang') || 'en';
+const browserLang = (navigator.language || navigator.userLanguage || 'en').slice(0, 2).toLowerCase();
+const urlLang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('ct-lang') || browserLang;
 let uiLang = (['en','it'].includes(urlLang)) ? urlLang : 'en';
 function applyLang() {
   localStorage.setItem('ct-lang', uiLang);
