@@ -560,11 +560,29 @@
 
   /* Timeline viewport */
   .viewport {
-    padding: 0.75rem 1.5rem 3rem;
-    min-height: 60vh;
+    padding: 0.75rem 1.5rem 1rem;
+    min-height: 78vh;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
+  }
+  .site-footer {
+    margin: 0.5rem 1.5rem 1rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--border, rgba(255,255,255,0.08));
+    font-size: 0.72rem;
+    color: var(--muted, #9aa4bf);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    align-items: center;
+  }
+  .site-footer kbd {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--border, rgba(255,255,255,0.12));
+    border-radius: 3px;
+    padding: 0 0.3rem;
+    font-size: 0.68rem;
   }
 
   .viewport::-webkit-scrollbar {
@@ -1172,9 +1190,11 @@
   </div>
 </div>
 
-
-  <div>Click or hover a marker on the timeline to explore details</div>
-</div>
+<footer class="site-footer">
+  <span>⌨️ <kbd>←</kbd><kbd>→</kbd> step · <kbd>+</kbd><kbd>-</kbd> zoom · <kbd>Esc</kbd> close · hover or click a marker for details</span>
+  <span>🔒 No cookies · no tracking · works offline</span>
+  <a href="credits.html" style="color:var(--muted);">Image credits</a>
+</footer>
 
 <script src="./timeline-core.js"></script>
 <script>
