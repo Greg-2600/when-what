@@ -2399,6 +2399,115 @@ const MILESTONES = [
 
 
   /* -------------------------------------------------------------
+     Meaning-based search (TF-IDF + cosine similarity)
+     ------------------------------------------------------------- */
+  const STOP_WORDS = new Set(["the","a","an","and","or","of","to","in","on","for","with","by","at","from","as","is","are","was","were","be","been","being","this","that","these","those","it","its","they","them","their","we","our","you","your","i","he","she","his","her","not","but","so","if","then","than","too","very","just","only","also","all","any","some","no","nor","do","does","did","can","could","will","would","should","may","might","must","have","has","had","having","about","into","over","after","before","between","through","during","without","under","around","among","up","down","out","off","again","further","once","here","there","when","where","why","how","what","which","who","whom","whose","while","because","until","since","during","each","few","more","most","other","such","same","than","too","very","s","t","can","will","just","don","should","now"]);
+
+  function tokenize(text) {
+    return String(text || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").split(/\s+/).filter(function (w) { return w.length > 1 && !STOP_WORDS.has(w); });
+  }
+
+  // Build document corpus
+  const SEARCH_DOCS = MILESTONES.map(function (m, i) {
+    const text = [m.title, m.era, m.summary, m.kid, m.fun, (m.deep || []).join(" "), (curriculumTagsFor ? curriculumTagsFor(m) : []).join(" ")].join(" ");
+    const tokens = tokenize(text);
+    const tf = {};
+    tokens.forEach(function (t) { tf[t] = (tf[t] || 0) + 1; });
+    return { index: i, tokens: tokens, tf: tf };
+  });
+
+  // IDF
+  const SEARCH_DF = {};
+  SEARCH_DOCS.forEach(function (d) {
+    const seen = new Set(Object.keys(d.tf));
+    seen.forEach(function (t) { SEARCH_DF[t] = (SEARCH_DF[t] || 0) + 1; });
+  });
+  const SEARCH_N = SEARCH_DOCS.length;
+  const SEARCH_IDF = {};
+  Object.keys(SEARCH_DF).forEach(function (t) {
+    SEARCH_IDF[t] = Math.log((SEARCH_N + 1) / (SEARCH_DF[t] + 1)) + 1;
+  });
+
+  // Document vectors (TF-IDF), normalized
+  const SEARCH_DOC_VEC = SEARCH_DOCS.map(function (d) {
+    const vec = {};
+    let norm = 0;
+    Object.keys(d.tf).forEach(function (t) {
+      const idf = SEARCH_IDF[t] || 1;
+      const v = d.tf[t] * idf;
+      vec[t] = v;
+      norm += v * v;
+    });
+    norm = Math.sqrt(norm) || 1;
+    Object.keys(vec).forEach(function (t) { vec[t] /= norm; });
+    return vec;
+  });
+
+  const SEARCH_SYNONYMS = {
+    rocket: ["flight", "space", "apollo", "moon"],
+    space: ["rocket", "flight", "moon", "mars", "orbit", "apollo"],
+    moon: ["lunar", "apollo", "space"],
+    life: ["biology", "evolution", "cell", "origin", "abiogenesis"],
+    war: ["battle", "empire", "conflict", "wwi", "wwii"],
+    empire: ["kingdom", "ruler", "conquer", "power"],
+    science: ["discovery", "research", "physics", "chemistry"],
+    medicine: ["health", "vaccine", "antibiotic", "pill", "cure"],
+    climate: ["warming", "tipping", "environment", "carbon", "weather"],
+    computer: ["transistor", "internet", "web", "smartphone", "ai", "computing"],
+    dna: ["genome", "genetics", "double", "helix"],
+    fire: ["cooking", "heat", "flame"],
+    water: ["ocean", "sea", "flood"],
+    star: ["galaxy", "cosmic", "universe"],
+    human: ["homo", "sapiens", "people", "man"],
+    writing: ["alphabet", "script", "literacy", "language"],
+    money: ["trade", "economy", "commerce"],
+    law: ["code", "justice", "rights"],
+    religion: ["faith", "god", "church", "bible"],
+    energy: ["fusion", "power", "electricity"],
+    mars: ["planet", "space", "colony"],
+  };
+
+  function searchMilestones(query, limit) {
+    query = String(query || "").trim();
+    if (!query) return [];
+    const qTokens = tokenize(query);
+    // expand with synonyms
+    const expanded = new Set(qTokens);
+    qTokens.forEach(function (w) {
+      (SEARCH_SYNONYMS[w] || []).forEach(function (s) { expanded.add(s); });
+    });
+    // query TF (with synonym boost)
+    const qtf = {};
+    expanded.forEach(function (t) {
+      const base = qTokens.indexOf(t) !== -1 ? 1 : 0.5; // synonyms get half weight
+      qtf[t] = (qtf[t] || 0) + base;
+    });
+    // query vector TF-IDF normalized
+    const qvec = {};
+    let qnorm = 0;
+    Object.keys(qtf).forEach(function (t) {
+      const idf = SEARCH_IDF[t] || 1;
+      const v = qtf[t] * idf;
+      qvec[t] = v;
+      qnorm += v * v;
+    });
+    qnorm = Math.sqrt(qnorm) || 1;
+    Object.keys(qvec).forEach(function (t) { qvec[t] /= qnorm; });
+
+    // cosine similarity
+    const results = SEARCH_DOC_VEC.map(function (dvec, i) {
+      let sim = 0;
+      Object.keys(qvec).forEach(function (t) {
+        if (dvec[t]) sim += qvec[t] * dvec[t];
+      });
+      return { index: i, score: sim };
+    });
+    results.sort(function (a, b) { return b.score - a.score; });
+    const lim = limit || 10;
+    return results.filter(function (r) { return r.score > 0; }).slice(0, lim).map(function (r) { return r.index; });
+  }
+
+  /* -------------------------------------------------------------
      Riddle mode — hand-authored clue sets for classroom play.
      clues are statements pulled from the event's nerd-level facts,
      rearranged so the title is never given away.
@@ -2696,5 +2805,6 @@ const MILESTONES = [
     scoreVoice: scoreVoice,
     pickBestVoice: pickBestVoice,
     slugify: slugify,
+    searchMilestones: searchMilestones,
   };
 });
