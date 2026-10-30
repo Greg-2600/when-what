@@ -6,6 +6,7 @@ const c = require("../../timeline-core.js");
 
 const ROOT = path.join(__dirname, "..", "..");
 const HTML = fs.readFileSync(path.join(ROOT, "timeline.html"), "utf8");
+const CREDITS = fs.readFileSync(path.join(ROOT, "credits.html"), "utf8");
 
 test("every milestone teaches at least one glossary word (or the set is rich enough overall)", () => {
   const withTerms = c.MILESTONES.filter((m) => {
@@ -60,6 +61,13 @@ test("images appear for every event and credit the source", () => {
   assert.ok(HTML.includes('url: "./img/'), "media entries use local img/ paths");
   assert.ok(HTML.includes("COMMONS_FILE = (name) =>") || true, "Special:FilePath helper retained as fallback");
   assert.ok(HTML.includes("referrerPolicy"), "referrer policy set to avoid hotlink friction");
+});
+
+test("credits page lists all 77 image credits", () => {
+  assert.ok(CREDITS.includes("<title>Image Credits"), "credits page title");
+  const rows = (CREDITS.match(/<tr>\s*<td>/g) || []).length;
+  assert.equal(rows, 77, `expected 77 credit rows, found ${rows}`);
+  assert.ok(CREDITS.includes("timeline.html"), "links back to timeline");
 });
 
 test("PWA registration is guarded by protocol check", () => {

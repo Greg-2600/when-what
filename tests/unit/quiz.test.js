@@ -64,6 +64,18 @@ test("quiz questions stay within the 23-event supply without duplicates per roun
   qs.forEach((q) => assert.equal(new Set(q.options).size, q.options.length));
 });
 
+test("makeEraQuiz returns well-formed era-matching questions", () => {
+  const qs = core.makeEraQuiz(5, seededRng(7));
+  assert.equal(qs.length, 5);
+  qs.forEach((q) => {
+    assert.equal(q.type, "era-match");
+    assert.ok(Array.isArray(q.options) && q.options.length >= 2);
+    assert.ok(q.options.indexOf(q.answer) !== -1);
+    assert.equal(q.options[q.answerIndex], q.answer);
+    assert.ok(q.fact && q.fact.length > 10);
+  });
+});
+
 test("quiz with default rng still yields well-formed questions", () => {
   for (let i = 0; i < 20; i++) {
     core.makeQuiz(5).forEach((q) => {

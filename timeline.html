@@ -588,6 +588,8 @@
     min-width: 350vw;
     height: 340px;
     transform-origin: left center;
+    content-visibility: auto;
+    contain-intrinsic-size: 350vw 340px;
   }
   .track.zooming .marker { transition: transform 0.15s ease-out; }
   .track.zooming { /* visual feedback during zoom */ }
@@ -945,9 +947,10 @@
     <div class="header-title">
       <h1>Cosmic Timeline</h1>
       <p class="sub" data-i18n="headerSub">A horizontal number-line of events from the Big Bang to the modern era</p>
+      <p class="privacy-note" style="font-size:0.62rem;color:var(--muted);margin:0.15rem 0 0;">🔒 No cookies · no tracking · works offline · images via Wikimedia Commons (see <a href="credits.html" style="color:var(--muted);">credits</a>)</p>
     </div>
     <div class="header-controls">
-      <span id="progress-badge" style="font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; white-space: nowrap;" title="Events you have read">0 / 101 read</span>
+      <span id="progress-badge" style="font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; white-space: nowrap;" title="Events you have read">0 / 110 read</span>
       <select id="lens-select" class="seg" aria-label="Perspective lens" style="margin-right: 0.5rem;">
         <option value="scientific">🔬 Scientific</option>
         <option value="religious">✝️ Religious</option>
@@ -969,6 +972,7 @@
         <span id="zoom-val" class="zoom-val" title="Zoom level" style="font-size:0.75rem; color: var(--muted); min-width: 2.6rem; text-align:center;">100%</span>
         <button class="seg" id="zoom-in" type="button" title="Zoom in (mouse wheel too)">➕</button>
         <button class="seg" id="quiz-btn" type="button" title="Classroom quiz: which came first?" data-i18n="btnQuiz">🎓 Quiz</button>
+        <button class="seg" id="teacher-quiz-btn" type="button" title="Teacher mode: choose eras, difficulty and count">👩‍🏫 Teacher quiz</button>
         <button class="seg" id="riddles-btn" type="button" title="Riddle mode: guess the event from its clues">🧩 Riddles</button>
         <button class="seg" id="glossary-btn" type="button" title="All words-to-know" data-i18n="btnGlossary">🔤 Glossary</button>
         <button class="seg" id="tour-btn" type="button" title="Step through the whole story automatically" data-i18n="btnTour">▶ Take the tour</button>
@@ -1038,6 +1042,26 @@
   </div>
 </div>
 
+<div class="glossary-modal" id="teacher-quiz-modal" role="dialog" aria-modal="true" hidden>
+  <div class="glossary-card">
+    <button class="glossary-close" id="teacher-quiz-close" aria-label="Close teacher quiz">✕</button>
+    <h2>👩‍🏫 Teacher quiz</h2>
+    <p class="gl-sub">Choose eras, difficulty and count, then start.</p>
+    <div id="teacher-quiz-eras" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.6rem 0;"></div>
+    <div style="display:flex;gap:0.6rem;align-items:center;margin:0.6rem 0;">
+      <label>Count: <input id="tq-count" type="number" min="3" max="20" value="8" style="width:4rem;" /></label>
+      <label>Difficulty:
+        <select id="tq-diff">
+          <option value="easy">Easy (2 options)</option>
+          <option value="hard" selected>Hard (4 options)</option>
+        </select>
+      </label>
+    </div>
+    <button class="seg" id="tq-start" type="button">Start quiz ▶</button>
+    <button class="seg" id="tq-export" type="button" style="margin-left:0.4rem;">⬇ Export CSV</button>
+  </div>
+</div>
+
 <div id="print-sheet" hidden></div>
 
 <div class="glossary-modal" id="settings-modal" role="dialog" aria-modal="true" hidden>
@@ -1094,7 +1118,7 @@
   </div>
 </div>
 
-<div class="panel" id="panel">
+<div class="panel" id="panel" aria-live="polite" aria-atomic="false">
   <div class="panel-header">
     <h2 class="panel-title" id="panel-title">Select an event</h2>
     <span class="panel-time" id="panel-time"></span>
@@ -1103,6 +1127,10 @@
     <button class="close-btn" id="close-btn" aria-label="Close details">✕</button>
   </div>
   <div class="panel-body" id="panel-body"></div>
+  <div class="panel-share" id="panel-share" style="display:flex;gap:0.4rem;padding:0.4rem 0.9rem 0.6rem;border-top:1px solid var(--line,rgba(255,255,255,0.08));">
+    <button class="seg" id="copy-link-btn" type="button" title="Copy a link to this event" style="font-size:0.72rem;">🔗 Copy link</button>
+    <button class="seg" id="copy-embed-btn" type="button" title="Copy an embed snippet for this event" style="font-size:0.72rem;">⟨/⟩ Embed</button>
+  </div>
 </div>
 
 
@@ -2478,6 +2506,7 @@ let quizPos = 0;
 let quizScore = 0;
 
 function openQuiz() {
+  teacherModeActive = false;
   quizQuestions = TimelineCore.makeQuiz(5);
   quizPos = 0;
   quizScore = 0;
@@ -2485,6 +2514,94 @@ function openQuiz() {
   quizModal.hidden = false;
   setTimeout(function () { quizCloseBtn.focus(); }, 60);
 }
+
+/* Teacher quiz mode */
+const teacherQuizBtn = document.getElementById("teacher-quiz-btn");
+const teacherQuizModal = document.getElementById("teacher-quiz-modal");
+const teacherQuizClose = document.getElementById("teacher-quiz-close");
+const teacherQuizEras = document.getElementById("teacher-quiz-eras");
+const tqCount = document.getElementById("tq-count");
+const tqDiff = document.getElementById("tq-diff");
+const tqStart = document.getElementById("tq-start");
+const tqExport = document.getElementById("tq-export");
+
+let teacherScores = [];
+let teacherModeActive = false;
+
+function openTeacherQuiz() {
+  teacherQuizEras.innerHTML = "";
+  Object.keys(ERA_INFO).forEach(function (era) {
+    const lbl = document.createElement("label");
+    lbl.style.fontSize = "0.78rem";
+    lbl.style.display = "inline-flex";
+    lbl.style.alignItems = "center";
+    lbl.style.gap = "0.25rem";
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.value = era;
+    cb.checked = true;
+    lbl.appendChild(cb);
+    lbl.appendChild(document.createTextNode(era));
+    teacherQuizEras.appendChild(lbl);
+  });
+  teacherQuizModal.hidden = false;
+  setTimeout(function () { teacherQuizClose.focus(); }, 60);
+}
+
+function buildTeacherQuiz() {
+  const eras = [...teacherQuizEras.querySelectorAll("input:checked")].map((c) => c.value);
+  const count = Math.max(3, Math.min(20, parseInt(tqCount.value, 10) || 8));
+  const diff = tqDiff.value;
+  const filter = (m) => eras.indexOf(m.era) !== -1;
+  const n = Math.ceil(count / 2);
+  const qs1 = TimelineCore.makeQuiz(n, Math.random, filter);
+  const qs2 = TimelineCore.makeEraQuiz(count - n, Math.random, filter);
+  // adjust options for easy difficulty
+  const qs = qs1.concat(qs2);
+  qs.forEach(function (q) {
+    if (diff === "easy" && q.options.length > 2) {
+      // keep correct + one distractor
+      const correct = q.options[q.answerIndex];
+      const others = q.options.filter(function (o, i) { return i !== q.answerIndex; });
+      const one = others[Math.floor(Math.random() * others.length)];
+      q.options = [correct, one].sort(function () { return Math.random() - 0.5; });
+      q.answerIndex = q.options.indexOf(correct);
+    }
+  });
+  return qs;
+}
+
+if (teacherQuizBtn) teacherQuizBtn.addEventListener("click", function () {
+  teacherQuizModal.hidden ? openTeacherQuiz() : (teacherQuizModal.hidden = true);
+});
+if (teacherQuizClose) teacherQuizClose.addEventListener("click", function () { teacherQuizModal.hidden = true; });
+if (teacherQuizModal) teacherQuizModal.addEventListener("click", function (e) { if (e.target === teacherQuizModal) teacherQuizModal.hidden = true; });
+
+if (tqStart) tqStart.addEventListener("click", function () {
+  teacherModeActive = true;
+  teacherScores = [];
+  const qs = buildTeacherQuiz();
+  if (!qs.length) return;
+  teacherQuizModal.hidden = true;
+  quizQuestions = qs;
+  quizPos = 0;
+  quizScore = 0;
+  renderQuizQuestion();
+  quizModal.hidden = false;
+  setTimeout(function () { quizCloseBtn.focus(); }, 60);
+});
+
+if (tqExport) tqExport.addEventListener("click", function () {
+  const header = "question,answer,score";
+  const lines = teacherScores.map(function (s) { return '"' + s.q.replace(/"/g, '""') + '","' + s.a.replace(/"/g, '""') + '",' + s.score; });
+  const csv = [header].concat(lines).join("\n");
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "teacher-quiz-scores.csv";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
 
 function closeQuiz() {
   quizModal.hidden = true;
@@ -2494,7 +2611,8 @@ function renderQuizQuestion() {
   const q = quizQuestions[quizPos];
   quizProgress.textContent =
     "Question " + (quizPos + 1) + " of " + quizQuestions.length + " · Score " + quizScore +
-    (q.type === "which-first" ? " · Which came first?" : " · Which is oldest?");
+    (q.type === "which-first" ? " · Which came first?" :
+     q.type === "era-match" ? " · Which era?" : " · Which is oldest?");
   quizQuestion.textContent = q.question;
   quizFeedback.hidden = true;
   quizNext.hidden = true;
@@ -2514,6 +2632,7 @@ function answerQuiz(q, idx, btn) {
   buttons.forEach(function (b) { b.disabled = true; });
   const correct = idx === q.answerIndex;
   if (correct) quizScore += 1;
+  if (teacherModeActive) teacherScores.push({ q: q.question, a: q.answer, score: correct ? 1 : 0 });
   buttons[q.answerIndex].classList.add("correct");
   if (!correct) btn.classList.add("wrong");
   quizFeedback.hidden = false;
@@ -3104,6 +3223,58 @@ if (new URLSearchParams(location.search).get("reset")) {
   }).catch(() => {});
 }
 
+</script>
+<script>
+/* -------------------------------------------------------------
+   Share / embed helpers
+   ------------------------------------------------------------- */
+(function shareFeature() {
+  const copyLinkBtn = document.getElementById("copy-link-btn");
+  const copyEmbedBtn = document.getElementById("copy-embed-btn");
+  if (!copyLinkBtn || !copyEmbedBtn) return;
+
+  function currentSlug() {
+    const t = (document.getElementById("panel-title") || {}).textContent || "";
+    return (window.TimelineCore && window.TimelineCore.slugify) ? window.TimelineCore.slugify(t) : t.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  }
+  function baseUrl() {
+    return location.origin + location.pathname;
+  }
+  function copy(text, btn) {
+    const done = () => { const prev = btn.textContent; btn.textContent = "✓ Copied"; setTimeout(() => { btn.textContent = prev; }, 1400); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  }
+  function fallback(text) {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta);
+  }
+
+  copyLinkBtn.addEventListener("click", function () {
+    const url = baseUrl() + "#event=" + currentSlug();
+    copy(url, copyLinkBtn);
+  });
+  copyEmbedBtn.addEventListener("click", function () {
+    const url = baseUrl() + "?event=" + currentSlug() + "&embed=1";
+    const code = '<iframe src="' + url + '" width="100%" height="420" style="border:0;border-radius:8px;" loading="lazy" title="Cosmic Timeline"></iframe>';
+    copy(code, copyEmbedBtn);
+  });
+})();
+
+/* -------------------------------------------------------------
+   Embed mode: ?embed=1 renders a compact chrome-less view
+   ------------------------------------------------------------- */
+(function embedMode() {
+  const params = new URLSearchParams(location.search);
+  if (params.get("embed") !== "1") return;
+  document.body.classList.add("embed-mode");
+  // hide heavy chrome
+  const style = document.createElement("style");
+  style.textContent = ".embed-mode header .header-controls, .embed-mode .legend, .embed-mode #progress-badge, .embed-mode .privacy-note { display:none !important; } .embed-mode .viewport { height: 260px; } .embed-mode .panel { max-height: 160px; }";
+  document.head.appendChild(style);
+})();
 </script>
 </body>
 </html>

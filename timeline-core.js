@@ -2266,6 +2266,49 @@ const MILESTONES = [
     return questions;
   }
 
+  function makeEraQuiz(count, rng, filter) {
+    rng = rng || Math.random;
+    const eras = Object.keys(ERA_COLORS).filter(function (e) { return e !== "Present"; });
+    const pool = (typeof filter === "function" ? MILESTONES.filter(filter) : MILESTONES)
+      .map((m) => MILESTONES.indexOf(m));
+    const n = Math.min(Math.max(count || 5, 1), pool.length);
+    const used = new Set();
+    const questions = [];
+    for (let k = 0; k < n; k++) {
+      let idx;
+      do { idx = pool[Math.floor(rng() * pool.length)]; } while (used.has(idx) && used.size < pool.length);
+      if (used.has(idx)) break;
+      used.add(idx);
+      const m = MILESTONES[idx];
+      const correctEra = m.era;
+      // pick 3 distractor eras
+      const distractors = eras.filter(function (e) { return e !== correctEra; });
+      const picks = [correctEra];
+      for (let d = 0; d < 3; d++) {
+        const r = distractors[Math.floor(rng() * distractors.length)];
+        if (picks.indexOf(r) === -1) picks.push(r);
+        // remove to avoid repeat
+        const i = distractors.indexOf(r);
+        if (i !== -1) distractors.splice(i, 1);
+        if (distractors.length === 0) break;
+      }
+      // shuffle
+      for (let i = picks.length - 1; i > 0; i--) {
+        const j = Math.floor(rng() * (i + 1));
+        const t = picks[i]; picks[i] = picks[j]; picks[j] = t;
+      }
+      questions.push({
+        type: "era-match",
+        question: "Which era does this event belong to?  " + m.title,
+        options: picks,
+        answerIndex: picks.indexOf(correctEra),
+        answer: correctEra,
+        fact: m.title + " is part of the " + correctEra + " era.",
+      });
+    }
+    return questions;
+  }
+
 
   /* -------------------------------------------------------------
      Riddle mode — hand-authored clue sets for classroom play.
@@ -2557,6 +2600,7 @@ const MILESTONES = [
     CURRICULUM_TAGS: CURRICULUM_TAGS,
     curriculumTagsFor: curriculumTagsFor,
     makeQuiz: makeQuiz,
+    makeEraQuiz: makeEraQuiz,
     makeRiddleGame: makeRiddleGame,
     RIDDLES: RIDDLES,
     scoreVoice: scoreVoice,
