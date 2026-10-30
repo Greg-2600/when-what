@@ -29,3 +29,12 @@ jobs:
         env:
           SELENIUM_HEADLESS: "1"
         continue-on-error: true
+
+      - name: Lighthouse budget (best effort)
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            http://localhost:8080/timeline.html
+          startServerCommand: npx http-server . -p 8080 -s
+          budgetPath: ./.lighthouse-budget.json
+        continue-on-error: true
