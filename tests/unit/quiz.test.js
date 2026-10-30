@@ -64,6 +64,32 @@ test("quiz questions stay within the 23-event supply without duplicates per roun
   qs.forEach((q) => assert.equal(new Set(q.options).size, q.options.length));
 });
 
+test("makeOrderQuiz returns well-formed ordering questions", () => {
+  const qs = core.makeOrderQuiz(3, seededRng(11));
+  assert.ok(qs.length >= 1);
+  qs.forEach((q) => {
+    assert.equal(q.type, "order");
+    assert.equal(q.options.length, 4);
+    assert.equal(q.correctOrder.length, 4);
+    assert.equal(new Set(q.options).size, 4);
+    // correctOrder must be a permutation of options
+    const sortedOpts = q.options.slice().sort();
+    const sortedCorrect = q.correctOrder.slice().sort();
+    assert.deepEqual(sortedOpts, sortedCorrect);
+  });
+});
+
+test("makeImageQuiz returns well-formed image questions", () => {
+  const qs = core.makeImageQuiz(5, seededRng(21));
+  assert.ok(qs.length >= 1);
+  qs.forEach((q) => {
+    assert.equal(q.type, "image-quiz");
+    assert.ok(Array.isArray(q.options) && q.options.length >= 2);
+    assert.equal(q.options[q.answerIndex], q.answer);
+    assert.ok(q.eventTitle);
+  });
+});
+
 test("makeEraQuiz returns well-formed era-matching questions", () => {
   const qs = core.makeEraQuiz(5, seededRng(7));
   assert.equal(qs.length, 5);

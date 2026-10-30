@@ -2266,6 +2266,86 @@ const MILESTONES = [
     return questions;
   }
 
+  function makeOrderQuiz(count, rng, filter) {
+    rng = rng || Math.random;
+    const pool = (typeof filter === "function" ? MILESTONES.filter(filter) : MILESTONES)
+      .map((m) => MILESTONES.indexOf(m));
+    const n = Math.min(Math.max(count || 4, 1), Math.floor(pool.length / 4));
+    const used = new Set();
+    const questions = [];
+    for (let k = 0; k < n; k++) {
+      // pick 4 distinct events
+      const picks = [];
+      let guard = 0;
+      while (picks.length < 4 && guard < pool.length * 4) {
+        guard++;
+        const i = pool[Math.floor(rng() * pool.length)];
+        if (used.has(i)) continue;
+        if (picks.indexOf(i) !== -1) continue;
+        picks.push(i);
+      }
+      if (picks.length < 4) break;
+      picks.forEach((i) => used.add(i));
+      const sorted = picks.slice().sort(function (a, b) {
+        return MILESTONES[b].yearsAgo - MILESTONES[a].yearsAgo; // oldest first (larger yearsAgo)
+      });
+      const correctOrder = sorted.map(function (i) { return MILESTONES[i].title; });
+      // shuffled display order
+      const shuffled = picks.slice();
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(rng() * (i + 1));
+        const t = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = t;
+      }
+      questions.push({
+        type: "order",
+        question: "Tap these events in chronological order (oldest first):",
+        options: shuffled.map(function (i) { return MILESTONES[i].title; }),
+        correctOrder: correctOrder,
+        answer: correctOrder.join(" → "),
+        fact: correctOrder[0] + " is the oldest of the four.",
+      });
+    }
+    return questions;
+  }
+
+  function makeImageQuiz(count, rng, filter) {
+    rng = rng || Math.random;
+    const pool = (typeof filter === "function" ? MILESTONES.filter(filter) : MILESTONES)
+      .map((m) => MILESTONES.indexOf(m));
+    const n = Math.min(Math.max(count || 5, 1), Math.floor(pool.length / 4));
+    const used = new Set();
+    const questions = [];
+    for (let k = 0; k < n; k++) {
+      const correct = pool[Math.floor(rng() * pool.length)];
+      if (used.has(correct)) continue;
+      used.add(correct);
+      const distractors = [];
+      let guard = 0;
+      while (distractors.length < 3 && guard < pool.length * 4) {
+        guard++;
+        const i = pool[Math.floor(rng() * pool.length)];
+        if (i === correct || distractors.indexOf(i) !== -1) continue;
+        distractors.push(i);
+      }
+      if (distractors.length < 3) break;
+      const all = [correct].concat(distractors);
+      for (let i = all.length - 1; i > 0; i--) {
+        const j = Math.floor(rng() * (i + 1));
+        const t = all[i]; all[i] = all[j]; all[j] = t;
+      }
+      questions.push({
+        type: "image-quiz",
+        question: "Which event does this describe?",
+        eventTitle: MILESTONES[correct].title,
+        options: all.map(function (i) { return MILESTONES[i].title; }),
+        answerIndex: all.indexOf(correct),
+        answer: MILESTONES[correct].title,
+        fact: MILESTONES[correct].summary.slice(0, 120) + "…",
+      });
+    }
+    return questions;
+  }
+
   function makeEraQuiz(count, rng, filter) {
     rng = rng || Math.random;
     const eras = Object.keys(ERA_COLORS).filter(function (e) { return e !== "Present"; });
@@ -2601,6 +2681,8 @@ const MILESTONES = [
     curriculumTagsFor: curriculumTagsFor,
     makeQuiz: makeQuiz,
     makeEraQuiz: makeEraQuiz,
+    makeOrderQuiz: makeOrderQuiz,
+    makeImageQuiz: makeImageQuiz,
     makeRiddleGame: makeRiddleGame,
     RIDDLES: RIDDLES,
     scoreVoice: scoreVoice,

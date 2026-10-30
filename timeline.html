@@ -973,6 +973,8 @@
         <button class="seg" id="zoom-in" type="button" title="Zoom in (mouse wheel too)">➕</button>
         <button class="seg" id="quiz-btn" type="button" title="Classroom quiz: which came first?" data-i18n="btnQuiz">🎓 Quiz</button>
         <button class="seg" id="teacher-quiz-btn" type="button" title="Teacher mode: choose eras, difficulty and count">👩‍🏫 Teacher quiz</button>
+        <button class="seg" id="order-quiz-btn" type="button" title="Order quiz: tap events in chronological order">🔢 Order quiz</button>
+        <button class="seg" id="image-quiz-btn" type="button" title="Image quiz: name the event from its picture">🖼 Image quiz</button>
         <button class="seg" id="riddles-btn" type="button" title="Riddle mode: guess the event from its clues">🧩 Riddles</button>
         <button class="seg" id="glossary-btn" type="button" title="All words-to-know" data-i18n="btnGlossary">🔤 Glossary</button>
         <button class="seg" id="tour-btn" type="button" title="Step through the whole story automatically" data-i18n="btnTour">▶ Take the tour</button>
@@ -1027,6 +1029,7 @@
     <h2>🎓 Which came first?</h2>
     <p class="gl-sub" id="quiz-progress">Question 1 of 5 · Score 0</p>
     <div class="quiz-question" id="quiz-question"></div>
+    <img id="quiz-image" alt="" style="max-width:100%;max-height:160px;border-radius:6px;margin:0.4rem 0;display:none;" />
     <div class="quiz-options" id="quiz-options"></div>
     <div class="quiz-feedback" id="quiz-feedback" hidden></div>
     <button class="seg quiz-next" id="quiz-next" type="button" hidden>Next question ▶</button>
@@ -1059,6 +1062,18 @@
     </div>
     <button class="seg" id="tq-start" type="button">Start quiz ▶</button>
     <button class="seg" id="tq-export" type="button" style="margin-left:0.4rem;">⬇ Export CSV</button>
+  </div>
+</div>
+
+<div class="glossary-modal" id="order-quiz-modal" role="dialog" aria-modal="true" hidden>
+  <div class="glossary-card">
+    <button class="glossary-close" id="order-quiz-close" aria-label="Close order quiz">✕</button>
+    <h2>🔢 Order quiz</h2>
+    <p class="gl-sub" id="order-quiz-progress">Question 1 of 4</p>
+    <div class="quiz-question" id="order-quiz-question"></div>
+    <div class="quiz-options" id="order-quiz-options"></div>
+    <div class="quiz-feedback" id="order-quiz-feedback" hidden></div>
+    <button class="seg quiz-next" id="order-quiz-next" type="button" hidden>Next ▶</button>
   </div>
 </div>
 
@@ -2339,10 +2354,11 @@ function hideResults() {
 function runSearch() {
   const q = searchInput.value.trim().toLowerCase();
   if (!q) { hideResults(); return; }
+  const words = q.split(/\s+/).filter(Boolean);
   const matches = [];
   MILESTONES.forEach((m, i) => {
-    const hay = `${m.title} ${m.era} ${m.summary} ${m.kid} ${m.yearsAgo} ${curriculumTagsFor(m).join(" ")}`.toLowerCase();
-    if (hay.includes(q)) matches.push(i);
+    const hay = `${m.title} ${m.era} ${m.summary} ${m.kid} ${m.fun} ${m.deep.join(" ")} ${m.yearsAgo} ${curriculumTagsFor(m).join(" ")}`.toLowerCase();
+    if (words.every((w) => hay.includes(w))) matches.push(i);
   });
   searchResults.hidden = false;
   searchResults.innerHTML = "";
@@ -2603,6 +2619,85 @@ if (tqExport) tqExport.addEventListener("click", function () {
   URL.revokeObjectURL(url);
 });
 
+/* Order quiz */
+const orderQuizBtn = document.getElementById("order-quiz-btn");
+const orderQuizModal = document.getElementById("order-quiz-modal");
+const orderQuizClose = document.getElementById("order-quiz-close");
+const orderQuizProgress = document.getElementById("order-quiz-progress");
+const orderQuizQuestion = document.getElementById("order-quiz-question");
+const orderQuizOptions = document.getElementById("order-quiz-options");
+const orderQuizFeedback = document.getElementById("order-quiz-feedback");
+const orderQuizNext = document.getElementById("order-quiz-next");
+
+let orderQuestions = [];
+let orderPos = 0;
+let orderPicks = [];
+
+function renderOrderQuestion() {
+  const q = orderQuestions[orderPos];
+  orderQuizProgress.textContent = "Question " + (orderPos + 1) + " of " + orderQuestions.length;
+  orderQuizQuestion.textContent = q.question;
+  orderQuizFeedback.hidden = true;
+  orderQuizNext.hidden = true;
+  orderQuizOptions.innerHTML = "";
+  orderPicks = [];
+  q.options.forEach(function (opt) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "quiz-option";
+    btn.textContent = opt;
+    btn.addEventListener("click", function () {
+      if (orderPicks.indexOf(opt) !== -1) return;
+      orderPicks.push(opt);
+      btn.classList.add("correct");
+      btn.disabled = true;
+      if (orderPicks.length === q.options.length) {
+        const ok = orderPicks.join("||") === q.correctOrder.join("||");
+        orderQuizFeedback.hidden = false;
+        orderQuizFeedback.textContent = (ok ? "✔ Correct! " : "✘ The correct order is: ") + q.correctOrder.join(" → ");
+        orderQuizNext.hidden = false;
+        orderQuizNext.textContent = orderPos + 1 < orderQuestions.length ? "Next ▶" : "Done ▶";
+      }
+    });
+    orderQuizOptions.appendChild(btn);
+  });
+}
+
+function openOrderQuiz() {
+  orderQuestions = TimelineCore.makeOrderQuiz(4);
+  orderPos = 0;
+  if (!orderQuestions.length) return;
+  renderOrderQuestion();
+  orderQuizModal.hidden = false;
+  setTimeout(function () { orderQuizClose.focus(); }, 60);
+}
+
+if (orderQuizBtn) orderQuizBtn.addEventListener("click", function () {
+  orderQuizModal.hidden ? openOrderQuiz() : (orderQuizModal.hidden = true);
+});
+if (orderQuizClose) orderQuizClose.addEventListener("click", function () { orderQuizModal.hidden = true; });
+if (orderQuizModal) orderQuizModal.addEventListener("click", function (e) { if (e.target === orderQuizModal) orderQuizModal.hidden = true; });
+if (orderQuizNext) orderQuizNext.addEventListener("click", function () {
+  orderPos += 1;
+  if (orderPos >= orderQuestions.length) {
+    orderQuizModal.hidden = true;
+    return;
+  }
+  renderOrderQuestion();
+});
+
+const imageQuizBtn = document.getElementById("image-quiz-btn");
+if (imageQuizBtn) imageQuizBtn.addEventListener("click", function () {
+  teacherModeActive = false;
+  quizQuestions = TimelineCore.makeImageQuiz(5);
+  quizPos = 0;
+  quizScore = 0;
+  if (!quizQuestions.length) return;
+  renderQuizQuestion();
+  quizModal.hidden = false;
+  setTimeout(function () { quizCloseBtn.focus(); }, 60);
+});
+
 function closeQuiz() {
   quizModal.hidden = true;
 }
@@ -2614,6 +2709,16 @@ function renderQuizQuestion() {
     (q.type === "which-first" ? " · Which came first?" :
      q.type === "era-match" ? " · Which era?" : " · Which is oldest?");
   quizQuestion.textContent = q.question;
+  const qImg = document.getElementById("quiz-image");
+  if (qImg) {
+    if (q.type === "image-quiz" && EVENT_MEDIA[q.eventTitle] && EVENT_MEDIA[q.eventTitle].url) {
+      qImg.src = EVENT_MEDIA[q.eventTitle].url;
+      qImg.alt = q.eventTitle;
+      qImg.style.display = "block";
+    } else {
+      qImg.style.display = "none";
+    }
+  }
   quizFeedback.hidden = true;
   quizNext.hidden = true;
   quizOptions.innerHTML = "";

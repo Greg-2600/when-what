@@ -338,7 +338,7 @@ async function main() {
     // ── 16d. A11y debt: dialog roles, Escape closes, keyboard legend ─
     const dialogCount = await driver.executeScript(
       "return [...document.querySelectorAll('[role=dialog]')].length");
-    assert.equal(dialogCount, 6, "6 modals carry role=dialog (incl. settings, teacher quiz)");
+    assert.equal(dialogCount, 7, "7 modals carry role=dialog (incl. settings, teacher quiz, order quiz)");
 
     /* Escape closes the quiz */
     await driver.executeScript("document.getElementById('quiz-btn').click()");
