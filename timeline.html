@@ -26,6 +26,7 @@
 
   html {
     background: var(--bg);
+    height: 100%;
   }
 
   body {
@@ -34,7 +35,16 @@
   color: var(--text);
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
+  /* App shell fills the screen: header, timeline, image strip, footer.
+     The timeline viewport flexes; the image strip is always on screen. */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
+body > header, body > .legend-bar, body > .searchbar,
+body > #image-stage, body > .site-footer { flex: none; }
 
 /* Context wash: colored by the events currently in view */
 .wash {
@@ -483,6 +493,7 @@
 
   /* Print handout — only the sheet prints, the app does not */
   @media print {
+    html, body { height: auto; overflow: visible; display: block; }
     body > *:not(#print-sheet) { display: none !important; }
     #print-sheet {
       display: block !important;
@@ -561,7 +572,8 @@
   /* Timeline viewport */
   .viewport {
     padding: 0.75rem 1.5rem 1rem;
-    min-height: 78vh;
+    flex: 1 1 auto;
+    min-height: 0;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
@@ -1007,6 +1019,7 @@
     }
     .panel.open { transform: none; }
     .viewport { margin-right: var(--panel-width, 480px); }
+    #image-stage { margin-right: var(--panel-width, 480px); }
     .panel-body { padding: 1rem 1.25rem; }
     #panel-resize-handle { display: block; }
     #panel-resize-handle:hover { background: var(--accent, #38bdf8); opacity: 0.4; }

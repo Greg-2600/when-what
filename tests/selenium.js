@@ -127,6 +127,59 @@ async function main() {
     assert.ok(mediaH > 100, "media stage visible height");
     ok(`event image loaded (${Math.round(mediaH)}px stage)`);
 
+    // ── 3b. Image strip layout: on screen, below the labels, stationary ──
+    const layout = await driver.executeScript(`
+      const stage = document.querySelector('#image-stage');
+      const vp = document.querySelector('.viewport');
+      const track = document.querySelector('.track');
+      const sr = stage.getBoundingClientRect();
+      const vr = vp.getBoundingClientRect();
+      const mid = document.elementFromPoint(sr.left + sr.width / 2, sr.top + sr.height / 2);
+      document.getElementById('track').focus();
+      const outline = getComputedStyle(track).outlineStyle;
+      return {
+        stop: sr.top, sbottom: sr.bottom, sheight: sr.height,
+        vpBottom: vr.bottom,
+        winH: window.innerHeight, pageScroll: window.scrollY,
+        midInsideStage: !!mid && !!mid.closest('#image-stage'),
+        trackOutline: outline,
+      };
+    `);
+    assert.ok(layout.sbottom <= layout.winH, `image strip below the fold (bottom ${Math.round(layout.sbottom)} > window ${layout.winH})`);
+    assert.equal(layout.pageScroll, 0, "page must not need scrolling to see the image");
+    assert.ok(layout.stop >= layout.vpBottom - 2, "image strip must sit below the timeline viewport");
+    assert.ok(layout.midInsideStage, "image strip center is overlapped by another element");
+    assert.equal(layout.trackOutline, "none", "track must not paint a focus rectangle");
+    ok(`image strip on screen (${Math.round(layout.sheight)}px), below labels, no overlap, no focus rect`);
+
+    // strip stays put while the timeline scrolls underneath it
+    const stripX = await driver.executeScript(`
+      const before = document.querySelector('#image-stage').getBoundingClientRect().left;
+      const vp = document.querySelector('.viewport');
+      vp.scrollLeft = Math.min(vp.scrollWidth - vp.clientWidth, vp.scrollLeft + 600);
+      return [before, document.querySelector('#image-stage').getBoundingClientRect().left];
+    `);
+    assert.equal(stripX[0], stripX[1], "image strip must not scroll with the timeline");
+    await driver.executeScript("document.querySelector('.viewport').scrollLeft = 0");
+    ok("image strip stationary during horizontal scroll");
+
+    // clicking a label selects its event
+    const labelPick = await driver.executeScript(`
+      const labels = [...document.querySelectorAll('.marker-label')].filter(el => {
+        if (el.style.display === 'none') return false;
+        const r = el.getBoundingClientRect();
+        return r.left >= 0 && r.left <= window.innerWidth && r.width > 0;
+      });
+      if (!labels.length) return { text: '', visible: false };
+      labels[0].click();
+      return { text: labels[0].textContent, visible: true };
+    `);
+    assert.ok(labelPick.visible, "at least one label should be on screen to click");;
+    await waitLoad(300);
+    const labelTitle = await driver.findElement(By.id("panel-title")).getText();
+    assert.ok(labelPick.text.includes(labelTitle), `panel title "${labelTitle}" should match clicked label "${labelPick.text}"`);
+    ok(`label click selects event ("${labelTitle}")`);
+
     // ── 4. Glossary words-to-know + modal ────────────────────────────
     const chipCount = (await driver.findElements(By.css(".glossary-chip"))).length;
     assert.ok(chipCount >= 2, `expected glossary chips, got ${chipCount}`);
