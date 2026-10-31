@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://greg-2600.github.io/when-what/sitemap.xml

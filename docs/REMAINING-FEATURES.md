@@ -1,6 +1,6 @@
 # Cosmic Timeline — Remaining Features (comprehensive)
 
-Generated after the v1.2 content haul (110 events, 11 eras, 70 unit + 22 E2E tests green).
+Updated to reflect current state (422 events, 11 eras, 78 unit + 22 E2E tests green). Many items below are now complete.
 
 ## Status legend
 - ✅ Done
