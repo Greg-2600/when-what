@@ -839,6 +839,39 @@
     border-radius: 0 0 11px 11px;
   }
 
+  /* Image stage — sits below the number line, shows the selected event's image */
+  .image-stage {
+    position: absolute;
+    top: 200px;
+    width: 260px;
+    height: 180px;
+    transform: translateX(-50%);
+    background: var(--card, #131720);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 5;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    transition: left 0.25s ease, opacity 0.2s ease;
+  }
+  .image-stage.hidden { display: none; }
+  .image-stage img {
+    display: block;
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    filter: saturate(1.05);
+  }
+  .image-stage figcaption {
+    margin: 0;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.35;
+    height: 50px;
+    overflow: hidden;
+  }
+
   /* kid card + story in two columns on wide screens */
   .two-col {
     display: grid;
@@ -851,6 +884,8 @@
   @media (max-width: 720px) {
     .two-col { grid-template-columns: 1fr; }
     .event-media img { height: 150px; }
+    .image-stage { width: 200px; height: 150px; top: 180px; }
+    .image-stage img { height: 105px; }
   }
 
   /* Reading-level cards */
@@ -1171,6 +1206,7 @@
     <div class="number-line"></div>
     <div class="connectors" id="connectors"></div>
     <div class="markers" id="markers"></div>
+  <div id="image-stage" class="image-stage" hidden></div>
   </div>
 </div>
 

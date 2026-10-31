@@ -120,12 +120,12 @@ async function main() {
 
     // ── 3. Event image loads from Wikimedia ──────────────────────────
     await driver.wait(async () =>
-      driver.executeScript("const im=document.querySelector('.event-media img'); return !!im && im.complete && im.naturalWidth>0"),
+      driver.executeScript("const im=document.querySelector('#image-stage img'); return !!im && im.complete && im.naturalWidth>0"),
       15000, "event image should load"
     );
-    const mediaH = await driver.executeScript("return document.querySelector('.event-media').getBoundingClientRect().height");
-    assert.ok(mediaH > 150, "media banner visible height");
-    ok(`event image loaded (${Math.round(mediaH)}px banner)`);
+    const mediaH = await driver.executeScript("return document.querySelector('#image-stage').getBoundingClientRect().height");
+    assert.ok(mediaH > 100, "media stage visible height");
+    ok(`event image loaded (${Math.round(mediaH)}px stage)`);
 
     // ── 4. Glossary words-to-know + modal ────────────────────────────
     const chipCount = (await driver.findElements(By.css(".glossary-chip"))).length;

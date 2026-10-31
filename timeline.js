@@ -661,20 +661,35 @@ function renderDetail(index) {
   panelBody.innerHTML = "";
 
   const media = EVENT_MEDIA[m.title];
-  if (media && media.url) {
-    const figure = document.createElement("figure");
-    figure.className = "event-media";
-    const img = document.createElement("img");
-    img.src = media.url || COMMONS_FILE(media.file);
-    img.referrerPolicy = "no-referrer";
-    img.alt = media.caption || m.title;
-    img.loading = "lazy";
-    img.addEventListener("error", () => { figure.style.display = "none"; });
-    const caption = document.createElement("figcaption");
-    caption.textContent = `${media.caption} · Image: Wikimedia Commons`;
-    figure.appendChild(img);
-    figure.appendChild(caption);
-    panelBody.appendChild(figure);
+  const stage = document.getElementById("image-stage");
+  if (stage) {
+    if (media && media.url) {
+      stage.innerHTML = "";
+      const img = document.createElement("img");
+      img.src = media.url || COMMONS_FILE(media.file);
+      img.referrerPolicy = "no-referrer";
+      img.alt = media.caption || m.title;
+      img.loading = "lazy";
+      img.addEventListener("error", () => { stage.style.display = "none"; });
+      const caption = document.createElement("figcaption");
+      caption.textContent = `${media.caption} · Image: Wikimedia Commons`;
+      stage.appendChild(img);
+      stage.appendChild(caption);
+      // position the stage below the selected marker
+      const marker = markerEls[index];
+      if (marker) {
+        const left = marker.style.left;
+        if (left) stage.style.left = left;
+      }
+      stage.style.display = "";
+      stage.removeAttribute("hidden");
+      stage.classList.remove("hidden");
+    } else {
+      stage.innerHTML = "";
+      stage.style.display = "none";
+      stage.setAttribute("hidden", "");
+      stage.classList.add("hidden");
+    }
   }
   panelBody.appendChild(era);
   panelBody.appendChild(twoCol);
@@ -734,6 +749,8 @@ function updatePanel() {
   if (idx === null) {
     panel.classList.remove("open");
     setMarkerActive(null);
+    const stage = document.getElementById("image-stage");
+    if (stage) { stage.style.display = "none"; stage.setAttribute("hidden", ""); stage.classList.add("hidden"); stage.innerHTML = ""; }
     return;
   }
   panel.classList.add("open");
