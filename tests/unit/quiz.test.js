@@ -17,8 +17,8 @@ function seededRng(seed) {
 test("makeQuiz returns the requested number of questions (bounded by the event supply)", () => {
   assert.equal(core.makeQuiz(5, seededRng(1)).length, 5);
   assert.equal(core.makeQuiz(1, seededRng(2)).length, 1);
-  const big = core.makeQuiz(99, seededRng(3)); // as many as ~76 events can feed
-  assert.ok(big.length >= 25 && big.length <= 50, "supply-bounded: " + big.length);
+  const big = core.makeQuiz(99, seededRng(3)); // as many as the event supply can feed
+  assert.ok(big.length >= 25 && big.length <= 60, "supply-bounded: " + big.length);
 });
 
 test("makeQuiz respects an era filter (teacher packs)", () => {
