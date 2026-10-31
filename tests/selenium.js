@@ -118,18 +118,18 @@ async function main() {
     assert.match(learnHref, /wikipedia\.org\//, "learn-more link");
     ok(`panel: kid card (${kid.length} chars), ${deepCount} deep facts, learn-more link`);
 
-    // ── 3. Event image loads from Wikimedia ──────────────────────────
+    // ── 3. Event images load in the story strip ─────────────────────────
     await driver.wait(async () =>
-      driver.executeScript("const im=document.querySelector('#image-stage img'); return !!im && im.complete && im.naturalWidth>0"),
-      15000, "event image should load"
+      driver.executeScript("const ims=[...document.querySelectorAll('#story-strip img')]; return ims.length>0 && ims.some(im=>im.complete&&im.naturalWidth>0)"),
+      15000, "story card images should load"
     );
-    const mediaH = await driver.executeScript("return document.querySelector('#image-stage').getBoundingClientRect().height");
-    assert.ok(mediaH > 100, "media stage visible height");
-    ok(`event image loaded (${Math.round(mediaH)}px stage)`);
+    const stripH = await driver.executeScript("return document.querySelector('#story-strip').getBoundingClientRect().height");
+    assert.ok(stripH > 100, "story strip visible height");
+    ok(`story strip images loaded (${Math.round(stripH)}px strip)`);
 
     // ── 3b. Image strip layout: on screen, below the labels, stationary ──
     const layout = await driver.executeScript(`
-      const stage = document.querySelector('#image-stage');
+      const stage = document.querySelector('#story-strip');
       const vp = document.querySelector('.viewport');
       const track = document.querySelector('.track');
       const sr = stage.getBoundingClientRect();
@@ -141,7 +141,7 @@ async function main() {
         stop: sr.top, sbottom: sr.bottom, sheight: sr.height,
         vpBottom: vr.bottom,
         winH: window.innerHeight, pageScroll: window.scrollY,
-        midInsideStage: !!mid && !!mid.closest('#image-stage'),
+        midInsideStage: !!mid && !!mid.closest('#story-strip'),
         trackOutline: outline,
       };
     `);
@@ -154,10 +154,10 @@ async function main() {
 
     // strip stays put while the timeline scrolls underneath it
     const stripX = await driver.executeScript(`
-      const before = document.querySelector('#image-stage').getBoundingClientRect().left;
+      const before = document.querySelector('#story-strip').getBoundingClientRect().left;
       const vp = document.querySelector('.viewport');
       vp.scrollLeft = Math.min(vp.scrollWidth - vp.clientWidth, vp.scrollLeft + 600);
-      return [before, document.querySelector('#image-stage').getBoundingClientRect().left];
+      return [before, document.querySelector('#story-strip').getBoundingClientRect().left];
     `);
     assert.equal(stripX[0], stripX[1], "image strip must not scroll with the timeline");
     await driver.executeScript("document.querySelector('.viewport').scrollLeft = 0");
@@ -182,31 +182,34 @@ async function main() {
 
     // ── 3c. Neighbor navigator: prev/next cards with time gaps ───────
     const navInfo = await driver.executeScript(`
-      const nav = document.querySelector('#neighbor-nav');
+      const nav = document.querySelector('#story-strip');
       const r = nav.getBoundingClientRect();
-      const cards = [...nav.querySelectorAll('.neighbor-card')];
+      const cards = [...nav.querySelectorAll('.story-card')];
       return { hidden: nav.hasAttribute('hidden'), count: cards.length,
+        navs: cards.map(c => c.dataset.nav),
+        dirs: cards.map(c => c.querySelector('.sdir').textContent),
         texts: cards.map(c => c.textContent),
         below: r.top >= document.querySelector('.viewport').getBoundingClientRect().bottom - 2,
         onscreen: r.bottom <= window.innerHeight && r.top >= 0 };
     `);
-    assert.equal(navInfo.hidden, false, "neighbor nav visible with a selection");
-    assert.equal(navInfo.count, 2, "prev + next cards for a middle event");
-    assert.ok(navInfo.texts.every(t => /\d/.test(t)), "cards show time gaps");
-    assert.ok(navInfo.below && navInfo.onscreen, "nav sits in the bottom strip on screen");
-    ok(`neighbor nav: ${navInfo.count} cards with time gaps`);
+    assert.equal(navInfo.hidden, false, "story strip visible with a selection");
+    assert.deepEqual(navInfo.navs, ["prev", "now", "next"], "before / now / after order");
+    assert.ok(navInfo.dirs[0].includes("before") && navInfo.dirs[2].includes("after"), `wording: ${navInfo.dirs.join(" | ")}`);
+    assert.ok(navInfo.texts[0].match(/\d/) && navInfo.texts[2].match(/\d/), "before/after cards show time gaps");
+    assert.ok(navInfo.below && navInfo.onscreen, "strip sits in the bottom row on screen");
+    ok(`story strip: before/now/after cards with gaps (${navInfo.dirs[0]} / ${navInfo.dirs[2]})`);
     const navBefore = await driver.findElement(By.id("panel-title")).getText();
     await driver.executeScript(`
-      const cards = [...document.querySelectorAll('.neighbor-card')];
-      (cards.find(c => c.textContent.includes('Came next')) || cards[0]).click();
+      const cards = [...document.querySelectorAll('.story-card')];
+      (cards.find(c => c.dataset.nav === 'next') || cards[0]).click();
     `);
     await waitLoad(300);
     const navAfter = await driver.findElement(By.id("panel-title")).getText();
     assert.notEqual(navAfter, navBefore, "neighbor card navigates to another event");
     ok(`neighbor card navigates: "${navBefore}" → "${navAfter}"`);
     await driver.executeScript(`
-      const cards = [...document.querySelectorAll('.neighbor-card')];
-      (cards.find(c => c.textContent.includes('Came before')) || cards[0]).click();
+      const cards = [...document.querySelectorAll('.story-card')];
+      (cards.find(c => c.dataset.nav === 'prev') || cards[0]).click();
     `);
     await waitLoad(300);
     const navBack = await driver.findElement(By.id("panel-title")).getText();

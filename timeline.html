@@ -869,70 +869,56 @@ body > #bottom-strip, body > .site-footer { flex: none; }
     align-items: stretch;
     margin: 0.5rem 1.5rem 0.75rem;
   }
-  /* Image stage — left end of the bottom strip */
-  .image-stage {
-    position: relative;
-    flex: none;
-    margin: 0;
-    width: 340px;
-    max-width: calc(100% - 3rem);
-    height: 220px;
-    background: var(--card, #131720);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  }
-  /* Prev/next navigator — fills the space beside the image */
-  .neighbor-nav { display: flex; gap: 1rem; flex: 1 1 auto; min-width: 0; }
-  .neighbor-nav.hidden { display: none; }
-  .neighbor-card {
+  /* Story strip: before / now / after cards, each with picture + info */
+  #story-strip { display: flex; gap: 1rem; flex: 1 1 auto; min-width: 0; }
+  #story-strip.hidden { display: none; }
+  .story-card {
     flex: 1 1 0;
     min-width: 0;
-    text-align: left;
-    font: inherit;
-    color: var(--text);
+    display: flex;
+    gap: 0.7rem;
     background: var(--card, #131720);
     border: 1px solid var(--border);
     border-left: 3px solid var(--era-color, var(--accent));
     border-radius: 12px;
-    padding: 0.6rem 0.8rem;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.15rem;
+    padding: 0.6rem;
+    overflow: hidden;
+    font: inherit;
+    color: var(--text);
+    text-align: left;
   }
-  .neighbor-card:hover { border-color: var(--accent); }
-  .neighbor-card .ndir {
+  button.story-card { cursor: pointer; }
+  button.story-card:hover { border-color: var(--accent); }
+  .story-card.current { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .story-card img {
+    width: 120px;
+    flex: none;
+    align-self: stretch;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #000;
+  }
+  .scard-body { min-width: 0; display: flex; flex-direction: column; gap: 0.15rem; }
+  .story-card .sdir {
     font-size: 0.68rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--muted);
   }
-  .neighbor-card .ntitle {
+  .story-card .stitle {
     font-weight: 600;
     font-size: 0.85rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .neighbor-card .ngap { font-size: 0.75rem; color: var(--muted); }
-  .image-stage.hidden { display: none; }
-  .image-stage img {
-    display: block;
-    width: 100%;
-    height: 170px;
-    object-fit: cover;
-    filter: saturate(1.05);
-  }
-  .image-stage figcaption {
-    margin: 0;
-    padding: 0.4rem 0.7rem;
-    font-size: 0.72rem;
-    color: var(--muted);
-    line-height: 1.35;
-    height: 50px;
+  .story-card .sgap { font-size: 0.72rem; color: var(--muted); }
+  .story-card .skid {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
@@ -948,8 +934,11 @@ body > #bottom-strip, body > .site-footer { flex: none; }
   @media (max-width: 720px) {
     .two-col { grid-template-columns: 1fr; }
     .event-media img { height: 150px; }
-    .image-stage { width: 240px; max-width: calc(100% - 3rem); height: 170px; }
-    .image-stage img { height: 105px; }
+    #bottom-strip { flex-wrap: wrap; }
+    #story-strip { flex-wrap: wrap; }
+    .story-card { flex: 1 1 100%; }
+    .story-card img { width: 90px; }
+    .story-card .skid { -webkit-line-clamp: 2; }
   }
 
   /* Reading-level cards */
@@ -1275,8 +1264,7 @@ body > #bottom-strip, body > .site-footer { flex: none; }
 </div>
 
 <div id="bottom-strip">
-  <div id="image-stage" class="image-stage" hidden></div>
-  <div id="neighbor-nav" class="neighbor-nav hidden" hidden></div>
+  <div id="story-strip" class="hidden" hidden></div>
 </div>
 
 <div class="panel" id="panel" aria-live="polite" aria-atomic="false">

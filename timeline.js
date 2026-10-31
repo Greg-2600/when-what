@@ -364,8 +364,8 @@ const EVENT_MEDIA = {
     file: "Crab_Nebula.jpg",
   },
   "The Sun is Born": {
-    caption: "The Sun in white light (NASA/SDO)",
-    file: "Sun_white_light.jpg",
+    caption: "The Sun in true colour",
+    file: "Sun.jpg",
   },
   "Jupiter's Moons": {
     caption: "Jupiter and its four Galilean moons (NASA)",
@@ -2113,69 +2113,63 @@ function renderDetail(index) {
 
   panelBody.innerHTML = "";
 
-  const media = EVENT_MEDIA[m.title];
-  const stage = document.getElementById("image-stage");
-  if (stage) {
-    if (media && (media.url || media.file)) {
-      stage.innerHTML = "";
-      const img = document.createElement("img");
-      img.src = media.url || COMMONS_FILE(media.file);
-      img.referrerPolicy = "no-referrer";
-      img.alt = media.caption || m.title;
-      img.loading = "lazy";
-      img.addEventListener("error", () => { stage.style.display = "none"; });
-      const caption = document.createElement("figcaption");
-      caption.textContent = `${media.caption} · Image: Wikimedia Commons`;
-      stage.appendChild(img);
-      stage.appendChild(caption);
-      stage.style.display = "";
-      stage.removeAttribute("hidden");
-      stage.classList.remove("hidden");
-    } else {
-      stage.innerHTML = "";
-      stage.style.display = "none";
-      stage.setAttribute("hidden", "");
-      stage.classList.add("hidden");
-    }
-  }
-  /* Prev/next navigator: fills the bottom strip beside the image */
-  const neighborNav = document.getElementById("neighbor-nav");
-  if (neighborNav) {
-    neighborNav.innerHTML = "";
-    const neighbors = [];
-    if (index > 0) neighbors.push({ idx: index - 1, dir: "\u2190 Came before" });
-    if (index < MILESTONES.length - 1) neighbors.push({ idx: index + 1, dir: "Came next \u2192" });
-    neighbors.forEach(function (n) {
-      const nm = MILESTONES[n.idx];
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "neighbor-card";
-      btn.style.setProperty("--era-color", eventColor(n.idx));
+  /* Bottom story strip: what came before / now viewing / what came after.
+     Every card carries the same info: picture, title, date, gap, kid summary. */
+  const strip = document.getElementById("story-strip");
+  if (strip) {
+    strip.innerHTML = "";
+    const cards = [];
+    if (index > 0) cards.push({ idx: index - 1, nav: "prev", dir: "What came before" });
+    cards.push({ idx: index, nav: "now", dir: "Now viewing" });
+    if (index < MILESTONES.length - 1) cards.push({ idx: index + 1, nav: "next", dir: "What came after" });
+    cards.forEach(function (c) {
+      const cm = MILESTONES[c.idx];
+      const cLang = (typeof uiLang !== "undefined" ? uiLang : "en") || "en";
+      const cTr = (cm.translations && cm.translations[cLang]) ? cm.translations[cLang] : null;
+      const cKid = (cTr && cTr.kid) ? cTr.kid : cm.kid;
+      const cMedia = EVENT_MEDIA[cm.title];
+      const el = document.createElement(c.nav === "now" ? "div" : "button");
+      el.className = "story-card" + (c.nav === "now" ? " current" : "");
+      el.dataset.nav = c.nav;
+      if (c.nav !== "now") el.type = "button";
+      el.style.setProperty("--era-color", eventColor(c.idx));
+      if (cMedia && (cMedia.url || cMedia.file)) {
+        const img = document.createElement("img");
+        img.src = cMedia.url || COMMONS_FILE(cMedia.file);
+        img.referrerPolicy = "no-referrer";
+        img.alt = cMedia.caption || cm.title;
+        img.loading = "lazy";
+        img.addEventListener("error", () => { img.style.display = "none"; });
+        el.appendChild(img);
+      }
+      const body = document.createElement("div");
+      body.className = "scard-body";
       const dEl = document.createElement("div");
-      dEl.className = "ndir";
-      dEl.textContent = n.dir;
+      dEl.className = "sdir";
+      dEl.textContent = c.dir;
       const tEl = document.createElement("div");
-      tEl.className = "ntitle";
-      tEl.textContent = nm.title;
+      tEl.className = "stitle";
+      tEl.textContent = cm.title;
       const gEl = document.createElement("div");
-      gEl.className = "ngap";
-      gEl.textContent = formatGap(nm.yearsAgo - m.yearsAgo) + (n.idx < index ? " earlier" : " later") +
-        " · " + formatTime(nm.yearsAgo);
-      btn.appendChild(dEl);
-      btn.appendChild(tEl);
-      btn.appendChild(gEl);
-      btn.addEventListener("click", function () { selectEvent(n.idx); });
-      neighborNav.appendChild(btn);
+      gEl.className = "sgap";
+      gEl.textContent = c.nav === "now"
+        ? formatTime(cm.yearsAgo)
+        : formatGap(cm.yearsAgo - m.yearsAgo) + (c.idx < index ? " earlier" : " later") +
+          " \u00b7 " + formatTime(cm.yearsAgo);
+      const kEl = document.createElement("div");
+      kEl.className = "skid";
+      kEl.textContent = cKid;
+      body.appendChild(dEl);
+      body.appendChild(tEl);
+      body.appendChild(gEl);
+      body.appendChild(kEl);
+      el.appendChild(body);
+      if (c.nav !== "now") el.addEventListener("click", function () { selectEvent(c.idx); });
+      strip.appendChild(el);
     });
-    if (neighbors.length) {
-      neighborNav.style.display = "";
-      neighborNav.removeAttribute("hidden");
-      neighborNav.classList.remove("hidden");
-    } else {
-      neighborNav.style.display = "none";
-      neighborNav.setAttribute("hidden", "");
-      neighborNav.classList.add("hidden");
-    }
+    strip.style.display = "";
+    strip.removeAttribute("hidden");
+    strip.classList.remove("hidden");
   }
   panelBody.appendChild(era);
   panelBody.appendChild(twoCol);
@@ -2235,10 +2229,8 @@ function updatePanel() {
   if (idx === null) {
     panel.classList.remove("open");
     setMarkerActive(null);
-    const stage = document.getElementById("image-stage");
-    if (stage) { stage.style.display = "none"; stage.setAttribute("hidden", ""); stage.classList.add("hidden"); stage.innerHTML = ""; }
-    const neighborNav = document.getElementById("neighbor-nav");
-    if (neighborNav) { neighborNav.style.display = "none"; neighborNav.setAttribute("hidden", ""); neighborNav.classList.add("hidden"); neighborNav.innerHTML = ""; }
+    const strip = document.getElementById("story-strip");
+    if (strip) { strip.style.display = "none"; strip.setAttribute("hidden", ""); strip.classList.add("hidden"); strip.innerHTML = ""; }
     return;
   }
   panel.classList.add("open");
