@@ -180,6 +180,39 @@ async function main() {
     assert.ok(labelPick.text.includes(labelTitle), `panel title "${labelTitle}" should match clicked label "${labelPick.text}"`);
     ok(`label click selects event ("${labelTitle}")`);
 
+    // ── 3c. Neighbor navigator: prev/next cards with time gaps ───────
+    const navInfo = await driver.executeScript(`
+      const nav = document.querySelector('#neighbor-nav');
+      const r = nav.getBoundingClientRect();
+      const cards = [...nav.querySelectorAll('.neighbor-card')];
+      return { hidden: nav.hasAttribute('hidden'), count: cards.length,
+        texts: cards.map(c => c.textContent),
+        below: r.top >= document.querySelector('.viewport').getBoundingClientRect().bottom - 2,
+        onscreen: r.bottom <= window.innerHeight && r.top >= 0 };
+    `);
+    assert.equal(navInfo.hidden, false, "neighbor nav visible with a selection");
+    assert.equal(navInfo.count, 2, "prev + next cards for a middle event");
+    assert.ok(navInfo.texts.every(t => /\d/.test(t)), "cards show time gaps");
+    assert.ok(navInfo.below && navInfo.onscreen, "nav sits in the bottom strip on screen");
+    ok(`neighbor nav: ${navInfo.count} cards with time gaps`);
+    const navBefore = await driver.findElement(By.id("panel-title")).getText();
+    await driver.executeScript(`
+      const cards = [...document.querySelectorAll('.neighbor-card')];
+      (cards.find(c => c.textContent.includes('Came next')) || cards[0]).click();
+    `);
+    await waitLoad(300);
+    const navAfter = await driver.findElement(By.id("panel-title")).getText();
+    assert.notEqual(navAfter, navBefore, "neighbor card navigates to another event");
+    ok(`neighbor card navigates: "${navBefore}" → "${navAfter}"`);
+    await driver.executeScript(`
+      const cards = [...document.querySelectorAll('.neighbor-card')];
+      (cards.find(c => c.textContent.includes('Came before')) || cards[0]).click();
+    `);
+    await waitLoad(300);
+    const navBack = await driver.findElement(By.id("panel-title")).getText();
+    assert.equal(navBack, navBefore, "before card returns to the original event");
+    ok(`before card navigates back: "${navAfter}" → "${navBack}"`);
+
     // ── 4. Glossary words-to-know + modal ────────────────────────────
     const chipCount = (await driver.findElements(By.css(".glossary-chip"))).length;
     assert.ok(chipCount >= 2, `expected glossary chips, got ${chipCount}`);

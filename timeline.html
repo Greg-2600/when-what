@@ -44,7 +44,7 @@
   overflow: hidden;
 }
 body > header, body > .legend-bar, body > .searchbar,
-body > #image-stage, body > .site-footer { flex: none; }
+body > #bottom-strip, body > .site-footer { flex: none; }
 
 /* Context wash: colored by the events currently in view */
 .wash {
@@ -862,10 +862,18 @@ body > #image-stage, body > .site-footer { flex: none; }
     border-radius: 0 0 11px 11px;
   }
 
-  /* Image stage — in-flow strip at the bottom of the screen, below the labels */
+  /* Bottom strip: image + prev/next navigator side by side */
+  #bottom-strip {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+    margin: 0.5rem 1.5rem 0.75rem;
+  }
+  /* Image stage — left end of the bottom strip */
   .image-stage {
     position: relative;
-    margin: 0.5rem 1.5rem 0.75rem;
+    flex: none;
+    margin: 0;
     width: 340px;
     max-width: calc(100% - 3rem);
     height: 220px;
@@ -875,6 +883,41 @@ body > #image-stage, body > .site-footer { flex: none; }
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   }
+  /* Prev/next navigator — fills the space beside the image */
+  .neighbor-nav { display: flex; gap: 1rem; flex: 1 1 auto; min-width: 0; }
+  .neighbor-nav.hidden { display: none; }
+  .neighbor-card {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: left;
+    font: inherit;
+    color: var(--text);
+    background: var(--card, #131720);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--era-color, var(--accent));
+    border-radius: 12px;
+    padding: 0.6rem 0.8rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.15rem;
+  }
+  .neighbor-card:hover { border-color: var(--accent); }
+  .neighbor-card .ndir {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .neighbor-card .ntitle {
+    font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .neighbor-card .ngap { font-size: 0.75rem; color: var(--muted); }
   .image-stage.hidden { display: none; }
   .image-stage img {
     display: block;
@@ -1019,7 +1062,7 @@ body > #image-stage, body > .site-footer { flex: none; }
     }
     .panel.open { transform: none; }
     .viewport { margin-right: var(--panel-width, 480px); }
-    #image-stage { margin-right: var(--panel-width, 480px); }
+    #bottom-strip { margin-right: var(--panel-width, 480px); }
     .panel-body { padding: 1rem 1.25rem; }
     #panel-resize-handle { display: block; }
     #panel-resize-handle:hover { background: var(--accent, #38bdf8); opacity: 0.4; }
@@ -1231,7 +1274,10 @@ body > #image-stage, body > .site-footer { flex: none; }
   </div>
 </div>
 
-<div id="image-stage" class="image-stage" hidden></div>
+<div id="bottom-strip">
+  <div id="image-stage" class="image-stage" hidden></div>
+  <div id="neighbor-nav" class="neighbor-nav hidden" hidden></div>
+</div>
 
 <div class="panel" id="panel" aria-live="polite" aria-atomic="false">
   <div id="panel-resize-handle" title="Drag to resize" style="position:absolute;left:0;top:0;bottom:0;width:6px;cursor:ew-resize;z-index:70;background:transparent;"></div>

@@ -2000,6 +2000,16 @@ function setMarkerActive(index) {
   });
 }
 
+/* Human-friendly gap between two events, e.g. "66 million years" */
+function formatGap(years) {
+  const a = Math.abs(Math.round(years));
+  const trim = (v) => (Math.round(v * 100) / 100).toString();
+  if (a >= 1e9) return trim(a / 1e9) + " billion years";
+  if (a >= 1e6) return trim(a / 1e6) + " million years";
+  if (a >= 1000) return a.toLocaleString("en-US") + " years";
+  return a === 1 ? "1 year" : a + " years";
+}
+
 function renderDetail(index) {
   const m = MILESTONES[index];
   const lang = (typeof uiLang !== "undefined" ? uiLang : "en") || "en";
@@ -2128,6 +2138,45 @@ function renderDetail(index) {
       stage.classList.add("hidden");
     }
   }
+  /* Prev/next navigator: fills the bottom strip beside the image */
+  const neighborNav = document.getElementById("neighbor-nav");
+  if (neighborNav) {
+    neighborNav.innerHTML = "";
+    const neighbors = [];
+    if (index > 0) neighbors.push({ idx: index - 1, dir: "\u2190 Came before" });
+    if (index < MILESTONES.length - 1) neighbors.push({ idx: index + 1, dir: "Came next \u2192" });
+    neighbors.forEach(function (n) {
+      const nm = MILESTONES[n.idx];
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "neighbor-card";
+      btn.style.setProperty("--era-color", eventColor(n.idx));
+      const dEl = document.createElement("div");
+      dEl.className = "ndir";
+      dEl.textContent = n.dir;
+      const tEl = document.createElement("div");
+      tEl.className = "ntitle";
+      tEl.textContent = nm.title;
+      const gEl = document.createElement("div");
+      gEl.className = "ngap";
+      gEl.textContent = formatGap(nm.yearsAgo - m.yearsAgo) + (n.idx < index ? " earlier" : " later") +
+        " · " + formatTime(nm.yearsAgo);
+      btn.appendChild(dEl);
+      btn.appendChild(tEl);
+      btn.appendChild(gEl);
+      btn.addEventListener("click", function () { selectEvent(n.idx); });
+      neighborNav.appendChild(btn);
+    });
+    if (neighbors.length) {
+      neighborNav.style.display = "";
+      neighborNav.removeAttribute("hidden");
+      neighborNav.classList.remove("hidden");
+    } else {
+      neighborNav.style.display = "none";
+      neighborNav.setAttribute("hidden", "");
+      neighborNav.classList.add("hidden");
+    }
+  }
   panelBody.appendChild(era);
   panelBody.appendChild(twoCol);
   panelBody.appendChild(deep);
@@ -2188,6 +2237,8 @@ function updatePanel() {
     setMarkerActive(null);
     const stage = document.getElementById("image-stage");
     if (stage) { stage.style.display = "none"; stage.setAttribute("hidden", ""); stage.classList.add("hidden"); stage.innerHTML = ""; }
+    const neighborNav = document.getElementById("neighbor-nav");
+    if (neighborNav) { neighborNav.style.display = "none"; neighborNav.setAttribute("hidden", ""); neighborNav.classList.add("hidden"); neighborNav.innerHTML = ""; }
     return;
   }
   panel.classList.add("open");
