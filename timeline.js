@@ -732,6 +732,12 @@ function renderDetail(index) {
       caption.textContent = `${media.caption} · Image: Wikimedia Commons`;
       stage.appendChild(img);
       stage.appendChild(caption);
+      // position the stage below the selected marker
+      const marker = markerEls[index];
+      if (marker) {
+        const left = marker.style.left;
+        if (left) stage.style.left = left;
+      }
       stage.style.display = "";
       stage.removeAttribute("hidden");
       stage.classList.remove("hidden");
@@ -1106,21 +1112,28 @@ function scheduleZoom(step, contentX, viewX) {
 }
 
 viewportEl.addEventListener("wheel", function (e) {
-  if (e.shiftKey) return;
   if (scaleMode === undefined) return;
-  e.preventDefault();
   const vp = viewportEl;
-  const vr = vp.getBoundingClientRect();
-  const contentX = vp.scrollLeft + (e.clientX - vr.left);
-  const viewX = e.clientX - vr.left;
-  let step;
-  if (e.ctrlKey) {
-    step = Math.exp(-e.deltaY * 0.012);
-  } else {
-    // smaller step for smoother, less jumpy zooming
-    step = e.deltaY > 0 ? 1 / 1.12 : 1.12;
+  // Ctrl/Cmd + wheel → zoom (anchored at cursor)
+  if (e.ctrlKey || e.metaKey) {
+    e.preventDefault();
+    const vr = vp.getBoundingClientRect();
+    const contentX = vp.scrollLeft + (e.clientX - vr.left);
+    const viewX = e.clientX - vr.left;
+    const step = Math.exp(-e.deltaY * 0.012);
+    scheduleZoom(step, contentX, viewX);
+    return;
   }
-  scheduleZoom(step, contentX, viewX);
+  // Otherwise → horizontal scroll (translate vertical wheel into horizontal scroll)
+  e.preventDefault();
+  // support both line (deltaMode 0/1) and pixel (deltaMode 0) deltas
+  let delta = e.deltaY;
+  if (e.deltaMode === 1) delta *= 40;       // lines → pixels
+  if (e.deltaMode === 2) delta *= vp.clientHeight; // pages
+  // smooth out trackpad vs mouse: clamp per-event delta
+  const maxStep = vp.clientWidth * 0.15;
+  if (Math.abs(delta) > maxStep) delta = Math.sign(delta) * maxStep;
+  vp.scrollLeft = Math.max(0, Math.min(vp.scrollWidth - vp.clientWidth, vp.scrollLeft + delta));
 }, { passive: false });
 
 /* double-click zooms in, alt+double-click zooms out — anchored at cursor */
