@@ -354,6 +354,404 @@ const EVENT_MEDIA = {
     caption: "A galaxy cluster — thousands of galaxies bound together by gravity, the largest structures in the universe",
     url: "./img/first-galaxy-clusters.jpg",
   },
+
+  "Black Holes": {
+    caption: "The first image of a black hole \u2014 M87*, captured by the Event Horizon Telescope (2019)",
+    file: "Black_hole_-_Messier_87.jpg",
+  },
+  "Supernovae": {
+    caption: "The Crab Nebula \u2014 remnant of a supernova observed in 1054 CE",
+    file: "Crab_Nebula.jpg",
+  },
+  "The Sun is Born": {
+    caption: "The Sun in white light (NASA/SDO)",
+    file: "Sun_white_light.jpg",
+  },
+  "Jupiter's Moons": {
+    caption: "Jupiter and its four Galilean moons (NASA)",
+    file: "Jupiter_and_the_Galilean_satellites.jpg",
+  },
+  "Saturn's Titan": {
+    caption: "Titan in natural colour (NASA/Cassini)",
+    file: "Titan_in_natural_color.jpg",
+  },
+  "The Cambrian Explosion": {
+    caption: "A trilobite fossil from the Cambrian period",
+    file: "Trilobite.jpg",
+  },
+  "The First Fish": {
+    caption: "A fossil fish from the Devonian",
+    file: "Dunkleosteus_terrelli.jpg",
+  },
+  "The First Trees": {
+    caption: "An ancient fossil tree (Archaeopteris)",
+    file: "Archaeopteris.jpg",
+  },
+  "The Permian Extinction": {
+    caption: "Permian-Triassic boundary layer",
+    file: "Permian-Triassic_boundary.jpg",
+  },
+  "The Age of Dinosaurs": {
+    caption: "A Tyrannosaurus rex skeleton",
+    file: "Tyrannosaurus_rex.jpg",
+  },
+  "Homo erectus": {
+    caption: "A Homo erectus skull",
+    file: "Homo_erectus.jpg",
+  },
+  "Neanderthals": {
+    caption: "A Neanderthal skull",
+    file: "Neanderthal.jpg",
+  },
+  "The Wheel": {
+    caption: "An ancient solid wooden wheel",
+    file: "Bronze_Age_wheel.jpg",
+  },
+  "Darwin Publishes Origin of Species": {
+    caption: "Charles Darwin",
+    file: "Charles_Darwin_portrait.jpg",
+  },
+  "Einstein's Miracle Year": {
+    caption: "Albert Einstein, 1921",
+    file: "Einstein_1921.jpg",
+  },
+  "Marie Curie": {
+    caption: "Marie Curie in her laboratory",
+    file: "Marie_Curie.jpg",
+  },
+  "Sputnik Launches": {
+    caption: "A replica of Sputnik 1",
+    file: "Sputnik_1.jpg",
+  },
+  "Gagarin Orbits Earth": {
+    caption: "Yuri Gagarin, first human in space",
+    file: "Yuri_Gagarin.jpg",
+  },
+  "The Space Shuttle": {
+    caption: "Space Shuttle Columbia launch",
+    file: "Space_Shuttle_Columbia.jpg",
+  },
+  "The International Space Station": {
+    caption: "The International Space Station",
+    file: "International_Space_Station.jpg",
+  },
+  "James Webb Space Telescope": {
+    caption: "The James Webb Space Telescope",
+    file: "James_Webb_Space_Telescope.jpg",
+  },
+  "United Nations Founded": {
+    caption: "United Nations headquarters, New York",
+    file: "United_Nations_headquarters.jpg",
+  },
+  "World War I": {
+    caption: "Soldiers in the trenches of WWI",
+    file: "World_War_I.jpg",
+  },
+  "World War II": {
+    caption: "Allied troops on D-Day",
+    file: "World_War_II.jpg",
+  },
+  "The Cold War": {
+    caption: "Berlin Wall, symbol of the Cold War",
+    file: "Berlin_Wall.jpg",
+  },
+  "Climate Tipping Points": {
+    caption: "Global temperature anomaly",
+    file: "Global_Temperature_Anomaly.svg",
+  },
+  "Paris Agreement": {
+    caption: "Paris Agreement signing, 2015",
+    file: "Paris_Agreement.jpg",
+  },
+  "CRISPR Gene Editing": {
+    caption: "CRISPR-Cas9 gene editing",
+    file: "CRISPR.jpg",
+  },
+  "ChatGPT and the AI Revolution": {
+    caption: "Artificial intelligence concept",
+    file: "Artificial_intelligence.jpg",
+  },
+  "Cosmic Inflation": {
+    caption: "Artist's impression of cosmic inflation",
+    file: "Universe_expansion.png",
+  },
+  "Dark Matter": {
+    caption: "The Bullet Cluster \u2014 evidence for dark matter",
+    file: "Bullet_cluster.jpg",
+  },
+  "The Cosmic Microwave Background": {
+    caption: "WMAP map of the cosmic microwave background",
+    file: "Ilc_9yr_moll4096.png",
+  },
+  "The First Atoms": {
+    caption: "A hydrogen atom \u2014 the first atoms were hydrogen and helium",
+    file: "Hydrogen_atom.svg",
+  },
+  "The First Molecules": {
+    caption: "A hydrogen molecule \u2014 the first molecule",
+    file: "Water_molecule.jpg",
+  },
+  "The First Galaxies": {
+    caption: "A distant early galaxy (NASA/Hubble)",
+    file: "Andromeda_Galaxy.jpg",
+  },
+  "The Cosmic Web": {
+    caption: "Simulation of the cosmic web",
+    file: "Cosmic_web.jpg",
+  },
+  "Quasars": {
+    caption: "Artist's impression of a quasar",
+    file: "Quasar.jpg",
+  },
+  "Dark Energy": {
+    caption: "Dark energy drives the accelerating expansion",
+    file: "Universe.jpg",
+  },
+  "The Milky Way's Bar": {
+    caption: "Artist's impression of the Milky Way's barred spiral",
+    file: "Milky_Way.jpg",
+  },
+  "The Asteroid Belt": {
+    caption: "Artist's impression of the asteroid belt",
+    file: "Asteroid_belt.jpg",
+  },
+  "Saturn's Rings": {
+    caption: "Saturn and its rings (NASA/Cassini)",
+    file: "Saturn_(planet)_large.jpg",
+  },
+  "The Kuiper Belt": {
+    caption: "Artist's impression of the Kuiper Belt",
+    file: "Pluto.jpg",
+  },
+  "Photosynthesis Evolves": {
+    caption: "Leaves performing photosynthesis",
+    file: "Photosynthesis.jpg",
+  },
+  "The Oxygen Revolution": {
+    caption: "Banded iron formation from the Great Oxidation",
+    file: "Banded_iron_formation.jpg",
+  },
+  "The First Eukaryotes": {
+    caption: "Paramecium \u2014 a single-celled eukaryote",
+    file: "Paramecium.jpg",
+  },
+  "The First Animals": {
+    caption: "Dickinsonia \u2014 an Ediacaran animal",
+    file: "Fossil.jpg",
+  },
+  "Multicellular Life": {
+    caption: "Volvox \u2014 colonial green algae",
+    file: "Algae.jpg",
+  },
+  "The First Brains": {
+    caption: "A human brain",
+    file: "Brain.jpg",
+  },
+  "The First Eyes": {
+    caption: "A compound eye",
+    file: "Compound_eye.jpg",
+  },
+  "The First Land Plants": {
+    caption: "Moss \u2014 among the earliest land plants",
+    file: "Moss.jpg",
+  },
+  "Plants Conquer Land": {
+    caption: "Cooksonia \u2014 early land plant fossil",
+    file: "Fern.jpg",
+  },
+  "The First Land Vertebrates": {
+    caption: "Tiktaalik \u2014 the fishapod",
+    file: "Fossil_fish.jpg",
+  },
+  "The Age of Amphibians": {
+    caption: "Eryops \u2014 a giant amphibian",
+    file: "Eryops.jpg",
+  },
+  "Jupiter's Great Red Spot": {
+    caption: "Jupiter's Great Red Spot (NASA)",
+    file: "Jupiter.jpg",
+  },
+  "The First Reptiles": {
+    caption: "Hylonomus \u2014 an early reptile",
+    file: "Lizard.jpg",
+  },
+  "The Age of Reptiles": {
+    caption: "A dinosaur skeleton",
+    file: "Dinosaur.jpg",
+  },
+  "The First Mammals": {
+    caption: "Morganucodon \u2014 an early mammal",
+    file: "Morganucodon.jpg",
+  },
+  "The First Birds": {
+    caption: "Archaeopteryx fossil",
+    file: "Archaeopteryx.jpg",
+  },
+  "The First Flowers": {
+    caption: "A flowering plant",
+    file: "Flower.jpg",
+  },
+  "Saturn's Rings Form": {
+    caption: "Saturn's rings in detail (NASA/Cassini)",
+    file: "Saturn_rings.jpg",
+  },
+  "The Asteroid Impact": {
+    caption: "Chicxulub crater gravity map",
+    file: "Chicxulub.jpg",
+  },
+  "The First Primates": {
+    caption: "A lemur \u2014 a living primate",
+    file: "Lemur.jpg",
+  },
+  "The First Whales": {
+    caption: "Basilosaurus \u2014 an early whale",
+    file: "Basilosaurus.jpg",
+  },
+  "Australopithecus": {
+    caption: "Lucy \u2014 Australopithecus afarensis skeleton",
+    file: "Australopithecus.jpg",
+  },
+  "The First Tools": {
+    caption: "Oldowan stone tools",
+    file: "Stone_tools.jpg",
+  },
+  "The Ice Ages": {
+    caption: "Glacier during an ice age",
+    file: "Glacier.jpg",
+  },
+  "Homo habilis": {
+    caption: "Homo habilis skull",
+    file: "Homo_habilis.jpg",
+  },
+  "The Discovery of Fire": {
+    caption: "Fire \u2014 controlled by early humans",
+    file: "Fire.jpg",
+  },
+  "Denisovans": {
+    caption: "Denisova Cave in Siberia",
+    file: "Cave.jpg",
+  },
+  "The Invention of Clothing": {
+    caption: "Early clothing from animal skins",
+    file: "Clothing.jpg",
+  },
+  "The First Language": {
+    caption: "Human speech and language",
+    file: "Speech.jpg",
+  },
+  "The First Burials": {
+    caption: "An ancient burial site",
+    file: "Burial.jpg",
+  },
+  "The First Boats": {
+    caption: "An ancient dugout canoe",
+    file: "Canoe.jpg",
+  },
+  "The Invention of the Needle": {
+    caption: "A bone needle",
+    file: "Needle.jpg",
+  },
+  "Cave Paintings": {
+    caption: "Chauvet Cave paintings",
+    file: "Cave_painting.jpg",
+  },
+  "The First Art": {
+    caption: "Venus of Willendorf",
+    file: "Venus_of_Willendorf.jpg",
+  },
+  "Megafauna Extinction": {
+    caption: "Woolly mammoth",
+    file: "Mammoth.jpg",
+  },
+  "The Agricultural Revolution": {
+    caption: "Wheat field \u2014 farming begins",
+    file: "Wheat.jpg",
+  },
+  "The First Cities": {
+    caption: "Uruk \u2014 the first city",
+    file: "Ziggurat.jpg",
+  },
+  "The Bronze Age": {
+    caption: "Bronze tools and weapons",
+    file: "Bronze.jpg",
+  },
+  "Judaism": {
+    caption: "A Torah scroll",
+    file: "Torah.jpg",
+  },
+  "The Code of Hammurabi": {
+    caption: "Code of Hammurabi stele",
+    file: "Hammurabi.jpg",
+  },
+  "Hinduism Takes Shape": {
+    caption: "A Hindu temple",
+    file: "Hindu_temple.jpg",
+  },
+  "The Exodus": {
+    caption: "Moses parts the Red Sea (art)",
+    file: "Moses.jpg",
+  },
+  "The Iron Age": {
+    caption: "Iron smelting",
+    file: "Iron.jpg",
+  },
+  "Zoroastrianism": {
+    caption: "Zoroaster",
+    file: "Zoroaster.jpg",
+  },
+  "Daniel in Babylon": {
+    caption: "Ishtar Gate of Babylon",
+    file: "Ishtar_Gate.jpg",
+  },
+  "The Hanging Gardens": {
+    caption: "Artist's impression of the Hanging Gardens",
+    file: "Babylon.jpg",
+  },
+  "Buddhism is Founded": {
+    caption: "A Buddha statue",
+    file: "Buddha.jpg",
+  },
+  "Cyrus the Great": {
+    caption: "Cyrus Cylinder",
+    file: "Cyrus_Cylinder.jpg",
+  },
+  "The Persian Empire": {
+    caption: "Persepolis \u2014 capital of Persia",
+    file: "Persepolis.jpg",
+  },
+  "Confucius": {
+    caption: "Confucius",
+    file: "Confucius.jpg",
+  },
+  "Taoism Emerges": {
+    caption: "Laozi \u2014 founder of Taoism",
+    file: "Laozi.jpg",
+  },
+  "Jainism": {
+    caption: "Jain temple",
+    file: "Jain_temple.jpg",
+  },
+  "Big Bang Nucleosynthesis": {
+    caption: "Primordial elements forged in the Big Bang",
+    file: "Universe.jpg",
+  },
+  "The Milky Way's Center": {
+    caption: "The Milky Way's bright core",
+    file: "Milky_Way.jpg",
+  },
+  "Galaxy Collisions": {
+    caption: "Interacting galaxies (NASA/Hubble)",
+    file: "Whirlpool_Galaxy.jpg",
+  },
+  "The First Skeletons": {
+    caption: "Trilobite fossil with hard exoskeleton",
+    file: "Trilobite.jpg",
+  },
+  "The Olmec Build Civilizations": {
+    caption: "Olmec-style colossal stone head",
+    file: "Stone_head.jpg",
+  },
+
 };
 
 /* -------------------------------------------------------------
@@ -720,7 +1118,7 @@ function renderDetail(index) {
   const media = EVENT_MEDIA[m.title];
   const stage = document.getElementById("image-stage");
   if (stage) {
-    if (media && media.url) {
+    if (media && (media.url || media.file)) {
       stage.innerHTML = "";
       const img = document.createElement("img");
       img.src = media.url || COMMONS_FILE(media.file);

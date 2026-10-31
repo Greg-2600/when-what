@@ -1,5 +1,5 @@
 const fs = require("fs");
-const html = fs.readFileSync("/Users/greg/Documents/Default Project/timeline.html", "utf8");
+const html = fs.readFileSync("/Users/greg/Documents/Default Project/timeline.js", "utf8");
 const start = html.indexOf("const EVENT_MEDIA = {");
 const end = html.indexOf("};", start) + 2;
 const src = html.slice(start, end);
