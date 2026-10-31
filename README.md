@@ -8,7 +8,7 @@ Hover a dot. Open a panel. Read it like a bedtime story, then read it like a tex
 
 <p align="center">
   <img src="docs/screenshots/deep-time.jpg" width="720" alt="The full 13.8-billion-year timeline with the era-coloured spectrum line and a milestone detail panel open"/>
-  <br/><em>Deep time: 227 milestones, each with its own colour, tiered labels and a detail panel.</em>
+  <br/><em>Deep time: 267 milestones, each with its own colour, tiered labels and a detail panel.</em>
 </p>
 
 ---
@@ -173,7 +173,7 @@ Then each panel adds:
 ```
 ├── timeline.html            # the app: markup, styles, interaction glue
 ├── timeline-core.js         # pure data & logic — no DOM, fully unit-tested
-│   ├── MILESTONES           #   227 events × { era, kid, fun, summary, deep[3-5], yearsAgo, coords, seeAlso, perspectives }
+│   ├── MILESTONES           #   267 events × { era, kid, fun, summary, deep[3-5], yearsAgo, coords, seeAlso, perspectives }
 │   ├── EVENT_COLORS         #   per-event shades computed inside era hue families
 │   ├── fracFor(ya, max)     #   log-scale position, mode-aware (null = off-scale)
 │   ├── formatTime/formatShort
