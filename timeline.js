@@ -752,6 +752,287 @@ const EVENT_MEDIA = {
     file: "Stone_head.jpg",
   },
 
+  "Esther & Purim": {
+    caption: "Purim celebration",
+    file: "Purim.jpg",
+  },
+  "Socrates": {
+    caption: "Bust of Socrates",
+    file: "Socrates.jpg",
+  },
+  "Hippocrates and Medicine": {
+    caption: "Hippocrates",
+    file: "Hippocrates.jpg",
+  },
+  "Plato's Academy": {
+    caption: "Plato",
+    file: "Plato.jpg",
+  },
+  "Aristotle": {
+    caption: "Aristotle",
+    file: "Aristotle.jpg",
+  },
+  "Euclid's Geometry": {
+    caption: "Euclid",
+    file: "Euclid.jpg",
+  },
+  "Ashoka the Great": {
+    caption: "Ashoka pillar",
+    file: "Ashoka.jpg",
+  },
+  "Qin Shi Huang Unifies China": {
+    caption: "Qin Shi Huang",
+    file: "Qin_Shi_Huang.jpg",
+  },
+  "The Great Wall of China": {
+    caption: "The Great Wall of China",
+    file: "Great_Wall_of_China.jpg",
+  },
+  "Archimedes": {
+    caption: "Archimedes",
+    file: "Archimedes.jpg",
+  },
+  "The Terracotta Army": {
+    caption: "Terracotta Army",
+    file: "Terracotta_Army.jpg",
+  },
+  "The Han Dynasty": {
+    caption: "Han dynasty",
+    file: "Han.jpg",
+  },
+  "The Dead Sea Scrolls Written": {
+    caption: "Dead Sea Scrolls",
+    file: "Dead_Sea_Scrolls.jpg",
+  },
+  "Julius Caesar": {
+    caption: "Julius Caesar",
+    file: "Julius_Caesar.jpg",
+  },
+  "The Roman Empire": {
+    caption: "The Colosseum, Rome",
+    file: "Colosseum.jpg",
+  },
+  "Augustus Founds the Empire": {
+    caption: "Augustus of Prima Porta",
+    file: "Augustus.jpg",
+  },
+  "The Maya Civilization": {
+    caption: "Maya pyramid at Chichen Itza",
+    file: "Maya.jpg",
+  },
+  "The Crucifixion": {
+    caption: "Crucifixion (art)",
+    file: "Crucifixion.jpg",
+  },
+  "Paul's Missionary Journeys": {
+    caption: "Paul the Apostle",
+    file: "Paul.jpg",
+  },
+  "Kingdom of Axum": {
+    caption: "Axum obelisk",
+    file: "Axum.jpg",
+  },
+  "First Council of Nicaea": {
+    caption: "First Council of Nicaea (icon)",
+    file: "Council.jpg",
+  },
+  "Constantine and Christianity": {
+    caption: "Constantine the Great",
+    file: "Constantine.jpg",
+  },
+  "The Gupta Empire": {
+    caption: "Gupta art",
+    file: "Gupta.jpg",
+  },
+  "Justinian's Code": {
+    caption: "Justinian I",
+    file: "Justinian.jpg",
+  },
+  "Islam is Founded": {
+    caption: "The Kaaba, Mecca",
+    file: "Kaaba.jpg",
+  },
+  "The Tang Dynasty": {
+    caption: "Tang dynasty art",
+    file: "Tang.jpg",
+  },
+  "The Caliphates": {
+    caption: "Dome of the Rock",
+    file: "Dome_of_the_Rock.jpg",
+  },
+  "Charlemagne": {
+    caption: "Charlemagne",
+    file: "Charlemagne.jpg",
+  },
+  "Shinto": {
+    caption: "Itsukushima Shrine, Japan",
+    file: "Torii.jpg",
+  },
+  "The Ghana Empire": {
+    caption: "Koumbi Saleh ruins",
+    file: "Ghana.jpg",
+  },
+  "The Song Dynasty": {
+    caption: "Song dynasty painting",
+    file: "Song.jpg",
+  },
+  "The Swahili Coast": {
+    caption: "Kilwa ruins, Swahili Coast",
+    file: "Swahili.jpg",
+  },
+  "The Crusades": {
+    caption: "Crusader castle (Krak des Chevaliers)",
+    file: "Crusades.jpg",
+  },
+  "Magna Carta": {
+    caption: "Magna Carta (1215)",
+    file: "Magna_Carta.jpg",
+  },
+  "Great Zimbabwe": {
+    caption: "Great Zimbabwe ruins",
+    file: "Great_Zimbabwe.jpg",
+  },
+  "The Mali Empire & Mansa Musa": {
+    caption: "Mansa Musa",
+    file: "Mansa_Musa.jpg",
+  },
+  "The Black Death": {
+    caption: "The Black Death (art)",
+    file: "Black_Death.jpg",
+  },
+  "The Ming Treasure Voyages": {
+    caption: "Zheng He's treasure ship",
+    file: "Zheng_He.jpg",
+  },
+  "The Renaissance": {
+    caption: "The Mona Lisa (Leonardo da Vinci)",
+    file: "Mona_Lisa.jpg",
+  },
+  "The Aztec Empire": {
+    caption: "Aztec Sun Stone",
+    file: "Aztec.jpg",
+  },
+  "The Inca Empire": {
+    caption: "Machu Picchu",
+    file: "Machu_Picchu.jpg",
+  },
+  "The Ottoman Empire": {
+    caption: "Topkapi Palace, Istanbul",
+    file: "Topkapi.jpg",
+  },
+  "The Fall of Constantinople": {
+    caption: "Walls of Constantinople",
+    file: "Constantinople.jpg",
+  },
+  "The Songhai Empire": {
+    caption: "Timbuktu manuscript",
+    file: "Timbuktu.jpg",
+  },
+  "Sikhism is Founded": {
+    caption: "Golden Temple, Amritsar",
+    file: "Golden_Temple.jpg",
+  },
+  "The Protestant Reformation": {
+    caption: "Martin Luther",
+    file: "Martin_Luther.jpg",
+  },
+  "The Mughal Empire": {
+    caption: "Taj Mahal",
+    file: "Taj_Mahal.jpg",
+  },
+  "Copernicus Moves the Sun": {
+    caption: "Nicolaus Copernicus",
+    file: "Copernicus.jpg",
+  },
+  "Counter-Reformation": {
+    caption: "St. Peter's Basilica",
+    file: "St_Peters.jpg",
+  },
+  "Mercator's World Atlas": {
+    caption: "Mercator projection map",
+    file: "Mercator.jpg",
+  },
+  "The Spanish Armada": {
+    caption: "The Spanish Armada",
+    file: "Armada.jpg",
+  },
+  "Shakespeare": {
+    caption: "William Shakespeare",
+    file: "Shakespeare.jpg",
+  },
+  "The Dutch East India Company (VOC)": {
+    caption: "Dutch East India ship",
+    file: "East_Indiaman.jpg",
+  },
+  "Galileo's Telescope": {
+    caption: "Galileo's telescope",
+    file: "Galileo_telescope.jpg",
+  },
+  "The Thirty Years' War": {
+    caption: "Thirty Years' War battle",
+    file: "Battle.jpg",
+  },
+  "The Scientific Method": {
+    caption: "Francis Bacon",
+    file: "Francis_Bacon.jpg",
+  },
+  "The Qing Dynasty": {
+    caption: "Forbidden City, Beijing",
+    file: "Forbidden_City.jpg",
+  },
+  "The Microscope": {
+    caption: "Early microscope",
+    file: "Microscope.jpg",
+  },
+  "The Glorious Revolution": {
+    caption: "William III of England",
+    file: "William_III.jpg",
+  },
+  "The Steam Engine": {
+    caption: "Watt steam engine",
+    file: "Steam_engine.jpg",
+  },
+  "The United States is Founded": {
+    caption: "US Declaration of Independence",
+    file: "Declaration_of_Independence.jpg",
+  },
+  "The French Revolution": {
+    caption: "Storming of the Bastille",
+    file: "Bastille.jpg",
+  },
+  "George Washington Becomes President": {
+    caption: "George Washington",
+    file: "George_Washington.jpg",
+  },
+  "The Haitian Revolution": {
+    caption: "Toussaint Louverture",
+    file: "Haiti.jpg",
+  },
+  "John Adams": {
+    caption: "John Adams",
+    file: "John_Adams.jpg",
+  },
+  "The Electric Battery": {
+    caption: "Voltaic pile",
+    file: "Voltaic_pile.jpg",
+  },
+  "Thomas Jefferson": {
+    caption: "Thomas Jefferson",
+    file: "Thomas_Jefferson.jpg",
+  },
+  "Napoleonic Wars": {
+    caption: "Napoleon Bonaparte",
+    file: "Napoleon.jpg",
+  },
+  "Hundred Years' War": {
+    caption: "Joan of Arc \u2014 Hundred Years' War",
+    file: "Joan_of_Arc.jpg",
+  },
+  "The Portuguese & Spanish Empires": {
+    caption: "Age of Sail caravel",
+    file: "Caravela.jpg",
+  },
+
 };
 
 /* -------------------------------------------------------------

@@ -57,7 +57,7 @@ test("the spectrum line, mode toggle and search all exist in the shipped page", 
 
 test("images appear for every event and credit the source", () => {
   const count = (HTML.match(/^  "(?:[^"\\]|\\.)*": \{/gm) || []).length;
-  assert.equal(count, 176, `expected 176 media entries, found ${count}`);
+  assert.equal(count, 246, `expected 246 media entries, found ${count}`);
   assert.ok(HTML.includes('url: "./img/'), "media entries use local img/ paths");
   assert.ok(HTML.includes("COMMONS_FILE = (name) =>") || true, "Special:FilePath helper retained as fallback");
   assert.ok(HTML.includes("referrerPolicy"), "referrer policy set to avoid hotlink friction");
@@ -66,7 +66,7 @@ test("images appear for every event and credit the source", () => {
 test("credits page lists all 77 image credits", () => {
   assert.ok(CREDITS.includes("<title>Image Credits"), "credits page title");
   const rows = (CREDITS.match(/<tr>\s*<td>/g) || []).length;
-  assert.equal(rows, 176, `expected 176 credit rows, found ${rows}`);
+  assert.equal(rows, 246, `expected 246 credit rows, found ${rows}`);
   assert.ok(CREDITS.includes("timeline.html"), "links back to timeline");
 });
 
