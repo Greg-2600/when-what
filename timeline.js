@@ -1154,11 +1154,37 @@ if (zoomValEl) {
   });
 }
 
-/* + / - keys zoom when the timeline has focus */
-track.addEventListener("keydown", (e) => {
-  if (e.key === "+" || e.key === "=") { e.preventDefault(); setZoom(zoom * 1.25); }
-  if (e.key === "-" || e.key === "_") { e.preventDefault(); setZoom(zoom / 1.25); }
-});
+/* + / - / ArrowUp / ArrowDown keys zoom when the timeline has focus.
+   Zoom is anchored at the selected dot (if any) so zooming in
+   reveals the space around that event, and zooming out restores context. */
+function zoomAnchor() {
+  const idx = displayedIndex();
+  if (idx !== null && markerEls[idx]) {
+    const m = markerEls[idx];
+    const r = m.getBoundingClientRect();
+    const vp = viewportEl;
+    const vr = vp.getBoundingClientRect();
+    const contentX = vp.scrollLeft + (r.left + r.width / 2 - vr.left);
+    const viewX = r.left + r.width / 2 - vr.left;
+    return { contentX, viewX };
+  }
+  return { contentX: vp.scrollLeft + vp.clientWidth / 2, viewX: vp.clientWidth / 2 };
+}
+function handleZoomKey(e) {
+  const tag = (e.target && e.target.tagName) || "";
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+  if (e.key === "+" || e.key === "=" || e.key === "ArrowUp") {
+    e.preventDefault();
+    const a = zoomAnchor();
+    setZoom(zoom * 1.25, a.contentX, a.viewX);
+  } else if (e.key === "-" || e.key === "_" || e.key === "ArrowDown") {
+    e.preventDefault();
+    const a = zoomAnchor();
+    setZoom(zoom / 1.25, a.contentX, a.viewX);
+  }
+}
+track.addEventListener("keydown", handleZoomKey);
+document.addEventListener("keydown", handleZoomKey);
 
 function setScaleMode(mode) {
   if (scaleMode === mode) return;
