@@ -1033,6 +1033,713 @@ const EVENT_MEDIA = {
     file: "Caravela.jpg",
   },
 
+  "The Steam Locomotive": {
+    caption: "Stephenson's Rocket locomotive",
+    file: "Stephenson_Rocket.jpg",
+  },
+  "Beethoven": {
+    caption: "Ludwig van Beethoven",
+    file: "Beethoven.jpg",
+  },
+  "James Madison": {
+    caption: "James Madison, 4th US president",
+    file: "James_Madison.jpg",
+  },
+  "James Monroe": {
+    caption: "James Monroe, 5th US president",
+    file: "James_Monroe.jpg",
+  },
+  "The Electric Motor": {
+    caption: "An early electric motor",
+    file: "Electric_motor.jpg",
+  },
+  "Andrew Jackson": {
+    caption: "Andrew Jackson, 7th US president",
+    file: "Andrew_Jackson.jpg",
+  },
+  "Mormonism": {
+    caption: "Joseph Smith, founder of Mormonism",
+    file: "Joseph_Smith.jpg",
+  },
+  "Abolition of Slavery (UK)": {
+    caption: "William Wilberforce, abolitionist",
+    file: "William_Wilberforce.jpg",
+  },
+  "Refrigeration": {
+    caption: "Early refrigeration",
+    file: "Refrigerator.jpg",
+  },
+  "Martin Van Buren": {
+    caption: "Martin Van Buren, 8th US president",
+    file: "Martin_Van_Buren.jpg",
+  },
+  "Photography is Born": {
+    caption: "Early daguerreotype camera",
+    file: "Daguerreotype.jpg",
+  },
+  "William Henry Harrison": {
+    caption: "William Henry Harrison, 9th US president",
+    file: "William_Henry_Harrison.jpg",
+  },
+  "John Tyler": {
+    caption: "John Tyler, 10th US president",
+    file: "John_Tyler.jpg",
+  },
+  "The Telegraph": {
+    caption: "Morse telegraph key",
+    file: "Telegraph.jpg",
+  },
+  "James K. Polk": {
+    caption: "James K. Polk, 11th US president",
+    file: "James_K_Polk.jpg",
+  },
+  "The Sewing Machine": {
+    caption: "An early sewing machine",
+    file: "Sewing_machine.jpg",
+  },
+  "Anesthesia": {
+    caption: "Early anesthesia (ether)",
+    file: "Ether.jpg",
+  },
+  "The Taiping Rebellion": {
+    caption: "Taiping Rebellion",
+    file: "Taiping.jpg",
+  },
+  "Zachary Taylor": {
+    caption: "Zachary Taylor, 12th US president",
+    file: "Zachary_Taylor.jpg",
+  },
+  "Crimean War": {
+    caption: "Crimean War \u2014 Florence Nightingale",
+    file: "Florence_Nightingale.jpg",
+  },
+  "Millard Fillmore": {
+    caption: "Millard Fillmore, 13th US president",
+    file: "Millard_Fillmore.jpg",
+  },
+  "Franklin Pierce": {
+    caption: "Franklin Pierce, 14th US president",
+    file: "Franklin_Pierce.jpg",
+  },
+  "The Bessemer Process": {
+    caption: "Bessemer steel converter",
+    file: "Bessemer.jpg",
+  },
+  "James Buchanan": {
+    caption: "James Buchanan, 15th US president",
+    file: "James_Buchanan.jpg",
+  },
+  "The American Civil War": {
+    caption: "American Civil War battle",
+    file: "Gettysburg.jpg",
+  },
+  "Abraham Lincoln Leads Through Civil War": {
+    caption: "Abraham Lincoln",
+    file: "Abraham_Lincoln.jpg",
+  },
+  "Maxwell's Equations": {
+    caption: "James Clerk Maxwell",
+    file: "James_Clerk_Maxwell.jpg",
+  },
+  "Pasteur and Germ Theory": {
+    caption: "Louis Pasteur",
+    file: "Louis_Pasteur.jpg",
+  },
+  "Mendel's Laws of Inheritance": {
+    caption: "Gregor Mendel",
+    file: "Gregor_Mendel.jpg",
+  },
+  "Meiji Japan Industrialises": {
+    caption: "Emperor Meiji",
+    file: "Meiji.jpg",
+  },
+  "Meiji Restoration": {
+    caption: "Meiji Restoration leaders",
+    file: "Samurai.jpg",
+  },
+  "Ulysses S. Grant": {
+    caption: "Ulysses S. Grant, 18th US president",
+    file: "Ulysses_S_Grant.jpg",
+  },
+  "Germany Unifies": {
+    caption: "Otto von Bismarck unifies Germany",
+    file: "Bismarck.jpg",
+  },
+  "Japan Meiji Restoration": {
+    caption: "Meiji-era Japan",
+    file: "Tokyo.jpg",
+  },
+  "The Telephone": {
+    caption: "Alexander Graham Bell's telephone",
+    file: "Telephone.jpg",
+  },
+  "Rutherford B. Hayes": {
+    caption: "Rutherford B. Hayes, 19th US president",
+    file: "Hayes.jpg",
+  },
+  "The Light Bulb": {
+    caption: "Edison's light bulb",
+    file: "Light_bulb.jpg",
+  },
+  "Chinese Exclusion Act": {
+    caption: "Chinese Exclusion Act era",
+    file: "Chinatown.jpg",
+  },
+  "James A. Garfield": {
+    caption: "James A. Garfield, 20th US president",
+    file: "Garfield.jpg",
+  },
+  "Chester A. Arthur": {
+    caption: "Chester A. Arthur, 21st US president",
+    file: "Arthur.jpg",
+  },
+  "The Automobile": {
+    caption: "Benz Patent-Motorwagen, first automobile",
+    file: "Automobile.jpg",
+  },
+  "Tesla and AC Power": {
+    caption: "Nikola Tesla",
+    file: "Nikola_Tesla.jpg",
+  },
+  "Grover Cleveland": {
+    caption: "Grover Cleveland, 22nd/24th US president",
+    file: "Grover_Cleveland.jpg",
+  },
+  "Benjamin Harrison": {
+    caption: "Benjamin Harrison, 23rd US president",
+    file: "Benjamin_Harrison.jpg",
+  },
+  "Ellis Island Opens": {
+    caption: "Ellis Island immigrants",
+    file: "Ellis_Island.jpg",
+  },
+  "X-Rays Discovered": {
+    caption: "First X-ray image (R\u00f6ntgen)",
+    file: "X-ray.jpg",
+  },
+  "Radio": {
+    caption: "Guglielmo Marconi and early radio",
+    file: "Radio.jpg",
+  },
+  "William McKinley": {
+    caption: "William McKinley, 25th US president",
+    file: "McKinley.jpg",
+  },
+  "The Boxer Rebellion": {
+    caption: "Boxer Rebellion, China 1900",
+    file: "Boxer_Rebellion.jpg",
+  },
+  "Theodore Roosevelt Takes Office": {
+    caption: "Theodore Roosevelt",
+    file: "Theodore_Roosevelt.jpg",
+  },
+  "Plastic is Invented": {
+    caption: "Bakelite \u2014 the first plastic",
+    file: "Plastic.jpg",
+  },
+  "Ellis Island Peak": {
+    caption: "Ellis Island Great Hall",
+    file: "Immigrants.jpg",
+  },
+  "William Howard Taft": {
+    caption: "William Howard Taft, 27th US president",
+    file: "William_Howard_Taft.jpg",
+  },
+  "Woodrow Wilson": {
+    caption: "Woodrow Wilson, 28th US president",
+    file: "Woodrow_Wilson.jpg",
+  },
+  "The Great Migration": {
+    caption: "Great Migration families",
+    file: "Great_Migration.jpg",
+  },
+  "The Russian Revolution": {
+    caption: "Vladimir Lenin, Russian Revolution",
+    file: "Lenin.jpg",
+  },
+  "Soviet Union Founded": {
+    caption: "Flag of the Soviet Union",
+    file: "USSR.jpg",
+  },
+  "Warren G. Harding": {
+    caption: "Warren G. Harding, 29th US president",
+    file: "Harding.jpg",
+  },
+  "Calvin Coolidge": {
+    caption: "Calvin Coolidge, 30th US president",
+    file: "Calvin_Coolidge.jpg",
+  },
+  "The Rocket": {
+    caption: "V-2 rocket",
+    file: "Rocket.jpg",
+  },
+  "Television": {
+    caption: "Early television set",
+    file: "Television.jpg",
+  },
+  "Commonwealth of Nations": {
+    caption: "Commonwealth flags",
+    file: "Commonwealth.jpg",
+  },
+  "Herbert Hoover": {
+    caption: "Herbert Hoover, 31st US president",
+    file: "Herbert_Hoover.jpg",
+  },
+  "Radar": {
+    caption: "Early radar station",
+    file: "Radar.jpg",
+  },
+  "Spanish Civil War": {
+    caption: "Guernica by Picasso \u2014 Spanish Civil War",
+    file: "Guernica.jpg",
+  },
+  "Nuclear Fission": {
+    caption: "Nuclear fission diagram",
+    file: "Otto_Hahn.jpg",
+  },
+  "The Jet Engine": {
+    caption: "Early jet engine",
+    file: "Jet_engine.jpg",
+  },
+  "The Helicopter": {
+    caption: "Igor Sikorsky's helicopter",
+    file: "Helicopter.jpg",
+  },
+  "Olympics Revived": {
+    caption: "Ancient Olympia, birthplace of the Games",
+    file: "Olympia.jpg",
+  },
+  "Boer War": {
+    caption: "Boer fighters",
+    file: "Boers.jpg",
+  },
+  "Russian Civil War": {
+    caption: "Leon Trotsky, founder of the Red Army",
+    file: "Trotsky.jpg",
+  },
+  "Women's Suffrage (US)": {
+    caption: "Suffrage march for votes for women",
+    file: "Suffrage.jpg",
+  },
+  "The Great Depression": {
+    caption: "Migrant Mother (Dorothea Lange, 1936)",
+    file: "Migrant_Mother.jpg",
+  },
+  "World Cup First (1930)": {
+    caption: "Association football",
+    file: "Soccer.jpg",
+  },
+  "FDR and the New Deal": {
+    caption: "TVA dam \u2014 signature New Deal public works",
+    file: "TVA.jpg",
+  },
+
+  "Bracero Program": {
+    caption: "Bracero farm workers",
+    file: "Farm_workers.jpg",
+  },
+  "Bretton Woods Conference": {
+    caption: "Mount Washington Hotel, Bretton Woods",
+    file: "Bretton_Woods.jpg",
+  },
+  "Microwave Oven": {
+    caption: "A microwave oven",
+    file: "Microwave.jpg",
+  },
+  "India Gains Independence": {
+    caption: "Mahatma Gandhi",
+    file: "Gandhi.jpg",
+  },
+  "The State of Israel is Founded": {
+    caption: "David Ben-Gurion declares independence",
+    file: "Israel.jpg",
+  },
+  "The Korean War": {
+    caption: "Korean War",
+    file: "Korean_War.jpg",
+  },
+  "People's Republic of China": {
+    caption: "Mao Zedong proclaims the PRC",
+    file: "Mao_Zedong.jpg",
+  },
+  "The Solar Cell": {
+    caption: "Solar panels",
+    file: "Solar_cell.jpg",
+  },
+  "The Vietnam War": {
+    caption: "Vietnam War",
+    file: "Vietnam.jpg",
+  },
+  "The Silicon Chip": {
+    caption: "An integrated circuit",
+    file: "Integrated_circuit.jpg",
+  },
+  "The Pacemaker": {
+    caption: "A cardiac pacemaker",
+    file: "Pacemaker.jpg",
+  },
+  "JFK and the New Frontier": {
+    caption: "John F. Kennedy",
+    file: "John_F_Kennedy.jpg",
+  },
+  "Silent Spring": {
+    caption: "Rachel Carson, author of Silent Spring",
+    file: "DDT.jpg",
+  },
+  "Civil Rights Act (1964)": {
+    caption: "Martin Luther King Jr.",
+    file: "Martin_Luther_King.jpg",
+  },
+  "Hart-Celler Immigration Act": {
+    caption: "Immigration to America",
+    file: "Immigration.jpg",
+  },
+  "The Laser": {
+    caption: "A laser beam",
+    file: "Laser.jpg",
+  },
+  "Harry S. Truman": {
+    caption: "Harry S. Truman, 33rd US president",
+    file: "Harry_S_Truman.jpg",
+  },
+  "Dwight D. Eisenhower": {
+    caption: "Dwight D. Eisenhower, 34th US president",
+    file: "Dwight_D_Eisenhower.jpg",
+  },
+  "The Internet (ARPANET)": {
+    caption: "Early ARPANET computer",
+    file: "Computer.jpg",
+  },
+  "Fiber Optics": {
+    caption: "Fiber optic cables",
+    file: "Fiber.jpg",
+  },
+  "The CT Scanner": {
+    caption: "A CT scanner",
+    file: "CT_scan.jpg",
+  },
+  "Lyndon B. Johnson": {
+    caption: "Lyndon B. Johnson, 36th US president",
+    file: "Johnson.jpg",
+  },
+  "Richard Nixon": {
+    caption: "Richard Nixon, 37th US president",
+    file: "Richard_Nixon.jpg",
+  },
+  "Apollo-Soyuz: East Meets West in Orbit": {
+    caption: "Apollo-Soyuz handshake in orbit",
+    file: "Soyuz.jpg",
+  },
+  "Personal Computer": {
+    caption: "Apple II personal computer",
+    file: "Apple_II.jpg",
+  },
+  "MRI Scanner": {
+    caption: "An MRI scanner",
+    file: "MRI.jpg",
+  },
+  "China's Economic Miracle": {
+    caption: "Shanghai skyline",
+    file: "Shanghai.jpg",
+  },
+  "GPS Navigation": {
+    caption: "GPS satellite",
+    file: "GPS.jpg",
+  },
+  "IVF (Test Tube Baby)": {
+    caption: "IVF embryo",
+    file: "IVF.jpg",
+  },
+  "Ronald Reagan's Presidency": {
+    caption: "Ronald Reagan, 40th US president",
+    file: "Ronald_Reagan.jpg",
+  },
+  "Refugee Convention": {
+    caption: "Refugees (UNHCR)",
+    file: "Refugee.jpg",
+  },
+  "3D Printing": {
+    caption: "A 3D printer",
+    file: "3D_printer.jpg",
+  },
+  "EEC Founded": {
+    caption: "European flag",
+    file: "Europe.jpg",
+  },
+  "Earth Day": {
+    caption: "Earth from space",
+    file: "Earth.jpg",
+  },
+  "The World Wide Web": {
+    caption: "Tim Berners-Lee",
+    file: "Tim_Berners-Lee.jpg",
+  },
+  "Stonewall Uprising": {
+    caption: "Stonewall Inn",
+    file: "Stonewall.jpg",
+  },
+  "The Gulf War": {
+    caption: "Operation Desert Storm",
+    file: "Desert_Storm.jpg",
+  },
+  "A Multi-Polar World Emerges": {
+    caption: "Globalization",
+    file: "Globalization.jpg",
+  },
+  "European Union Founded": {
+    caption: "EU flag",
+    file: "EU_flag.jpg",
+  },
+  "Bill Clinton": {
+    caption: "Bill Clinton, 42nd US president",
+    file: "Bill_Clinton.jpg",
+  },
+  "NAFTA": {
+    caption: "North American trade",
+    file: "Trade.jpg",
+  },
+  "Stem Cells Discovered": {
+    caption: "Stem cells",
+    file: "Cells.jpg",
+  },
+  "Kyoto Protocol": {
+    caption: "Kyoto, Japan",
+    file: "Kyoto.jpg",
+  },
+  "George W. Bush": {
+    caption: "George W. Bush, 43rd US president",
+    file: "George_W_Bush.jpg",
+  },
+  "War in Afghanistan": {
+    caption: "Afghanistan",
+    file: "Afghanistan.jpg",
+  },
+  "Iraq War": {
+    caption: "Baghdad, Iraq War",
+    file: "Baghdad.jpg",
+  },
+  "Woodstock (1969)": {
+    caption: "Woodstock festival crowd",
+    file: "Woodstock.jpg",
+  },
+  "Arab-Israeli Wars": {
+    caption: "Six-Day War",
+    file: "Sinai.jpg",
+  },
+  "2008 Financial Crisis": {
+    caption: "Wall Street",
+    file: "Wall_Street.jpg",
+  },
+  "Barack Obama Elected": {
+    caption: "Barack Obama, 44th US president",
+    file: "Barack_Obama.jpg",
+  },
+  "Falklands War": {
+    caption: "Falkland Islands",
+    file: "Falkland_Islands.jpg",
+  },
+  "DACA": {
+    caption: "Dreamers march",
+    file: "Dreamers.jpg",
+  },
+  "African Union": {
+    caption: "African Union headquarters",
+    file: "African_Union.jpg",
+  },
+  "Same-Sex Marriage (US)": {
+    caption: "Rainbow flag",
+    file: "Marriage.jpg",
+  },
+  "Donald Trump": {
+    caption: "Donald Trump, 45th/47th US president",
+    file: "Donald_Trump.jpg",
+  },
+  "Arab League": {
+    caption: "Arab League",
+    file: "Cairo.jpg",
+  },
+  "Organization of American States": {
+    caption: "OAS headquarters",
+    file: "OAS.jpg",
+  },
+  "mRNA Vaccines": {
+    caption: "mRNA vaccine vial",
+    file: "Vaccine.jpg",
+  },
+  "Joe Biden": {
+    caption: "Joe Biden, 46th US president",
+    file: "Joe_Biden.jpg",
+  },
+  "Syrian Refugee Crisis": {
+    caption: "Syrian refugees",
+    file: "Syria.jpg",
+  },
+  "Ukrainian Refugee Crisis": {
+    caption: "Kyiv, Ukraine",
+    file: "Ukraine.jpg",
+  },
+  "Decolonization": {
+    caption: "African independence",
+    file: "Africa.jpg",
+  },
+  "The Civil Rights Movement": {
+    caption: "Selma march",
+    file: "Selma.jpg",
+  },
+  "The Feminist Movement": {
+    caption: "Women's march",
+    file: "Feminism.jpg",
+  },
+  "The Digital Revolution": {
+    caption: "Smartphone",
+    file: "Smartphone.jpg",
+  },
+  "The Space Age": {
+    caption: "Saturn V launch",
+    file: "Saturn_V.jpg",
+  },
+  "Gerald Ford": {
+    caption: "Gerald Ford, 38th US president",
+    file: "Gerald_Ford.jpg",
+  },
+  "Jimmy Carter": {
+    caption: "Jimmy Carter, 39th US president",
+    file: "Jimmy_Carter.jpg",
+  },
+  "Mars Rovers": {
+    caption: "Curiosity rover on Mars",
+    file: "Curiosity.jpg",
+  },
+  "Voyager Probes": {
+    caption: "Voyager probe",
+    file: "Voyager.jpg",
+  },
+  "Marshall Plan": {
+    caption: "Rebuilding Europe \u2014 Marshall Plan aid",
+    file: "Europe.jpg",
+  },
+  "The Contraceptive Pill": {
+    caption: "Medicine \u2014 the Pill (1960)",
+    file: "Medicine.jpg",
+  },
+  "Korean War": {
+    caption: "Korea",
+    file: "Korea.jpg",
+  },
+  "NATO Founded": {
+    caption: "Brussels \u2014 NATO headquarters",
+    file: "Brussels.jpg",
+  },
+  "Gulf War": {
+    caption: "Desert Storm, 1991",
+    file: "Desert.jpg",
+  },
+  "Bitcoin": {
+    caption: "Blockchain \u2014 the technology behind Bitcoin",
+    file: "Blockchain.jpg",
+  },
+  "ASEAN": {
+    caption: "Bangkok \u2014 founding ASEAN capital",
+    file: "Bangkok.jpg",
+  },
+  "George H.W. Bush": {
+    caption: "George H.W. Bush, 41st US president",
+    file: "Bush.jpg",
+  },
+
+  "First Mars Colony": {
+    caption: "Artist's impression of a Mars colony",
+    file: "Mars_colony.jpg",
+  },
+  "Mars Colony": {
+    caption: "Mars \u2014 destination for a future colony",
+    file: "Mars.jpg",
+  },
+  "First Human on Mars": {
+    caption: "An astronaut on Mars (artist's impression)",
+    file: "Mars.jpg",
+  },
+  "Terraforming Mars": {
+    caption: "Mars \u2014 a candidate for future terraforming",
+    file: "Mars.jpg",
+  },
+  "AI Passes the Turing Threshold": {
+    caption: "A humanoid robot",
+    file: "Robot.jpg",
+  },
+  "Artificial General Intelligence": {
+    caption: "A robot \u2014 future general intelligence",
+    file: "Robot.jpg",
+  },
+  "Fusion Energy Goes Commercial": {
+    caption: "A fusion reactor",
+    file: "Fusion.jpg",
+  },
+  "Fusion Energy": {
+    caption: "Fusion energy concept",
+    file: "Fusion.jpg",
+  },
+  "Lunar Base Established": {
+    caption: "The Moon \u2014 site of a future base",
+    file: "Moon.jpg",
+  },
+  "Quantum Computing": {
+    caption: "A quantum processor",
+    file: "Quantum.jpg",
+  },
+  "Brain-Computer Interfaces": {
+    caption: "Neurons \u2014 the target of BCIs",
+    file: "Neuron.jpg",
+  },
+  "Longevity Escape Velocity": {
+    caption: "A brain scan \u2014 aging research",
+    file: "Brain_scan.jpg",
+  },
+  "Space Tourism": {
+    caption: "A SpaceX launch \u2014 commercial spaceflight",
+    file: "SpaceX.jpg",
+  },
+  "Asteroid Mining": {
+    caption: "An asteroid",
+    file: "Asteroid.jpg",
+  },
+  "Carbon Capture": {
+    caption: "A factory \u2014 carbon capture target",
+    file: "Factory.jpg",
+  },
+  "Autonomous Vehicles": {
+    caption: "Highway traffic \u2014 soon driverless",
+    file: "Highway.jpg",
+  },
+  "Synthetic Biology": {
+    caption: "A biology lab",
+    file: "Lab.jpg",
+  },
+  "Universal Basic Income": {
+    caption: "Money \u2014 the basis of UBI",
+    file: "Money.jpg",
+  },
+  "Space Elevator": {
+    caption: "An elevator cable concept",
+    file: "Cable.jpg",
+  },
+  "Space-Based Solar Power": {
+    caption: "Solar panels",
+    file: "Solar_panels.jpg",
+  },
+  "Mind Uploading": {
+    caption: "A brain scan \u2014 mapping the mind",
+    file: "Brain_scan.jpg",
+  },
+  "Population Peaks": {
+    caption: "A crowded city",
+    file: "Crowd.jpg",
+  },
+  "The 2100 Problem": {
+    caption: "Earth at night \u2014 the century ahead",
+    file: "Earth_night.jpg",
+  },
+
 };
 
 /* -------------------------------------------------------------
