@@ -2118,12 +2118,6 @@ function renderDetail(index) {
       caption.textContent = `${media.caption} · Image: Wikimedia Commons`;
       stage.appendChild(img);
       stage.appendChild(caption);
-      // position the stage below the selected marker
-      const marker = markerEls[index];
-      if (marker) {
-        const left = marker.style.left;
-        if (left) stage.style.left = left;
-      }
       stage.style.display = "";
       stage.removeAttribute("hidden");
       stage.classList.remove("hidden");
@@ -3692,8 +3686,7 @@ Object.keys(ERA_COLORS).forEach((era) => {
 
 /* Axis labels were removed — compact tiered labels sit on each marker now */
 
-/* Initial focus polish */
-track.focus();
+
 
 /* PWA: register the service worker and warm the image cache so
    the app works offline after the first full pass.
