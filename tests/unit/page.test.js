@@ -5,7 +5,7 @@ const path = require("node:path");
 const c = require("../../timeline-core.js");
 
 const ROOT = path.join(__dirname, "..", "..");
-const HTML = fs.readFileSync(path.join(ROOT, "timeline.html"), "utf8");
+const HTML = fs.readFileSync(path.join(ROOT, "timeline.html"), "utf8") + "\n" + fs.readFileSync(path.join(ROOT, "timeline.js"), "utf8");
 const CREDITS = fs.readFileSync(path.join(ROOT, "credits.html"), "utf8");
 
 test("every milestone teaches at least one glossary word (or the set is rich enough overall)", () => {

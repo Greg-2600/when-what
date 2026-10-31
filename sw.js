@@ -1,8 +1,8 @@
 /* Service worker — caches the app shell plus all event images for offline use. */
-const VERSION = "v10";
+const VERSION = "v11";
 const CORE_CACHE = `core-${VERSION}`;
 const RUNTIME_CACHE = `images-${VERSION}`;
-const CORE_URLS = ["./timeline.html", "./timeline-core.js", "./icon.svg", "./manifest.webmanifest", "./credits.html"];
+const CORE_URLS = ["./timeline.html", "./timeline-core.js", "./timeline.js", "./icon.svg", "./manifest.webmanifest", "./credits.html"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

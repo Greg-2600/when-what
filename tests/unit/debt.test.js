@@ -5,7 +5,7 @@ const path = require("node:path");
 const core = require("../../timeline-core.js");
 
 const ROOT = path.join(__dirname, "..", "..");
-const HTML = fs.readFileSync(path.join(ROOT, "timeline.html"), "utf8");
+const HTML = fs.readFileSync(path.join(ROOT, "timeline.html"), "utf8") + "\n" + fs.readFileSync(path.join(ROOT, "timeline.js"), "utf8");
 
 /* ── structural debt invariants (guards against future splice damage) ── */
 
