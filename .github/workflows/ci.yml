@@ -30,6 +30,14 @@ jobs:
           SELENIUM_HEADLESS: "1"
         continue-on-error: true
 
+      - name: Upload visual-regression artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-regression
+          path: tests/screenshots/
+          if-no-files-found: ignore
+
       - name: Lighthouse budget (best effort)
         uses: treosh/lighthouse-ci-action@v12
         with:

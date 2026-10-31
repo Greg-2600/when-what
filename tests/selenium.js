@@ -72,6 +72,35 @@ async function main() {
     assert.equal(counts.gradient, true, "number line painted with era spectrum");
     ok("422 markers, 422 tiered labels, 11 era chips, gradient line");
 
+    // ── Visual regression: capture screenshot + compare to baseline ──
+    const shotDir = path.join(__dirname, "screenshots");
+    if (!fs.existsSync(shotDir)) fs.mkdirSync(shotDir, { recursive: true });
+    const currentPath = path.join(shotDir, "current.png");
+    const baselinePath = path.join(shotDir, "baseline.png");
+    const diffPath = path.join(shotDir, "diff.png");
+    const png = Buffer.from(await driver.takeScreenshot(), "base64");
+    fs.writeFileSync(currentPath, png);
+    if (fs.existsSync(baselinePath)) {
+      const { PNG } = require("pngjs");
+      const pixelmatch = require("pixelmatch").default || require("pixelmatch");
+      const img1 = PNG.sync.read(fs.readFileSync(baselinePath));
+      const img2 = PNG.sync.read(fs.readFileSync(currentPath));
+      if (img1.width !== img2.width || img1.height !== img2.height) {
+        throw new Error(`visual regression: dimensions changed ${img1.width}x${img1.height} vs ${img2.width}x${img2.height}`);
+      }
+      const diff = new PNG({ width: img1.width, height: img1.height });
+      const numDiff = pixelmatch(img1.data, img2.data, diff.data, img1.width, img1.height, { threshold: 0.1 });
+      fs.writeFileSync(diffPath, PNG.sync.write(diff));
+      const pct = (numDiff / (img1.width * img1.height)) * 100;
+      console.log(`  ✔ visual regression: ${numDiff} differing pixels (${pct.toFixed(3)}%)`);
+      // allow up to 0.5% difference (anti-aliasing / font rendering tolerance)
+      assert.ok(pct <= 0.5, `visual regression: ${pct.toFixed(3)}% pixels differ (threshold 0.5%)`);
+    } else {
+      fs.copyFileSync(currentPath, baselinePath);
+      console.log(`  ✔ visual regression: baseline created at ${baselinePath}`);
+    }
+
+
     // ── 2. Hover opens the panel with three reading levels ───────────
     await hoverEvent("Dinosaur Extinction");
     await waitLoad(400);

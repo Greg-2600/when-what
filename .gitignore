@@ -1,4 +1,6 @@
 node_modules/
 .failure-screenshot.png
+tests/screenshots/current.png
+tests/screenshots/diff.png
 h4k/
 .DS_Store
