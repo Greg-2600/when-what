@@ -437,6 +437,36 @@ const markerEls = Array.from(markersContainer.querySelectorAll(".marker"));
 const connectorEls = Array.from(connectorsContainer.querySelectorAll(".connector"));
 const labelEls = Array.from(markersContainer.querySelectorAll(".marker-label"));
 
+/* Make labels clickable to select their event (mirrors marker click) */
+labelEls.forEach((el, i) => {
+  el.style.pointerEvents = "auto";
+  el.setAttribute("role", "button");
+  el.tabIndex = 0;
+  el.addEventListener("click", (e) => {
+    e.stopPropagation();
+    cancelClose();
+    pinnedIndex = (pinnedIndex === i) ? null : i;
+    hoveredIndex = null;
+    updatePanel();
+  });
+  el.addEventListener("mouseenter", () => {
+    cancelClose();
+    hoveredIndex = i;
+    updatePanel();
+  });
+  el.addEventListener("mouseleave", () => {
+    hoveredIndex = null;
+    if (pinnedIndex === null) scheduleClose();
+  });
+  el.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    pinnedIndex = (pinnedIndex === i) ? null : i;
+    hoveredIndex = null;
+    updatePanel();
+  });
+});
+
 /* -------------------------------------------------------------
    Staggered label layout.
    Labels sit in tiers above the number line; when two labels
@@ -447,24 +477,51 @@ function layoutLabels() {
   const mobile = window.innerWidth <= 640;
   const lineTop = mobile ? 170 : 200;
   const tierH = mobile ? 20 : 22;
+  const maxAbove = 4;   // tiers above the line before overflowing below
   const trackRect = track.getBoundingClientRect();
-  const rows = [];
 
   const items = Array.from(labelEls)
     .filter((el) => el.style.display !== "none")
     .map((el) => {
-      el.style.top = `${lineTop - 10 - tierH}px`; // provisional
       const r = el.getBoundingClientRect();
-      return { el, x: r.left - trackRect.left, w: r.width };
+      // provisional
+      el.style.top = `${lineTop - 10 - tierH}px`;
+      const r2 = el.getBoundingClientRect();
+      return { el, x: r2.left - trackRect.left, w: r2.width };
     });
 
   items.sort((a, b) => a.x - b.x);
 
-  const tiers = TimelineCore.assignTiers(items, 8);
-  items.forEach(function (it, idx) { it.tier = tiers[idx] ?? 0; });
+  // Two-pass collision: prefer above the line; overflow to below when crowded.
+  const aboveRows = [];  // aboveRows[t] = array of {x,w}
+  const belowRows = [];  // belowRows[t] = array of {x,w}
+  const clash = (row, x, w, minGap) => row.some((o) => !(x + w + minGap < o.x || o.x + o.w + minGap < x));
 
   items.forEach((it) => {
-    it.el.style.top = `${lineTop - 10 - (it.tier + 1) * tierH}px`;
+    const minGap = 8;
+    // try above
+    let placed = false;
+    let t = 0;
+    for (; t <= maxAbove; t++) {
+      const row = aboveRows[t] || (aboveRows[t] = []);
+      if (!clash(row, it.x, it.w, minGap)) { placed = true; break; }
+    }
+    if (placed) {
+      (aboveRows[t] = aboveRows[t] || []).push({ x: it.x, w: it.w });
+      it.el.style.top = `${lineTop - 10 - (t + 1) * tierH}px`;
+      it.el.dataset.side = "above";
+      return;
+    }
+    // overflow below
+    let bt = 0;
+    for (; bt <= maxAbove; bt++) {
+      const row = belowRows[bt] || (belowRows[bt] = []);
+      if (!clash(row, it.x, it.w, minGap)) { placed = true; break; }
+    }
+    if (!placed) bt = belowRows.length;
+    (belowRows[bt] = belowRows[bt] || []).push({ x: it.x, w: it.w });
+    it.el.style.top = `${lineTop + 14 + (bt + 1) * tierH}px`;
+    it.el.dataset.side = "below";
   });
 }
 
@@ -675,12 +732,6 @@ function renderDetail(index) {
       caption.textContent = `${media.caption} · Image: Wikimedia Commons`;
       stage.appendChild(img);
       stage.appendChild(caption);
-      // position the stage below the selected marker
-      const marker = markerEls[index];
-      if (marker) {
-        const left = marker.style.left;
-        if (left) stage.style.left = left;
-      }
       stage.style.display = "";
       stage.removeAttribute("hidden");
       stage.classList.remove("hidden");

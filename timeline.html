@@ -689,11 +689,18 @@
     white-space: nowrap;
     font-size: 0.72rem;
     color: var(--muted);
-    pointer-events: none;
+    pointer-events: auto;
+    cursor: pointer;
     opacity: 0.75;
     transition: opacity 0.2s ease, color 0.2s ease;
     border-left: 2px solid var(--dot);
     padding-left: 6px;
+    border-radius: 3px;
+  }
+  .marker-label:hover {
+    color: var(--text);
+    opacity: 1;
+    background: rgba(255,255,255,0.06);
   }
 
   .marker.active + .marker-label,
@@ -839,20 +846,19 @@
     border-radius: 0 0 11px 11px;
   }
 
-  /* Image stage — sits below the number line, shows the selected event's image */
+  /* Image stage — strip below the timeline, shows the selected event's image */
   .image-stage {
-    position: absolute;
-    top: 200px;
-    width: 260px;
-    height: 180px;
-    transform: translateX(-50%);
+    position: relative;
+    margin: 0.5rem 1.5rem 0.5rem;
+    width: 320px;
+    max-width: 100%;
+    height: 200px;
     background: var(--card, #131720);
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
-    z-index: 5;
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    transition: left 0.25s ease, opacity 0.2s ease;
+    transition: opacity 0.2s ease;
   }
   .image-stage.hidden { display: none; }
   .image-stage img {
@@ -884,7 +890,7 @@
   @media (max-width: 720px) {
     .two-col { grid-template-columns: 1fr; }
     .event-media img { height: 150px; }
-    .image-stage { width: 200px; height: 150px; top: 180px; }
+    .image-stage { width: 100%; height: 170px; }
     .image-stage img { height: 105px; }
   }
 
@@ -1206,8 +1212,10 @@
     <div class="number-line"></div>
     <div class="connectors" id="connectors"></div>
     <div class="markers" id="markers"></div>
-  <div id="image-stage" class="image-stage" hidden></div>
   </div>
+</div>
+
+<div id="image-stage" class="image-stage" hidden></div>
 </div>
 
 <div class="panel" id="panel" aria-live="polite" aria-atomic="false">
