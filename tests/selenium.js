@@ -66,11 +66,11 @@ async function main() {
       "legend: document.querySelectorAll('.legend .chip').length, " +
       "gradient: document.querySelector('.number-line').style.backgroundImage.includes('linear-gradient') }"
     );
-    assert.equal(counts.markers, 200, "200 markers");
-    assert.equal(counts.labels, 200, "200 labels");
+    assert.equal(counts.markers, 227, "227 markers");
+    assert.equal(counts.labels, 227, "227 labels");
     assert.equal(counts.legend, 11, "11 era chips");
     assert.equal(counts.gradient, true, "number line painted with era spectrum");
-    ok("200 markers, 200 tiered labels, 11 era chips, gradient line");
+    ok("227 markers, 227 tiered labels, 11 era chips, gradient line");
 
     // ── 2. Hover opens the panel with three reading levels ───────────
     await hoverEvent("Dinosaur Extinction");
@@ -146,17 +146,17 @@ async function main() {
       "return { visible: [...document.querySelectorAll('.marker')].filter(m => m.style.display !== 'none').length, " +
       "grad: document.querySelector('.number-line').style.background.slice(0,22) }"
     );
-    assert.equal(civState.visible, 133, "Civilization view shows 133 events");
+    assert.equal(civState.visible, 160, "Civilization view shows 160 events");
     const gradBefore = (await driver.executeScript("return document.querySelector('.number-line').style.backgroundImage"));
     await driver.executeScript("document.getElementById('mode-deep').click()");
     await waitLoad(300);
     const deepVisible = await driver.executeScript(
       "return [...document.querySelectorAll('.marker')].filter(m => m.style.display !== 'none').length"
     );
-    assert.equal(deepVisible, 200);
+    assert.equal(deepVisible, 227);
     const gradAfter = await driver.executeScript("return document.querySelector('.number-line').style.backgroundImage");
     assert.notEqual(gradBefore, gradAfter, "line gradient rebuilds per mode");
-    ok(`zoom: civilization = 133 events, deep time = 200, gradient rebuilt`);
+    ok(`zoom: civilization = 160 events, deep time = 227, gradient rebuilt`);
 
     // ── 8. Panel arrows step through history and scroll viewport ──────
     await hoverEvent("Moon Landing");
@@ -192,7 +192,7 @@ async function main() {
     const tourLabel1 = await driver.executeScript(
       "return document.getElementById('tour-btn').textContent"
     );
-    assert.ok(tourLabel1.includes("Tour 1/200"), `tour button state unexpected: ${JSON.stringify(tourLabel1)}`);
+    assert.ok(tourLabel1.includes("Tour 1/227"), `tour button state unexpected: ${JSON.stringify(tourLabel1)}`);
     assert.equal(await driver.findElement(By.id("panel-title")).getText(), "The Big Bang", "tour opens event 1");
     await driver.executeScript("document.getElementById('tour-btn').click()"); // stop
     const tourLabel2 = await driver.executeScript(
