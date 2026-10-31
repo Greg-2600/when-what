@@ -1861,7 +1861,7 @@ labelEls.forEach((el, i) => {
    ------------------------------------------------------------- */
 function layoutLabels() {
   const mobile = window.innerWidth <= 640;
-  const lineTop = mobile ? 170 : 200;
+  const lineTop = mobile ? 150 : 200;
   const tierH = mobile ? 20 : 22;
   const maxAbove = 4;   // tiers above the line before overflowing below
   const trackRect = track.getBoundingClientRect();
@@ -2163,6 +2163,17 @@ function renderDetail(index) {
       body.appendChild(tEl);
       body.appendChild(gEl);
       body.appendChild(kEl);
+      if (c.nav === "now") {
+        const det = document.createElement("button");
+        det.type = "button";
+        det.className = "scard-details seg";
+        det.textContent = "Details";
+        det.addEventListener("click", function (e) {
+          e.stopPropagation();
+          openPanel();
+        });
+        body.appendChild(det);
+      }
       el.appendChild(body);
       if (c.nav !== "now") el.addEventListener("click", function () { selectEvent(c.idx); });
       strip.appendChild(el);
@@ -2224,6 +2235,14 @@ function displayedIndex() {
   return hoveredIndex !== null ? hoveredIndex : pinnedIndex;
 }
 
+function isNarrowLayout() {
+  return window.innerWidth < 1100;
+}
+
+function openPanel() {
+  panel.classList.add("open");
+}
+
 function updatePanel() {
   const idx = displayedIndex();
   if (idx === null) {
@@ -2233,7 +2252,10 @@ function updatePanel() {
     if (strip) { strip.style.display = "none"; strip.setAttribute("hidden", ""); strip.classList.add("hidden"); strip.innerHTML = ""; }
     return;
   }
-  panel.classList.add("open");
+  // Wide screens open the detail sidebar automatically; narrow screens show
+  // the story strip instead and open the bottom sheet only on demand
+  // (Details button, panel arrows) so the timeline stays visible.
+  if (!isNarrowLayout() || panel.classList.contains("open")) panel.classList.add("open");
   setMarkerActive(idx);
   renderDetail(idx);
   if (pinnedIndex !== null) updateHash();
@@ -3701,9 +3723,10 @@ const _hadHash = !!location.hash;
 restoreFromHash();
 if (!_hadHash && pinnedIndex === null) {
   // Surface the detail panel on first load so the "meat" is visible
-  // without scrolling; don't pollute the URL hash.
+  // without scrolling; don't pollute the URL hash. On narrow screens the
+  // story strip covers this; the sheet opens on demand instead.
   pinnedIndex = 0;
-  panel.classList.add("open");
+  if (window.innerWidth >= 1100) panel.classList.add("open");
   setMarkerActive(0);
   renderDetail(0);
 }

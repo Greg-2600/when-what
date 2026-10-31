@@ -22,3 +22,12 @@ The app is a PWA first (installable, offline). If App-store presence is desired,
 
 ## Status
 Not built — this guide is the deliverable until a native build environment is available.
+
+## Mobile-web responsive (shipped, v1.1)
+The PWA itself is phone-friendly without any wrapper:
+- ≤1099px: natural page scroll (timeline keeps 54vh), compact scrollable
+  legend/subject rows, wrapping header controls, 20px touch markers.
+- Tap a marker/label → before/now/after story strip (bottom sheet stays
+  closed); `Details` on the current card opens the sheet; ✕ clears all.
+- Covered by `tests/mobile.js` (8 checks: overflow, viewport height, touch
+  size, tap→strip, image, Details→sheet→close, console).

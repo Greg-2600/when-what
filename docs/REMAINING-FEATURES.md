@@ -53,6 +53,7 @@ Updated to reflect current state (422 events, 11 eras, 78 unit + 22 E2E tests gr
 ## G. Mobile / native
 30. 🔶 Capacitor wrapping documented (MOBILE.md); not built
 31. ❌ App-store presence (may be unnecessary given PWA)
+32. ✅ Mobile-web responsive (v1.1): page-scroll layout ≤1099px, compact legend rows, 20px touch markers, tap → story strip (no auto sheet), Details opens bottom sheet, `tests/mobile.js` (8 checks) in CI
 
 ## H. Quality / tests
 32. 🔶 Unit tests 70; E2E 22 checks — all green, but coverage gaps: teacher packs, embeds, quiz v2, credits page, aria-live, content-visibility

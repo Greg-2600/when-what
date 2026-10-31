@@ -161,6 +161,26 @@ body > #bottom-strip, body > .site-footer { flex: none; }
     margin-left: auto;
   }
 
+  /* ⋯ More dropdown: only laid out while open */
+  .more-menu { position: relative; display: inline-block; }
+  .more-menu > .more-menu-body { display: none; }
+  .more-menu[open] > .more-menu-body {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 0.3rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    z-index: 80;
+    min-width: 180px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
   .seg {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -939,6 +959,43 @@ body > #bottom-strip, body > .site-footer { flex: none; }
     .story-card { flex: 1 1 100%; }
     .story-card img { width: 90px; }
     .story-card .skid { -webkit-line-clamp: 2; }
+    /* compact single-row bars instead of tall wrapping stacks */
+    .legend-bar { flex-wrap: nowrap; overflow-x: auto; gap: 0.75rem; padding: 0.35rem 1rem; }
+    .legend, .tagsrow { flex-wrap: nowrap; flex: none; }
+    .tagsrow { padding: 0; border-bottom: none; background: none; }
+    .legend { padding: 0; border-bottom: none; background: none; }
+    .chip, .tag-chip { flex: none; }
+    .searchbar { padding: 0.3rem 1rem; }
+    .viewport { padding: 0.5rem 1rem 0.75rem; }
+    #bottom-strip { margin: 0.5rem 1rem 0.75rem; }
+    .site-footer { margin: 0.5rem 1rem 1rem; font-size: 0.68rem; }
+  }
+
+  /* Narrow screens (bottom-sheet panel): the page scrolls naturally so the
+     timeline keeps a usable height and the strip is reachable below it. */
+  @media (max-width: 1099px) {
+    html, body { height: auto; }
+    body { display: block; overflow: visible; }
+    .viewport { height: 54vh; height: 54dvh; min-height: 300px; flex: none; }
+    #story-strip .scard-details { display: inline-block; }
+    .header-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; }
+    .header-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.75rem; min-width: 0; }
+    .controls { flex-wrap: wrap; row-gap: 0.4rem; }
+    .header-controls .seg, .controls .seg { font-size: 0.66rem; padding: 0.28rem 0.6rem; }
+  }
+
+  /* Details button lives only on the narrow layout (wide screens open the
+     panel automatically, so it would be redundant there). */
+  .scard-details { display: none; }
+
+  /* Fat-finger-proof markers and labels on narrow/touch screens */
+  @media (pointer: coarse) {
+    .marker { width: 20px; height: 20px; }
+    .marker-label { padding: 6px 8px 6px 12px; }
+  }
+  @media (max-width: 1099px) {
+    .marker { width: 20px; height: 20px; }
+    .marker-label { padding: 6px 8px 6px 12px; }
   }
 
   /* Reading-level cards */
@@ -1029,10 +1086,10 @@ body > #bottom-strip, body > .site-footer { flex: none; }
   @media (max-width: 640px) {
     .panel { width: 100vw; max-width: 100vw; }
     h1 { font-size: 1.25rem; }
-    .track { height: 380px; }
-    .number-line { top: 170px; }
-    .marker { top: 170px; }
-    .connector { top: 180px; }
+    .track { height: 340px; }
+    .number-line { top: 150px; }
+    .marker { top: 150px; }
+    .connector { top: 160px; }
   }
 
   /* Wide screens: detail panel becomes a persistent right sidebar so the
@@ -1099,9 +1156,9 @@ body > #bottom-strip, body > .site-footer { flex: none; }
         <input id="zoom-slider" type="range" min="35" max="400" value="100" step="1" aria-label="Zoom level" title="Zoom level" style="width:80px;" />
         <span id="zoom-val" class="zoom-val" title="Zoom level" style="font-size:0.75rem; color: var(--muted); min-width: 2.6rem; text-align:center;">100%</span>
         <button class="seg" id="zoom-in" type="button" title="Zoom in (mouse wheel too)">➕</button>
-        <details class="more-menu" style="position:relative;display:inline-block;">
+        <details class="more-menu">
           <summary class="seg" style="cursor:pointer;list-style:none;">⋯ More</summary>
-          <div style="position:absolute;right:0;top:100%;margin-top:0.3rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.4rem;display:flex;flex-direction:column;gap:0.3rem;z-index:80;min-width:180px;box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+          <div class="more-menu-body">
             <button class="seg" id="quiz-btn" type="button" title="Classroom quiz: which came first?" data-i18n="btnQuiz">🎓 Quiz</button>
             <button class="seg" id="teacher-quiz-btn" type="button" title="Teacher mode: choose eras, difficulty and count">👩‍🏫 Teacher quiz</button>
             <button class="seg" id="order-quiz-btn" type="button" title="Order quiz: tap events in chronological order">🔢 Order quiz</button>

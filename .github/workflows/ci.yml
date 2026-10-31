@@ -30,6 +30,12 @@ jobs:
           SELENIUM_HEADLESS: "1"
         continue-on-error: true
 
+      - name: Mobile viewport (headless Chrome, best effort)
+        run: node tests/mobile.js
+        env:
+          SELENIUM_HEADLESS: "1"
+        continue-on-error: true
+
       - name: Upload visual-regression artifacts
         if: always()
         uses: actions/upload-artifact@v4
