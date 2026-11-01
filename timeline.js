@@ -1,7 +1,7 @@
-/* Boot: the app loaded, so dismiss the load-failure note. */
+/* Boot: the app loaded, so remove the load-failure note. */
 (function () {
   const w = document.getElementById("js-load-warn");
-  if (w) w.style.display = "none";
+  if (w) w.remove();
 })();
 
 /* -------------------------------------------------------------
@@ -3420,13 +3420,15 @@ function searchHintWords() {
   return (uiLang === 'it') ? 'luna, ossigeno, Roma' : 'moon, oxygen, Rome';
 }
 let NARRATE_ON = false;
+let speechRate = parseFloat(localStorage.getItem("ct-rate") || "0.95");
+if (!(speechRate >= 0.5 && speechRate <= 1.5)) speechRate = 0.95;
 function speakText(text) {
   try {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = (uiLang === 'it') ? 'it-IT' : 'en-US';
-    u.rate = 0.95;
+    u.rate = speechRate;
     window.speechSynthesis.speak(u);
   } catch { /* best-effort: ignore failure and continue */ }
 }
@@ -3491,6 +3493,59 @@ function stopSpeech() {
     openReader(pinnedIndex !== null ? pinnedIndex : 0);
   });
   window.__storyReader = { openReader: openReader, closeReader: closeReader, isOpen: function () { return open; } };
+})();
+
+/* Audio settings modal: voice pick + narration speed (persisted).
+   The ElevenLabs key fields are reserved for a future cloud-voice step. */
+(function settingsFeature() {
+  const btn = document.getElementById("settings-btn");
+  const modal = document.getElementById("settings-modal");
+  const closeBtn = document.getElementById("settings-close");
+  const voiceSel = document.getElementById("voice-select");
+  const rateSlider = document.getElementById("rate-slider");
+  const rateVal = document.getElementById("rate-val");
+  if (!btn || !modal) return;
+  function fillVoices() {
+    if (!voiceSel || !("speechSynthesis" in window)) return;
+    voiceSel.innerHTML = "";
+    const voices = window.speechSynthesis.getVoices();
+    voices.forEach(function (v, i) {
+      const o = document.createElement("option");
+      o.value = String(i);
+      o.textContent = v.name + (v.lang ? " (" + v.lang + ")" : "");
+      voiceSel.appendChild(o);
+    });
+    const saved = parseInt(localStorage.getItem("ct-voice") || "-1", 10);
+    if (voices[saved]) voiceSel.value = String(saved);
+  }
+  function syncRate() {
+    if (rateVal) rateVal.textContent = speechRate.toFixed(2) + "\u00d7";
+    if (rateSlider) rateSlider.value = String(Math.round(speechRate * 100));
+  }
+  function openSettings() {
+    fillVoices();
+    syncRate();
+    modal.hidden = false;
+    setTimeout(function () { closeBtn.focus(); }, 60);
+  }
+  function closeSettings() { modal.hidden = true; }
+  btn.addEventListener("click", function () {
+    if (modal.hidden) openSettings(); else closeSettings();
+  });
+  closeBtn.addEventListener("click", closeSettings);
+  modal.addEventListener("click", function (e) { if (e.target === modal) closeSettings(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !modal.hidden) closeSettings();
+  });
+  if (voiceSel) voiceSel.addEventListener("change", function () {
+    localStorage.setItem("ct-voice", voiceSel.value);
+  });
+  if (rateSlider) rateSlider.addEventListener("input", function () {
+    speechRate = Math.min(1.5, Math.max(0.5, parseInt(rateSlider.value, 10) / 100));
+    localStorage.setItem("ct-rate", String(speechRate));
+    syncRate();
+  });
+  if ("speechSynthesis" in window) window.speechSynthesis.onvoiceschanged = fillVoices;
 })();
 
 /* narration toggle in the toolbar */
@@ -3757,10 +3812,12 @@ function updateHash() {
 
 function restoreFromHash() {
   const h = location.hash.replace(/^#/, "");
-  if (!h) return false;
   const params = new URLSearchParams(h);
-  const mode = params.get("mode");
-  const ev = params.get("event");
+  const query = new URLSearchParams(location.search);
+  if (!h && ![...query.keys()].length) return false;
+  // hash wins; query string is the fallback (used by ?event= embed links)
+  const mode = params.get("mode") || query.get("mode");
+  const ev = params.get("event") || query.get("event");
   let matched = false;
   if (["deep", "human", "powers", "future"].includes(mode)) {
     if (mode !== scaleMode) setScaleMode(mode);

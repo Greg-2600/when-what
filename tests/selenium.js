@@ -69,6 +69,17 @@ async function main() {
     ok("428 markers, 428 tiered labels, 11 era chips, gradient line");
 
     // ── Visual regression: capture screenshot + compare to baseline ──
+    // Wait for boot to finish (load banner gone) and give strip images a
+    // moment to settle; otherwise screenshot timing races JS and the
+    // baseline flakes. Image settle is best-effort (Wikimedia throttles).
+    await driver.wait(async () =>
+      driver.executeScript("return !document.getElementById('js-load-warn')"),
+      15000, "app boot did not finish");
+    await driver.wait(async () =>
+      driver.executeScript(
+        "return [...document.querySelectorAll('#story-strip img')].every(im => im.complete)"
+      ), 6000).catch(() => {});
+    await waitLoad(400);
     const shotDir = path.join(__dirname, "screenshots");
     if (!fs.existsSync(shotDir)) fs.mkdirSync(shotDir, { recursive: true });
     const currentPath = path.join(shotDir, "current.png");
@@ -506,6 +517,198 @@ async function main() {
       "return !!document.querySelector('.legend .chip[role=button][tabindex]')");
     assert.equal(keyboardLegend, true, "legend chips keyboard-focusable");
     ok("a11y: 8 dialogs, Esc closes quiz/reader, keyboard legend chips");
+
+    // ── 16f. Teacher quiz + CSV export ───────────────────────────────
+    await driver.executeScript("document.getElementById('teacher-quiz-btn').click()");
+    await waitLoad(250);
+    const eraBoxes = await driver.findElements(By.css("#teacher-quiz-eras input[type=checkbox]"));
+    assert.ok(eraBoxes.length >= 11, `era checkboxes (${eraBoxes.length})`);
+    await driver.executeScript("document.getElementById('tq-count').value = 4");
+    await driver.executeScript("document.getElementById('tq-start').click()");
+    await waitLoad(300);
+    assert.match(await driver.findElement(By.id("quiz-progress")).getText(), /Question 1 of 4/, "teacher quiz starts");
+    ok("teacher quiz: eras listed, 4-question quiz starts");
+    await driver.executeScript("[...document.querySelectorAll('#quiz-options .quiz-option')][0].click()");
+    await waitLoad(250);
+    assert.equal(await driver.findElement(By.id("quiz-feedback")).getAttribute("hidden"), null, "quiz feedback shows");
+    // capture the CSV instead of downloading it
+    await driver.executeScript("window.__csv=null; const _c=URL.createObjectURL.bind(URL); URL.createObjectURL=function(b){ b.text().then(t=>{window.__csv=t;}); return _c(b); };");
+    await driver.executeScript("document.getElementById('teacher-quiz-btn').click()"); // reopen modal
+    await waitLoad(250);
+    await driver.executeScript("document.getElementById('tq-export').click()");
+    await driver.wait(async () => driver.executeScript("return window.__csv"), 4000);
+    const csv = await driver.executeScript("return window.__csv");
+    assert.ok(csv.startsWith("question,answer,score"), "CSV header");
+    assert.equal(csv.trim().split("\n").length, 2, "header + 1 answered question");
+    await driver.executeScript("document.getElementById('quiz-close').click()");
+    ok("teacher quiz: answer recorded, CSV exports (header + 1 row)");
+
+    // ── 16g. Order quiz: arrange events chronologically ────────────────
+    await driver.executeScript("document.getElementById('order-quiz-btn').click()");
+    await waitLoad(250);
+    assert.equal((await driver.findElements(By.css("#order-quiz-options .quiz-option"))).length, 4, "4 order options");
+    await driver.executeScript("[...document.querySelectorAll('#order-quiz-options .quiz-option')].forEach(b=>b.click())");
+    await waitLoad(250);
+    const orderFb = await driver.findElement(By.id("order-quiz-feedback"));
+    assert.equal(await orderFb.getAttribute("hidden"), null, "order feedback shows");
+    assert.match(await orderFb.getText(), /Correct|correct order/, "feedback judges the order");
+    await driver.executeScript("document.getElementById('order-quiz-next').click()");
+    await waitLoad(250);
+    assert.match(await driver.findElement(By.id("order-quiz-progress")).getText(), /Question 2 of/, "order quiz advances");
+    await driver.executeScript("document.getElementById('order-quiz-close').click()");
+    ok("order quiz: options, judged feedback, advance");
+
+    // ── 16h. Image quiz renders and judges ─────────────────────────────
+    await driver.executeScript("document.getElementById('image-quiz-btn').click()");
+    await waitLoad(300);
+    assert.equal((await driver.findElements(By.css("#quiz-options .quiz-option"))).length, 4, "4 image options");
+    assert.ok((await driver.findElement(By.id("quiz-question")).getText()).length > 10, "question text");
+    const qImgState = await driver.executeScript(`
+      const im = document.getElementById('quiz-image');
+      return { shown: im.style.display !== 'none', ok: im.style.display === 'none' || (im.complete && im.naturalWidth > 0) };
+    `);
+    assert.ok(qImgState.ok, "quiz image loads when shown");
+    await driver.executeScript("[...document.querySelectorAll('#quiz-options .quiz-option')][1].click()");
+    await waitLoad(250);
+    assert.equal(await driver.findElement(By.id("quiz-feedback")).getAttribute("hidden"), null, "image feedback shows");
+    await driver.executeScript("document.getElementById('quiz-close').click()");
+    ok(`image quiz: question + judged answer (image ${qImgState.shown ? "shown" : "hidden for this draw"})`);
+
+    // ── 16i. Riddles: clues, options, score ────────────────────────────
+    await driver.executeScript("document.getElementById('riddles-btn').click()");
+    await waitLoad(250);
+    assert.ok((await driver.findElements(By.css(".riddle-clue"))).length >= 2, "riddle clues render");
+    assert.equal((await driver.findElements(By.css("#riddles-options .quiz-option"))).length, 4, "4 riddle options");
+    await driver.executeScript("[...document.querySelectorAll('#riddles-options .quiz-option')][0].click()");
+    await waitLoad(250);
+    assert.equal(await driver.findElement(By.id("riddles-feedback")).getAttribute("hidden"), null, "riddle feedback shows");
+    await driver.executeScript("document.getElementById('riddles-next').click()");
+    await waitLoad(250);
+    assert.match(await driver.findElement(By.id("riddles-progress")).getText(), /Riddle 2 of/, "riddles advance + score");
+    await driver.executeScript("document.getElementById('riddles-close').click()");
+    ok("riddles: clues, judged answer, advance");
+
+    // ── 16j. Teacher packs list + worksheet build ──────────────────────
+    await driver.executeScript("window.print = function(){ window.__printed = true; };");
+    await driver.executeScript("document.getElementById('packs-btn').click()");
+    await waitLoad(250);
+    const packBtns = await driver.findElements(By.css("#packs-list button"));
+    assert.equal(packBtns.length, 11, "one pack per era");
+    await driver.executeScript("[...document.querySelectorAll('#packs-list button')][0].click()");
+    await waitLoad(300);
+    assert.equal(await driver.executeScript("return document.getElementById('packs-modal').hidden"), true, "pack builds + modal closes");
+    assert.ok((await driver.executeScript("return document.querySelector('#print-sheet h1').textContent")).length > 3, "worksheet built");
+    assert.equal(await driver.executeScript("return !!window.__printed"), true, "print invoked");
+    ok("packs: 11 eras, worksheet builds, print invoked");
+
+    // ── 16k. Lens toggle swaps the story perspective ───────────────────
+    await hoverEvent("The Big Bang");
+    await waitLoad(400);
+    const storyBefore = await driver.executeScript("return document.querySelector('.story-cell p').textContent");
+    await driver.executeScript("const s=document.getElementById('lens-select'); s.value='islamic'; s.dispatchEvent(new Event('change'))");
+    await waitLoad(300);
+    const storyAfter = await driver.executeScript("return document.querySelector('.story-cell p').textContent");
+    assert.notEqual(storyBefore, storyAfter, "lens changes the story");
+    assert.equal(await driver.executeScript("return localStorage.getItem('ct-lens')"), "islamic", "lens persists");
+    await driver.executeScript("const s=document.getElementById('lens-select'); s.value='scientific'; s.dispatchEvent(new Event('change'))");
+    ok("lens toggle swaps perspective (scientific ↔ islamic)");
+
+    // ── 16l. Embed mode renders compact + preselects ───────────────────
+    await driver.get(BASE + "?event=moon-landing&embed=1");
+    await driver.wait(until.titleContains("Cosmic Timeline"), 8000);
+    await waitLoad(500);
+    assert.equal(await driver.executeScript("return document.body.classList.contains('embed-mode')"), true, "embed class applied");
+    assert.equal(await driver.findElement(By.id("panel-title")).getText(), "Moon Landing", "embed preselects event");
+    await driver.get(BASE);
+    await driver.wait(until.titleContains("Cosmic Timeline"), 8000);
+    await waitLoad(500);
+    ok("embed mode: compact chrome + preselected event");
+
+    // ── 16m. Powers + future modes filter the line ─────────────────────
+    const countVisible = () => driver.executeScript(
+      "return [...document.querySelectorAll('.marker')].filter(m => m.style.display !== 'none').length");
+    await driver.executeScript("document.getElementById('mode-powers').click()");
+    await waitLoad(300);
+    const powersN = await countVisible();
+    assert.ok(powersN > 0 && powersN < 428, `powers shows a subset (${powersN})`);
+    await driver.executeScript("document.getElementById('mode-future').click()");
+    await waitLoad(300);
+    const futureN = await countVisible();
+    assert.ok(futureN > 0 && futureN < 428, `future shows a subset (${futureN})`);
+    await driver.executeScript("document.getElementById('mode-deep').click()");
+    await waitLoad(300);
+    assert.equal(await countVisible(), 428, "deep time restores all");
+    ok(`modes filter the line (powers ${powersN}, future ${futureN}, deep 428)`);
+
+    // ── 16n. Progress badge tracks the localStorage journal ───────────
+    await hoverEvent("Dinosaur Extinction");
+    await waitLoad(400);
+    const prog = await driver.executeScript(`
+      const t = document.getElementById('progress-badge').textContent;
+      return { text: t, n: parseInt(t, 10), stored: JSON.parse(localStorage.getItem('ct-read') || '[]').length };
+    `);
+    assert.equal(prog.n, prog.stored, "badge matches journal");
+    assert.ok(prog.n >= 5, `several events journaled (${prog.n})`);
+    ok(`progress: badge "${prog.text.trim()}" matches journal`);
+
+    // ── 16o. Keyboard +/- zooms the line ──────────────────────────────
+    const zwBefore = await driver.executeScript("return document.querySelector('.track').style.width");
+    await driver.executeScript("document.dispatchEvent(new KeyboardEvent('keydown', { key: '+', bubbles: true }))");
+    await waitLoad(200);
+    const zwIn = await driver.executeScript("return document.querySelector('.track').style.width");
+    assert.notEqual(zwIn, zwBefore, "+ zooms in");
+    await driver.executeScript("document.dispatchEvent(new KeyboardEvent('keydown', { key: '-', bubbles: true }))");
+    await waitLoad(200);
+    const zwOut = await driver.executeScript("return document.querySelector('.track').style.width");
+    assert.notEqual(zwOut, zwIn, "- zooms out");
+    ok(`keyboard zoom (${zwBefore} → ${zwIn} → ${zwOut})`);
+
+    // ── 16p. Audio settings modal + persisted rate ────────────────────
+    await driver.executeScript("document.getElementById('settings-btn').click()");
+    await waitLoad(250);
+    assert.equal(await driver.executeScript("return document.getElementById('settings-modal').hidden"), false, "settings opens");
+    assert.ok(await driver.findElement(By.id("voice-select")), "voice picker present");
+    await driver.executeScript("const r=document.getElementById('rate-slider'); r.value=120; r.dispatchEvent(new Event('input'))");
+    await waitLoad(200);
+    assert.equal(await driver.executeScript("return localStorage.getItem('ct-rate')"), "1.2", "rate persists");
+    assert.ok((await driver.executeScript("return document.getElementById('rate-val').textContent")).includes("1.2"), "rate label updates");
+    await driver.executeScript("document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))");
+    await waitLoad(200);
+    assert.equal(await driver.executeScript("return document.getElementById('settings-modal').hidden"), true, "Esc closes settings");
+    ok("settings: opens, rate persists (1.2×), Esc closes");
+
+    // ── 16q. Narration toggle arms without errors ──────────────────────
+    await driver.executeScript("document.getElementById('narrate-btn').click()");
+    await waitLoad(200);
+    assert.match(await driver.executeScript("return document.getElementById('narrate-btn').textContent"), /Stop/, "narration arms");
+    await driver.executeScript("document.getElementById('narrate-btn').click()");
+    await waitLoad(200);
+    assert.match(await driver.executeScript("return document.getElementById('narrate-btn').textContent"), /Narrate/, "narration stops");
+    ok("narrate toggle arms/stops cleanly");
+
+    // ── 16r. Credits page lists every image ───────────────────────────
+    const creditsHref = await driver.executeScript("return document.querySelector('.site-footer a[href*=credits]').href");
+    await driver.get(creditsHref);
+    await driver.wait(until.titleContains("Image Credits"), 8000);
+    const creditRows = await driver.findElements(By.css("tbody tr"));
+    assert.ok(creditRows.length >= 428, `credit rows (${creditRows.length})`);
+    await driver.get(BASE);
+    await driver.wait(until.titleContains("Cosmic Timeline"), 8000);
+    await waitLoad(500);
+    ok(`credits page live (${creditRows.length} rows)`);
+
+    // ── 16s. Map closes via Escape + backdrop ─────────────────────────
+    await driver.executeScript("document.getElementById('map-btn').click()");
+    await waitLoad(300);
+    await driver.executeScript("document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))");
+    await waitLoad(200);
+    assert.equal(await driver.executeScript("return document.getElementById('map-modal').hidden"), true, "Esc closes map");
+    await driver.executeScript("document.getElementById('map-btn').click()");
+    await waitLoad(300);
+    await driver.executeScript("document.getElementById('map-modal').click()");
+    await waitLoad(200);
+    assert.equal(await driver.executeScript("return document.getElementById('map-modal').hidden"), true, "backdrop closes map");
+    ok("map: Esc + backdrop close");
 
     // ── 17. No console errors throughout ────────────────────────────
 

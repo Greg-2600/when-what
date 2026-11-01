@@ -25,8 +25,17 @@
   * { box-sizing: border-box; }
 
   /* Shown only when timeline.js fails to load (it hides this on boot) */
+  /* Shown only when timeline.js fails to load (it removes this on boot).
+     Fixed overlay so it can never shift layout while loading. */
   #js-load-warn {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
     color: #f88;
+    background: #0b1020;
+    border-top: 1px solid var(--border);
     padding: 1rem;
     margin: 0;
   }
@@ -1375,9 +1384,9 @@ body > #bottom-strip, body > .site-footer { flex: none; }
   <a href="credits.html" style="color:var(--muted);">Image credits</a>
 </footer>
 
+<p id="js-load-warn">Could not load timeline.js. Serve this folder over HTTP (e.g. npx http-server .) or check the file path.</p>
 <script src="./timeline-core.js"></script>
 <script src="./timeline.js"></script>
-<p id="js-load-warn">Could not load timeline.js. Serve this folder over HTTP (e.g. npx http-server .) or check the file path.</p>
 <noscript><p style="color:#f88;padding:1rem;">This timeline needs JavaScript. Serve this folder over HTTP (e.g. npx http-server .) so the scripts can load.</p></noscript>
 
 </body>
