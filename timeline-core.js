@@ -5681,6 +5681,38 @@ const MILESTONES = [
     ],
   },
   {
+    title: "Stuxnet: The First Cyberweapon",
+    coords: [33,51],
+    yearsAgo: 15.9,
+    era: "Modern",
+    kid: "In 2010, scientists found a super-virus called Stuxnet hiding in Iran's nuclear plant! It was no ordinary virus \u2014 it secretly ordered machines to spin until they broke. Experts say the US and Israel built it. It was the first time code physically destroyed something \u2014 cyberwar had begun!",
+    fun: "Stuxnet was 500 kilobytes \u2014 half a minute of music \u2014 yet it wrecked 1,000 machines.",
+    summary: "Found in 2010, Stuxnet was a sophisticated worm that wrecked uranium centrifuges at Iran's Natanz plant by warping their spin speeds while reporting normal readings. Widely attributed to a US-Israeli operation, it was the first known cyberweapon to cause physical destruction \u2014 opening the era of state hacking aimed at grids, pipelines and elections.",
+    deep: [
+      "It spread on infected USB sticks, jumping air-gapped networks no internet could reach.",
+      "The worm used four secret zero-day exploits \u2014 an arsenal only a nation-state could build.",
+      "Natanz lost roughly 1,000 of 9,000 centrifuges before anyone understood the cause.",
+      "Once dissected, its tricks leaked into criminal malware turned against everyone else.",
+    ],
+    seeAlso: ["Snowden Reveals Mass Surveillance", "The Internet (ARPANET)"],
+  },
+  {
+    title: "WikiLeaks Publishes Cablegate",
+    coords: [33,44],
+    yearsAgo: 15.5,
+    era: "Modern",
+    kid: "In 2010, a website called WikiLeaks published 250,000 secret US diplomatic cables! Soldier Chelsea Manning had leaked them. Suddenly everyone could read what diplomats really said behind closed doors. Governments were furious \u2014 and journalism changed forever!",
+    fun: "The cables held 1.7 million words \u2014 the biggest leak in history at the time.",
+    summary: "In 2010 WikiLeaks, working with major newspapers, published some 250,000 classified US State Department cables leaked by Army analyst Chelsea Manning, plus the Iraq and Afghanistan war logs. The disclosures exposed corruption, spying on allies and hidden civilian casualties \u2014 igniting global fights over secrecy, transparency and press freedom, and a crackdown on leakers and publishers.",
+    deep: [
+      "Manning copied the files onto a disc labeled with pop music at a base in Iraq.",
+      "Five newspapers redacted names before publishing: Guardian, NYT, Der Spiegel, Le Monde, El Pais.",
+      "Washington called it the largest unauthorized disclosure in history; supporters called it journalism.",
+      "The leaks inspired a generation of whistleblowers \u2014 and much harsher punishments for them.",
+    ],
+    seeAlso: ["Snowden Reveals Mass Surveillance", "Bitcoin", "The Internet (ARPANET)"],
+  },
+  {
     title: "Falklands War",
     coords: [-52,-59],
     yearsAgo: 15,
@@ -5694,6 +5726,22 @@ const MILESTONES = [
       "Britain lost 255 military personnel in the war.",
       "The war boosted Thatcher's popularity ahead of the 1983 election.",
     ],
+  },
+  {
+    title: "Silk Road: Crime on the Dark Web",
+    coords: [38,-122],
+    yearsAgo: 14.9,
+    era: "Modern",
+    kid: "In 2011, a secret website called Silk Road opened \u2014 an Amazon for illegal drugs, hidden on the dark web! Buyers paid with Bitcoin so nobody could trace them. The FBI hunted its boss 'Dread Pirate Roberts' for two years, then arrested him in a San Francisco library!",
+    fun: "Silk Road took a cut of every sale \u2014 earning about $80 million in commissions.",
+    summary: "Silk Road (2011-2013) was the first major dark-web marketplace, reachable only through Tor and using Bitcoin for anonymous payments. Founded by Ross Ulbricht as 'Dread Pirate Roberts', it proved cryptocurrency worked as real money \u2014 for crime first. The FBI shut it down in 2013 and Ulbricht got life in prison, launching the ongoing fight over crypto, privacy and policing the internet.",
+    deep: [
+      "Tor bounces traffic through volunteer relays worldwide, hiding users from surveillance.",
+      "Bitcoin's public ledger ultimately helped investigators trace Ulbricht's hidden fortune.",
+      "Agents arrested Ulbricht while he was logged in as admin, catching him red-handed online.",
+      "Copycat markets appeared within weeks \u2014 shutting one site never killed the idea itself.",
+    ],
+    seeAlso: ["Bitcoin", "WikiLeaks Publishes Cablegate"],
   },
   {
     title: "CRISPR Gene Editing",
@@ -5726,6 +5774,22 @@ const MILESTONES = [
     ],
   },
   {
+    title: "Snowden Reveals Mass Surveillance",
+    coords: [22,114],
+    yearsAgo: 12.9,
+    era: "Modern",
+    kid: "In 2013, a young computer expert named Edward Snowden revealed a shocking secret: the US government was secretly collecting everyone's phone calls and emails! He fled to Hong Kong with the proof, then to Russia. The whole world started arguing: safety versus privacy \u2014 which matters more?",
+    fun: "One leaked slide showed the NSA had collected 3 billion US phone records in a single month.",
+    summary: "In June 2013, NSA contractor Edward Snowden leaked classified documents to journalists in Hong Kong, exposing global mass-surveillance programs (PRISM, bulk phone-metadata collection) built with tech giants' cooperation. The revelations triggered lawsuits, a UN resolution, default phone encryption and reforms like the USA Freedom Act \u2014 while the US charged Snowden under the Espionage Act and he received asylum in Russia.",
+    deep: [
+      "PRISM let analysts pull data from Google, Apple and Facebook through secret court orders.",
+      "Courts later ruled the bulk phone-records program illegal \u2014 years after it had started.",
+      "Phone makers responded by encrypting devices by default, locking out even themselves.",
+      "Snowden gave up a $200,000 job and his home, saying the public deserved to know.",
+    ],
+    seeAlso: ["WikiLeaks Publishes Cablegate", "Assange Arrested in London", "The Internet (ARPANET)"],
+  },
+  {
     title: "African Union",
     coords: [9,39],
     yearsAgo: 12,
@@ -5754,6 +5818,22 @@ const MILESTONES = [
       "The agreement entered into force on November 4, 2016.",
       "It builds on the UN Framework Convention on Climate Change (1992).",
     ],
+  },
+  {
+    title: "Ethereum and Smart Contracts",
+    coords: [47,8],
+    yearsAgo: 10.9,
+    era: "Modern",
+    kid: "In 2015, a 21-year-old named Vitalik Buterin launched Ethereum \u2014 Bitcoin's ambitious little brother! Instead of just money, Ethereum runs programs called 'smart contracts' with no boss in charge. It powers digital art, games and entire banks with no bankers!",
+    fun: "Ethereum's 2014 fundraiser collected $18 million in Bitcoin in just 42 days.",
+    summary: "Proposed by Vitalik Buterin in 2013 and launched in 2015, Ethereum stretched blockchain beyond money into a programmable platform where 'smart contracts' execute automatically with no middlemen. It powered ICOs, DeFi lending and NFTs \u2014 plus spectacular hacks (The DAO, 2016) that forced hard questions about code as law. In 2022 it cut energy use by about 99.9% switching to proof-of-stake.",
+    deep: [
+      "Smart contracts are unstoppable programs: once deployed, not even creators can halt them.",
+      "The 2016 DAO hack stole $60 million of ether; the community split the chain to undo it.",
+      "NFTs turned Ethereum into the canvas for a billion-dollar digital-art boom and bust.",
+      "Proof-of-stake replaced miners with validators, slashing the network's electricity hunger.",
+    ],
+    seeAlso: ["Bitcoin", "Silk Road: Crime on the Dark Web"],
   },
   {
     title: "Same-Sex Marriage (US)",
@@ -5814,6 +5894,22 @@ const MILESTONES = [
       "The Palestinian issue is a central concern.",
       "The league has faced challenges of disunity.",
     ],
+  },
+  {
+    title: "Assange Arrested in London",
+    coords: [52,0],
+    yearsAgo: 6.9,
+    era: "Modern",
+    kid: "In 2019, police dragged WikiLeaks founder Julian Assange out of Ecuador's London embassy \u2014 after 7 years hiding inside! The US wanted him for publishing leaked secrets; supporters called him a journalist and a hero. His case became the biggest press-freedom fight of the century!",
+    fun: "Assange spent 1,901 days inside the embassy \u2014 barely seeing sunlight for seven years.",
+    summary: "WikiLeaks founder Julian Assange took asylum in Ecuador's London embassy in 2012 to avoid extradition over the Cablegate and war-log publications. After Ecuador revoked asylum, British police arrested him in April 2019 and the US charged him under the Espionage Act. His long extradition battle \u2014 ended by a 2024 plea deal \u2014 split the world over whether publishing state secrets counts as journalism or a crime.",
+    deep: [
+      "Sweden dropped its own case, but the US indictment kept him in legal limbo for years.",
+      "Newspapers that had published his leaks editorialized against prosecuting a publisher.",
+      "He was held in Belmarsh maximum-security prison throughout the extradition fight.",
+      "The 2024 plea deal freed him \u2014 though advocates warn the precedent still chills reporting.",
+    ],
+    seeAlso: ["WikiLeaks Publishes Cablegate", "Snowden Reveals Mass Surveillance"],
   },
   {
     title: "Organization of American States",
@@ -6556,7 +6652,7 @@ const MILESTONES = [
 
   function formatTime(yearsAgo) {
     if (yearsAgo === 0) return "Present";
-    if (yearsAgo < 1000) return yearsAgo + " years ago";
+    if (yearsAgo < 1000) return Math.round(yearsAgo) + " years ago";
     if (yearsAgo < 1_000_000) return (yearsAgo / 1000).toLocaleString() + " thousand years ago";
     if (yearsAgo < 1_000_000_000) return (yearsAgo / 1_000_000).toLocaleString() + " million years ago";
     return (yearsAgo / 1_000_000_000).toLocaleString() + " billion years ago";
@@ -6567,7 +6663,7 @@ const MILESTONES = [
     if (yearsAgo >= 1e9) return (+(yearsAgo / 1e9).toPrecision(3)) + " Bya";
     if (yearsAgo >= 1e6) return (+(yearsAgo / 1e6).toPrecision(3)) + " Mya";
     if (yearsAgo >= 1e3) return (+(yearsAgo / 1e3).toPrecision(3)) + " kya";
-    return yearsAgo + " ya";
+    return Math.round(yearsAgo) + " ya";
   }
 
   /* -------------------------------------------------------------
@@ -6622,6 +6718,12 @@ const MILESTONES = [
      Read-more sources: one trusted article per milestone.
      ------------------------------------------------------------- */
   const LEARN_MORE = {
+    "WikiLeaks Publishes Cablegate": "https://en.wikipedia.org/wiki/WikiLeaks",
+    "Silk Road: Crime on the Dark Web": "https://en.wikipedia.org/wiki/Silk_Road_(marketplace)",
+    "Snowden Reveals Mass Surveillance": "https://en.wikipedia.org/wiki/Edward_Snowden",
+    "Ethereum and Smart Contracts": "https://en.wikipedia.org/wiki/Ethereum",
+    "Assange Arrested in London": "https://en.wikipedia.org/wiki/Julian_Assange",
+    "Stuxnet: The First Cyberweapon": "https://en.wikipedia.org/wiki/Stuxnet",
     "The Big Bang": "https://en.wikipedia.org/wiki/Big_Bang",
     "First Stars Ignite": "https://en.wikipedia.org/wiki/Star_formation",
     "Milky Way Forms": "https://en.wikipedia.org/wiki/Milky_Way",
@@ -7476,6 +7578,12 @@ const MILESTONES = [
   };
 
   const CURRICULUM_OVERRIDES = {
+    "WikiLeaks Publishes Cablegate": ["technology & engineering", "empires & power"],
+    "Silk Road: Crime on the Dark Web": ["technology & engineering", "empires & power"],
+    "Snowden Reveals Mass Surveillance": ["technology & engineering", "empires & power"],
+    "Ethereum and Smart Contracts": ["technology & engineering", "physics & chemistry"],
+    "Assange Arrested in London": ["technology & engineering", "empires & power"],
+    "Stuxnet: The First Cyberweapon": ["technology & engineering", "empires & power"],
     "The Big Bang": ["astronomy & space", "physics & chemistry"],
     "First Stars Ignite": ["astronomy & space", "physics & chemistry"],
     "Milky Way Forms": ["astronomy & space"],

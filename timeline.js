@@ -1740,6 +1740,30 @@ const EVENT_MEDIA = {
     file: "Earth_night.jpg",
   },
 
+  "WikiLeaks Publishes Cablegate": {
+    caption: "WikiLeaks founder Julian Assange",
+    file: "Julian_Assange.jpg",
+  },
+  "Silk Road: Crime on the Dark Web": {
+    caption: "Ross Ulbricht, convicted Silk Road founder",
+    file: "Ross_Ulbricht.jpg",
+  },
+  "Snowden Reveals Mass Surveillance": {
+    caption: "Edward Snowden in 2013",
+    file: "Edward_Snowden.jpg",
+  },
+  "Ethereum and Smart Contracts": {
+    caption: "The Ethereum logo",
+    file: "Ethereum.jpg",
+  },
+  "Assange Arrested in London": {
+    caption: "Free Assange protest art",
+    file: "Free_Assange.jpg",
+  },
+  "Stuxnet: The First Cyberweapon": {
+    caption: "A centrifuge cascade like those Stuxnet wrecked",
+    file: "Stuxnet.jpg",
+  },
 };
 
 /* -------------------------------------------------------------
@@ -2002,12 +2026,17 @@ function setMarkerActive(index) {
 
 /* Human-friendly gap between two events, e.g. "66 million years" */
 function formatGap(years) {
-  const a = Math.abs(Math.round(years));
+  const a = Math.abs(years);
+  if (a < 1) {
+    const mo = Math.max(1, Math.round(a * 12));
+    return mo === 1 ? "1 month" : mo + " months";
+  }
+  const r = Math.abs(Math.round(a));
   const trim = (v) => (Math.round(v * 100) / 100).toString();
-  if (a >= 1e9) return trim(a / 1e9) + " billion years";
-  if (a >= 1e6) return trim(a / 1e6) + " million years";
-  if (a >= 1000) return a.toLocaleString("en-US") + " years";
-  return a === 1 ? "1 year" : a + " years";
+  if (r >= 1e9) return trim(r / 1e9) + " billion years";
+  if (r >= 1e6) return trim(r / 1e6) + " million years";
+  if (r >= 1000) return r.toLocaleString("en-US") + " years";
+  return r === 1 ? "1 year" : r + " years";
 }
 
 function renderDetail(index) {

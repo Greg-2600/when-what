@@ -8,7 +8,7 @@ Hover a dot. Open a panel. Read it like a bedtime story, then read it like a tex
 
 <p align="center">
   <img src="docs/screenshots/deep-time.jpg" width="720" alt="The full 13.8-billion-year timeline with the era-coloured spectrum line and a milestone detail panel open"/>
-  <br/><em>Deep time: 422 milestones, each with its own colour, tiered labels and a detail panel.</em>
+  <br/><em>Deep time: 428 milestones, each with its own colour, tiered labels and a detail panel.</em>
 </p>
 
 ---
@@ -158,7 +158,7 @@ Then each panel adds:
 - 🔜 Comparison tool ("show me two eras side by side")
 - 🔜 Admin edit mode (`?edit=1` for adding events in-browser)
 - 🔶 Split files (timeline.js extracted; style.css still inline)
-- ✅ Image pipeline (local `img/` cache + runtime caching; 422/422 events pictured)
+- ✅ Image pipeline (local `img/` cache + runtime caching; 428/428 events pictured)
 - ❌ Analytics (rejected: conflicts with the no-cookies, no-tracking stance)
 - 🔜 Feedback widget ("Was this event's description helpful?")
 - ✅ Multiple viewpoints / "lens" toggle (scientific, religious, indigenous, chinese, islamic)
@@ -172,7 +172,7 @@ Then each panel adds:
 ```
 ├── timeline.html            # the app: markup, styles, interaction glue
 ├── timeline-core.js         # pure data & logic — no DOM, fully unit-tested
-│   ├── MILESTONES           #   422 events × { era, kid, fun, summary, deep[3-5], yearsAgo, coords, seeAlso, perspectives }
+│   ├── MILESTONES           #   428 events × { era, kid, fun, summary, deep[3-5], yearsAgo, coords, seeAlso, perspectives }
 │   ├── EVENT_COLORS         #   per-event shades computed inside era hue families
 │   ├── fracFor(ya, max)     #   log-scale position, mode-aware (null = off-scale)
 │   ├── formatTime/formatShort
