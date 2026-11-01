@@ -216,7 +216,7 @@ SELENIUM_HEADLESS=0 npm run test:e2e   # watch Chrome drive the page
 npm run lint         # ESLint, zero-tolerance (see docs/CHECKS.md)
 ```
 
-**E2E coverage:** shell & content counts → hover → three-level panel → real image load → glossary chips + 26-term modal → search jump → era legend jump → Civilization/Deep-time zoom with gradient rebuild → ‹›‹ stepping with viewport glide → keyboard navigation → guided tour start/stop → panel close → service worker + image cache → quiz flow with feedback → permalink restore & hash tracking → printable handout → curriculum chips filter → story reader flips → language switch → a11y dialogs → console clean (no severe errors).
+**E2E coverage (45 checks):** shell & content counts → visual regression → hover → three-level panel → image strip layout → label click → before/now/after story strip → glossary + 26-term modal → search jump → map view (dots, dot-click, Esc/backdrop) → era legend jump → zoom modes + gradient rebuild → ‹ › stepping → keyboard navigation → tour → panel close → service worker + cache → standard quiz → teacher quiz + CSV export → order quiz → image quiz → riddles → packs + worksheet → lens toggle → embed mode → powers/future filters → progress journal → keyboard zoom → settings + rate → narrate toggle → credits page → a11y dialogs → console clean.
 
 ## Design notes (the fun part)
 

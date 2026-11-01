@@ -15,7 +15,7 @@ Individual gates:
 | `npm run secrets` | `scripts/scan-secrets.js`: regex sweep for API keys, tokens, private keys | ✅ yes |
 | `npm run audit` | `npm audit` failing only on high/critical; known moderate exception below | ✅ yes (high+) |
 | `npm run test:unit` | 80+ Node unit tests (`tests/unit/`) | ✅ yes |
-| `npm run test:e2e` | 30 headless-Chrome checks, incl. visual regression | best-effort in CI, required locally |
+| `npm run test:e2e` | 45 headless-Chrome checks, incl. visual regression | best-effort in CI, required locally |
 | `npm run test:mobile` | 9 phone-viewport checks | best-effort in CI, required locally |
 | `npm test` | unit + e2e + mobile | — |
 
