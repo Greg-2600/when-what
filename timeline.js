@@ -2902,8 +2902,78 @@ document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     if (!glossaryModal.hidden) closeGlossary();
     if (!quizModal.hidden) closeQuiz();
+    if (typeof mapModal !== "undefined" && !mapModal.hidden) closeMap();
     if (typeof packsModalShared !== "undefined" && !packsModalShared.hidden) packsModalShared.hidden = true;
   }
+});
+
+/* -------------------------------------------------------------
+   Map view — offline SVG world, one dot per geocoded event.
+   Coincident dots get a deterministic jitter so all stay clickable.
+   ------------------------------------------------------------- */
+const mapBtn = document.getElementById("map-btn");
+const mapModal = document.getElementById("map-modal");
+const mapCloseBtn = document.getElementById("map-close");
+const mapDots = document.getElementById("map-dots");
+const mapCount = document.getElementById("map-count");
+const SVG_NS = "http://www.w3.org/2000/svg";
+
+function projectCoords(lat, lon) {
+  return [(lon + 180) * (1000 / 360), (90 - lat) * (500 / 180)];
+}
+
+function openMap() {
+  document.getElementById("world-land").setAttribute("d", TimelineCore.WORLD_LAND);
+  mapDots.innerHTML = "";
+  const groups = {};
+  MILESTONES.forEach(function (m, i) {
+    if (!m.coords || (m.coords[0] === 0 && m.coords[1] === 0)) return;
+    const k = m.coords[0] + "," + m.coords[1];
+    (groups[k] = groups[k] || []).push(i);
+  });
+  let n = 0;
+  const selected = displayedIndex();
+  Object.keys(groups).forEach(function (k) {
+    const g = groups[k];
+    g.forEach(function (idx, rank) {
+      const m = MILESTONES[idx];
+      let xy = projectCoords(m.coords[0], m.coords[1]);
+      if (g.length > 1) {
+        const r = Math.min(2 + g.length * 0.5, 9);
+        const a = (rank / g.length) * Math.PI * 2;
+        xy = [xy[0] + r * Math.cos(a), xy[1] + r * Math.sin(a)];
+      }
+      const c = document.createElementNS(SVG_NS, "circle");
+      c.setAttribute("cx", xy[0].toFixed(1));
+      c.setAttribute("cy", xy[1].toFixed(1));
+      c.setAttribute("r", 5);
+      c.setAttribute("fill", eventColor(idx));
+      c.setAttribute("class", "map-dot" + (idx === selected ? " selected" : ""));
+      c.setAttribute("data-title", m.title);
+      const tip = document.createElementNS(SVG_NS, "title");
+      tip.textContent = m.title + " — " + formatTime(m.yearsAgo);
+      c.appendChild(tip);
+      c.addEventListener("click", function () {
+        closeMap();
+        selectEvent(idx);
+      });
+      mapDots.appendChild(c);
+      n += 1;
+    });
+  });
+  mapCount.textContent = n + " places plotted · click a dot to jump to that event";
+  mapModal.hidden = false;
+  setTimeout(function () { mapCloseBtn.focus(); }, 60);
+}
+
+function closeMap() {
+  mapModal.hidden = true;
+}
+
+if (mapBtn) mapBtn.addEventListener("click", openMap);
+if (mapCloseBtn) mapCloseBtn.addEventListener("click", closeMap);
+if (mapModal) mapModal.addEventListener("click", function (e) {
+  if (e.target === mapModal) closeMap();
 });
 
 /* Any "see all terms" chip opens the modal too */

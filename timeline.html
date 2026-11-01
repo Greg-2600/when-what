@@ -562,6 +562,14 @@ body > #bottom-strip, body > .site-footer { flex: none; }
   }
   .story-reader[hidden] { display: none; }
 
+  /* Map view */
+  .map-card { width: min(980px, 94vw); }
+  #world-map { width: 100%; height: auto; display: block; background: #0d1526; border: 1px solid var(--border); border-radius: 12px; }
+  #world-land { fill: #1c2942; stroke: #3b4d6e; stroke-width: 1; }
+  .map-dot { cursor: pointer; stroke: #0b1020; stroke-width: 1; }
+  .map-dot:hover { r: 8; }
+  .map-dot.selected { stroke: #fff; stroke-width: 2; }
+
   .reader-inner { max-width: 860px; padding: 3rem 2.5rem; position: relative; }
   .reader-time { color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 1rem; }
   .reader-title { margin: 0 0 1.25rem; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.1; }
@@ -1166,6 +1174,7 @@ body > #bottom-strip, body > .site-footer { flex: none; }
             <button class="seg" id="riddles-btn" type="button" title="Riddle mode: guess the event from its clues">🧩 Riddles</button>
             <button class="seg" id="glossary-btn" type="button" title="All words-to-know" data-i18n="btnGlossary">🔤 Glossary</button>
             <button class="seg" id="tour-btn" type="button" title="Step through the whole story automatically" data-i18n="btnTour">▶ Take the tour</button>
+            <button class="seg" id="map-btn" type="button" title="Map view: where events happened">🗺 Map</button>
             <button class="seg" id="print-btn" type="button" title="Print a one-page handout for the selected event">🖨 Handout</button>
             <button class="seg" id="packs-btn" type="button" title="Multi-page classroom worksheet for an era">📘 Packs</button>
             <button class="seg" id="read-btn" type="button" title="Full-screen reading mode" data-i18n="btnRead">📖 Read</button>
@@ -1229,6 +1238,19 @@ body > #bottom-strip, body > .site-footer { flex: none; }
     <h2>Words to know</h2>
     <p class="gl-sub">The vocabulary of a 13.8-billion-year story — click any chip in a panel for its one-line meaning.</p>
     <div id="glossary-list"></div>
+  </div>
+</div>
+
+<div class="glossary-modal" id="map-modal" role="dialog" aria-modal="true" hidden>
+  <div class="glossary-card map-card">
+    <button class="glossary-close" id="map-close" aria-label="Close map">✕</button>
+    <h2>🗺 Where it happened</h2>
+    <p class="gl-sub" id="map-sub">Every geocoded event, plotted on an offline world outline. Click a dot to jump there.</p>
+    <svg id="world-map" viewBox="0 0 1000 500" role="img" aria-label="World map of timeline events">
+      <path id="world-land" d="" />
+      <g id="map-dots"></g>
+    </svg>
+    <p class="gl-sub" id="map-count"></p>
   </div>
 </div>
 

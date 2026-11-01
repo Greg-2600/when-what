@@ -245,6 +245,38 @@ async function main() {
     );
     ok("search 'moon' → jumps to Moon Landing");
 
+    // ── 5b. Map view plots geocoded events; dot click jumps ──────────
+    await driver.executeScript("document.getElementById('map-btn').click()");
+    await waitLoad(400);
+    const mapInfo = await driver.executeScript(`
+      const dots = [...document.querySelectorAll('#map-dots circle')];
+      const land = document.querySelector('#world-land').getBoundingClientRect();
+      return {
+        open: !document.getElementById('map-modal').hidden,
+        dots: dots.length,
+        landW: Math.round(land.width),
+        moon: dots.some(c => c.getAttribute('data-title') === 'Moon Landing'),
+        bigbang: dots.some(c => c.getAttribute('data-title') === 'The Big Bang')
+      };
+    `);
+    const expectedDots = await driver.executeScript(
+      "return window.TimelineCore.MILESTONES.filter(m => m.coords && !(m.coords[0] === 0 && m.coords[1] === 0)).length");
+    assert.equal(mapInfo.open, true, "map modal opens");
+    assert.ok(mapInfo.landW > 300, `world outline renders (${mapInfo.landW}px)`);
+    assert.equal(mapInfo.dots, expectedDots, `one dot per geocoded event (${mapInfo.dots})`);
+    assert.equal(mapInfo.bigbang, false, "cosmic events have no dots");
+    assert.equal(mapInfo.moon, true, "Moon Landing plotted");
+    ok(`map: ${mapInfo.dots} dots on world outline`);
+    await driver.executeScript(`
+      const dot = [...document.querySelectorAll('#map-dots circle')].find(c => c.getAttribute('data-title') === 'Moon Landing');
+      dot.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    `);
+    await driver.wait(async () =>
+      (await driver.findElement(By.id("panel-title")).getText()) === "Moon Landing", 4000
+    );
+    assert.equal(await driver.executeScript("return document.getElementById('map-modal').hidden"), true, "dot click closes the map");
+    ok("map dot click → jumps to Moon Landing");
+
     // ── 6. Era legend chip jumps ──────────────────────────────────────
     const chip = await driver.executeScript(
       "return [...document.querySelectorAll('.legend .chip')].find(c => c.dataset.era === 'Solar System')"
@@ -456,7 +488,7 @@ async function main() {
     // ── 16d. A11y debt: dialog roles, Escape closes, keyboard legend ─
     const dialogCount = await driver.executeScript(
       "return [...document.querySelectorAll('[role=dialog]')].length");
-    assert.equal(dialogCount, 7, "7 modals carry role=dialog (incl. settings, teacher quiz, order quiz)");
+    assert.equal(dialogCount, 8, "8 modals carry role=dialog (incl. map, settings, teacher quiz, order quiz)");
 
     /* Escape closes the quiz */
     await driver.executeScript("document.getElementById('quiz-btn').click()");
@@ -477,7 +509,7 @@ async function main() {
     const keyboardLegend = await driver.executeScript(
       "return !!document.querySelector('.legend .chip[role=button][tabindex]')");
     assert.equal(keyboardLegend, true, "legend chips keyboard-focusable");
-    ok("a11y: 3 dialogs, Esc closes quiz/reader, keyboard legend chips");
+    ok("a11y: 8 dialogs, Esc closes quiz/reader, keyboard legend chips");
 
     // ── 17. No console errors throughout ────────────────────────────
 

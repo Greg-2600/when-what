@@ -104,6 +104,23 @@ async function main() {
     assert.equal(afterClose.stripHidden, true, "strip clears with the selection");
     ok("close clears sheet + strip");
 
+    // ── M6b. Map view works at phone width ───────────────────────────
+    await driver.executeScript("document.getElementById('map-btn').click();");
+    await waitLoad(400);
+    const mobMap = await driver.executeScript(`
+      const dots = document.querySelectorAll('#map-dots circle').length;
+      const r = document.querySelector('#world-map').getBoundingClientRect();
+      return { open: !document.getElementById('map-modal').hidden, dots,
+               fits: r.width <= window.innerWidth + 1 };
+    `);
+    assert.equal(mobMap.open, true, "map opens on mobile");
+    assert.ok(mobMap.dots > 300, `dots plotted (${mobMap.dots})`);
+    assert.ok(mobMap.fits, "map fits the phone screen");
+    await driver.executeScript("document.getElementById('map-close').click();");
+    await waitLoad(250);
+    assert.equal(await driver.executeScript("return document.getElementById('map-modal').hidden"), true, "map closes");
+    ok(`map view on mobile (${mobMap.dots} dots)`);
+
     // ── M7. No severe console errors ──────────────────────────────────
     const logs = (await driver.manage().logs().get("browser").catch(() => [])).filter(
       (l) => l.level.name === "SEVERE" && !l.message.includes("favicon")

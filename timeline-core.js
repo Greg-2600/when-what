@@ -17,6 +17,7 @@
 const MILESTONES = [
   {
     title: "The Big Bang",
+    coords: [0,0],
     yearsAgo: 13_800_000_000,
     era: "Cosmic origins",
     perspectives: {"religious":"For many faith traditions, the Big Bang is the moment of creation — the instant when God spoke and matter, energy, space and time came into being.","indigenous":"Many indigenous traditions describe the universe beginning from a seed, a dream, or a song — the Big Bang as 'the first vibration' resonates with creation stories worldwide.","chinese":"Chinese cosmology describes the universe emerging from the primordial chaos of Hundun, with the first breath (qi) separating into yin and yang.","islamic":"The Quran describes God creating the heavens and the earth, and the Big Bang's singularity is sometimes interpreted as the moment of divine creation."},
@@ -35,6 +36,7 @@ const MILESTONES = [
   },
   {
     title: "Cosmic Inflation",
+    coords: [0,0],
     yearsAgo: 13799999999,
     era: "Cosmic origins",
     kid: "In the first tiny fraction of a second after the Big Bang, the universe grew incredibly fast — faster than light! This 'inflation' explains why the universe looks the same in every direction. It's one of the wildest ideas in science!",
@@ -49,6 +51,7 @@ const MILESTONES = [
   },
   {
     title: "Dark Matter",
+    coords: [0,0],
     yearsAgo: 13799999998,
     era: "Cosmic origins",
     kid: "Most of the universe's mass is invisible! We call it 'dark matter' because we can't see it, but we know it's there because it pulls on galaxies. It makes up about 27% of the universe. Nobody knows what it is!",
@@ -63,6 +66,7 @@ const MILESTONES = [
   },
   {
     title: "Big Bang Nucleosynthesis",
+    coords: [0,0],
     yearsAgo: 13799999997,
     era: "Cosmic origins",
     kid: "In the first few minutes after the Big Bang, the universe was so hot that hydrogen fused into helium! This created the first elements. Everything heavier was made later, inside stars.",
@@ -77,6 +81,7 @@ const MILESTONES = [
   },
   {
     title: "Recombination — First Light",
+    coords: [0,0],
     yearsAgo: 13797000000,
     era: "Cosmic origins",
     seeAlso: ["The Big Bang","First Stars Ignite"],
@@ -93,6 +98,7 @@ const MILESTONES = [
   },
   {
     title: "The Cosmic Microwave Background",
+    coords: [0,0],
     yearsAgo: 13796999999,
     era: "Cosmic origins",
     kid: "The CMB is the oldest light in the universe! It was released 380,000 years after the Big Bang, when the fog cleared. It's everywhere — in every direction. It's the afterglow of creation!",
@@ -107,6 +113,7 @@ const MILESTONES = [
   },
   {
     title: "The First Atoms",
+    coords: [0,0],
     yearsAgo: 13796999998,
     era: "Cosmic origins",
     kid: "Around 380,000 years after the Big Bang, the universe cooled enough for atoms to form! Electrons joined protons to make hydrogen and helium. Before this, the universe was a hot soup of particles. Now atoms could exist!",
@@ -121,6 +128,7 @@ const MILESTONES = [
   },
   {
     title: "The First Molecules",
+    coords: [0,0],
     yearsAgo: 13700000000,
     era: "Cosmic origins",
     kid: "Around 380,000 years after the Big Bang, the first molecules formed! Hydrogen atoms combined to make molecular hydrogen (H2). These tiny molecules were the building blocks for the first stars!",
@@ -135,6 +143,7 @@ const MILESTONES = [
   },
   {
     title: "First Stars Ignite",
+    coords: [0,0],
     yearsAgo: 13_600_000_000,
     era: "Cosmic origins",
     seeAlso: ["The Big Bang","Milky Way Forms","Quasars Light Up"],
@@ -150,6 +159,7 @@ const MILESTONES = [
   },
   {
     title: "The Milky Way's Center",
+    coords: [0,0],
     yearsAgo: 13599999999,
     era: "Galaxies",
     kid: "At the center of our galaxy is a supermassive black hole called Sagittarius A*! It's 4 million times the mass of the Sun. Stars orbit it at incredible speeds. We can't see the black hole, but we can see stars whipping around it!",
@@ -164,6 +174,7 @@ const MILESTONES = [
   },
   {
     title: "Supernovae",
+    coords: [0,0],
     yearsAgo: 13599999998,
     era: "Galaxies",
     kid: "When massive stars die, they explode as supernovae! These explosions are so bright they can outshine entire galaxies. They create heavy elements like gold and uranium, and spread them across space.",
@@ -178,6 +189,7 @@ const MILESTONES = [
   },
   {
     title: "Black Holes",
+    coords: [0,0],
     yearsAgo: 13599999997,
     era: "Galaxies",
     kid: "Black holes are places where gravity is so strong that not even light can escape! They form when massive stars collapse. Supermassive black holes live at the center of galaxies, including our own!",
@@ -192,6 +204,7 @@ const MILESTONES = [
   },
   {
     title: "Milky Way Forms",
+    coords: [0,0],
     yearsAgo: 13_500_000_000,
     era: "Galaxies",
     seeAlso: ["First Stars Ignite","Solar System Forms"],
@@ -207,6 +220,7 @@ const MILESTONES = [
   },
   {
     title: "The First Galaxies",
+    coords: [0,0],
     yearsAgo: 13499999999,
     era: "Cosmic origins",
     kid: "Around 13.5 billion years ago, the first galaxies formed! Tiny clumps of dark matter pulled in gas, and the first stars ignited. These galaxies were small and irregular, but they grew into the great spirals we see today.",
@@ -221,6 +235,7 @@ const MILESTONES = [
   },
   {
     title: "Quasars Light Up",
+    coords: [0,0],
     yearsAgo: 13300000000,
     era: "Galaxies",
     seeAlso: ["First Stars Ignite","The Cosmic Web Forms","Cosmic Noon"],
@@ -236,6 +251,7 @@ const MILESTONES = [
   },
   {
     title: "The Cosmic Web",
+    coords: [0,0],
     yearsAgo: 13000000000,
     era: "Galaxies",
     kid: "Galaxies aren't scattered randomly — they're connected by thin threads of gas and dark matter, like a giant spider web! This 'cosmic web' is the largest structure in the universe.",
@@ -250,6 +266,7 @@ const MILESTONES = [
   },
   {
     title: "Quasars",
+    coords: [0,0],
     yearsAgo: 12999999999,
     era: "Galaxies",
     kid: "Quasars are the brightest objects in the universe! They're supermassive black holes eating gas, releasing more light than a trillion suns. We can see them from billions of light-years away.",
@@ -264,6 +281,7 @@ const MILESTONES = [
   },
   {
     title: "First Galaxy Clusters",
+    coords: [0,0],
     yearsAgo: 12800000000,
     era: "Galaxies",
     seeAlso: ["Recombination — First Light","Quasars Light Up"],
@@ -279,6 +297,7 @@ const MILESTONES = [
   },
   {
     title: "Cosmic Noon",
+    coords: [0,0],
     yearsAgo: 11000000000,
     era: "Galaxies",
     seeAlso: ["Quasars Light Up","The Cosmic Web Forms"],
@@ -294,6 +313,7 @@ const MILESTONES = [
   },
   {
     title: "Galaxy Collisions",
+    coords: [0,0],
     yearsAgo: 10000000000,
     era: "Galaxies",
     kid: "Galaxies crash into each other! The Milky Way is heading for a collision with Andromeda in 4.5 billion years. But don't worry — stars are so far apart that they rarely hit. The galaxies will merge into one big elliptical galaxy!",
@@ -308,6 +328,7 @@ const MILESTONES = [
   },
   {
     title: "Dark Energy",
+    coords: [0,0],
     yearsAgo: 9800000000,
     era: "Cosmic origins",
     kid: "The universe isn't just expanding — it's accelerating! Something called 'dark energy' is pushing galaxies apart faster and faster. It makes up 68% of the universe. It's the biggest mystery in cosmology!",
@@ -322,6 +343,7 @@ const MILESTONES = [
   },
   {
     title: "The Cosmic Web Forms",
+    coords: [0,0],
     yearsAgo: 9000000000,
     era: "Galaxies",
     seeAlso: ["Cosmic Noon","Dark Energy Takes Over"],
@@ -337,6 +359,7 @@ const MILESTONES = [
   },
   {
     title: "The Milky Way's Bar",
+    coords: [0,0],
     yearsAgo: 8000000000,
     era: "Galaxies",
     kid: "Our galaxy has a bar! The Milky Way has a central bar of stars, like a peanut shape. This bar helps funnel gas into the center, feeding the black hole and triggering star formation.",
@@ -351,6 +374,7 @@ const MILESTONES = [
   },
   {
     title: "Dark Energy Takes Over",
+    coords: [0,0],
     yearsAgo: 7000000000,
     era: "Galaxies",
     seeAlso: ["The Cosmic Web Forms","Solar System Forms"],
@@ -382,6 +406,7 @@ const MILESTONES = [
   },
   {
     title: "The Sun is Born",
+    coords: [0,0],
     yearsAgo: 4599999999,
     era: "Solar System",
     kid: "About 4.6 billion years ago, a cloud of gas and dust collapsed and the Sun ignited! It's been burning ever since, providing light and heat for everything on Earth. The Sun is 99.86% of all mass in the solar system!",
@@ -413,6 +438,7 @@ const MILESTONES = [
   },
   {
     title: "The Moon Forms",
+    coords: [0,0],
     yearsAgo: 4500000000,
     era: "Solar System",
     seeAlso: ["Earth Forms","Late Heavy Bombardment"],
@@ -428,6 +454,7 @@ const MILESTONES = [
   },
   {
     title: "The Asteroid Belt",
+    coords: [0,0],
     yearsAgo: 4499999999,
     era: "Solar System",
     kid: "Between Mars and Jupiter, there's a belt of millions of rocky asteroids! They're leftover building blocks from the solar system's formation. Some are as big as mountains!",
@@ -442,6 +469,7 @@ const MILESTONES = [
   },
   {
     title: "Saturn's Rings",
+    coords: [0,0],
     yearsAgo: 4499999998,
     era: "Solar System",
     kid: "Saturn has the most beautiful rings in the solar system! They're made of billions of ice and rock chunks, from dust to house-sized. They're only 30 feet thick but 175,000 miles wide!",
@@ -456,6 +484,7 @@ const MILESTONES = [
   },
   {
     title: "Jupiter's Moons",
+    coords: [0,0],
     yearsAgo: 4499999997,
     era: "Solar System",
     kid: "Jupiter has 95 known moons! The four biggest — Io, Europa, Ganymede and Callisto — were discovered by Galileo in 1610. Europa might have an ocean under its ice, and life could exist there!",
@@ -470,6 +499,7 @@ const MILESTONES = [
   },
   {
     title: "Saturn's Titan",
+    coords: [0,0],
     yearsAgo: 4499999996,
     era: "Solar System",
     kid: "Titan is Saturn's largest moon — and it's amazing! It has lakes of liquid methane, a thick atmosphere, and weather. It's the only moon with a dense atmosphere. It's like Earth but made of different stuff!",
@@ -484,6 +514,7 @@ const MILESTONES = [
   },
   {
     title: "The Kuiper Belt",
+    coords: [0,0],
     yearsAgo: 4499999995,
     era: "Solar System",
     kid: "Beyond Neptune, there's a belt of icy objects called the Kuiper Belt! It contains Pluto and millions of other icy bodies. It's the source of short-period comets. It's like the asteroid belt's cold cousin!",
@@ -498,6 +529,7 @@ const MILESTONES = [
   },
   {
     title: "The First Oceans",
+    coords: [0,0],
     yearsAgo: 4400000000,
     era: "Solar System",
     seeAlso: ["Earth Forms","First Life Appears"],
@@ -513,6 +545,7 @@ const MILESTONES = [
   },
   {
     title: "Late Heavy Bombardment",
+    coords: [0,0],
     yearsAgo: 4100000000,
     era: "Solar System",
     seeAlso: ["The Moon Forms","First Life Appears"],
@@ -546,6 +579,7 @@ const MILESTONES = [
   },
   {
     title: "Photosynthesis Invented",
+    coords: [0,0],
     yearsAgo: 3500000000,
     era: "Life",
     seeAlso: ["First Life Appears","Oxygenation of the Atmosphere"],
@@ -561,6 +595,7 @@ const MILESTONES = [
   },
   {
     title: "Photosynthesis Evolves",
+    coords: [0,0],
     yearsAgo: 3499999999,
     era: "Life",
     kid: "Around 3.5 billion years ago, some tiny cells learned the best trick ever: using sunlight as energy! They soaked up light, drank water, and breathed out oxygen. This invention changed the entire planet!",
@@ -591,6 +626,7 @@ const MILESTONES = [
   },
   {
     title: "The Oxygen Revolution",
+    coords: [0,0],
     yearsAgo: 2399999999,
     era: "Life",
     kid: "Around 2.4 billion years ago, oxygen started filling the atmosphere! Photosynthetic bacteria had been producing it for a billion years, but now it built up. This was a catastrophe for oxygen-hating life, but it enabled complex life!",
@@ -605,6 +641,7 @@ const MILESTONES = [
   },
   {
     title: "The First Eukaryotes",
+    coords: [0,0],
     yearsAgo: 2000000000,
     era: "Life",
     kid: "Around 2 billion years ago, a cell swallowed another cell and kept it alive! The swallowed cell became a tiny power plant (mitochondrion). This created the first complex cell — the ancestor of all plants, animals and fungi!",
@@ -619,6 +656,7 @@ const MILESTONES = [
   },
   {
     title: "Complex Cells (Eukaryotes)",
+    coords: [0,0],
     yearsAgo: 1800000000,
     era: "Life",
     seeAlso: ["First Life Appears","First Complex Life","Cells Begin Pairing Up (Sex Evolves)"],
@@ -634,6 +672,7 @@ const MILESTONES = [
   },
   {
     title: "Cells Begin Pairing Up (Sex Evolves)",
+    coords: [0,0],
     yearsAgo: 1200000000,
     era: "Life",
     seeAlso: ["Complex Cells (Eukaryotes)","First Complex Life"],
@@ -649,6 +688,7 @@ const MILESTONES = [
   },
   {
     title: "Snowball Earth",
+    coords: [0,0],
     yearsAgo: 700000000,
     era: "Life",
     seeAlso: ["Oxygenation of the Atmosphere","First Complex Life"],
@@ -664,6 +704,7 @@ const MILESTONES = [
   },
   {
     title: "First Complex Life",
+    coords: [-31,138],
     yearsAgo: 600_000_000,
     era: "Life",
     seeAlso: ["Complex Cells (Eukaryotes)","Plants Cover the Land"],
@@ -679,6 +720,7 @@ const MILESTONES = [
   },
   {
     title: "The First Animals",
+    coords: [-31,138],
     yearsAgo: 599999999,
     era: "Life",
     kid: "Around 600 million years ago, the first animals appeared! They were simple — like sponges and jellyfish. But they were the beginning of all animal life, including us! Before this, all life was single-celled.",
@@ -693,6 +735,7 @@ const MILESTONES = [
   },
   {
     title: "Multicellular Life",
+    coords: [-31,138],
     yearsAgo: 599999998,
     era: "Life",
     kid: "Around 600 million years ago, cells started sticking together to form multicellular organisms! Instead of being alone, cells could specialize — some for movement, some for eating. This led to all animals, plants and fungi!",
@@ -707,6 +750,7 @@ const MILESTONES = [
   },
   {
     title: "The First Brains",
+    coords: [0,0],
     yearsAgo: 550000000,
     era: "Life",
     kid: "Around 550 million years ago, the first brains appeared! Before that, animals had simple nerve nets. Brains let animals learn, remember and make decisions. Every thought you've ever had started here!",
@@ -721,6 +765,7 @@ const MILESTONES = [
   },
   {
     title: "The First Skeletons",
+    coords: [25,103],
     yearsAgo: 545000000,
     era: "Life",
     kid: "Around 545 million years ago, animals started growing hard parts! Shells, bones and exoskeletons protected them from predators. The fossil record suddenly exploded with hard-bodied creatures!",
@@ -735,6 +780,7 @@ const MILESTONES = [
   },
   {
     title: "The Cambrian Explosion",
+    coords: [51,-116],
     yearsAgo: 540000000,
     era: "Life",
     kid: "Around 540 million years ago, life suddenly exploded with variety! In just a few million years, almost every type of animal body plan appeared. It was like an evolutionary fireworks show!",
@@ -749,6 +795,7 @@ const MILESTONES = [
   },
   {
     title: "The First Eyes",
+    coords: [25,103],
     yearsAgo: 539999999,
     era: "Life",
     kid: "Around 540 million years ago, the first eyes appeared! Before that, all life was blind. Suddenly animals could see predators, prey and mates. It was one of the biggest leaps in evolution!",
@@ -763,6 +810,7 @@ const MILESTONES = [
   },
   {
     title: "The First Fish",
+    coords: [25,103],
     yearsAgo: 520000000,
     era: "Life",
     kid: "Around 520 million years ago, the first fish appeared! They had backbones and could swim fast. They were the ancestors of all vertebrates — including us! Fish ruled the seas for hundreds of millions of years.",
@@ -777,6 +825,7 @@ const MILESTONES = [
   },
   {
     title: "Plants Cover the Land",
+    coords: [57,-3],
     yearsAgo: 470000000,
     era: "Life",
     seeAlso: ["First Complex Life","The Coal Forests"],
@@ -792,6 +841,7 @@ const MILESTONES = [
   },
   {
     title: "The First Land Plants",
+    coords: [57,-3],
     yearsAgo: 469999999,
     era: "Life",
     kid: "Around 470 million years ago, plants moved from water to land! They had to solve problems like drying out and standing up. They evolved roots, leaves and seeds. Soon the land was green!",
@@ -806,6 +856,7 @@ const MILESTONES = [
   },
   {
     title: "Plants Conquer Land",
+    coords: [57,-3],
     yearsAgo: 469999998,
     era: "Life",
     kid: "Around 470 million years ago, plants moved from water to land! They had to solve problems like drying out and standing up. They evolved roots, leaves and seeds. Soon the land was green!",
@@ -820,6 +871,7 @@ const MILESTONES = [
   },
   {
     title: "The First Trees",
+    coords: [42,-74],
     yearsAgo: 385000000,
     era: "Life",
     kid: "Around 385 million years ago, the first trees appeared! Giant ferns and club mosses grew 30 meters tall. Their roots broke down rock, creating soil. When they died, they became coal!",
@@ -834,6 +886,7 @@ const MILESTONES = [
   },
   {
     title: "Fish Walk onto Land",
+    coords: [76,-85],
     yearsAgo: 375000000,
     era: "Life",
     seeAlso: ["First Complex Life","Plants Cover the Land"],
@@ -849,6 +902,7 @@ const MILESTONES = [
   },
   {
     title: "The First Land Vertebrates",
+    coords: [76,-85],
     yearsAgo: 374999999,
     era: "Life",
     kid: "Around 375 million years ago, fish with legs crawled onto land! These 'tetrapods' were the ancestors of all land animals — amphibians, reptiles, birds and mammals. The first step onto land changed life forever!",
@@ -863,6 +917,7 @@ const MILESTONES = [
   },
   {
     title: "The Age of Amphibians",
+    coords: [0,0],
     yearsAgo: 360000000,
     era: "Life",
     kid: "Around 360 million years ago, amphibians ruled the land! They were the first vertebrates to walk on land, but they still needed water to lay eggs. Giant salamanders and frog-like creatures lived in swamps!",
@@ -877,6 +932,7 @@ const MILESTONES = [
   },
   {
     title: "Jupiter's Great Red Spot",
+    coords: [0,0],
     yearsAgo: 350000000,
     era: "Solar System",
     kid: "Jupiter has a giant storm called the Great Red Spot! It's been raging for at least 350 years and is bigger than Earth. It's the largest storm in the solar system!",
@@ -891,6 +947,7 @@ const MILESTONES = [
   },
   {
     title: "The First Reptiles",
+    coords: [0,0],
     yearsAgo: 312000000,
     era: "Life",
     kid: "Around 312 million years ago, the first reptiles appeared! Unlike amphibians, they had scaly skin and laid eggs on land. They were free from water — and they took over the world!",
@@ -905,6 +962,7 @@ const MILESTONES = [
   },
   {
     title: "The Age of Reptiles",
+    coords: [0,0],
     yearsAgo: 310000000,
     era: "Life",
     kid: "Around 310 million years ago, reptiles took over the land! They had scaly skin and laid eggs on land, so they didn't need water. They ruled for 250 million years until the dinosaurs came!",
@@ -919,6 +977,7 @@ const MILESTONES = [
   },
   {
     title: "The Coal Forests",
+    coords: [45,-64],
     yearsAgo: 300000000,
     era: "Life",
     seeAlso: ["Plants Cover the Land","The Great Dying"],
@@ -934,6 +993,7 @@ const MILESTONES = [
   },
   {
     title: "The Great Dying",
+    coords: [31,119],
     yearsAgo: 252000000,
     era: "Life",
     seeAlso: ["Dinosaurs Appear","The Coal Forests"],
@@ -949,6 +1009,7 @@ const MILESTONES = [
   },
   {
     title: "The Permian Extinction",
+    coords: [31,119],
     yearsAgo: 251999999,
     era: "Life",
     kid: "Around 252 million years ago, the worst extinction ever happened! 96% of marine species and 70% of land species died. Volcanic eruptions in Siberia changed the climate. Life almost ended — but some survivors rebuilt!",
@@ -963,6 +1024,7 @@ const MILESTONES = [
   },
   {
     title: "Dinosaurs Appear",
+    coords: [-30,-68],
     yearsAgo: 230_000_000,
     era: "Life",
     seeAlso: ["First Complex Life","The Great Dying","Dinosaur Extinction"],
@@ -978,6 +1040,7 @@ const MILESTONES = [
   },
   {
     title: "The Age of Dinosaurs",
+    coords: [39,-109],
     yearsAgo: 229999999,
     era: "Life",
     kid: "Dinosaurs ruled Earth for 165 million years! From tiny chicken-sized creatures to 100-ton giants, they filled every niche. Birds are living dinosaurs — so dinosaurs aren't really extinct!",
@@ -992,6 +1055,7 @@ const MILESTONES = [
   },
   {
     title: "The First Mammals",
+    coords: [0,0],
     yearsAgo: 225000000,
     era: "Life",
     kid: "Around 225 million years ago, the first mammals appeared! They were tiny, shrew-like creatures that lived in the shadows of dinosaurs. They survived the dinosaur extinction and eventually gave rise to us!",
@@ -1006,6 +1070,7 @@ const MILESTONES = [
   },
   {
     title: "The First Birds",
+    coords: [49,11],
     yearsAgo: 150000000,
     era: "Life",
     kid: "Around 150 million years ago, the first birds appeared! Archaeopteryx had feathers and wings but also teeth and a long tail. Birds are living dinosaurs — they survived when all other dinosaurs died!",
@@ -1020,6 +1085,7 @@ const MILESTONES = [
   },
   {
     title: "The First Flowers",
+    coords: [41,121],
     yearsAgo: 140000000,
     era: "Life",
     kid: "Around 140 million years ago, the first flowers bloomed! Flowering plants (angiosperms) were a new invention — they used insects to spread pollen. Today they're the most diverse plant group on Earth!",
@@ -1034,6 +1100,7 @@ const MILESTONES = [
   },
   {
     title: "Saturn's Rings Form",
+    coords: [0,0],
     yearsAgo: 100000000,
     era: "Solar System",
     kid: "Saturn's rings might be only 100 million years old — relatively young! They're made of ice and rock chunks. They might have formed when a moon or comet was torn apart by Saturn's gravity. They're the most beautiful sight in the solar system!",
@@ -1067,6 +1134,7 @@ const MILESTONES = [
   },
   {
     title: "The Asteroid Impact",
+    coords: [0,0],
     yearsAgo: 65999999,
     era: "Solar System",
     kid: "66 million years ago, a giant asteroid hit Earth! It was 6 miles wide and traveling 40,000 mph. The impact caused fires, tsunamis and a 'nuclear winter' that killed the dinosaurs. But mammals survived!",
@@ -1081,6 +1149,7 @@ const MILESTONES = [
   },
   {
     title: "The First Primates",
+    coords: [0,0],
     yearsAgo: 55000000,
     era: "Life",
     kid: "Around 55 million years ago, the first primates appeared! They were small, tree-dwelling creatures with grasping hands and big eyes. They were our distant ancestors — the beginning of the line that led to monkeys, apes and humans!",
@@ -1095,6 +1164,7 @@ const MILESTONES = [
   },
   {
     title: "Whales Return to the Sea",
+    coords: [30,70],
     yearsAgo: 50000000,
     era: "Life",
     seeAlso: ["Dinosaur Extinction","The First Apes"],
@@ -1110,6 +1180,7 @@ const MILESTONES = [
   },
   {
     title: "The First Whales",
+    coords: [30,70],
     yearsAgo: 49999999,
     era: "Life",
     kid: "Around 50 million years ago, some land mammals went back into the sea! Over millions of years, their legs became flippers and they became whales and dolphins. The largest animal ever is a whale!",
@@ -1124,6 +1195,7 @@ const MILESTONES = [
   },
   {
     title: "The First Apes",
+    coords: [29,31],
     yearsAgo: 25000000,
     era: "Humans",
     seeAlso: ["Whales Return to the Sea","First Hominids"],
@@ -1155,6 +1227,7 @@ const MILESTONES = [
   },
   {
     title: "Australopithecus",
+    coords: [11,41],
     yearsAgo: 4000000,
     era: "Humans",
     kid: "Around 4 million years ago, Australopithecus walked upright in Africa! They were small (3-4 feet tall) with small brains, but they could walk on two legs. Lucy is the most famous fossil — she changed our understanding of human evolution!",
@@ -1169,6 +1242,7 @@ const MILESTONES = [
   },
   {
     title: "The First Tools",
+    coords: [4,36],
     yearsAgo: 3300000,
     era: "Humans",
     kid: "Around 3.3 million years ago, someone picked up a rock and used it to crack open a nut or bone! These were the first tools. They were simple — just sharp stones — but they changed everything. We became toolmakers!",
@@ -1183,6 +1257,7 @@ const MILESTONES = [
   },
   {
     title: "The Ice Ages",
+    coords: [0,0],
     yearsAgo: 2600000,
     era: "Life",
     kid: "Starting 2.6 million years ago, Earth went through repeated ice ages! Massive glaciers covered much of the planet. These climate swings shaped human evolution — our ancestors adapted to survive the cold.",
@@ -1197,6 +1272,7 @@ const MILESTONES = [
   },
   {
     title: "Homo habilis",
+    coords: [-3,35],
     yearsAgo: 2400000,
     era: "Humans",
     kid: "Around 2.4 million years ago, 'Handy Man' appeared! Homo habilis was the first human species to make stone tools. They had bigger brains than earlier hominins and started the stone age.",
@@ -1211,6 +1287,7 @@ const MILESTONES = [
   },
   {
     title: "Homo erectus",
+    coords: [4,36],
     yearsAgo: 1900000,
     era: "Humans",
     kid: "Around 1.9 million years ago, Homo erectus appeared! They were the first human species to walk fully upright, use fire, and leave Africa. They spread across Asia and Europe — the first global humans!",
@@ -1225,6 +1302,7 @@ const MILESTONES = [
   },
   {
     title: "Fire in Our Hands",
+    coords: [-28,23],
     yearsAgo: 1000000,
     era: "Humans",
     seeAlso: ["First Hominids","Homo sapiens"],
@@ -1240,6 +1318,7 @@ const MILESTONES = [
   },
   {
     title: "The Discovery of Fire",
+    coords: [-28,23],
     yearsAgo: 999999,
     era: "Humans",
     kid: "Around 1 million years ago, humans learned to control fire! Fire meant warmth, protection from predators, and cooked food. Cooking made food easier to digest, which may have helped our brains grow bigger!",
@@ -1254,6 +1333,7 @@ const MILESTONES = [
   },
   {
     title: "Neanderthals",
+    coords: [51,7],
     yearsAgo: 400000,
     era: "Humans",
     kid: "Neanderthals were our closest relatives! They lived in Europe and Asia for 400,000 years. They were strong, smart, buried their dead, and even made art. We share 1-2% of their DNA!",
@@ -1286,6 +1366,7 @@ const MILESTONES = [
   },
   {
     title: "Denisovans",
+    coords: [51,85],
     yearsAgo: 200000,
     era: "Humans",
     kid: "Denisovans were a mysterious human species discovered from just a finger bone in a Siberian cave! We know they interbred with our ancestors. People in Tibet and Oceania still carry their DNA!",
@@ -1300,6 +1381,7 @@ const MILESTONES = [
   },
   {
     title: "The Invention of Clothing",
+    coords: [0,0],
     yearsAgo: 170000,
     era: "Humans",
     kid: "Around 170,000 years ago, humans started wearing clothes! Before that, we had fur like other animals. Clothes let us survive in cold climates and eventually spread across the whole world.",
@@ -1314,6 +1396,7 @@ const MILESTONES = [
   },
   {
     title: "The First Language",
+    coords: [0,0],
     yearsAgo: 100000,
     era: "Humans",
     kid: "Around 100,000 years ago, humans started talking! Language let us share ideas, tell stories and plan together. It's the most powerful tool ever invented — more than any machine. Language made us human!",
@@ -1328,6 +1411,7 @@ const MILESTONES = [
   },
   {
     title: "The First Burials",
+    coords: [33,35],
     yearsAgo: 99999,
     era: "Humans",
     kid: "Around 100,000 years ago, humans started burying their dead! This shows they cared about each other and maybe believed in an afterlife. It's one of the first signs of religion and compassion.",
@@ -1342,6 +1426,7 @@ const MILESTONES = [
   },
   {
     title: "Out of Africa",
+    coords: [30,35],
     yearsAgo: 70000,
     era: "Humans",
     seeAlso: ["Homo sapiens","Agriculture Begins"],
@@ -1357,6 +1442,7 @@ const MILESTONES = [
   },
   {
     title: "The First Boats",
+    coords: [0,0],
     yearsAgo: 50000,
     era: "Humans",
     kid: "Around 50,000 years ago, humans built the first boats! This let them cross water and reach islands. People arrived in Australia 50,000 years ago — they must have crossed the sea in boats!",
@@ -1371,6 +1457,7 @@ const MILESTONES = [
   },
   {
     title: "The Invention of the Needle",
+    coords: [0,0],
     yearsAgo: 49999,
     era: "Humans",
     kid: "Around 50,000 years ago, someone invented the needle! Made from bone, it let people sew clothes from animal skins. This allowed humans to survive in cold climates and spread across the globe.",
@@ -1385,6 +1472,7 @@ const MILESTONES = [
   },
   {
     title: "Cave Paintings",
+    coords: [45,1],
     yearsAgo: 45000,
     era: "Humans",
     kid: "Around 45,000 years ago, humans started painting animals on cave walls! The paintings at Chauvet and Lascaux are incredibly beautiful and detailed. They are humanity's first art!",
@@ -1399,6 +1487,7 @@ const MILESTONES = [
   },
   {
     title: "The First Art",
+    coords: [-34,22],
     yearsAgo: 44999,
     era: "Humans",
     kid: "Around 45,000 years ago, humans started making art! Cave paintings, carved figurines and jewelry appeared. Art shows we could imagine things that didn't exist — a huge leap in human thinking!",
@@ -1413,6 +1502,7 @@ const MILESTONES = [
   },
   {
     title: "Megafauna Extinction",
+    coords: [0,0],
     yearsAgo: 13000,
     era: "Life",
     kid: "Around 13,000 years ago, giant animals like mammoths, saber-toothed cats and giant sloths went extinct! Was it climate change? Human hunting? Probably both. Their disappearance changed ecosystems forever.",
@@ -1446,6 +1536,7 @@ const MILESTONES = [
   },
   {
     title: "The Agricultural Revolution",
+    coords: [36,38],
     yearsAgo: 11999,
     era: "Humans",
     kid: "Around 12,000 years ago, humans stopped wandering and started farming! They planted seeds, tamed animals, and built villages. This was the biggest change in human history — it led to cities, writing and civilization!",
@@ -1476,6 +1567,7 @@ const MILESTONES = [
   },
   {
     title: "The First Cities",
+    coords: [31,46],
     yearsAgo: 5999,
     era: "Civilization",
     kid: "Around 4000 BCE, the first cities appeared! Uruk in Mesopotamia had 50,000 people. Cities meant specialization — some people farmed, others made tools, others ruled. Civilization was born!",
@@ -1490,6 +1582,7 @@ const MILESTONES = [
   },
   {
     title: "The Wheel Turns",
+    coords: [33,44],
     yearsAgo: 5600,
     era: "Civilization",
     seeAlso: ["Agriculture Begins","Writing Invented"],
@@ -1505,6 +1598,7 @@ const MILESTONES = [
   },
   {
     title: "The Wheel",
+    coords: [33,44],
     yearsAgo: 5599,
     era: "Civilization",
     kid: "Around 3500 BCE, someone in Mesopotamia invented the wheel! First used for pottery, then for carts. The wheel transformed transport, trade and warfare. Almost everything moves on wheels today!",
@@ -1552,6 +1646,7 @@ const MILESTONES = [
   },
   {
     title: "The Bronze Age",
+    coords: [34,36],
     yearsAgo: 5000,
     era: "Civilization",
     kid: "Around 3000 BCE, people learned to mix copper and tin to make bronze! Bronze tools and weapons were stronger than stone. The Bronze Age brought better farming, warfare and trade.",
@@ -1614,6 +1709,7 @@ const MILESTONES = [
   },
   {
     title: "Judaism",
+    coords: [32,35],
     yearsAgo: 3800,
     era: "Civilization",
     kid: "Judaism is one of the world's oldest religions, dating back 4,000 years to Abraham! Jews believe in one God and follow the Torah. Despite persecution and exile, Jewish culture and religion survived and thrived.",
@@ -1644,6 +1740,7 @@ const MILESTONES = [
   },
   {
     title: "The Code of Hammurabi",
+    coords: [33,44],
     yearsAgo: 3775,
     era: "Civilization",
     kid: "Around 1754 BCE, King Hammurabi of Babylon wrote 282 laws on a stone pillar! 'An eye for an eye' is from his code. It's one of the oldest and most complete legal codes ever found.",
@@ -1658,6 +1755,7 @@ const MILESTONES = [
   },
   {
     title: "Hinduism Takes Shape",
+    coords: [25,83],
     yearsAgo: 3500,
     era: "Civilization",
     kid: "In ancient India, people wrote sacred songs called the Vedas and worshipped many gods. Over centuries these ideas grew into Hinduism — the world's oldest major religion still practiced today!",
@@ -1672,6 +1770,7 @@ const MILESTONES = [
   },
   {
     title: "The Alphabet",
+    coords: [34,36],
     yearsAgo: 3400,
     era: "Civilization",
     seeAlso: ["Writing Invented","Great Pyramid of Giza"],
@@ -1703,6 +1802,7 @@ const MILESTONES = [
   },
   {
     title: "The Exodus",
+    coords: [29,34],
     yearsAgo: 3299,
     era: "Biblical",
     kid: "According to the Bible, Moses led the Israelites out of slavery in Egypt! They wandered the desert for 40 years and received the Ten Commandments. Whether history or myth, the Exodus story shaped Judaism, Christianity and Islam.",
@@ -1733,6 +1833,7 @@ const MILESTONES = [
   },
   {
     title: "The Iron Age",
+    coords: [39,35],
     yearsAgo: 3199,
     era: "Civilization",
     kid: "Around 1200 BCE, people learned to make iron tools! Iron was stronger and more common than bronze. Iron weapons changed warfare, and iron tools changed farming. The Iron Age built the ancient empires!",
@@ -1763,6 +1864,7 @@ const MILESTONES = [
   },
   {
     title: "Zoroastrianism",
+    coords: [32,54],
     yearsAgo: 2999,
     era: "Civilization",
     kid: "Around 1000 BCE, a prophet named Zoroaster taught that the world is a battle between good (Ahura Mazda) and evil (Angra Mainyu). This idea of good vs. evil influenced Judaism, Christianity and Islam!",
@@ -1841,6 +1943,7 @@ const MILESTONES = [
   },
   {
     title: "The Hanging Gardens",
+    coords: [33,44],
     yearsAgo: 2599,
     era: "Civilization",
     kid: "The Hanging Gardens of Babylon were one of the Seven Wonders of the Ancient World! Legend says King Nebuchadnezzar built them for his homesick wife. Terraced gardens with trees and flowers hung from the palace walls!",
@@ -1855,6 +1958,7 @@ const MILESTONES = [
   },
   {
     title: "Buddhism is Founded",
+    coords: [25,85],
     yearsAgo: 2589,
     era: "Civilization",
     kid: "A prince named Siddhartha sat under a tree and figured out a way to end suffering. He became the Buddha, and his ideas spread across Asia, shaping billions of lives!",
@@ -1869,6 +1973,7 @@ const MILESTONES = [
   },
   {
     title: "Cyrus the Great",
+    coords: [30,53],
     yearsAgo: 2560,
     era: "Civilization",
     kid: "Around 550 BCE, Cyrus the Great conquered Babylon and freed the Jewish people from exile! He was known for tolerance and human rights. His empire stretched from India to the Mediterranean — the largest the world had seen!",
@@ -1899,6 +2004,7 @@ const MILESTONES = [
   },
   {
     title: "The Persian Empire",
+    coords: [30,53],
     yearsAgo: 2547,
     era: "World Powers",
     kid: "Around 550 BCE, Cyrus the Great built the Persian Empire — the largest the world had seen! It stretched from India to Greece. The Persians were known for tolerance, roads and the first postal system!",
@@ -1913,6 +2019,7 @@ const MILESTONES = [
   },
   {
     title: "Confucius",
+    coords: [36,117],
     yearsAgo: 2530,
     era: "Civilization",
     kid: "Around 500 BCE, a teacher named Confucius said that respect, family and education make a good society. His ideas shaped Chinese culture for 2,500 years! He believed in leading by example, not force.",
@@ -1943,6 +2050,7 @@ const MILESTONES = [
   },
   {
     title: "Democracy is Born",
+    coords: [38,24],
     yearsAgo: 2500,
     era: "Civilization",
     seeAlso: ["The Alphabet","Roman Empire"],
@@ -1958,6 +2066,7 @@ const MILESTONES = [
   },
   {
     title: "Taoism Emerges",
+    coords: [34,108],
     yearsAgo: 2499,
     era: "Civilization",
     kid: "In ancient China, a wise man named Laozi taught that the best way to live is to go with the flow of nature — like water. His ideas became Taoism, a religion and philosophy that values simplicity, balance and harmony!",
@@ -1972,6 +2081,7 @@ const MILESTONES = [
   },
   {
     title: "Jainism",
+    coords: [23,77],
     yearsAgo: 2498,
     era: "Civilization",
     kid: "Around 500 BCE, Mahavira taught that all living things have souls and must not be harmed. Jains practice extreme non-violence — some sweep the ground before walking to avoid stepping on insects!",
@@ -2002,6 +2112,7 @@ const MILESTONES = [
   },
   {
     title: "Socrates",
+    coords: [38,24],
     yearsAgo: 2426,
     era: "Civilization",
     kid: "Around 400 BCE, a Greek thinker named Socrates walked around Athens asking questions instead of giving answers! He believed the unexamined life wasn't worth living. He was sentenced to death for his ideas — but his method of questioning lives on!",
@@ -2016,6 +2127,7 @@ const MILESTONES = [
   },
   {
     title: "Hippocrates and Medicine",
+    coords: [37,27],
     yearsAgo: 2420,
     era: "Civilization",
     kid: "Around 400 BCE, Hippocrates said diseases aren't caused by angry gods — they have natural causes! He wrote medical oaths and taught doctors to observe patients carefully. The Hippocratic Oath is still sworn today!",
@@ -2030,6 +2142,7 @@ const MILESTONES = [
   },
   {
     title: "Plato's Academy",
+    coords: [38,24],
     yearsAgo: 2400,
     era: "Civilization",
     kid: "Around 387 BCE, Plato founded a school in Athens called the Academy — the first university in the Western world! He wrote about ideal governments, the nature of reality, and a perfect world of ideas. His student Aristotle became equally famous!",
@@ -2060,6 +2173,7 @@ const MILESTONES = [
   },
   {
     title: "Aristotle",
+    coords: [38,24],
     yearsAgo: 2350,
     era: "Civilization",
     kid: "Aristotle was the ultimate know-it-all of ancient Greece! He studied everything — animals, stars, politics, poetry, logic. He tutored Alexander the Great and his ideas dominated Western thought for 2,000 years!",
@@ -2074,6 +2188,7 @@ const MILESTONES = [
   },
   {
     title: "Euclid's Geometry",
+    coords: [31,30],
     yearsAgo: 2320,
     era: "Civilization",
     kid: "Around 300 BCE, Euclid wrote a book called 'Elements' that organized all of geometry into one system. His proofs were so perfect that people used them for 2,000 years! 'Euclid' still means 'geometry' today.",
@@ -2088,6 +2203,7 @@ const MILESTONES = [
   },
   {
     title: "Ashoka the Great",
+    coords: [26,85],
     yearsAgo: 2260,
     era: "Civilization",
     kid: "Around 268 BCE, Ashoka became emperor of most of India. After a bloody war, he felt terrible and converted to Buddhism. He spread messages of peace and kindness on stone pillars across his empire — and sent missionaries to other countries!",
@@ -2102,6 +2218,7 @@ const MILESTONES = [
   },
   {
     title: "Qin Shi Huang Unifies China",
+    coords: [34,109],
     yearsAgo: 2240,
     era: "Civilization",
     kid: "In 221 BCE, Qin Shi Huang conquered all the warring states and became China's first emperor! He built the Great Wall, standardized writing and money, and created the Terracotta Army to guard his tomb. He was a ruthless but effective ruler.",
@@ -2116,6 +2233,7 @@ const MILESTONES = [
   },
   {
     title: "The Great Wall of China",
+    coords: [40,116],
     yearsAgo: 2239,
     era: "Civilization",
     kid: "China built the Great Wall over centuries to keep out invaders! The most famous parts were built during the Ming dynasty. It's so long (13,000 miles) that it's visible from space — or is it? That's actually a myth!",
@@ -2130,6 +2248,7 @@ const MILESTONES = [
   },
   {
     title: "Archimedes",
+    coords: [37,15],
     yearsAgo: 2230,
     era: "Civilization",
     kid: "Archimedes was the greatest scientist of ancient times! He discovered how to measure volume by water displacement (shouting 'Eureka!'), invented war machines, and calculated pi. He was killed by a Roman soldier while doing math!",
@@ -2144,6 +2263,7 @@ const MILESTONES = [
   },
   {
     title: "The Terracotta Army",
+    coords: [34,109],
     yearsAgo: 2220,
     era: "Civilization",
     kid: "China's first emperor, Qin Shi Huang, was buried with 8,000 life-sized clay soldiers! Each one has a unique face. They were meant to protect him in the afterlife. It's the greatest archaeological find of the 20th century!",
@@ -2158,6 +2278,7 @@ const MILESTONES = [
   },
   {
     title: "The Han Dynasty",
+    coords: [34,109],
     yearsAgo: 2200,
     era: "Civilization",
     kid: "The Han dynasty ruled China from 206 BCE to 220 CE — over 400 years! It was a golden age of trade (Silk Road), invention (paper, compass) and philosophy (Confucianism became state religion). The Chinese still call themselves 'Han people' today!",
@@ -2188,6 +2309,7 @@ const MILESTONES = [
   },
   {
     title: "Julius Caesar",
+    coords: [42,13],
     yearsAgo: 2070,
     era: "Civilization",
     kid: "Julius Caesar was Rome's greatest general and politician. He conquered Gaul (France), crossed the Rubicon river ('the die is cast!'), and became dictator. His friends betrayed and killed him on the Ides of March — but his name became a title for emperors!",
@@ -2219,6 +2341,7 @@ const MILESTONES = [
   },
   {
     title: "The Roman Empire",
+    coords: [42,13],
     yearsAgo: 2052,
     era: "World Powers",
     kid: "Rome started as a small city and grew into the greatest empire of the ancient world! At its peak, it ruled 65 million people across 3 continents. Roman roads, laws and language shaped Western civilization for 2,000 years.",
@@ -2233,6 +2356,7 @@ const MILESTONES = [
   },
   {
     title: "Augustus Founds the Empire",
+    coords: [42,13],
     yearsAgo: 2050,
     era: "Civilization",
     kid: "After Caesar died, his nephew Octavian defeated all rivals and became Augustus — the first Roman Emperor! He ruled for 41 years, bringing peace (Pax Romana) to the Mediterranean. Rome became the greatest empire of the ancient world.",
@@ -2262,6 +2386,7 @@ const MILESTONES = [
   },
   {
     title: "The Maya Civilization",
+    coords: [17,-90],
     yearsAgo: 2000,
     era: "Civilization",
     kid: "The Maya built amazing cities in the jungles of Central America! They had a complex calendar, wrote in hieroglyphs, and studied the stars. Their civilization lasted thousands of years before declining.",
@@ -2291,6 +2416,7 @@ const MILESTONES = [
   },
   {
     title: "The Crucifixion",
+    coords: [32,35],
     yearsAgo: 1995,
     era: "Biblical",
     kid: "Around 30 CE, Jesus was crucified by the Romans. His followers said he rose from the dead three days later! This event — the Resurrection — is the central belief of Christianity. It changed the world forever.",
@@ -2368,6 +2494,7 @@ const MILESTONES = [
   },
   {
     title: "Constantine and Christianity",
+    coords: [41,29],
     yearsAgo: 1700,
     era: "Civilization",
     kid: "In 312 CE, Emperor Constantine saw a cross in the sky before a battle and won! He made Christianity legal in Rome and moved the capital to Constantinople. This changed the religion from a persecuted sect to the faith of an empire.",
@@ -2382,6 +2509,7 @@ const MILESTONES = [
   },
   {
     title: "The Gupta Empire",
+    coords: [26,85],
     yearsAgo: 1650,
     era: "Civilization",
     kid: "The Gupta Empire (320-550 CE) was India's golden age! Math, science and art flourished. Indians invented zero, the decimal system and advanced astronomy. Chess and the concept of zero came from this era!",
@@ -2396,6 +2524,7 @@ const MILESTONES = [
   },
   {
     title: "Fall of Rome / Middle Ages",
+    coords: [42,13],
     yearsAgo: 1_548,
     era: "Civilization",
     seeAlso: ["Roman Empire","Printing Press"],
@@ -2411,6 +2540,7 @@ const MILESTONES = [
   },
   {
     title: "Justinian's Code",
+    coords: [41,29],
     yearsAgo: 1470,
     era: "Civilization",
     kid: "In 534 CE, Emperor Justinian compiled all of Roman law into one book! The Justinian Code became the basis for legal systems across Europe. It influenced how we think about justice, contracts and rights today.",
@@ -2425,6 +2555,7 @@ const MILESTONES = [
   },
   {
     title: "Islam is Founded",
+    coords: [21,40],
     yearsAgo: 1416,
     era: "Civilization",
     kid: "In 610 CE, a merchant named Muhammad said he received messages from God through an angel. He shared them, and a new religion — Islam — was born. Today over 1.9 billion people follow it!",
@@ -2439,6 +2570,7 @@ const MILESTONES = [
   },
   {
     title: "The Tang Dynasty",
+    coords: [34,109],
     yearsAgo: 1390,
     era: "Civilization",
     kid: "The Tang dynasty (618-907 CE) was China's golden age! Poetry, painting and music flourished. The capital Chang'an was the world's largest city. Gunpowder was invented, and the Silk Road brought treasures from afar.",
@@ -2469,6 +2601,7 @@ const MILESTONES = [
   },
   {
     title: "The Caliphates",
+    coords: [33,44],
     yearsAgo: 1355,
     era: "World Powers",
     kid: "After Muhammad died, Islamic empires (caliphates) spread from Spain to India! The Rashidun, Umayyad and Abbasid caliphates created a golden age of science, art and trade. Baghdad became the world's greatest city.",
@@ -2483,6 +2616,7 @@ const MILESTONES = [
   },
   {
     title: "Charlemagne",
+    coords: [51,6],
     yearsAgo: 1225,
     era: "Civilization",
     kid: "In 800 CE, Charlemagne was crowned Emperor of the Romans! He united much of Western Europe, promoted education and Christianity, and his empire became the foundation of modern France and Germany.",
@@ -2497,6 +2631,7 @@ const MILESTONES = [
   },
   {
     title: "The Islamic Golden Age",
+    coords: [33,44],
     yearsAgo: 1200,
     era: "Civilization",
     seeAlso: ["Fall of Rome / Middle Ages","Printing Press"],
@@ -2512,6 +2647,7 @@ const MILESTONES = [
   },
   {
     title: "Shinto",
+    coords: [35,137],
     yearsAgo: 1199,
     era: "Civilization",
     kid: "Shinto is Japan's native religion! It teaches that spirits (kami) live in nature — in trees, rivers and mountains. People visit shrines to honor their ancestors and the spirits of nature.",
@@ -2526,6 +2662,7 @@ const MILESTONES = [
   },
   {
     title: "The Ghana Empire",
+    coords: [16,-10],
     yearsAgo: 1026,
     era: "Civilization",
     kid: "Long before European explorers arrived, West Africa had a rich empire called Ghana that controlled the gold and salt trade — and its kings were richer than European kings!",
@@ -2540,6 +2677,7 @@ const MILESTONES = [
   },
   {
     title: "The Song Dynasty",
+    coords: [35,114],
     yearsAgo: 1000,
     era: "Civilization",
     kid: "The Song dynasty (960-1279 CE) was a golden age of Chinese invention! They invented gunpowder, the compass, printing and paper money. The capital Kaifeng was the world's largest city with over a million people!",
@@ -2554,6 +2692,7 @@ const MILESTONES = [
   },
   {
     title: "The Swahili Coast",
+    coords: [-9,40],
     yearsAgo: 999,
     era: "Civilization",
     kid: "For centuries, city-states along the East African coast (like Kilwa and Zanzibar) traded gold, ivory and spices with Arabia, India and China! They created a unique Swahili culture blending African, Arab and Persian influences.",
@@ -2568,6 +2707,7 @@ const MILESTONES = [
   },
   {
     title: "The Crusades",
+    coords: [32,35],
     yearsAgo: 927,
     era: "Civilization",
     kid: "From 1095 to 1291, European Christians launched military campaigns to capture Jerusalem from Muslim rulers. The Crusades were brutal wars, but they also brought new ideas, goods and knowledge from the East to Europe!",
@@ -2598,6 +2738,7 @@ const MILESTONES = [
   },
   {
     title: "Magna Carta",
+    coords: [51,-1],
     yearsAgo: 811,
     era: "Civilization",
     kid: "In 1215, angry English barons forced King John to sign a document saying even the king must follow the law! The Magna Carta ('Great Charter') became the foundation of human rights and democracy.",
@@ -2644,6 +2785,7 @@ const MILESTONES = [
   },
   {
     title: "Hundred Years' War",
+    coords: [47,2],
     yearsAgo: 689,
     era: "Civilization",
     kid: "From 1337 to 1453, England and France fought a war that lasted 116 years! It featured knights, longbows and Joan of Arc. England lost almost all its French land, and France became a strong nation.",
@@ -2658,6 +2800,7 @@ const MILESTONES = [
   },
   {
     title: "The Black Death",
+    coords: [48,10],
     yearsAgo: 678,
     era: "Civilization",
     kid: "From 1347 to 1351, the Black Death — a terrible plague — swept through Europe and Asia, killing 30-60% of the population! It was one of history's worst disasters, but it also ended feudalism and gave workers more power.",
@@ -2675,7 +2818,7 @@ const MILESTONES = [
     yearsAgo: 623,
     era: "Civilization",
     seeAlso: ["The Mali Empire & Mansa Musa","Two Worlds Collide"],
-    coords: [0,0],
+    coords: [32,119],
     kid: "Between 1405 and 1433, China sent enormous treasure fleets — up to 27,000 crew, giant wooden ships over 120 m long — to India, Arabia and East Africa. Then the empire cancelled the programme and let the records rot... we still argue about why!",
     fun: "One treasure ship was bigger than Columbus's entire three-ship fleet combined.",
     summary: "The Ming treasury, transported by Zheng He, launched seven diplomatic voyages (1405-1433 CE) across the Indian Ocean — embassies, gifts and a giraffe for the emperor — a century before European colonial expansion. Court politics then turned the empire inward and the fleet rotted.",
@@ -2688,6 +2831,7 @@ const MILESTONES = [
   },
   {
     title: "The Renaissance",
+    coords: [44,11],
     yearsAgo: 600,
     era: "Civilization",
     kid: "Starting around 1400, Europe rediscovered ancient Greek and Roman art and science! The Renaissance ('rebirth') brought amazing paintings (Leonardo, Michelangelo), new science (Galileo), and the printing press. It was a cultural explosion!",
@@ -2702,6 +2846,7 @@ const MILESTONES = [
   },
   {
     title: "The Aztec Empire",
+    coords: [19,-99],
     yearsAgo: 599,
     era: "Civilization",
     kid: "The Aztecs built the amazing city of Tenochtitlan on a lake! They had floating gardens, a huge market, and a calendar. They were fierce warriors who expanded their empire across Mexico — until the Spanish arrived in 1519.",
@@ -2716,6 +2861,7 @@ const MILESTONES = [
   },
   {
     title: "The Inca Empire",
+    coords: [-13,-72],
     yearsAgo: 590,
     era: "Civilization",
     kid: "The Inca built the largest empire in the Americas! They had no writing but used knotted strings (quipu) to keep records. They built Machu Picchu high in the Andes and grew potatoes that fed millions.",
@@ -2762,6 +2908,7 @@ const MILESTONES = [
   },
   {
     title: "The Fall of Constantinople",
+    coords: [41,29],
     yearsAgo: 572,
     era: "Civilization",
     kid: "In 1453, the Ottoman Turks conquered Constantinople — the last great city of the Roman Empire! It ended the Byzantine Empire and marked the end of the Middle Ages. The city became Istanbul.",
@@ -2776,6 +2923,7 @@ const MILESTONES = [
   },
   {
     title: "The Songhai Empire",
+    coords: [16,0],
     yearsAgo: 570,
     era: "Civilization",
     kid: "After Mali fell, the Songhai Empire rose in West Africa! It controlled gold and salt trade and had a famous university at Timbuktu. It was one of Africa's greatest empires before being conquered by Morocco in 1591.",
@@ -2790,6 +2938,7 @@ const MILESTONES = [
   },
   {
     title: "Sikhism is Founded",
+    coords: [32,75],
     yearsAgo: 557,
     era: "Modern",
     kid: "In 1469, a teacher named Guru Nanak said God is one and all people are equal. He started Sikhism, a religion that rejects caste and emphasizes service and community!",
@@ -2804,6 +2953,7 @@ const MILESTONES = [
   },
   {
     title: "Two Worlds Collide",
+    coords: [19,-71],
     yearsAgo: 530,
     era: "Modern",
     seeAlso: ["Printing Press","Industrial Revolution"],
@@ -2819,6 +2969,7 @@ const MILESTONES = [
   },
   {
     title: "The Protestant Reformation",
+    coords: [52,13],
     yearsAgo: 509,
     era: "Modern",
     kid: "In 1517, a monk named Martin Luther nailed complaints to a church door. He said people should read the Bible themselves. This split Christianity into Catholic and Protestant churches — and changed Europe forever!",
@@ -2849,6 +3000,7 @@ const MILESTONES = [
   },
   {
     title: "Copernicus Moves the Sun",
+    coords: [54,19],
     yearsAgo: 483,
     era: "Modern",
     kid: "In 1543, a Polish astronomer named Copernicus said something shocking: the Earth goes around the Sun, not the other way around! People had believed the opposite for 1,500 years. This changed how we see our place in the universe.",
@@ -2863,6 +3015,7 @@ const MILESTONES = [
   },
   {
     title: "Counter-Reformation",
+    coords: [42,12],
     yearsAgo: 481,
     era: "Modern",
     kid: "After the Protestant Reformation split Christianity, the Catholic Church fought back! The Counter-Reformation (starting 1545) reformed the Church, created the Jesuits, and sparked new art and architecture. It reshaped Catholicism!",
@@ -2877,6 +3030,7 @@ const MILESTONES = [
   },
   {
     title: "Mercator's World Atlas",
+    coords: [51,7],
     yearsAgo: 457,
     era: "Modern",
     kid: "A map-maker named Mercator figured out how to flatten the round Earth onto paper so sailors could plot straight courses — his map is still the one you see in classrooms today!",
@@ -2891,6 +3045,7 @@ const MILESTONES = [
   },
   {
     title: "The Spanish Armada",
+    coords: [50,-4],
     yearsAgo: 438,
     era: "Modern",
     kid: "In 1588, Spain sent a huge fleet — the Armada — to invade England. But storms and English ships defeated it! This made England a naval power and weakened Spain. It was a turning point in European history.",
@@ -2905,6 +3060,7 @@ const MILESTONES = [
   },
   {
     title: "Shakespeare",
+    coords: [52,0],
     yearsAgo: 430,
     era: "Modern",
     kid: "William Shakespeare wrote plays and poems that are still performed 400 years later! He invented over 1,700 words and created characters like Romeo, Juliet, Hamlet and Macbeth. He's the greatest writer in English!",
@@ -2919,6 +3075,7 @@ const MILESTONES = [
   },
   {
     title: "The Dutch East India Company (VOC)",
+    coords: [52,5],
     yearsAgo: 424,
     era: "World Powers",
     kid: "A company of merchants got its own army and ships and ruled trade across the ocean like a mini country — the first mega-corporation in history!",
@@ -2933,6 +3090,7 @@ const MILESTONES = [
   },
   {
     title: "Galileo's Telescope",
+    coords: [45,12],
     yearsAgo: 417,
     era: "Modern",
     kid: "In 1609, Galileo built a telescope and pointed it at the sky. He saw moons around Jupiter, mountains on the Moon, and spots on the Sun. He proved Copernicus right — and got in big trouble with the Church!",
@@ -2947,6 +3105,7 @@ const MILESTONES = [
   },
   {
     title: "The Thirty Years' War",
+    coords: [50,14],
     yearsAgo: 408,
     era: "Modern",
     kid: "From 1618 to 1648, a terrible war raged across Europe. It started as a religious fight between Catholics and Protestants but became a power struggle. Millions died, and it ended with a new idea: countries get to choose their own religion!",
@@ -2961,6 +3120,7 @@ const MILESTONES = [
   },
   {
     title: "The Portuguese & Spanish Empires",
+    coords: [39,-9],
     yearsAgo: 400,
     era: "World Powers",
     kid: "Two small countries, Portugal and Spain, suddenly owned half the world — from Brazil to the Philippines — because they had the best ships and bravest (or greediest) sailors!",
@@ -2975,6 +3135,7 @@ const MILESTONES = [
   },
   {
     title: "The Scientific Method",
+    coords: [52,0],
     yearsAgo: 399,
     era: "Modern",
     kid: "In the 1600s, scientists like Francis Bacon said: don't just guess — test! Observe, hypothesize, experiment, conclude. The scientific method is how we learn about the world today. It's the foundation of all modern science!",
@@ -2989,6 +3150,7 @@ const MILESTONES = [
   },
   {
     title: "The Qing Dynasty",
+    coords: [40,116],
     yearsAgo: 382,
     era: "World Powers",
     kid: "The last great Chinese empire took over in 1644 and ruled a quarter of humanity for almost 300 years — until revolution ended it in 1912!",
@@ -3003,6 +3165,7 @@ const MILESTONES = [
   },
   {
     title: "The Microscope",
+    coords: [52,4],
     yearsAgo: 340,
     era: "Modern",
     kid: "In 1676, Antonie van Leeuwenhoek built a powerful microscope and saw tiny 'animalcules' (bacteria) in pond water! Nobody knew such tiny creatures existed. It opened up a whole new world of biology.",
@@ -3017,6 +3180,7 @@ const MILESTONES = [
   },
   {
     title: "Newton Rewrites the Sky",
+    coords: [52,0],
     yearsAgo: 339,
     era: "Modern",
     kid: "In 1687, Isaac Newton published a book showing that the same force that makes apples fall also keeps the Moon in orbit. One law for the whole universe - a giant leap in how humans understood reality!",
@@ -3031,6 +3195,7 @@ const MILESTONES = [
   },
   {
     title: "The Glorious Revolution",
+    coords: [52,0],
     yearsAgo: 338,
     era: "Modern",
     kid: "In 1688, England's Catholic king was overthrown without a war! William of Orange and Mary became king and queen. They signed the English Bill of Rights, limiting royal power. This inspired the US Constitution!",
@@ -3045,6 +3210,7 @@ const MILESTONES = [
   },
   {
     title: "The Steam Engine",
+    coords: [52,-2],
     yearsAgo: 310,
     era: "Modern",
     kid: "In 1712, a machine that turned coal into motion was invented. The steam engine powered factories, trains and ships — it kicked off the Industrial Revolution and changed how humans work forever!",
@@ -3074,6 +3240,7 @@ const MILESTONES = [
   },
   {
     title: "The United States is Founded",
+    coords: [40,-75],
     yearsAgo: 250,
     era: "Modern",
     kid: "On July 4, 1776, thirteen colonies declared independence from Britain! The new United States was built on ideas of liberty and democracy — though it took centuries to live up to them for everyone.",
@@ -3088,6 +3255,7 @@ const MILESTONES = [
   },
   {
     title: "The French Revolution",
+    coords: [49,2],
     yearsAgo: 237,
     era: "Modern",
     kid: "In 1789, the people of France rose up against their king. They chopped off his head, declared 'liberty, equality, fraternity,' and changed the world. It was messy and violent, but it inspired democracies everywhere!",
@@ -3102,6 +3270,7 @@ const MILESTONES = [
   },
   {
     title: "George Washington Becomes President",
+    coords: [39,-77],
     yearsAgo: 236,
     era: "Modern",
     kid: "In 1789, George Washington became the first President of the United States. He could have been a king, but he chose to step down after two terms — setting a tradition that lasted until FDR!",
@@ -3116,6 +3285,7 @@ const MILESTONES = [
   },
   {
     title: "The Haitian Revolution",
+    coords: [19,-72],
     yearsAgo: 235,
     era: "Modern",
     kid: "From 1791 to 1804, enslaved people in Haiti rose up and won their freedom! They defeated French, British and Spanish armies. Haiti became the first free Black republic and the second independent country in the Americas.",
@@ -3130,6 +3300,7 @@ const MILESTONES = [
   },
   {
     title: "Vaccines Discovered",
+    coords: [52,-2],
     yearsAgo: 230,
     era: "Modern",
     translations: {"it": {"kid": "Nel 1796, un medico di nome Edward Jenner notò che le mungitrici che prendevano una lieve malattia delle mucche non prendevano mai il terribile vaiolo. Provò un esperimento audace — e inventò la vaccinazione, salvando centinaia di milioni di vite da allora!", "fun": "La parola 'vaccino' viene da 'vacca', vacca in latino — tutti i vaccini prendono il nome da una malattia delle mucche.", "summary": "Nel 1796, Edward Jenner usò il vaiolo bovino per immunizzare contro il vaiolo, la malattia più letale dell'epoca.", "deep": ["Il vaiolo potrebbe aver ucciso ~300 milioni di persone solo nel XX secolo; l'OMS lo dichiarò eradicato nel 1980.", "Jenner testò su un bambino di 8 anni, James Phipps — e poi lo espose al vaiolo.", "La vaccinazione in seguito eradicò la polio dalle Americhe, dall'Africa e da gran parte dell'Asia.", "Il lavoro successivo di Pasteur (rabbia, 1885) generalizzò la scienza dei vaccini oltre il vaiolo."]}},
@@ -3145,6 +3316,7 @@ const MILESTONES = [
   },
   {
     title: "John Adams",
+    coords: [38,-77],
     yearsAgo: 229,
     era: "Modern",
     kid: "John Adams was the 2nd US President! He helped write the Declaration of Independence and was a key diplomat during the Revolution. He and Thomas Jefferson were friends and rivals — they both died on July 4, 1826!",
@@ -3159,6 +3331,7 @@ const MILESTONES = [
   },
   {
     title: "The Electric Battery",
+    coords: [45,9],
     yearsAgo: 226,
     era: "Modern",
     kid: "In 1800, Alessandro Volta stacked metal discs and salty water to make the first battery! It produced a steady electric current. Batteries power everything from flashlights to phones to electric cars.",
@@ -3173,6 +3346,7 @@ const MILESTONES = [
   },
   {
     title: "Thomas Jefferson",
+    coords: [38,-77],
     yearsAgo: 225,
     era: "Modern",
     kid: "Thomas Jefferson wrote the Declaration of Independence and became the 3rd US President! He doubled the size of the country with the Louisiana Purchase and founded the University of Virginia. He believed in democracy and education.",
@@ -3187,6 +3361,7 @@ const MILESTONES = [
   },
   {
     title: "Napoleonic Wars",
+    coords: [51,4],
     yearsAgo: 223,
     era: "Modern",
     kid: "After the French Revolution, Napoleon Bonaparte conquered most of Europe! He was a brilliant general but his ambition led to disaster — his army froze in Russia. He was finally defeated at Waterloo in 1815.",
@@ -3201,6 +3376,7 @@ const MILESTONES = [
   },
   {
     title: "The Steam Locomotive",
+    coords: [55,-1],
     yearsAgo: 222,
     era: "Modern",
     kid: "In 1804, Richard Trevithick built the first steam locomotive! It pulled 10 tons of iron and 70 men. Trains shrank the world — people could travel in hours what used to take weeks.",
@@ -3215,6 +3391,7 @@ const MILESTONES = [
   },
   {
     title: "Beethoven",
+    coords: [48,16],
     yearsAgo: 220,
     era: "Modern",
     kid: "Ludwig van Beethoven was a musical genius who went deaf but kept composing! His 9th Symphony, with its 'Ode to Joy,' is one of the most famous pieces of music ever written. He changed music forever.",
@@ -3229,6 +3406,7 @@ const MILESTONES = [
   },
   {
     title: "James Madison",
+    coords: [38,-77],
     yearsAgo: 217,
     era: "Modern",
     kid: "James Madison was the 4th President and the 'Father of the Constitution'! He wrote most of the US Constitution and the Bill of Rights. He led the country during the War of 1812.",
@@ -3243,6 +3421,7 @@ const MILESTONES = [
   },
   {
     title: "James Monroe",
+    coords: [38,-77],
     yearsAgo: 209,
     era: "Modern",
     kid: "James Monroe was the 5th President! He's famous for the Monroe Doctrine, which said European countries couldn't colonize the Americas anymore. His presidency was called the 'Era of Good Feelings' because everyone got along!",
@@ -3257,6 +3436,7 @@ const MILESTONES = [
   },
   {
     title: "The Electric Motor",
+    coords: [52,0],
     yearsAgo: 205,
     era: "Modern",
     kid: "In 1821, Michael Faraday built the first electric motor — a device that turns electricity into motion! Electric motors are in everything from fans to electric cars to industrial machines.",
@@ -3271,6 +3451,7 @@ const MILESTONES = [
   },
   {
     title: "Andrew Jackson",
+    coords: [38,-77],
     yearsAgo: 197,
     era: "Modern",
     kid: "Andrew Jackson was the 7th President — a war hero who fought Native Americans and the British! He was the first president from the common people, not the elite. But he also forced Native Americans off their land in the Trail of Tears.",
@@ -3285,6 +3466,7 @@ const MILESTONES = [
   },
   {
     title: "Mormonism",
+    coords: [41,-112],
     yearsAgo: 196,
     era: "Modern",
     kid: "In 1830, Joseph Smith published the Book of Mormon and founded a new religion! The Church of Jesus Christ of Latter-day Saints grew from a small group to millions of members worldwide. They're known for family values and missionary work.",
@@ -3299,6 +3481,7 @@ const MILESTONES = [
   },
   {
     title: "Abolition of Slavery (UK)",
+    coords: [52,0],
     yearsAgo: 193,
     era: "Modern",
     kid: "In 1833, Britain abolished slavery throughout its empire! After decades of campaigning by abolitionists like William Wilberforce, 800,000 enslaved people were freed. It inspired movements worldwide.",
@@ -3313,6 +3496,7 @@ const MILESTONES = [
   },
   {
     title: "Refrigeration",
+    coords: [-38,144],
     yearsAgo: 192,
     era: "Modern",
     kid: "In 1834, the first working refrigerator was built! Before that, food spoiled quickly and people used ice from frozen lakes. Refrigeration changed how we eat, shop and live — and made global food trade possible.",
@@ -3327,6 +3511,7 @@ const MILESTONES = [
   },
   {
     title: "Martin Van Buren",
+    coords: [38,-77],
     yearsAgo: 189,
     era: "Modern",
     kid: "Martin Van Buren was the 8th President! He was the first president born as a US citizen (not British). His presidency was hurt by the Panic of 1837 — a big economic crash. He lost re-election and never became president again.",
@@ -3341,6 +3526,7 @@ const MILESTONES = [
   },
   {
     title: "Photography is Born",
+    coords: [49,2],
     yearsAgo: 187,
     era: "Modern",
     kid: "In 1839, Louis Daguerre showed the world how to capture a picture with light! For the first time, people could see exactly what something looked like without painting it. It changed art, news and memory forever.",
@@ -3355,6 +3541,7 @@ const MILESTONES = [
   },
   {
     title: "William Henry Harrison",
+    coords: [38,-77],
     yearsAgo: 186,
     era: "Modern",
     kid: "William Henry Harrison was president for only 31 days! He gave a very long inauguration speech in the rain, got sick, and died. He was the first president to die in office. His grandson Benjamin Harrison also became president!",
@@ -3369,6 +3556,7 @@ const MILESTONES = [
   },
   {
     title: "John Tyler",
+    coords: [38,-77],
     yearsAgo: 183,
     era: "Modern",
     kid: "John Tyler became president when Harrison died — the first VP to take over! He was kicked out of his own party and had almost no support in Congress. But he still annexed Texas, adding a huge territory to the US!",
@@ -3383,6 +3571,7 @@ const MILESTONES = [
   },
   {
     title: "The Telegraph",
+    coords: [39,-77],
     yearsAgo: 182,
     era: "Modern",
     kid: "In 1844, Samuel Morse sent the first message by telegraph: 'What hath God wrought!' Electricity carried words across wires faster than any horse. News that took weeks now arrived in minutes!",
@@ -3397,6 +3586,7 @@ const MILESTONES = [
   },
   {
     title: "James K. Polk",
+    coords: [38,-77],
     yearsAgo: 181,
     era: "Modern",
     kid: "James K. Polk was the 11th President! He promised to expand the country and did — winning the Mexican-American War added California, Nevada, Utah and more. He kept all his campaign promises!",
@@ -3411,6 +3601,7 @@ const MILESTONES = [
   },
   {
     title: "The Sewing Machine",
+    coords: [42,-71],
     yearsAgo: 180,
     era: "Modern",
     kid: "In 1846, Elias Howe and Isaac Singer made machines that could sew faster than any human! Clothes became cheaper, factories grew, and the garment industry was born. It was a huge step for the Industrial Revolution.",
@@ -3425,6 +3616,7 @@ const MILESTONES = [
   },
   {
     title: "Anesthesia",
+    coords: [42,-71],
     yearsAgo: 179,
     era: "Modern",
     kid: "In 1846, a dentist showed that ether could put people to sleep during surgery! Before that, operations were agonizing. Anesthesia made surgery survivable and transformed medicine forever.",
@@ -3439,6 +3631,7 @@ const MILESTONES = [
   },
   {
     title: "The Taiping Rebellion",
+    coords: [32,119],
     yearsAgo: 176,
     era: "Modern",
     kid: "From 1850 to 1864, a massive civil war raged in China! Hong Xiuquan claimed to be Jesus's brother and led millions in revolt. It was the deadliest conflict of the 19th century, with 20-30 million dead.",
@@ -3453,6 +3646,7 @@ const MILESTONES = [
   },
   {
     title: "Zachary Taylor",
+    coords: [38,-77],
     yearsAgo: 175,
     era: "Modern",
     kid: "Zachary Taylor was a war hero who became president in 1849! He was a Southern slave owner who surprisingly opposed expanding slavery. He died after only 16 months in office — possibly from eating bad cherries and milk!",
@@ -3467,6 +3661,7 @@ const MILESTONES = [
   },
   {
     title: "Crimean War",
+    coords: [45,34],
     yearsAgo: 173,
     era: "Modern",
     kid: "From 1853 to 1856, Russia fought Britain, France and the Ottoman Empire in the Crimean War! It was the first war with photography, telegraphs and nurses (Florence Nightingale). It changed how wars were fought and reported.",
@@ -3481,6 +3676,7 @@ const MILESTONES = [
   },
   {
     title: "Millard Fillmore",
+    coords: [38,-77],
     yearsAgo: 172,
     era: "Modern",
     kid: "Millard Fillmore became president when Taylor died. He signed the Compromise of 1850, which included the Fugitive Slave Act — forcing free states to return escaped slaves. It made the slavery crisis worse!",
@@ -3495,6 +3691,7 @@ const MILESTONES = [
   },
   {
     title: "Franklin Pierce",
+    coords: [38,-77],
     yearsAgo: 171,
     era: "Modern",
     kid: "Franklin Pierce was president from 1853 to 1857! He supported the Kansas-Nebraska Act, which let territories decide on slavery. This led to 'Bleeding Kansas' — violent clashes between pro- and anti-slavery settlers.",
@@ -3509,6 +3706,7 @@ const MILESTONES = [
   },
   {
     title: "The Bessemer Process",
+    coords: [53,-1],
     yearsAgo: 169,
     era: "Modern",
     kid: "In 1856, Henry Bessemer figured out how to blow air through molten iron to burn off impurities, making steel cheap and fast! Steel became the backbone of bridges, skyscrapers and railroads.",
@@ -3523,6 +3721,7 @@ const MILESTONES = [
   },
   {
     title: "Darwin Publishes Origin of Species",
+    coords: [51,0],
     yearsAgo: 167,
     era: "Modern",
     kid: "Charles Darwin explained that all living things are related and change slowly over millions of years — and that humans are part of nature, not separate from it!",
@@ -3537,6 +3736,7 @@ const MILESTONES = [
   },
   {
     title: "James Buchanan",
+    coords: [38,-77],
     yearsAgo: 166,
     era: "Modern",
     kid: "James Buchanan was president from 1857 to 1861 — right before the Civil War! He tried to compromise on slavery but failed. He's often ranked as one of the worst presidents because he didn't stop the country from splitting apart.",
@@ -3551,6 +3751,7 @@ const MILESTONES = [
   },
   {
     title: "The American Civil War",
+    coords: [40,-77],
     yearsAgo: 165,
     era: "Modern",
     kid: "From 1861 to 1865, the United States split in two — North vs South — over slavery and states' rights. It was the bloodiest war in American history. The North won, and slavery was abolished!",
@@ -3565,6 +3766,7 @@ const MILESTONES = [
   },
   {
     title: "Abraham Lincoln Leads Through Civil War",
+    coords: [38,-77],
     yearsAgo: 163,
     era: "Modern",
     kid: "Abraham Lincoln became president in 1861, just as the country split apart! He led the North to victory, freed the slaves with the Emancipation Proclamation, and was tragically assassinated days after the war ended.",
@@ -3579,6 +3781,7 @@ const MILESTONES = [
   },
   {
     title: "Maxwell's Equations",
+    coords: [52,0],
     yearsAgo: 161,
     era: "Modern",
     kid: "In 1865, James Clerk Maxwell figured out that electricity and magnetism are the same thing! His equations predicted radio waves, X-rays and light. He unified physics and laid the groundwork for all modern technology.",
@@ -3593,6 +3796,7 @@ const MILESTONES = [
   },
   {
     title: "Pasteur and Germ Theory",
+    coords: [49,2],
     yearsAgo: 160,
     era: "Modern",
     kid: "In the 1860s, Louis Pasteur proved that tiny germs cause disease, not bad air. He invented pasteurization (heating milk to kill germs) and created vaccines. He saved more lives than almost anyone in history!",
@@ -3607,6 +3811,7 @@ const MILESTONES = [
   },
   {
     title: "Mendel's Laws of Inheritance",
+    coords: [49,17],
     yearsAgo: 159,
     era: "Modern",
     kid: "In the 1860s, a monk named Gregor Mendel grew pea plants and discovered the rules of heredity — how traits pass from parents to children. His work became the foundation of genetics, though nobody noticed until 1900!",
@@ -3637,6 +3842,7 @@ const MILESTONES = [
   },
   {
     title: "Meiji Restoration",
+    coords: [36,140],
     yearsAgo: 157,
     era: "Modern",
     kid: "In 1868, Japan's emperor took back power from the shoguns and rapidly modernized the country. In just 50 years, Japan went from feudal samurai to a modern industrial power that could beat Russia in a war!",
@@ -3651,6 +3857,7 @@ const MILESTONES = [
   },
   {
     title: "Ulysses S. Grant",
+    coords: [38,-77],
     yearsAgo: 156,
     era: "Modern",
     kid: "Ulysses Grant was the Union general who won the Civil War, then became president in 1869! He tried to protect freed slaves during Reconstruction and fought the KKK. But his presidency was marred by corruption scandals.",
@@ -3665,6 +3872,7 @@ const MILESTONES = [
   },
   {
     title: "Germany Unifies",
+    coords: [49,2],
     yearsAgo: 155,
     era: "Modern",
     kid: "In 1871, after winning wars against Austria and France, Prussia united all the German states into one country — the German Empire! It became a major power in Europe and set the stage for both World Wars.",
@@ -3679,6 +3887,7 @@ const MILESTONES = [
   },
   {
     title: "Japan Meiji Restoration",
+    coords: [36,140],
     yearsAgo: 154,
     era: "Modern",
     kid: "In 1868, Japan's emperor took back power from the shoguns and rapidly modernized the country. In just 50 years, Japan went from feudal samurai to a modern industrial power that could beat Russia in a war!",
@@ -3693,6 +3902,7 @@ const MILESTONES = [
   },
   {
     title: "Electricity Lights Up the World",
+    coords: [41,-74],
     yearsAgo: 150,
     era: "Modern",
     kid: "In the 1870s-90s, inventors and companies raced to turn electricity into light and power. Suddenly cities glowed at night, machines ran day and night, and the modern electric world switched on!",
@@ -3707,6 +3917,7 @@ const MILESTONES = [
   },
   {
     title: "The Telephone",
+    coords: [42,-71],
     yearsAgo: 149,
     era: "Modern",
     kid: "In 1876, Alexander Graham Bell said 'Mr. Watson, come here, I want to see you' — through a wire! The telephone let people talk across any distance, and it changed how we connect forever.",
@@ -3721,6 +3932,7 @@ const MILESTONES = [
   },
   {
     title: "Rutherford B. Hayes",
+    coords: [38,-77],
     yearsAgo: 148,
     era: "Modern",
     kid: "Rutherford Hayes became president in 1877 after a disputed election! To win, he agreed to end Reconstruction — pulling federal troops from the South. This ended protection for Black Americans and led to Jim Crow laws.",
@@ -3735,6 +3947,7 @@ const MILESTONES = [
   },
   {
     title: "The Light Bulb",
+    coords: [41,-74],
     yearsAgo: 147,
     era: "Modern",
     kid: "In 1879, Thomas Edison made a bulb that glowed for hours without burning out. Suddenly nights weren't dark anymore — factories, streets and homes could stay lit after sunset!",
@@ -3749,6 +3962,7 @@ const MILESTONES = [
   },
   {
     title: "Chinese Exclusion Act",
+    coords: [38,-77],
     yearsAgo: 144,
     era: "Modern",
     kid: "In 1882, the US banned Chinese immigrants from entering the country — the first law to exclude a specific nationality! It lasted 61 years and shaped Chinese-American communities for generations.",
@@ -3763,6 +3977,7 @@ const MILESTONES = [
   },
   {
     title: "James A. Garfield",
+    coords: [38,-77],
     yearsAgo: 143,
     era: "Modern",
     kid: "James Garfield was president for only 200 days! He was shot by a disappointed office-seeker and died 79 days later. His death led to civil service reform — government jobs based on merit, not political connections.",
@@ -3777,6 +3992,7 @@ const MILESTONES = [
   },
   {
     title: "Chester A. Arthur",
+    coords: [38,-77],
     yearsAgo: 142,
     era: "Modern",
     kid: "Chester Arthur became president when Garfield was assassinated. Surprisingly, this former political hack became a reformer! He signed the Pendleton Act, making government jobs based on merit. He was better than anyone expected.",
@@ -3791,6 +4007,7 @@ const MILESTONES = [
   },
   {
     title: "The Automobile",
+    coords: [49,9],
     yearsAgo: 140,
     era: "Modern",
     kid: "In 1886, Karl Benz built the first practical automobile — a three-wheeled car powered by a gasoline engine! Cars changed how we live, work and travel. Today there are over 1.4 billion cars on Earth.",
@@ -3805,6 +4022,7 @@ const MILESTONES = [
   },
   {
     title: "Tesla and AC Power",
+    coords: [43,-79],
     yearsAgo: 139,
     era: "Modern",
     kid: "In the 1880s, Nikola Tesla invented alternating current (AC) electricity! It could be sent over long distances, unlike Edison's DC. Tesla's AC power won the 'current war' and electrified the world.",
@@ -3819,6 +4037,7 @@ const MILESTONES = [
   },
   {
     title: "Grover Cleveland",
+    coords: [38,-77],
     yearsAgo: 138,
     era: "Modern",
     kid: "Grover Cleveland was the 22nd AND 24th President — the only one to serve two non-consecutive terms! He was known for honesty and fighting corruption. He married in the White House — the only president to do so!",
@@ -3833,6 +4052,7 @@ const MILESTONES = [
   },
   {
     title: "Benjamin Harrison",
+    coords: [38,-77],
     yearsAgo: 136,
     era: "Modern",
     kid: "Benjamin Harrison was the 23rd President — and the grandson of President William Henry Harrison! He signed the Sherman Antitrust Act to break up monopolies and added 6 new states to the Union. He lost re-election to Grover Cleveland.",
@@ -3847,6 +4067,7 @@ const MILESTONES = [
   },
   {
     title: "Ellis Island Opens",
+    coords: [41,-74],
     yearsAgo: 134,
     era: "Modern",
     kid: "In 1892, Ellis Island opened in New York Harbor. Over the next 60 years, 12 million immigrants — mostly from Europe — passed through it, making America a nation of immigrants!",
@@ -3861,6 +4082,7 @@ const MILESTONES = [
   },
   {
     title: "X-Rays Discovered",
+    coords: [50,10],
     yearsAgo: 131,
     era: "Modern",
     kid: "In 1895, Wilhelm Roentgen discovered a mysterious ray that could see through skin and show bones! He called them X-rays. Doctors could now see broken bones without cutting. He won the first Nobel Prize in Physics!",
@@ -3875,6 +4097,7 @@ const MILESTONES = [
   },
   {
     title: "Olympics Revived",
+    coords: [38,24],
     yearsAgo: 130,
     era: "Modern",
     kid: "In 1896, the Olympic Games were reborn in Athens, Greece! After 1,500 years, athletes from 14 nations competed. Today the Olympics are the biggest sports event in the world, with billions watching!",
@@ -3889,6 +4112,7 @@ const MILESTONES = [
   },
   {
     title: "Radio",
+    coords: [50,-5],
     yearsAgo: 129,
     era: "Modern",
     kid: "In 1895, Guglielmo Marconi sent a signal through the air without wires! Radio let people hear news, music and voices from far away. It connected the world and became the first mass medium.",
@@ -3903,6 +4127,7 @@ const MILESTONES = [
   },
   {
     title: "William McKinley",
+    coords: [38,-77],
     yearsAgo: 128,
     era: "Modern",
     kid: "William McKinley was president during the Spanish-American War in 1898. The US won and got Puerto Rico, Guam and the Philippines. He was assassinated in 1901, making Theodore Roosevelt president!",
@@ -3917,6 +4142,7 @@ const MILESTONES = [
   },
   {
     title: "Boer War",
+    coords: [-29,25],
     yearsAgo: 127,
     era: "Modern",
     kid: "From 1899 to 1902, Britain fought Dutch settlers (Boers) in South Africa! It was brutal — the British used concentration camps. It was a turning point that helped create the modern South African state.",
@@ -3931,6 +4157,7 @@ const MILESTONES = [
   },
   {
     title: "The Boxer Rebellion",
+    coords: [40,116],
     yearsAgo: 126,
     era: "Modern",
     kid: "In 1899-1901, Chinese fighters called 'Boxers' attacked foreigners and Christians in China! An international army crushed them. It showed how weak China had become and led to even more foreign control.",
@@ -3945,6 +4172,7 @@ const MILESTONES = [
   },
   {
     title: "Theodore Roosevelt Takes Office",
+    coords: [38,-77],
     yearsAgo: 125,
     era: "Modern",
     kid: "In 1901, Theodore Roosevelt became the youngest president ever at age 42. He busted monopolies, conserved forests, and built the Panama Canal. He was a cowboy, a soldier, and a Nobel Prize winner!",
@@ -3991,6 +4219,7 @@ const MILESTONES = [
   },
   {
     title: "Einstein's Miracle Year",
+    coords: [47,7],
     yearsAgo: 120,
     era: "Modern",
     kid: "In 1905, a young patent clerk named Albert Einstein published four papers that changed physics forever. He showed that time and space are relative, that light comes in packets, and that E=mc² — a tiny bit of mass can release enormous energy!",
@@ -4005,6 +4234,7 @@ const MILESTONES = [
   },
   {
     title: "Plastic is Invented",
+    coords: [41,-74],
     yearsAgo: 119,
     era: "Modern",
     kid: "In 1907, Leo Baekeland made the first fully synthetic plastic — Bakelite! It could be molded into anything and didn't rot. Plastic changed everything from toys to medicine, though now it's a pollution problem.",
@@ -4019,6 +4249,7 @@ const MILESTONES = [
   },
   {
     title: "Ellis Island Peak",
+    coords: [41,-74],
     yearsAgo: 118,
     era: "Modern",
     kid: "In 1907, Ellis Island processed 1.25 million immigrants — the most in a single year! Over 12 million people passed through Ellis Island, making America a nation of immigrants.",
@@ -4033,6 +4264,7 @@ const MILESTONES = [
   },
   {
     title: "William Howard Taft",
+    coords: [38,-77],
     yearsAgo: 117,
     era: "Modern",
     kid: "William Howard Taft was the 27th President and later became Chief Justice of the Supreme Court — the only person to hold both jobs! He was so heavy he got stuck in the White House bathtub.",
@@ -4047,6 +4279,7 @@ const MILESTONES = [
   },
   {
     title: "Woodrow Wilson",
+    coords: [38,-77],
     yearsAgo: 113,
     era: "Modern",
     kid: "Woodrow Wilson was president during WWI! He proposed the League of Nations to keep peace, but the US never joined. He also passed laws helping workers and created the Federal Reserve bank.",
@@ -4061,6 +4294,7 @@ const MILESTONES = [
   },
   {
     title: "World War I",
+    coords: [44,18],
     yearsAgo: 112,
     era: "Modern",
     kid: "In 1914, a single gunshot in Sarajevo sparked a war that dragged in the whole world! Trenches, tanks, and poison gas killed millions. It was supposed to be 'the war to end all wars' — but it wasn't.",
@@ -4075,6 +4309,7 @@ const MILESTONES = [
   },
   {
     title: "The Great Migration",
+    coords: [42,-88],
     yearsAgo: 110,
     era: "Modern",
     kid: "Starting in 1916, millions of Black Americans left the South for cities in the North and West, seeking better jobs and escaping Jim Crow laws. It was one of the biggest movements of people in US history!",
@@ -4089,6 +4324,7 @@ const MILESTONES = [
   },
   {
     title: "Russian Civil War",
+    coords: [56,38],
     yearsAgo: 109,
     era: "Modern",
     kid: "From 1917 to 1922, after the Russian Revolution, the Bolsheviks (Reds) fought the anti-communists (Whites)! The Reds won and created the Soviet Union. Millions died in the fighting and famine.",
@@ -4103,6 +4339,7 @@ const MILESTONES = [
   },
   {
     title: "The Russian Revolution",
+    coords: [60,30],
     yearsAgo: 108,
     era: "Modern",
     kid: "In 1917, the Russian people overthrew the Tsar! Then the Bolsheviks, led by Lenin, took power and created the world's first communist state. It changed global politics for the next 70 years.",
@@ -4133,6 +4370,7 @@ const MILESTONES = [
   },
   {
     title: "Women's Suffrage (US)",
+    coords: [43,-77],
     yearsAgo: 105,
     era: "Modern",
     kid: "In 1920, the US Constitution was amended to give women the right to vote! After decades of protests, marches and hunger strikes, women finally got a voice in democracy. It was a huge victory for equality!",
@@ -4147,6 +4385,7 @@ const MILESTONES = [
   },
   {
     title: "Soviet Union Founded",
+    coords: [56,38],
     yearsAgo: 104,
     era: "Modern",
     kid: "In 1922, the Soviet Union was created after the Russian Revolution. It became a superpower that lasted 69 years, spreading communism and competing with the US in the Cold War and the space race!",
@@ -4161,6 +4400,7 @@ const MILESTONES = [
   },
   {
     title: "Warren G. Harding",
+    coords: [38,-77],
     yearsAgo: 103,
     era: "Modern",
     kid: "Warren Harding was president in the 1920s! He promised a 'return to normalcy' after WWI. But his administration was hit by scandals (Teapot Dome), and he died in office in 1923.",
@@ -4175,6 +4415,7 @@ const MILESTONES = [
   },
   {
     title: "Calvin Coolidge",
+    coords: [38,-77],
     yearsAgo: 102,
     era: "Modern",
     kid: "Calvin Coolidge became president when Harding died! He was known for being quiet and doing very little — 'Silent Cal.' The economy boomed during his time, but he didn't run again in 1928.",
@@ -4189,6 +4430,7 @@ const MILESTONES = [
   },
   {
     title: "Antibiotics Discovered",
+    coords: [52,0],
     yearsAgo: 100,
     era: "Modern",
     kid: "In 1928, Alexander Fleming came back from holiday and found a strange mould had sneaked into his lab. It had wiped out the bacteria around it! That mould became penicillin - the first antibiotic - and it has saved more human lives than almost anything else.",
@@ -4203,6 +4445,7 @@ const MILESTONES = [
   },
   {
     title: "The Rocket",
+    coords: [42,-72],
     yearsAgo: 99,
     era: "Modern",
     kid: "In 1926, Robert Goddard launched the first liquid-fuel rocket! It flew only 12 seconds and 41 feet, but it proved rockets could work. That tiny flight led to space travel, satellites and the Moon landing!",
@@ -4217,6 +4460,7 @@ const MILESTONES = [
   },
   {
     title: "Television",
+    coords: [52,0],
     yearsAgo: 98,
     era: "Modern",
     kid: "In 1927, Philo Farnsworth transmitted the first TV image — a simple line. Television brought moving pictures and sound into every home. It became the dominant mass medium of the 20th century!",
@@ -4231,6 +4475,7 @@ const MILESTONES = [
   },
   {
     title: "The Great Depression",
+    coords: [41,-74],
     yearsAgo: 97,
     era: "Modern",
     kid: "In 1929, the stock market crashed and the world economy collapsed! Millions lost their jobs, homes and savings. Bread lines and dust storms became symbols of hard times. It led to new government programs to help people.",
@@ -4245,6 +4490,7 @@ const MILESTONES = [
   },
   {
     title: "World Cup First (1930)",
+    coords: [-35,-56],
     yearsAgo: 96,
     era: "Modern",
     kid: "In 1930, the first FIFA World Cup was held in Uruguay! 13 teams competed and Uruguay won. Today the World Cup is the most-watched sporting event on Earth, with billions of viewers!",
@@ -4259,6 +4505,7 @@ const MILESTONES = [
   },
   {
     title: "Commonwealth of Nations",
+    coords: [52,0],
     yearsAgo: 95,
     era: "Modern",
     kid: "In 1931, Britain and its former colonies formed the Commonwealth — a voluntary association of 56 countries! They share history, language and values. The King of Britain is the head, but all members are equal.",
@@ -4273,6 +4520,7 @@ const MILESTONES = [
   },
   {
     title: "Herbert Hoover",
+    coords: [38,-77],
     yearsAgo: 94,
     era: "Modern",
     kid: "Herbert Hoover was president when the Great Depression started in 1929! He tried to help but wasn't very successful. Shantytowns of homeless people were called 'Hoovervilles.' He lost re-election to FDR in 1932.",
@@ -4287,6 +4535,7 @@ const MILESTONES = [
   },
   {
     title: "FDR and the New Deal",
+    coords: [39,-77],
     yearsAgo: 93,
     era: "Modern",
     kid: "In 1933, Franklin D. Roosevelt became president during the Great Depression. He created jobs, built dams, and started Social Security. He was elected four times — more than anyone else!",
@@ -4301,6 +4550,7 @@ const MILESTONES = [
   },
   {
     title: "Radar",
+    coords: [52,1],
     yearsAgo: 91,
     era: "Modern",
     kid: "In 1935, scientists figured out how to bounce radio waves off objects and detect them — radar! It could 'see' planes and ships through fog and darkness. Radar was crucial in WWII and is in every airport and weather station today.",
@@ -4315,6 +4565,7 @@ const MILESTONES = [
   },
   {
     title: "Spanish Civil War",
+    coords: [40,-4],
     yearsAgo: 90,
     era: "Modern",
     kid: "From 1936 to 1939, Spain fought a civil war between Republicans (democrats) and Nationalists (fascists)! The Nationalists won, led by Franco, who ruled Spain as a dictator until 1975. It was a preview of WWII.",
@@ -4329,6 +4580,7 @@ const MILESTONES = [
   },
   {
     title: "Nuclear Fission",
+    coords: [53,13],
     yearsAgo: 88,
     era: "Modern",
     kid: "In 1938, scientists split an atom and released enormous energy! This discovery led to nuclear power plants that provide clean electricity, but also to atomic bombs. It changed the world and created the nuclear age.",
@@ -4343,6 +4595,7 @@ const MILESTONES = [
   },
   {
     title: "The Jet Engine",
+    coords: [51,0],
     yearsAgo: 87,
     era: "Modern",
     kid: "In 1939, the first jet engine was built. Instead of propellers, it blasted hot air out the back to push forward. Jets made planes much faster and eventually shrank the world — you can fly anywhere in hours!",
@@ -4373,6 +4626,7 @@ const MILESTONES = [
   },
   {
     title: "World War II",
+    coords: [49,-1],
     yearsAgo: 85,
     era: "Modern",
     kid: "Starting in 1939, the world fought again — this time against Nazi Germany and its allies! It was the deadliest war ever, with 70-85 million dead. The Holocaust killed 6 million Jews. It ended with atomic bombs on Japan.",
@@ -4387,6 +4641,7 @@ const MILESTONES = [
   },
   {
     title: "The Helicopter",
+    coords: [41,-73],
     yearsAgo: 84,
     era: "Modern",
     kid: "In 1939, Igor Sikorsky flew the first practical helicopter! It could hover, fly backward and land anywhere. Helicopters rescue people, fight fires, and transport troops — they go where planes can't.",
@@ -4401,6 +4656,7 @@ const MILESTONES = [
   },
   {
     title: "Bracero Program",
+    coords: [32,-107],
     yearsAgo: 83,
     era: "Modern",
     kid: "From 1942 to 1964, the US and Mexico ran the Bracero Program, bringing Mexican workers to US farms! Over 4.6 million contracts were issued. It shaped Mexican-American communities and labor rights.",
@@ -4415,6 +4671,7 @@ const MILESTONES = [
   },
   {
     title: "Bretton Woods Conference",
+    coords: [44,-71],
     yearsAgo: 82,
     era: "Modern",
     kid: "In 1944, leaders from 44 countries met in New Hampshire to design the world's money system after WWII. They created the IMF and World Bank — and made the US dollar the world's currency!",
@@ -4429,6 +4686,7 @@ const MILESTONES = [
   },
   {
     title: "United Nations Founded",
+    coords: [38,-122],
     yearsAgo: 81,
     era: "Modern",
     kid: "In 1945, after WWII, 51 countries created the United Nations to keep peace and help people. Today 193 countries belong. It's where the world tries to solve big problems together!",
@@ -4443,6 +4701,7 @@ const MILESTONES = [
   },
   {
     title: "Microwave Oven",
+    coords: [42,-71],
     yearsAgo: 80,
     era: "Modern",
     kid: "In 1945, Percy Spencer noticed a candy bar melted in his pocket near a radar magnetron. He realized microwaves could cook food! The first microwave oven was huge and expensive, but now they're in almost every kitchen.",
@@ -4457,6 +4716,7 @@ const MILESTONES = [
   },
   {
     title: "The Transistor",
+    coords: [41,-74],
     yearsAgo: 79,
     era: "Modern",
     kid: "In 1947, three scientists at Bell Labs built a tiny gadget that could switch an electric signal with no moving parts - the transistor. It replaced hot, fragile vacuum tubes and became the speck-sized heart of every computer, phone and robot in the world!",
@@ -4471,6 +4731,7 @@ const MILESTONES = [
   },
   {
     title: "India Gains Independence",
+    coords: [29,77],
     yearsAgo: 78,
     era: "Modern",
     kid: "In 1947, India finally became free from British rule after a long struggle led by Mahatma Gandhi, who believed in peaceful protest! But freedom came with tragedy — the country split into India and Pakistan, and millions fled.",
@@ -4485,6 +4746,7 @@ const MILESTONES = [
   },
   {
     title: "The State of Israel is Founded",
+    coords: [32,35],
     yearsAgo: 77,
     era: "Modern",
     kid: "In 1948, the modern state of Israel was created as a homeland for the Jewish people! It was born from the horror of the Holocaust and decades of Zionist movement. The founding also led to conflicts with neighboring Arab states that continue today.",
@@ -4499,6 +4761,7 @@ const MILESTONES = [
   },
   {
     title: "The Korean War",
+    coords: [38,127],
     yearsAgo: 76,
     era: "Modern",
     kid: "From 1950 to 1953, North Korea (backed by China and USSR) invaded South Korea (backed by the US and UN). The war ended in a stalemate — the two Koreas are still technically at war today!",
@@ -4513,6 +4776,7 @@ const MILESTONES = [
   },
   {
     title: "People's Republic of China",
+    coords: [40,116],
     yearsAgo: 75,
     era: "Modern",
     kid: "In 1949, after a long civil war, Mao Zedong declared the People's Republic of China. Communist China became the world's most populous country and, after reforms, an economic superpower!",
@@ -4527,6 +4791,7 @@ const MILESTONES = [
   },
   {
     title: "Marshall Plan",
+    coords: [49,2],
     yearsAgo: 74,
     era: "Modern",
     kid: "After WWII, the US gave billions of dollars to rebuild Europe. Called the Marshall Plan, it helped countries recover from war and stopped communism from spreading. It was one of history's greatest acts of generosity!",
@@ -4541,6 +4806,7 @@ const MILESTONES = [
   },
   {
     title: "The DNA Double Helix",
+    coords: [52,0],
     yearsAgo: 73,
     era: "Modern",
     kid: "In 1953, Watson, Crick and their colleagues revealed that DNA is a twisting ladder - and the rungs spell out instructions written in a 4-letter alphabet. Suddenly, heredity had a language that scientists could read, copy and (eventually) edit!",
@@ -4555,6 +4821,7 @@ const MILESTONES = [
   },
   {
     title: "The Solar Cell",
+    coords: [41,-74],
     yearsAgo: 72,
     era: "Modern",
     kid: "In 1954, scientists made the first practical solar cell — a device that turns sunlight into electricity! Today solar panels cover rooftops and fields, providing clean energy from the sun.",
@@ -4569,6 +4836,7 @@ const MILESTONES = [
   },
   {
     title: "The Vietnam War",
+    coords: [11,107],
     yearsAgo: 71,
     era: "Modern",
     kid: "From 1955 to 1975, the US and its allies fought in Vietnam to stop communism from spreading! It was deeply unpopular at home, ended with US withdrawal, and left a lasting mark on American society and foreign policy.",
@@ -4599,6 +4867,7 @@ const MILESTONES = [
   },
   {
     title: "Sputnik Launches",
+    coords: [46,63],
     yearsAgo: 69,
     era: "Modern",
     kid: "In 1957, the Soviet Union launched Sputnik — the first satellite ever! It beeped as it orbited Earth. The US was shocked and rushed to catch up, launching the space race!",
@@ -4613,6 +4882,7 @@ const MILESTONES = [
   },
   {
     title: "The Silicon Chip",
+    coords: [33,-97],
     yearsAgo: 68,
     era: "Modern",
     kid: "In 1958, Jack Kilby built the first integrated circuit — a whole electronic circuit on a tiny chip of silicon! This shrank computers from room-sized machines to pocket devices. Every phone, computer and gadget uses chips today.",
@@ -4627,6 +4897,7 @@ const MILESTONES = [
   },
   {
     title: "The Pacemaker",
+    coords: [59,18],
     yearsAgo: 67,
     era: "Modern",
     kid: "In 1958, the first implantable pacemaker was put in a patient! It keeps the heart beating regularly. Millions of people with heart problems now live normal lives thanks to this tiny device.",
@@ -4641,6 +4912,7 @@ const MILESTONES = [
   },
   {
     title: "The Contraceptive Pill",
+    coords: [42,-72],
     yearsAgo: 66,
     era: "Modern",
     kid: "A tiny daily pill gave women control over when (or whether) to have children — one of the biggest social changes of the 20th century!",
@@ -4655,6 +4927,7 @@ const MILESTONES = [
   },
   {
     title: "JFK and the New Frontier",
+    coords: [38,-77],
     yearsAgo: 65,
     era: "Modern",
     kid: "John F. Kennedy became president in 1961 and inspired a generation! He launched the Peace Corps, promised to put a man on the Moon, and faced the Cuban Missile Crisis. He was assassinated in 1963, breaking the nation's heart.",
@@ -4669,6 +4942,7 @@ const MILESTONES = [
   },
   {
     title: "Gagarin Orbits Earth",
+    coords: [46,63],
     yearsAgo: 64,
     era: "Modern",
     kid: "On April 12, 1961, Yuri Gagarin became the first human in space! He orbited Earth once in 108 minutes. He was 27 years old and said 'Poyekhali!' (Let's go!) as he launched.",
@@ -4683,6 +4957,7 @@ const MILESTONES = [
   },
   {
     title: "Silent Spring",
+    coords: [39,-77],
     yearsAgo: 63,
     era: "Modern",
     kid: "In 1962, a scientist named Rachel Carson wrote a book showing that pesticides like DDT were killing birds and poisoning nature. Her book woke up the world to environmental dangers and helped start the environmental movement!",
@@ -4697,6 +4972,7 @@ const MILESTONES = [
   },
   {
     title: "Civil Rights Act (1964)",
+    coords: [38,-77],
     yearsAgo: 62,
     era: "Modern",
     kid: "In 1964, after years of protests and marches, the US passed a law that banned discrimination based on race, color, religion, sex, or national origin. Martin Luther King Jr. and others fought hard for this. It was a turning point for equality!",
@@ -4711,6 +4987,7 @@ const MILESTONES = [
   },
   {
     title: "Hart-Celler Immigration Act",
+    coords: [38,-77],
     yearsAgo: 61,
     era: "Modern",
     kid: "In 1965, the US changed its immigration laws to judge people by their skills and family ties, not by where they came from. This opened the door to millions of immigrants from Asia, Latin America and Africa!",
@@ -4725,6 +5002,7 @@ const MILESTONES = [
   },
   {
     title: "The Laser",
+    coords: [34,-119],
     yearsAgo: 60,
     era: "Modern",
     kid: "In 1960, scientists made a device that produces a beam of light so focused and powerful that it can cut steel, read CDs, and perform eye surgery! 'Laser' stands for Light Amplification by Stimulated Emission of Radiation.",
@@ -4739,6 +5017,7 @@ const MILESTONES = [
   },
   {
     title: "Harry S. Truman",
+    coords: [38,-77],
     yearsAgo: 59,
     era: "Modern",
     kid: "Harry Truman became president when FDR died! He made the huge decision to drop atomic bombs on Japan to end WWII. He also started the Marshall Plan to rebuild Europe and created NATO to fight communism.",
@@ -4753,6 +5032,7 @@ const MILESTONES = [
   },
   {
     title: "Dwight D. Eisenhower",
+    coords: [38,-77],
     yearsAgo: 58,
     era: "Modern",
     kid: "Dwight Eisenhower was a five-star general in WWII who became president in 1953! He built the interstate highway system, warned about the 'military-industrial complex,' and kept the peace during the Cold War.",
@@ -4767,6 +5047,7 @@ const MILESTONES = [
   },
   {
     title: "The Internet (ARPANET)",
+    coords: [34,-118],
     yearsAgo: 57,
     era: "Modern",
     kid: "In 1969, computers at four universities were connected for the first time. The first message was 'LO' (the system crashed before 'LOGIN'). This network became the Internet — the biggest invention in human history!",
@@ -4781,6 +5062,7 @@ const MILESTONES = [
   },
   {
     title: "Fiber Optics",
+    coords: [42,-77],
     yearsAgo: 56,
     era: "Modern",
     kid: "In 1970, scientists figured out how to send light through thin glass fibers to carry information! Fiber optics now carry the internet's data at the speed of light, connecting the whole world.",
@@ -4813,6 +5095,7 @@ const MILESTONES = [
   },
   {
     title: "The CT Scanner",
+    coords: [52,0],
     yearsAgo: 54,
     era: "Modern",
     kid: "In 1971, the first CT (computed tomography) scan was done! It combines many X-rays to create detailed 3D images of the body. Doctors can now see tumors, injuries and diseases in incredible detail.",
@@ -4827,6 +5110,7 @@ const MILESTONES = [
   },
   {
     title: "Lyndon B. Johnson",
+    coords: [38,-77],
     yearsAgo: 53,
     era: "Modern",
     kid: "Lyndon Johnson became president after JFK was assassinated! He passed the Civil Rights Act and Voting Rights Act, and started the 'Great Society' programs to fight poverty. But the Vietnam War ruined his presidency.",
@@ -4841,6 +5125,7 @@ const MILESTONES = [
   },
   {
     title: "Richard Nixon",
+    coords: [38,-77],
     yearsAgo: 52,
     era: "Modern",
     kid: "Richard Nixon was president from 1969 to 1974. He ended the Vietnam War, opened relations with China, and created the EPA. But the Watergate scandal — spying on political opponents — forced him to resign, the only president to do so!",
@@ -4855,6 +5140,7 @@ const MILESTONES = [
   },
   {
     title: "Apollo-Soyuz: East Meets West in Orbit",
+    coords: [46,63],
     yearsAgo: 51,
     era: "Modern",
     kid: "In the middle of the Cold War, American and Soviet spacecraft docked together in space and the crews shook hands — a handshake in orbit!",
@@ -4869,6 +5155,7 @@ const MILESTONES = [
   },
   {
     title: "Personal Computer",
+    coords: [37,-122],
     yearsAgo: 50,
     era: "Modern",
     kid: "In 1975, the Altair 8800 kit computer was released, and soon Apple, IBM and others made computers for everyone. The PC put computing power in homes and offices, changing how we work, play and communicate!",
@@ -4883,6 +5170,7 @@ const MILESTONES = [
   },
   {
     title: "MRI Scanner",
+    coords: [41,-73],
     yearsAgo: 49,
     era: "Modern",
     kid: "In 1977, the first MRI (Magnetic Resonance Imaging) scan was done. It uses magnets and radio waves to take detailed pictures of the inside of your body — without any radiation! It revolutionized medicine.",
@@ -4913,6 +5201,7 @@ const MILESTONES = [
   },
   {
     title: "GPS Navigation",
+    coords: [39,-105],
     yearsAgo: 47,
     era: "Modern",
     kid: "In 1978, the first GPS satellite was launched. Today, GPS tells you exactly where you are anywhere on Earth! It guides cars, planes, ships and even helps farmers plant crops precisely.",
@@ -4927,6 +5216,7 @@ const MILESTONES = [
   },
   {
     title: "IVF (Test Tube Baby)",
+    coords: [54,-2],
     yearsAgo: 46,
     era: "Modern",
     kid: "In 1978, the first 'test tube baby' was born! Louise Brown was conceived outside the womb in a lab. IVF (in vitro fertilization) has since helped millions of couples have children.",
@@ -4941,6 +5231,7 @@ const MILESTONES = [
   },
   {
     title: "Ronald Reagan's Presidency",
+    coords: [38,-77],
     yearsAgo: 45,
     era: "Modern",
     kid: "In 1981, Ronald Reagan became president and promised to make America strong again. He cut taxes, built up the military, and told the Soviet leader to 'tear down this wall!' The Cold War ended soon after.",
@@ -4955,6 +5246,7 @@ const MILESTONES = [
   },
   {
     title: "The Space Shuttle",
+    coords: [28,-81],
     yearsAgo: 44,
     era: "Modern",
     kid: "In 1981, the Space Shuttle Columbia launched! It was the first reusable spacecraft — it could fly to space and land like a plane. Shuttles built the ISS and launched satellites for 30 years.",
@@ -4969,6 +5261,7 @@ const MILESTONES = [
   },
   {
     title: "Korean War",
+    coords: [38,127],
     yearsAgo: 43,
     era: "Modern",
     kid: "From 1950 to 1953, North Korea (backed by China and USSR) invaded South Korea (backed by the US and UN). The war ended in a stalemate — the two Koreas are still technically at war today!",
@@ -4983,6 +5276,7 @@ const MILESTONES = [
   },
   {
     title: "NATO Founded",
+    coords: [38,-77],
     yearsAgo: 42,
     era: "Modern",
     kid: "In 1949, the US, Canada and 10 European countries formed NATO — a military alliance to protect each other from the Soviet Union. It's the most powerful military alliance in history!",
@@ -4997,6 +5291,7 @@ const MILESTONES = [
   },
   {
     title: "Refugee Convention",
+    coords: [46,6],
     yearsAgo: 41,
     era: "Modern",
     kid: "In 1951, the world agreed on rules to protect refugees — people fleeing war or persecution. The Refugee Convention says countries must not send refugees back to danger. It's one of the most important human rights agreements ever!",
@@ -5011,6 +5306,7 @@ const MILESTONES = [
   },
   {
     title: "3D Printing",
+    coords: [34,-119],
     yearsAgo: 40,
     era: "Modern",
     kid: "In the 1980s, Chuck Hull invented a machine that could build objects layer by layer from a digital design. 3D printing can now make prosthetics, airplane parts, and even houses!",
@@ -5025,6 +5321,7 @@ const MILESTONES = [
   },
   {
     title: "EEC Founded",
+    coords: [42,12],
     yearsAgo: 39,
     era: "Modern",
     kid: "In 1957, six European countries signed the Treaty of Rome, creating the European Economic Community (EEC). This was the first step toward the European Union — a common market that brought peace and prosperity to Europe!",
@@ -5039,6 +5336,7 @@ const MILESTONES = [
   },
   {
     title: "Earth Day",
+    coords: [40,-75],
     yearsAgo: 38,
     era: "Modern",
     kid: "On April 22, 1970, 20 million Americans protested for the environment! Earth Day became a global event. It led to the EPA, the Clean Air Act, and the Clean Water Act — laws that protect our planet.",
@@ -5053,6 +5351,7 @@ const MILESTONES = [
   },
   {
     title: "The World Wide Web",
+    coords: [46,6],
     yearsAgo: 37,
     era: "Modern",
     kid: "In 1989, Tim Berners-Lee invented the World Wide Web! He created HTML, URLs and HTTP — the building blocks of every website. The web transformed how we find information, communicate and shop.",
@@ -5067,6 +5366,7 @@ const MILESTONES = [
   },
   {
     title: "Stonewall Uprising",
+    coords: [41,-74],
     yearsAgo: 36,
     era: "Modern",
     kid: "In 1969, LGBTQ+ people fought back against police at the Stonewall Inn in New York. This uprising sparked the modern LGBTQ+ rights movement. Pride parades started the next year and continue worldwide!",
@@ -5097,6 +5397,7 @@ const MILESTONES = [
   },
   {
     title: "The Gulf War",
+    coords: [29,48],
     yearsAgo: 34,
     era: "Modern",
     kid: "In 1990, Iraq invaded Kuwait. A US-led coalition of 35 countries fought back and liberated Kuwait in just 100 hours! It was the first war broadcast live on TV.",
@@ -5111,6 +5412,7 @@ const MILESTONES = [
   },
   {
     title: "A Multi-Polar World Emerges",
+    coords: [0,0],
     yearsAgo: 33,
     era: "World Powers",
     kid: "When the Cold War ended, the world didn't stay one-superpower for long — China, India, the EU and others rose, and today power is shared among many!",
@@ -5125,6 +5427,7 @@ const MILESTONES = [
   },
   {
     title: "European Union Founded",
+    coords: [51,6],
     yearsAgo: 32,
     era: "Modern",
     kid: "In 1993, European countries joined together to create the European Union. They share a currency (the euro), open borders, and work together on trade and laws. Over 440 million people live in the EU!",
@@ -5139,6 +5442,7 @@ const MILESTONES = [
   },
   {
     title: "Bill Clinton",
+    coords: [38,-77],
     yearsAgo: 31,
     era: "Modern",
     kid: "Bill Clinton was president in the 1990s! The economy boomed, the budget balanced, and the internet grew. But he was impeached (though not removed) over a scandal with an intern. He's known for his charisma and policy skills.",
@@ -5153,6 +5457,7 @@ const MILESTONES = [
   },
   {
     title: "Gulf War",
+    coords: [29,48],
     yearsAgo: 30,
     era: "Modern",
     kid: "In 1990, Iraq invaded Kuwait. A US-led coalition of 35 countries fought back and liberated Kuwait in just 100 hours! It was the first war broadcast live on TV.",
@@ -5167,6 +5472,7 @@ const MILESTONES = [
   },
   {
     title: "NAFTA",
+    coords: [38,-77],
     yearsAgo: 29,
     era: "Modern",
     kid: "In 1994, the US, Canada and Mexico created NAFTA — a free trade agreement! It eliminated tariffs and made North America one big market. It boosted trade but also caused job losses in some industries.",
@@ -5181,6 +5487,7 @@ const MILESTONES = [
   },
   {
     title: "Stem Cells Discovered",
+    coords: [43,-90],
     yearsAgo: 28,
     era: "Modern",
     kid: "In 1998, scientists found stem cells — special cells that can become any type of cell in the body. They could help cure diseases like Parkinson's and diabetes, and maybe even regrow organs!",
@@ -5195,6 +5502,7 @@ const MILESTONES = [
   },
   {
     title: "The International Space Station",
+    coords: [46,63],
     yearsAgo: 27,
     era: "Modern",
     kid: "In 1998, the first piece of the ISS was launched! It's a giant space laboratory orbiting Earth every 90 minutes. Astronauts from 15 countries have lived there, doing science in zero gravity.",
@@ -5209,6 +5517,7 @@ const MILESTONES = [
   },
   {
     title: "Kyoto Protocol",
+    coords: [35,136],
     yearsAgo: 26,
     era: "Modern",
     kid: "In 1997, countries agreed to reduce greenhouse gas emissions through the Kyoto Protocol. It was the first international treaty to fight climate change. It wasn't perfect, but it started global climate action!",
@@ -5223,6 +5532,7 @@ const MILESTONES = [
   },
   {
     title: "The Human Genome Mapped",
+    coords: [39,-77],
     yearsAgo: 25,
     era: "Modern",
     kid: "In the early 2000s, scientists finished reading our entire genetic instruction book — all 3 billion letters of it. Suddenly, we could compare our DNA with any creature's, find the genes behind diseases, and start reading our own biology!",
@@ -5237,6 +5547,7 @@ const MILESTONES = [
   },
   {
     title: "George W. Bush",
+    coords: [38,-77],
     yearsAgo: 24,
     era: "Modern",
     kid: "George W. Bush became president in 2001! After 9/11, he launched the War on Terror and invaded Afghanistan and Iraq. He also passed tax cuts and created the Department of Homeland Security.",
@@ -5251,6 +5562,7 @@ const MILESTONES = [
   },
   {
     title: "War in Afghanistan",
+    coords: [35,69],
     yearsAgo: 23,
     era: "Modern",
     kid: "After 9/11, the US invaded Afghanistan to destroy al-Qaeda and remove the Taliban! It became America's longest war (2001-2021). The Taliban returned to power when US troops withdrew in 2021.",
@@ -5265,6 +5577,7 @@ const MILESTONES = [
   },
   {
     title: "Iraq War",
+    coords: [33,44],
     yearsAgo: 22,
     era: "Modern",
     kid: "In 2003, the US and allies invaded Iraq, claiming Saddam Hussein had weapons of mass destruction! He didn't. The war toppled Saddam but led to years of insurgency and instability in the region.",
@@ -5279,6 +5592,7 @@ const MILESTONES = [
   },
   {
     title: "Woodstock (1969)",
+    coords: [42,-75],
     yearsAgo: 21,
     era: "Modern",
     kid: "In 1969, 400,000 young people gathered on a farm in New York for a music festival called Woodstock! It became a symbol of the 1960s counterculture, peace and love. Jimi Hendrix, Janis Joplin and The Who performed.",
@@ -5293,6 +5607,7 @@ const MILESTONES = [
   },
   {
     title: "Arab-Israeli Wars",
+    coords: [30,33],
     yearsAgo: 20,
     era: "Modern",
     kid: "Starting in 1948, Israel fought several wars with its Arab neighbors! These conflicts shaped the Middle East and the lives of millions of Israelis and Palestinians. Peace remains elusive today.",
@@ -5307,6 +5622,7 @@ const MILESTONES = [
   },
   {
     title: "Smartphones Change Everything",
+    coords: [37,-122],
     yearsAgo: 19,
     era: "Modern",
     kid: "In 2007, the iPhone combined a phone, a pocket computer, a camera and the whole internet into one slab of glass. Within a decade, billions of people were carrying more computing power than the Apollo missions had!",
@@ -5321,6 +5637,7 @@ const MILESTONES = [
   },
   {
     title: "2008 Financial Crisis",
+    coords: [41,-74],
     yearsAgo: 18,
     era: "Modern",
     kid: "In 2008, the global economy crashed! Banks had made risky loans, and when housing prices fell, everything collapsed. Millions lost homes and jobs. Governments bailed out banks and passed new rules to prevent it happening again.",
@@ -5335,6 +5652,7 @@ const MILESTONES = [
   },
   {
     title: "Barack Obama Elected",
+    coords: [42,-88],
     yearsAgo: 17,
     era: "Modern",
     kid: "In 2008, Barack Obama became the first Black president of the United States. He passed healthcare reform, ended the Iraq War, and killed Osama bin Laden. 'Yes we can!' became a rallying cry.",
@@ -5349,6 +5667,7 @@ const MILESTONES = [
   },
   {
     title: "Bitcoin",
+    coords: [0,0],
     yearsAgo: 16,
     era: "Modern",
     kid: "In 2009, someone named Satoshi Nakamoto created Bitcoin — a digital currency that doesn't need banks! It uses blockchain technology to verify transactions. Bitcoin and crypto have changed how we think about money.",
@@ -5363,6 +5682,7 @@ const MILESTONES = [
   },
   {
     title: "Falklands War",
+    coords: [-52,-59],
     yearsAgo: 15,
     era: "Modern",
     kid: "In 1982, Argentina invaded the Falkland Islands, which Britain claimed. Britain sent a fleet 8,000 miles to fight. The war lasted 74 days and Britain won. It boosted Margaret Thatcher's popularity!",
@@ -5377,6 +5697,7 @@ const MILESTONES = [
   },
   {
     title: "CRISPR Gene Editing",
+    coords: [38,-122],
     yearsAgo: 14,
     era: "Modern",
     kid: "In 2012, scientists figured out how to use a bacterial immune system (CRISPR) to edit DNA precisely. It's like find-and-replace for genes! It could cure genetic diseases, but also raises big ethical questions.",
@@ -5391,6 +5712,7 @@ const MILESTONES = [
   },
   {
     title: "DACA",
+    coords: [38,-77],
     yearsAgo: 13,
     era: "Modern",
     kid: "In 2012, President Obama created DACA to protect young immigrants who came to the US as children. It lets them work and study without fear of deportation. Over 800,000 'Dreamers' have benefited!",
@@ -5405,6 +5727,7 @@ const MILESTONES = [
   },
   {
     title: "African Union",
+    coords: [9,39],
     yearsAgo: 12,
     era: "Modern",
     kid: "In 2002, African countries created the African Union to work together on peace, development and human rights. It's like the EU for Africa! The AU has 55 member states.",
@@ -5419,6 +5742,7 @@ const MILESTONES = [
   },
   {
     title: "Paris Agreement",
+    coords: [49,2],
     yearsAgo: 11,
     era: "Modern",
     kid: "In 2015, 195 countries agreed to work together to stop climate change. The Paris Agreement aims to keep global warming below 2°C. It's the biggest international climate deal ever!",
@@ -5433,6 +5757,7 @@ const MILESTONES = [
   },
   {
     title: "Same-Sex Marriage (US)",
+    coords: [38,-77],
     yearsAgo: 10,
     era: "Modern",
     kid: "In 2015, the US Supreme Court ruled that same-sex couples have the right to marry! It was a landmark victory for LGBTQ+ rights. Now same-sex marriage is legal in over 30 countries worldwide.",
@@ -5447,6 +5772,7 @@ const MILESTONES = [
   },
   {
     title: "Donald Trump",
+    coords: [38,-77],
     yearsAgo: 9,
     era: "Modern",
     kid: "Donald Trump was a businessman and TV star who became president in 2017! He cut taxes, built a border wall, and appointed three Supreme Court justices. He was impeached twice and lost re-election in 2020.",
@@ -5461,6 +5787,7 @@ const MILESTONES = [
   },
   {
     title: "ASEAN",
+    coords: [14,101],
     yearsAgo: 8,
     era: "Modern",
     kid: "In 1967, five Southeast Asian countries formed ASEAN to promote cooperation and peace. Today it has 10 members and represents 650 million people! It's one of the world's most successful regional organizations.",
@@ -5475,6 +5802,7 @@ const MILESTONES = [
   },
   {
     title: "Arab League",
+    coords: [30,31],
     yearsAgo: 7,
     era: "Modern",
     kid: "In 1945, Arab countries formed the Arab League to coordinate on politics and economics! Today it has 22 members. It has played a role in conflicts and peace efforts in the Middle East.",
@@ -5489,6 +5817,7 @@ const MILESTONES = [
   },
   {
     title: "Organization of American States",
+    coords: [38,-77],
     yearsAgo: 6,
     era: "Modern",
     kid: "In 1948, countries in the Americas formed the Organization of American States (OAS) to promote democracy, human rights and security! Today it has 35 members and is the main forum for the Western Hemisphere.",
@@ -5519,6 +5848,7 @@ const MILESTONES = [
   },
   {
     title: "James Webb Space Telescope",
+    coords: [5,-53],
     yearsAgo: 4,
     era: "Modern",
     kid: "In 2021, the James Webb Space Telescope launched! It's the most powerful telescope ever built. It can see the first galaxies formed after the Big Bang and study planets around other stars!",
@@ -5533,6 +5863,7 @@ const MILESTONES = [
   },
   {
     title: "Joe Biden",
+    coords: [38,-77],
     yearsAgo: 3,
     era: "Modern",
     kid: "Joe Biden became president in 2021 at age 78 — the oldest president ever! He passed a huge infrastructure bill, led the response to COVID-19, and supported Ukraine against Russia's invasion.",
@@ -5547,6 +5878,7 @@ const MILESTONES = [
   },
   {
     title: "Syrian Refugee Crisis",
+    coords: [33,36],
     yearsAgo: 2,
     era: "Modern",
     kid: "Starting in 2015, millions of Syrians fled their country's civil war! It became one of the largest refugee crises in history. Countries around the world struggled to respond, and it changed politics in Europe and beyond.",
@@ -5561,6 +5893,7 @@ const MILESTONES = [
   },
   {
     title: "Ukrainian Refugee Crisis",
+    coords: [51,31],
     yearsAgo: 1,
     era: "Modern",
     kid: "In 2022, Russia invaded Ukraine, and millions of Ukrainians fled their homes! It was the largest refugee crisis in Europe since WWII. Countries worldwide welcomed Ukrainian refugees.",
@@ -5591,6 +5924,7 @@ const MILESTONES = [
   },
   {
     title: "ChatGPT and the AI Revolution",
+    coords: [38,-122],
     yearsAgo: -1,
     era: "Modern",
     kid: "In 2022, ChatGPT was released and suddenly everyone could talk to an AI! It can write, code, answer questions and more. AI is now changing how we work, learn and create.",
@@ -5605,6 +5939,7 @@ const MILESTONES = [
   },
   {
     title: "Decolonization",
+    coords: [-7,107],
     yearsAgo: -2,
     era: "Modern",
     kid: "After WWII, European empires gave up their colonies! Dozens of new countries were born in Africa and Asia. India, Ghana, Kenya and many others became independent. It was the biggest change in the world map in history!",
@@ -5619,6 +5954,7 @@ const MILESTONES = [
   },
   {
     title: "The Civil Rights Movement",
+    coords: [32,-86],
     yearsAgo: -3,
     era: "Modern",
     kid: "In the 1950s and 60s, Black Americans fought for equality! Led by Martin Luther King Jr., they marched, protested and boycotted. The Civil Rights Act (1964) and Voting Rights Act (1965) ended legal segregation.",
@@ -5680,6 +6016,7 @@ const MILESTONES = [
   },
   {
     title: "The Feminist Movement",
+    coords: [43,-77],
     yearsAgo: -7,
     era: "Modern",
     kid: "In the 1960s and 70s, women fought for equality! They demanded equal pay, reproductive rights and an end to discrimination. The movement changed laws and culture, opening doors for women in every field.",
@@ -5694,6 +6031,7 @@ const MILESTONES = [
   },
   {
     title: "The Digital Revolution",
+    coords: [37,-122],
     yearsAgo: -8,
     era: "Modern",
     kid: "Starting in the 1980s, computers, the internet and smartphones transformed every part of life! We can now talk to anyone, learn anything and work from anywhere. The digital revolution is still ongoing.",
@@ -5708,6 +6046,7 @@ const MILESTONES = [
   },
   {
     title: "The Space Age",
+    coords: [46,63],
     yearsAgo: -9,
     era: "Modern",
     kid: "Starting in 1957, humans began exploring space! Sputnik, Gagarin, Apollo and the ISS — each step pushed the frontier. We've sent robots to Mars and probes beyond the solar system. The space age continues today!",
@@ -5738,6 +6077,7 @@ const MILESTONES = [
   },
   {
     title: "Gerald Ford",
+    coords: [38,-77],
     yearsAgo: -11,
     era: "Modern",
     kid: "Gerald Ford became president in 1974 when Nixon resigned — the only president never elected VP or president! He pardoned Nixon, which was controversial. He helped heal the country after Watergate but lost re-election to Jimmy Carter.",
@@ -5752,6 +6092,7 @@ const MILESTONES = [
   },
   {
     title: "Jimmy Carter",
+    coords: [38,-77],
     yearsAgo: -12,
     era: "Modern",
     kid: "Jimmy Carter was president from 1977 to 1981. He brokered peace between Israel and Egypt (Camp David Accords). But inflation, the Iran hostage crisis and energy problems hurt his presidency. After leaving office, he became a great humanitarian!",
@@ -5766,6 +6107,7 @@ const MILESTONES = [
   },
   {
     title: "George H.W. Bush",
+    coords: [38,-77],
     yearsAgo: -13,
     era: "Modern",
     kid: "George H.W. Bush was president from 1989 to 1993. He led the US during the end of the Cold War and the Gulf War. He was a WWII hero and former CIA director. His son also became president!",
@@ -5780,6 +6122,7 @@ const MILESTONES = [
   },
   {
     title: "Mars Rovers",
+    coords: [34,-118],
     yearsAgo: -14,
     era: "Modern",
     kid: "Starting in 1997, NASA sent rovers to Mars! Sojourner, Spirit, Opportunity, Curiosity and Perseverance have explored the Red Planet, looking for signs of ancient life. Perseverance even has a helicopter!",
@@ -5794,6 +6137,7 @@ const MILESTONES = [
   },
   {
     title: "Voyager Probes",
+    coords: [28,-81],
     yearsAgo: -15,
     era: "Modern",
     kid: "In 1977, NASA launched Voyager 1 and 2 to explore the outer planets! They visited Jupiter, Saturn, Uranus and Neptune. Voyager 1 is now in interstellar space — the farthest human-made object ever!",
@@ -5808,6 +6152,7 @@ const MILESTONES = [
   },
   {
     title: "Fusion Energy",
+    coords: [0,0],
     yearsAgo: -16,
     era: "Future",
     kid: "In the future, we might get energy from fusion — the same process that powers the Sun! It's clean, safe and nearly unlimited. Scientists are working on it now at ITER in France!",
@@ -5822,6 +6167,7 @@ const MILESTONES = [
   },
   {
     title: "Mars Colony",
+    coords: [0,0],
     yearsAgo: -17,
     era: "Future",
     kid: "In the 2030s, humans might live on Mars! SpaceX and NASA are planning missions to send people to the Red Planet. They'd live in habitats, grow food and explore a new world!",
@@ -5836,6 +6182,7 @@ const MILESTONES = [
   },
   {
     title: "Lunar Base Established",
+    coords: [0,0],
     yearsAgo: -18,
     era: "Future",
     kid: "By 2034, humans might have a permanent base on the Moon! Astronauts would live in habitats, mine water ice, and test technologies for Mars. The Moon becomes humanity's first off-world home!",
@@ -5850,6 +6197,7 @@ const MILESTONES = [
   },
   {
     title: "Quantum Computing",
+    coords: [0,0],
     yearsAgo: -19,
     era: "Future",
     kid: "Quantum computers use the weird rules of quantum physics to solve problems that would take regular computers millions of years! They could crack codes, design drugs and model climate in seconds.",
@@ -5864,6 +6212,7 @@ const MILESTONES = [
   },
   {
     title: "Brain-Computer Interfaces",
+    coords: [0,0],
     yearsAgo: -20,
     era: "Future",
     kid: "In the 2030s, tiny implants in the brain might let paralyzed people control computers with their thoughts! Neuralink and others are developing this. It could also help treat depression, blindness and more.",
@@ -5878,6 +6227,7 @@ const MILESTONES = [
   },
   {
     title: "Longevity Escape Velocity",
+    coords: [0,0],
     yearsAgo: -21,
     era: "Future",
     kid: "By 2046, scientists might figure out how to stop aging! 'Longevity escape velocity' means we can repair the body faster than it ages. People could live for centuries. It sounds like science fiction, but researchers are working on it!",
@@ -5892,6 +6242,7 @@ const MILESTONES = [
   },
   {
     title: "Artificial General Intelligence",
+    coords: [0,0],
     yearsAgo: -22,
     era: "Future",
     kid: "In the 2030s, AI might become as smart as humans in every way — not just chess or math, but everything! AGI could solve problems we can't even imagine, or it could be dangerous. Nobody knows when it will arrive.",
@@ -5906,6 +6257,7 @@ const MILESTONES = [
   },
   {
     title: "Space Tourism",
+    coords: [0,0],
     yearsAgo: -23,
     era: "Future",
     kid: "In the 2020s, rich tourists started flying to space! Companies like SpaceX, Blue Origin and Virgin Galactic offer suborbital and orbital trips. By the 2040s, space hotels might be a thing!",
@@ -5936,6 +6288,7 @@ const MILESTONES = [
   },
   {
     title: "Asteroid Mining",
+    coords: [0,0],
     yearsAgo: -25,
     era: "Future",
     kid: "In the 2050s, companies might mine asteroids for gold, platinum and water! A single asteroid could contain trillions of dollars worth of metals. Space mining could make rare resources abundant.",
@@ -5950,6 +6303,7 @@ const MILESTONES = [
   },
   {
     title: "Carbon Capture",
+    coords: [0,0],
     yearsAgo: -26,
     era: "Future",
     kid: "In the 2030s, we might build giant machines that suck CO2 out of the air! Carbon capture could help reverse climate change. But it's expensive and uses lots of energy. We need to plant trees AND build machines!",
@@ -5964,6 +6318,7 @@ const MILESTONES = [
   },
   {
     title: "Autonomous Vehicles",
+    coords: [0,0],
     yearsAgo: -27,
     era: "Future",
     kid: "In the 2030s, self-driving cars might be everywhere! They could reduce accidents, traffic and emissions. But there are big challenges: safety, ethics (who to save in a crash?) and regulation.",
@@ -5978,6 +6333,7 @@ const MILESTONES = [
   },
   {
     title: "Synthetic Biology",
+    coords: [0,0],
     yearsAgo: -28,
     era: "Future",
     kid: "In the 2040s, scientists might design new life forms from scratch! Synthetic biology could create bacteria that eat plastic, produce fuel or make medicine. It's like programming DNA!",
@@ -5992,6 +6348,7 @@ const MILESTONES = [
   },
   {
     title: "Universal Basic Income",
+    coords: [0,0],
     yearsAgo: -29,
     era: "Future",
     kid: "In the 2040s, governments might give everyone a monthly income just for being alive! As AI and robots take jobs, UBI could ensure everyone has enough to live. Some countries are already testing it.",
@@ -6006,6 +6363,7 @@ const MILESTONES = [
   },
   {
     title: "Space Elevator",
+    coords: [0,0],
     yearsAgo: -30,
     era: "Future",
     kid: "In the 2050s, we might build a giant cable from Earth to space! A space elevator would make launching things 100x cheaper. No more rockets — just ride the elevator to orbit!",
@@ -6020,6 +6378,7 @@ const MILESTONES = [
   },
   {
     title: "Space-Based Solar Power",
+    coords: [0,0],
     yearsAgo: -31,
     era: "Future",
     kid: "In the 2050s, we might put giant solar panels in space! They would collect sunlight 24/7 and beam energy to Earth via microwaves. It could provide unlimited clean energy!",
@@ -6034,6 +6393,7 @@ const MILESTONES = [
   },
   {
     title: "Mind Uploading",
+    coords: [0,0],
     yearsAgo: -40,
     era: "Future",
     kid: "In the 2060s, scientists might figure out how to copy a human brain into a computer! Your memories, personality and consciousness could live forever in digital form. It raises huge questions about identity and soul.",
@@ -6048,6 +6408,7 @@ const MILESTONES = [
   },
   {
     title: "Terraforming Mars",
+    coords: [0,0],
     yearsAgo: -50,
     era: "Future",
     kid: "In the 2070s, we might start making Mars more Earth-like! We could warm it up, thicken its atmosphere and add water. It would take centuries, but Mars could become a second home for humanity.",
@@ -8513,6 +8874,10 @@ const MILESTONES = [
     },
   };
 
+  /* Compact equirectangular world outline (Natural Earth 110m land,
+     integer coords in a 1000x500 box) for the offline SVG map view. */
+  const WORLD_LAND = "M335 472L334 474L333 475L327 475L321 475L317 474L316 473L322 473L328 473L330 472L332 471L335 472ZM58 471L52 471L49 470L47 469L45 468L47 467L52 468L55 469L57 470L58 471ZM375 467L378 468L379 470L380 471L380 472L375 473L371 474L366 475L360 475L353 475L350 474L350 473L356 472L358 471L360 470L361 469L363 468L365 467L366 467L370 466L375 467ZM163 454L167 455L170 454L169 455L166 456L162 456L159 455L160 454L163 454ZM151 454L155 455L154 455L150 455L146 454L148 453L151 454ZM225 450L228 450L231 450L233 451L231 451L227 451L224 451L220 451L217 451L216 450L217 449L221 450L225 450ZM310 447L310 448L310 449L309 450L306 451L303 451L299 451L300 450L297 451L294 451L292 450L292 449L295 448L297 448L300 448L301 446L301 445L301 443L302 442L305 441L306 442L307 443L308 445L309 446L310 447ZM0 485L3 484L8 485L8 484L9 484L10 484L11 484L12 484L16 485L19 484L20 484L28 483L31 484L32 484L36 485L44 486L50 486L61 487L69 486L81 487L87 488L95 487L102 486L103 485L92 485L83 484L81 483L73 482L74 481L75 480L76 479L75 478L71 477L69 476L64 475L71 475L78 475L82 476L86 475L91 474L93 473L92 472L89 471L85 470L79 470L74 470L69 470L67 469L63 468L61 467L60 464L61 464L64 465L69 464L73 464L75 465L80 465L83 464L87 464L90 463L94 462L94 461L93 460L94 459L97 459L99 460L103 459L107 459L111 459L114 458L118 458L121 457L124 456L127 457L128 457L133 456L136 457L140 457L144 456L148 457L152 457L156 457L160 457L164 457L167 457L170 456L174 456L177 456L180 456L183 455L185 456L186 457L188 458L191 457L194 458L198 458L201 459L205 459L209 458L213 458L217 459L220 459L222 458L220 457L219 456L215 456L214 455L213 454L212 452L214 452L218 452L221 452L225 453L227 453L229 454L232 454L236 454L240 454L243 453L246 454L250 454L252 452L254 453L258 453L261 453L263 454L267 454L270 455L274 455L276 454L277 453L280 454L284 454L286 455L288 455L292 455L295 455L298 454L301 454L305 453L309 453L311 452L313 451L314 450L313 449L312 448L311 447L310 446L310 445L310 444L310 443L311 442L312 440L313 439L312 438L312 437L313 436L315 435L317 434L318 433L321 432L322 431L323 430L325 430L328 429L329 429L331 428L334 428L336 427L337 426L339 426L341 426L340 427L337 428L336 429L334 428L332 429L330 429L328 430L326 431L326 432L326 433L327 434L326 435L323 435L321 436L320 437L318 438L318 439L319 440L320 441L322 441L324 442L326 443L326 444L327 446L328 446L329 447L330 450L330 451L331 452L331 453L331 455L330 456L328 457L324 457L323 458L321 459L317 460L313 461L310 461L306 462L304 463L299 463L295 463L290 463L285 463L286 464L291 465L294 465L295 466L292 467L288 467L284 468L283 469L283 470L287 471L287 472L291 473L297 473L302 474L306 475L311 476L317 476L324 477L329 478L334 479L337 480L338 481L342 480L346 479L351 478L357 478L362 477L369 477L375 477L381 478L383 477L387 476L394 476L399 475L404 475L410 474L416 474L421 473L419 472L418 471L418 470L412 470L406 471L401 471L400 470L401 468L402 467L406 466L411 466L414 465L417 464L420 463L424 462L427 462L429 462L434 462L438 461L441 461L444 460L447 460L451 459L454 458L456 457L457 456L454 455L455 454L457 453L460 453L463 452L466 451L468 450L469 449L471 448L475 448L476 449L479 449L480 448L481 447L484 447L485 448L488 449L492 448L495 448L498 448L499 449L502 448L505 448L508 447L511 447L514 446L517 446L520 445L522 444L524 445L526 444L528 446L530 447L533 446L534 445L537 444L541 445L542 446L544 445L547 444L551 444L553 444L557 444L560 445L561 446L563 446L566 446L569 446L572 446L575 446L578 445L581 445L583 444L586 444L589 443L591 443L593 441L594 440L597 441L598 442L600 442L603 442L605 443L607 444L610 443L611 442L614 441L617 441L619 440L623 440L625 439L627 438L629 438L632 438L634 437L636 436L639 436L641 436L642 435L644 434L646 433L649 433L651 433L654 433L657 433L659 434L659 435L661 436L663 437L666 437L668 438L671 439L673 439L676 438L678 437L681 438L683 438L686 438L689 439L691 439L694 442L693 444L691 444L688 445L689 446L692 446L691 447L690 448L689 450L691 450L694 451L697 450L699 449L700 448L701 447L703 446L704 445L705 444L707 444L710 444L713 443L716 443L717 442L718 441L720 440L722 439L725 439L726 438L728 437L730 437L733 437L735 437L738 436L741 437L743 436L744 434L745 435L747 436L749 437L752 437L754 436L757 437L760 437L762 436L764 437L766 437L769 437L772 437L774 436L777 437L779 436L780 435L782 434L786 432L787 433L790 433L791 434L795 436L798 436L800 436L803 436L806 435L808 435L810 434L813 434L816 433L818 434L819 434L821 435L824 435L826 436L829 437L833 437L836 437L838 436L840 435L842 435L845 435L848 435L850 435L853 435L855 435L858 435L860 435L863 435L866 434L869 434L872 434L874 434L875 433L875 431L877 432L877 433L878 435L879 435L882 436L885 436L889 436L891 436L895 436L897 436L901 436L904 436L906 437L906 438L907 439L910 439L913 440L917 440L921 441L924 441L927 441L929 440L931 441L933 442L936 443L939 443L942 443L944 444L947 445L949 446L952 446L955 446L958 447L961 447L965 447L968 447L971 448L974 448L976 449L975 450L974 451L973 452L972 453L970 455L967 455L965 456L961 457L960 458L958 459L956 460L955 461L954 462L954 463L954 464L956 465L956 466L958 467L963 468L964 469L959 469L955 470L949 470L947 471L947 473L945 474L944 475L948 476L949 477L951 478L955 479L959 480L963 481L969 481L971 483L979 483L979 484L981 484L989 484L995 485ZM312 400L315 401L319 402L318 403L315 403L314 402L313 404L311 404L308 404L306 403L303 403L299 401L296 400L293 397L295 397L299 399L302 400L304 399L305 397L307 396L309 396L310 398L312 400ZM337 392L340 393L339 394L335 395L334 394L331 395L330 394L333 392L336 393L337 392ZM695 388L691 388L691 387L691 386L691 385L693 386L696 386L696 387L695 388ZM904 363L907 364L908 364L910 363L912 364L912 367L911 368L911 370L910 369L908 371L907 371L906 371L904 369L904 367L902 364L902 363L904 363ZM981 364L981 365L983 364L984 365L984 366L983 367L981 369L980 370L981 372L979 372L976 373L976 375L974 378L972 379L970 380L968 379L966 379L963 378L963 377L964 375L968 373L969 372L971 371L974 370L975 368L977 366L978 365L978 364L980 362L981 364ZM985 350L987 353L987 351L988 352L989 354L991 355L993 355L994 354L996 355L995 357L994 359L992 359L991 360L992 361L991 361L990 363L989 365L987 366L986 365L985 365L987 362L986 361L983 360L983 359L985 358L985 356L985 354L984 352L984 351L983 350L981 348L980 346L981 346L982 347L984 348L985 350ZM964 312L963 312L962 311L960 310L958 309L956 307L956 306L957 306L958 307L960 308L960 309L963 310L964 312ZM995 298L996 299L996 300L994 301L993 300L992 299L994 298L995 299L995 298ZM998 297L996 297L996 296L997 296L998 295ZM0 295L1 295L0 296ZM966 296L965 296L964 295L964 294L966 296ZM964 291L965 294L964 293L963 294L963 293L963 291L964 291ZM639 288L639 291L640 292L640 294L639 294L639 293L638 294L639 296L638 297L637 298L637 300L636 303L635 307L633 312L632 316L631 319L629 320L626 321L625 320L622 319L622 318L621 315L620 313L620 311L621 309L622 309L622 308L623 306L624 304L623 303L622 301L622 298L623 297L623 295L625 295L626 294L627 294L629 294L630 292L633 291L633 289L633 288L634 288L636 286L636 285L637 283L638 285L638 286L639 288ZM899 288L900 290L902 289L902 291L904 292L904 293L904 295L905 297L906 299L906 301L907 303L910 304L912 305L913 307L915 309L916 312L917 311L918 313L919 312L919 315L921 317L922 318L925 320L925 322L925 324L925 326L927 328L926 331L926 332L925 334L925 336L925 338L923 340L921 342L920 344L919 345L919 348L918 349L917 351L917 353L917 354L915 355L912 355L909 356L908 357L906 358L904 357L902 357L903 355L901 356L899 358L897 357L895 357L893 356L891 356L889 354L888 352L888 350L886 349L884 349L885 348L884 346L883 347L880 348L882 346L882 345L883 343L883 341L881 344L879 345L878 347L876 346L876 344L874 342L872 341L873 341L869 339L867 339L865 337L860 338L856 339L853 340L850 339L847 341L845 342L845 343L843 344L841 344L839 344L837 344L835 344L833 344L831 346L829 347L828 347L826 347L824 347L821 346L820 345L820 343L821 343L821 342L821 341L822 339L821 338L820 335L819 333L820 332L818 330L818 329L817 328L817 326L815 324L815 323L816 324L815 321L816 322L817 323L817 322L816 319L815 318L815 316L816 315L816 314L816 312L817 310L817 313L818 311L821 310L822 309L824 308L825 307L826 308L828 307L830 306L831 306L831 305L833 305L836 305L837 303L838 302L840 301L840 299L840 298L842 296L843 298L844 297L843 296L844 295L845 295L845 293L847 292L848 291L849 290L850 290L850 289L852 289L853 288L855 290L857 291L858 291L860 292L859 290L861 288L862 287L862 286L863 285L865 284L866 284L868 284L868 282L866 281L868 281L869 282L871 283L873 283L874 283L876 284L877 283L878 283L879 283L880 284L880 286L879 287L878 287L878 288L877 290L876 291L876 292L879 293L881 294L882 295L884 297L885 297L886 297L887 298L889 299L891 298L892 297L892 296L893 294L894 292L893 290L893 288L893 286L894 285L894 284L894 283L895 281L896 280L897 281L897 283L898 283L898 284L899 286L899 287L899 288ZM950 279L951 280L949 280L948 278L950 279ZM835 278L834 278L830 277L833 276L835 277L835 278ZM947 277L946 277L944 277L943 277L944 276L945 276L946 277L947 277ZM949 277L947 275L946 273L947 273L948 275L949 277ZM846 278L843 279L843 278L843 277L844 276L847 275L847 274L850 273L852 273L853 273L854 273L853 274L850 275L847 276L846 278ZM827 272L828 273L830 273L831 274L828 275L826 275L824 275L825 273L827 273L827 272ZM841 272L841 274L837 275L833 274L833 273L835 273L837 274L839 274L841 272ZM944 273L944 274L942 273L941 272L939 271L940 270L941 271L943 272L944 273ZM938 270L937 271L936 270L935 269L935 268L936 270L938 270ZM802 269L807 269L808 268L813 269L814 271L818 272L821 273L818 274L815 273L813 273L810 273L807 273L804 272L802 271L801 272L796 270L795 269L793 269L795 266L798 267L800 268L801 268L802 269ZM874 267L873 269L873 267L873 266L874 265L874 266L874 267ZM933 269L932 269L931 268L930 266L929 264L930 264L930 265L931 265L932 267L933 268L933 269ZM922 265L921 265L920 266L919 267L917 268L916 268L914 267L912 266L912 265L915 266L916 265L917 264L917 265L919 265L920 264L921 263L921 262L923 262L923 264L922 265ZM853 260L852 261L851 260L850 259L853 259L853 260ZM862 259L863 261L861 260L859 259L857 260L855 259L856 258L859 258L862 259ZM925 262L925 263L924 262L923 261L922 260L921 258L919 258L919 257L921 258L922 258L923 259L924 260L925 261L925 262ZM873 253L873 258L876 259L879 256L882 255L884 255L887 256L889 257L892 257L896 259L902 261L904 262L905 264L906 265L910 267L911 268L908 269L909 271L911 272L913 275L915 275L915 276L917 277L916 277L919 279L917 280L916 279L914 279L911 278L909 276L907 275L906 272L902 271L900 272L898 273L898 275L896 276L895 275L892 275L889 273L886 272L886 273L882 273L883 271L885 270L884 267L883 265L878 263L875 262L871 260L870 261L869 261L869 260L869 259L867 258L870 257L872 257L871 256L867 256L866 254L864 254L863 253L866 252L868 251L872 252L873 253ZM848 246L846 249L844 249L841 249L836 249L834 249L833 251L836 254L837 253L843 252L842 253L841 253L840 254L838 255L840 259L840 260L842 263L842 265L841 266L840 265L841 262L838 263L837 263L838 262L836 260L836 257L834 258L834 261L835 265L833 266L832 265L832 262L832 260L831 260L830 258L831 256L831 254L833 250L833 248L836 246L838 247L841 248L845 247L847 245L848 246ZM857 247L857 249L856 249L855 251L857 252L856 252L855 251L854 247L854 245L855 244L856 245L857 246L857 247ZM794 266L791 266L789 264L785 262L784 260L782 258L780 256L778 252L776 249L775 247L774 245L771 243L770 241L768 239L765 236L765 235L766 235L771 235L773 238L775 240L777 241L780 244L782 244L785 246L786 248L788 250L787 252L789 253L790 253L790 255L791 257L793 257L795 259L794 262L794 266ZM827 245L831 247L827 248L826 250L826 252L824 254L824 257L823 261L822 260L819 261L818 260L816 260L815 259L811 260L810 258L808 258L806 258L806 254L804 254L803 251L803 249L803 246L805 244L807 245L809 245L809 243L811 242L814 241L816 239L817 237L818 236L821 235L823 233L824 231L825 231L827 232L827 233L829 234L831 235L831 236L829 236L829 238L827 239L826 241L828 244L827 245ZM851 227L851 228L851 230L851 233L850 230L848 231L849 233L848 234L845 233L844 231L845 230L843 228L842 229L841 229L839 231L839 230L840 228L842 227L843 226L844 227L846 226L847 225L849 225L848 223L851 224L851 226L851 227ZM726 233L723 233L722 231L721 227L723 223L725 224L726 226L727 229L727 232L726 233ZM331 222L328 222L329 221L329 220L330 220L331 220L331 222ZM844 221L843 222L843 224L842 225L840 223L841 222L841 221L842 220L843 220L843 221L845 219L844 221ZM829 224L825 227L827 225L829 223L831 221L832 218L832 221L831 222L829 224ZM839 217L840 218L842 218L842 219L841 220L839 221L839 220L839 218L839 217ZM849 216L849 219L847 219L847 220L848 221L847 222L847 220L846 220L845 218L847 218L847 217L845 215L848 215L849 216ZM838 214L837 216L836 215L834 213L837 213L838 214ZM837 199L839 199L840 199L839 201L840 203L840 205L838 206L838 208L838 210L840 211L841 210L844 212L844 213L845 214L845 215L842 214L841 212L841 213L839 212L836 212L835 212L835 210L836 210L835 209L835 210L834 208L833 207L833 205L834 205L834 201L835 199L837 199ZM318 199L317 200L315 200L313 200L313 199L314 199L316 199L317 199L318 199ZM286 200L286 201L284 200L282 199L283 199L284 199L285 199L286 199L288 200L286 200ZM298 195L301 195L303 195L305 195L306 195L306 196L308 196L308 197L309 197L310 198L309 199L308 199L307 199L306 199L305 199L304 199L303 199L302 201L301 201L301 200L299 199L298 200L296 199L295 200L293 199L293 198L296 199L298 199L299 198L298 197L298 196L296 195L297 195L298 195ZM806 198L804 199L802 199L802 196L803 195L806 194L808 194L808 195L807 197L806 198ZM68 197L67 197L67 196L66 195L67 195L67 194L68 194L69 194L69 195L70 196L69 197L68 197ZM66 193L65 192L66 192L67 192L66 193ZM65 191L64 191L63 191L65 191ZM62 191L61 191L60 190L61 190L62 191ZM57 189L56 189L57 188L57 189ZM279 187L280 188L282 187L283 188L286 190L287 191L288 191L290 192L292 193L294 194L292 195L290 195L288 195L284 195L286 193L285 193L283 192L282 192L281 190L280 190L277 189L276 189L273 188L272 188L273 187L270 187L268 188L267 188L267 189L265 189L264 189L265 188L266 187L267 187L269 186L271 186L274 186L276 186L279 187ZM285 184L284 184L283 183L282 182L283 180L284 180L285 182L285 184ZM837 187L835 189L834 187L834 185L835 182L837 180L839 181L838 182L837 187ZM284 176L281 177L281 176L282 175L284 175L284 176ZM286 176L286 178L285 178L285 176L284 175L286 176ZM874 155L874 156L873 158L872 157L870 158L869 159L868 158L868 157L869 155L871 156L872 155L874 155ZM596 151L594 152L594 153L592 154L590 154L590 152L591 152L592 152L594 152L596 151ZM566 151L567 152L570 152L572 152L573 152L573 153L569 153L565 152L566 151ZM543 144L542 146L543 147L542 148L540 147L538 147L535 146L535 144L538 144L541 144L543 144ZM526 136L527 137L527 141L526 141L524 142L523 141L523 138L523 136L524 136L526 136ZM892 147L891 149L891 150L890 152L886 154L881 154L877 157L875 156L875 154L870 155L867 156L864 156L867 158L865 163L863 164L862 163L862 160L861 159L859 158L862 157L864 155L866 153L868 152L874 151L877 151L880 146L882 148L886 145L887 144L889 140L889 137L890 136L893 135L894 139L894 141L892 144L892 147ZM527 133L526 135L524 134L524 133L524 132L526 131L527 133ZM900 127L902 128L904 127L904 130L900 131L898 133L893 131L892 134L889 135L888 132L890 130L893 129L894 126L894 123L898 126L900 127ZM323 121L325 121L328 121L326 122L325 122L322 121L321 120L322 119L323 121ZM328 114L327 114L323 113L321 111L322 111L325 112L328 113L328 114ZM157 115L156 116L151 114L150 113L148 112L147 112L144 111L143 110L143 109L146 110L148 110L151 110L152 111L153 113L156 114L157 115ZM344 109L342 112L344 111L346 111L345 112L347 113L349 112L351 113L351 115L353 115L353 116L354 118L353 120L351 121L350 120L350 118L349 117L346 120L344 120L346 118L344 118L341 118L335 118L335 117L337 116L335 115L338 114L341 109L342 108L345 107L346 107L344 109ZM131 100L134 100L133 103L136 105L135 105L133 104L132 103L130 102L130 100L131 100ZM899 109L902 114L898 113L896 117L899 120L899 122L897 120L895 122L894 120L894 117L894 114L895 112L895 108L893 106L894 102L896 101L895 99L896 99L897 101L898 103L898 106L899 109ZM481 105L476 106L472 106L475 103L473 100L477 98L479 97L481 97L484 98L483 100L483 102L481 105ZM535 96L534 98L531 96L530 95L534 94L535 96ZM75 91L72 92L71 92L70 90L73 89L74 89L76 89L77 90L75 91ZM492 87L489 90L492 90L495 90L494 92L491 95L494 95L497 98L499 99L501 102L501 103L505 104L504 105L503 106L504 108L502 109L498 109L493 110L492 109L490 110L487 110L485 111L484 111L488 108L491 107L486 107L485 106L488 105L487 103L487 101L491 102L492 100L490 98L487 98L486 97L487 96L486 95L484 96L484 94L483 92L484 89L486 87L488 87L492 87ZM40 84L38 84L37 83L35 83L38 82L40 83L40 84ZM280 77L279 79L278 79L277 78L278 77L279 77L280 77ZM273 76L269 77L267 77L269 75L273 75L273 76ZM23 73L25 73L26 73L29 74L31 74L29 75L27 74L26 74L23 74L23 73ZM263 68L264 69L265 68L267 69L270 70L273 71L273 72L276 72L277 73L275 74L271 73L269 72L266 73L262 75L261 73L258 73L260 72L260 70L261 67L263 68ZM460 65L459 67L462 69L459 71L451 73L448 74L445 73L437 72L440 71L433 70L438 69L438 68L432 68L434 66L439 66L443 67L447 66L451 67L455 65L460 65ZM289 63L286 64L285 62L287 61L289 60L291 61L291 62L291 63L289 63ZM0 58L7 61L14 63L14 65L16 66L15 64L23 64L28 67L25 68L21 68L21 71L20 72L17 71L15 70L11 70L11 68L8 68L5 68L3 67L4 66L0 67L2 68L0 70ZM1000 70L996 71L993 71L995 72L997 74L998 75L999 76L998 77L993 76L985 78L982 79L978 81L974 82L973 84L969 82L962 84L961 83L958 84L954 84L953 86L950 88L950 89L953 90L953 94L950 94L949 96L950 98L945 99L945 102L940 103L940 106L936 108L934 106L933 102L932 96L933 92L935 91L936 89L940 89L945 85L950 82L955 80L957 76L953 76L952 79L945 82L943 78L935 79L928 84L931 86L924 86L920 87L920 85L916 84L913 86L904 85L895 86L886 91L875 98L880 98L881 100L884 101L886 99L889 99L893 103L893 105L891 108L890 111L889 115L885 119L884 121L880 125L876 128L875 129L871 131L869 131L867 130L864 132L863 133L862 133L861 133L860 134L860 136L859 137L858 138L857 138L855 139L854 140L854 141L855 142L857 143L859 146L860 148L860 151L859 153L856 153L854 154L851 154L851 153L852 151L850 148L852 148L850 145L849 145L848 145L847 145L846 144L847 143L848 143L848 142L848 141L848 140L846 140L845 139L841 140L839 141L836 142L838 141L837 140L839 138L838 136L835 137L832 139L831 141L828 141L826 142L828 144L830 145L830 146L833 147L836 145L838 146L840 146L840 147L836 148L835 150L832 151L831 153L834 155L835 157L837 160L839 162L839 164L837 165L838 166L839 167L839 169L838 172L836 172L834 175L832 178L830 182L826 184L822 187L819 187L817 188L816 187L815 189L811 190L808 191L807 193L805 194L805 192L805 191L801 190L800 190L796 193L794 195L794 197L796 200L798 204L801 205L802 208L804 213L803 218L801 219L798 221L796 224L792 226L791 224L792 222L790 221L787 220L786 219L785 216L782 215L780 215L780 213L778 213L778 216L776 220L775 222L776 224L777 224L779 227L779 229L781 231L782 231L784 233L786 235L787 237L787 238L787 240L787 241L788 242L788 243L790 245L790 246L788 247L785 245L782 242L781 241L780 239L779 237L778 235L779 233L778 232L777 231L776 230L775 228L774 227L773 228L773 227L773 225L774 222L773 220L774 218L773 217L774 214L773 212L772 209L771 205L770 203L768 204L765 206L763 206L762 205L763 202L762 199L760 196L760 195L759 195L757 193L756 191L756 190L755 188L754 187L751 187L752 188L751 189L750 189L749 189L748 189L747 189L747 190L745 190L742 190L742 192L740 194L736 196L733 199L731 201L728 203L728 204L727 205L724 206L723 206L722 208L723 212L723 214L722 217L722 221L720 221L719 223L720 224L717 225L717 227L715 228L713 225L711 221L710 219L709 217L708 215L707 211L707 209L704 206L703 200L702 197L702 193L702 191L698 192L696 192L692 189L693 188L693 187L689 184L687 183L687 181L684 179L679 180L675 180L671 180L666 179L663 179L659 179L658 175L657 175L655 175L652 176L649 176L646 173L643 173L641 170L639 166L638 167L636 166L635 167L633 167L634 168L634 169L634 171L636 173L637 174L637 175L639 176L639 177L639 178L640 179L640 180L641 181L641 179L642 178L642 177L643 178L643 180L643 182L643 183L644 183L646 183L648 183L650 183L652 181L654 179L656 178L657 177L657 178L656 179L657 181L658 183L659 184L661 184L663 185L664 186L665 187L666 187L666 188L665 190L664 191L662 193L661 193L661 194L660 195L661 197L660 197L659 197L657 198L657 200L656 200L655 200L654 201L654 202L652 203L651 203L649 204L648 204L646 204L645 206L645 207L642 208L638 209L635 211L634 211L633 211L632 212L630 213L627 213L626 214L625 214L625 215L624 215L623 215L621 215L620 213L620 212L620 211L619 209L618 208L619 208L619 206L619 205L618 203L617 201L616 200L615 198L614 196L612 194L611 194L609 191L608 189L609 187L607 184L606 183L604 183L603 181L603 180L603 179L602 178L601 176L599 174L598 172L596 172L597 171L597 170L597 168L596 169L596 171L595 173L594 173L593 172L592 171L590 167L591 170L593 173L595 177L596 179L597 180L599 184L599 186L602 188L602 189L603 192L603 195L604 198L605 199L607 200L608 203L609 206L611 207L614 210L616 211L617 213L618 214L620 215L620 216L620 217L619 217L620 218L621 219L621 220L623 221L624 221L627 220L630 220L632 219L633 219L634 218L636 218L637 218L638 218L640 218L641 217L642 217L642 219L642 220L641 221L640 224L639 228L637 231L635 235L633 238L629 242L627 244L622 247L620 249L617 253L616 254L616 255L614 256L613 257L612 257L611 259L611 260L610 262L609 263L608 266L608 268L610 269L610 270L609 271L609 272L609 274L610 275L611 278L612 279L612 280L612 283L613 285L613 289L613 291L612 293L611 295L610 296L607 298L604 299L601 302L600 302L598 304L597 305L596 307L598 309L598 311L599 311L599 314L598 315L599 316L598 317L597 318L595 319L592 320L590 321L591 323L591 324L590 326L590 329L589 330L588 331L587 332L586 333L585 335L583 337L580 339L578 341L576 342L573 343L572 344L570 344L569 344L566 344L564 344L563 344L560 345L557 346L556 347L554 347L553 346L552 346L551 344L551 345L551 344L551 342L550 341L551 340L551 338L549 335L547 333L545 329L543 327L542 325L542 323L541 321L540 316L540 313L540 311L539 310L537 308L536 305L535 303L533 300L533 298L532 296L533 294L534 291L534 290L535 288L535 286L537 285L538 283L538 281L538 280L537 279L536 277L536 275L537 274L536 271L535 269L534 267L534 266L533 264L531 261L528 258L526 256L524 253L525 252L525 251L526 249L526 247L527 244L527 241L526 240L525 239L524 238L524 237L521 238L520 238L519 238L516 238L515 236L514 234L512 233L510 233L507 233L505 233L503 234L499 235L497 236L495 237L492 236L491 236L489 236L487 236L484 236L482 237L479 238L478 238L475 237L472 234L470 233L468 231L467 231L465 230L464 228L464 227L463 225L462 224L461 223L460 222L459 220L458 219L456 218L455 218L455 217L454 216L453 213L454 212L452 210L451 209L452 209L454 207L454 205L454 204L455 202L455 200L455 197L455 196L455 194L454 193L453 192L453 190L453 189L454 188L455 187L455 186L456 184L457 182L458 182L459 180L459 179L460 177L462 176L464 173L465 172L468 172L470 170L471 169L473 167L473 163L474 161L474 160L476 158L479 156L481 155L483 152L484 151L486 151L487 152L490 152L493 152L494 152L497 151L500 150L501 149L504 148L509 148L513 148L515 148L517 147L520 147L521 148L523 147L526 146L528 147L528 148L531 147L529 149L529 150L530 151L530 153L528 155L529 156L530 156L531 158L532 158L535 159L536 159L539 159L542 160L544 163L546 163L550 165L553 166L554 165L556 164L555 162L556 160L558 159L560 159L564 159L565 161L566 161L569 161L570 162L574 162L576 163L579 164L580 164L582 163L584 163L586 162L588 163L589 164L589 163L592 164L594 164L595 163L596 162L597 161L597 159L597 158L598 158L599 156L600 154L600 152L600 150L599 149L600 148L599 148L596 148L595 149L590 150L588 148L585 148L584 149L582 150L580 148L577 148L575 145L573 144L574 142L573 140L576 138L580 138L581 136L587 136L590 134L593 133L598 133L603 135L607 136L610 136L612 136L615 135L616 133L615 132L614 131L612 130L611 129L607 127L604 126L602 124L604 124L606 122L605 120L609 119L606 119L604 119L602 120L600 120L597 121L597 123L599 124L601 124L601 125L598 125L594 127L593 126L593 125L590 124L591 124L593 123L592 122L588 121L588 120L585 121L584 122L582 124L582 125L581 126L580 125L579 129L578 130L577 132L578 133L578 134L581 135L580 136L577 136L576 137L573 138L572 137L571 137L569 136L566 137L568 139L566 139L565 139L563 138L563 140L565 141L564 142L565 143L567 144L567 145L564 145L565 146L563 146L564 149L562 149L560 148L559 145L559 144L558 142L556 141L556 140L555 140L555 139L554 138L554 137L554 135L554 134L553 133L552 133L551 132L549 131L547 130L544 129L542 127L543 127L541 126L541 125L540 124L539 126L538 125L538 124L539 123L537 123L534 124L534 125L534 126L535 128L538 129L539 131L542 133L544 133L545 134L544 135L547 136L549 136L551 138L551 139L549 138L547 138L546 139L548 140L547 142L546 142L545 144L544 145L544 144L544 142L545 142L544 140L543 139L542 138L541 137L539 137L538 136L536 135L534 134L531 132L529 131L528 128L527 128L525 127L523 127L522 128L521 129L518 130L513 129L509 130L508 132L508 134L506 135L502 136L502 137L500 139L499 141L500 142L499 144L498 145L496 146L494 148L491 148L488 148L486 149L485 150L484 150L483 149L482 147L479 147L478 148L477 147L475 148L476 145L475 144L474 143L474 142L474 141L475 140L475 138L476 137L476 136L475 135L475 134L475 132L474 130L478 128L481 129L485 129L488 129L490 129L495 129L496 128L497 122L494 119L492 118L488 117L487 115L491 114L496 115L495 112L497 113L504 111L505 108L507 108L509 107L511 107L513 103L517 101L519 101L520 101L522 101L523 101L524 100L524 99L524 97L523 96L522 93L523 92L524 91L526 91L527 90L529 90L529 91L528 92L529 93L530 93L530 94L529 94L527 96L528 97L528 98L530 99L530 100L533 99L535 99L538 100L539 101L541 100L545 99L549 98L552 98L552 99L555 99L555 98L559 97L558 94L559 92L560 91L563 90L565 92L567 92L568 89L568 88L567 88L565 87L565 86L568 85L572 84L575 85L578 85L581 83L578 82L573 82L568 83L564 84L562 82L559 81L560 79L558 76L560 74L562 73L569 70L571 69L570 68L566 67L562 67L559 69L559 71L555 73L550 76L548 80L550 82L552 83L550 86L547 87L546 92L544 94L541 94L539 96L536 96L535 94L533 90L531 87L529 85L523 88L520 89L516 87L515 84L514 78L516 76L524 74L529 71L534 67L541 62L546 60L553 56L559 55L564 55L568 53L573 53L578 52L587 54L583 55L586 57L589 56L594 57L601 58L612 61L614 63L614 64L611 66L607 67L594 65L592 65L597 67L597 71L601 72L603 73L603 71L601 70L603 69L610 71L612 70L610 68L617 65L619 66L622 66L624 65L621 63L623 61L621 60L628 60L630 62L627 62L627 64L629 65L633 64L634 62L640 61L649 59L651 59L649 61L652 61L654 60L659 60L663 59L667 60L670 58L667 57L668 56L676 57L680 58L690 61L692 59L689 58L689 57L686 57L687 56L685 54L685 53L690 50L692 48L694 47L702 48L702 49L700 52L701 53L702 54L702 58L705 60L703 62L698 66L701 66L702 65L705 64L706 63L708 62L707 60L708 58L705 58L704 57L707 54L703 52L708 50L707 48L709 48L710 49L709 52L712 52L711 50L715 49L721 49L726 51L724 48L724 45L728 45L735 45L741 45L739 43L742 41L745 41L751 40L758 40L759 39L766 38L769 39L775 38L780 38L781 36L783 35L790 34L795 35L791 36L797 36L798 38L800 37L809 37L815 38L817 39L816 41L813 42L806 43L804 44L807 44L811 45L814 45L815 46L817 46L821 45L830 46L831 47L842 47L842 45L848 46L853 46L857 47L858 49L857 50L860 52L865 53L867 50L872 52L877 51L882 52L884 51L889 51L887 49L890 48L915 49L918 51L925 53L936 53L942 53L944 54L944 56L947 57L951 57L956 56L961 57L966 57L971 59L974 58L972 57L973 55L982 56L988 56L996 57ZM636 135L638 137L639 137L640 138L638 138L637 141L637 142L636 142L636 144L637 146L639 146L641 148L645 148L650 147L649 145L650 142L648 141L648 139L646 139L647 136L650 137L652 136L650 135L649 133L647 134L647 136L646 134L646 133L646 132L646 131L643 130L641 128L640 127L640 126L642 126L643 124L645 124L647 124L648 122L647 120L645 120L642 119L639 121L636 121L635 123L632 123L630 126L632 129L632 131L635 134L636 135ZM234 58L233 59L229 58L227 58L223 57L225 56L227 55L230 56L232 56L233 57L234 58ZM1000 53L997 53L996 53ZM0 51L3 51L7 52L6 52L4 53L0 53L0 51ZM248 57L248 60L252 58L256 59L255 61L257 63L260 61L262 59L262 56L266 56L270 57L274 58L274 59L272 61L274 62L274 64L268 66L265 66L262 65L261 67L258 69L257 70L254 72L250 72L248 73L248 75L245 75L241 78L238 81L237 83L237 86L241 87L242 89L244 91L248 91L253 92L255 93L257 94L261 95L264 96L268 97L271 97L271 99L272 102L274 105L278 108L280 107L282 104L280 100L278 98L283 97L286 95L287 93L287 91L285 89L282 87L285 84L284 81L283 77L285 76L290 77L293 77L295 77L297 77L301 79L302 80L307 80L307 83L308 86L310 87L312 88L316 87L319 84L321 82L323 85L326 88L329 92L328 94L332 95L335 97L339 97L341 98L342 101L344 101L345 102L345 105L343 106L341 107L337 108L333 110L329 111L323 110L318 110L316 110L313 112L310 114L306 117L302 120L305 119L309 116L315 114L319 113L322 115L319 116L320 119L321 122L325 123L329 123L332 119L332 121L334 122L330 124L324 126L322 127L318 129L316 129L316 126L321 124L317 124L314 125L314 126L311 127L308 128L305 129L304 130L303 131L303 132L304 134L305 134L305 133L306 134L304 135L302 135L300 135L299 135L298 135L295 136L299 136L300 136L296 137L294 137L295 137L294 138L295 138L294 140L292 142L292 141L291 141L290 140L291 142L292 143L291 144L289 147L290 145L288 144L288 141L287 142L288 144L286 144L288 145L288 147L289 148L290 151L288 153L285 154L283 156L282 156L280 157L280 158L277 160L275 161L274 163L274 165L274 167L275 169L276 171L276 172L278 175L278 177L277 178L277 180L276 180L275 180L274 179L273 178L272 176L270 174L270 173L270 171L270 169L267 167L266 166L264 168L263 168L262 166L260 166L257 166L254 166L252 166L251 166L252 167L252 168L252 169L251 169L250 169L248 169L245 168L243 168L241 167L239 167L237 168L234 170L232 171L230 173L230 174L230 176L230 177L230 178L229 181L229 183L228 186L228 188L229 189L229 191L230 193L232 195L233 196L234 198L237 198L238 200L240 199L242 199L244 198L246 198L248 196L249 195L249 192L251 191L254 190L257 190L258 190L259 191L259 192L257 194L257 195L257 196L257 197L256 199L255 199L255 200L255 201L255 202L255 203L255 204L254 205L253 206L254 206L255 206L256 206L257 206L259 206L260 206L261 206L262 206L263 206L264 206L265 206L266 206L266 207L267 207L268 208L269 208L269 209L269 210L268 211L268 212L268 214L268 216L267 217L268 218L267 218L267 219L268 220L268 221L269 222L271 223L272 224L272 225L273 225L274 226L275 225L276 225L278 224L279 223L280 223L280 224L282 224L283 224L284 225L285 226L287 226L289 224L290 224L290 223L290 221L292 219L294 219L296 219L298 217L299 217L301 215L302 216L302 217L302 218L300 218L301 220L301 221L300 223L301 225L302 225L303 223L302 222L302 220L305 218L305 217L306 216L307 218L309 218L310 220L311 221L313 221L316 220L318 222L320 222L321 221L321 220L325 220L328 220L326 221L327 222L329 223L331 224L331 226L333 226L334 227L336 228L338 230L338 231L339 231L340 232L341 233L345 234L345 233L347 233L350 234L351 234L353 235L356 237L357 238L358 240L360 245L361 245L361 247L359 249L360 250L365 251L365 253L367 252L371 253L375 254L377 256L376 257L379 257L385 258L389 258L393 260L397 263L399 264L401 264L402 265L403 269L404 270L402 275L401 277L397 281L395 284L393 286L392 288L392 294L391 298L391 300L390 301L390 304L387 308L386 311L384 312L383 314L380 314L376 315L374 316L371 317L368 319L365 322L365 324L365 325L365 328L364 330L362 331L359 336L357 338L355 340L354 342L352 344L351 346L347 347L345 347L344 347L341 346L339 346L338 344L338 346L341 348L341 350L342 351L342 353L340 356L335 358L330 358L327 358L327 360L327 362L327 363L326 364L323 364L320 363L319 364L320 367L321 368L323 367L324 368L321 369L319 371L319 374L318 375L315 375L313 377L312 379L315 381L318 381L317 384L313 385L312 389L309 390L308 391L309 394L311 395L310 395L307 395L306 396L303 397L303 400L302 400L298 399L295 397L292 395L291 393L292 392L290 390L290 385L291 383L294 380L290 380L293 377L293 373L297 373L298 368L296 367L295 370L294 370L294 366L295 361L297 359L296 356L296 353L297 353L298 349L300 344L302 340L301 336L302 334L301 330L303 327L304 321L304 316L305 309L305 305L305 301L302 299L301 298L296 295L291 292L289 291L288 288L286 284L283 279L280 273L279 272L278 270L276 268L274 267L275 266L274 263L275 261L277 259L278 257L278 256L277 257L275 256L276 255L275 253L276 253L277 251L278 249L278 248L279 247L281 246L281 245L282 245L281 244L282 243L284 243L285 241L286 239L285 239L285 237L285 234L285 231L284 230L283 229L282 228L283 227L282 227L282 226L280 225L279 225L278 226L277 227L276 228L278 229L277 229L277 230L275 230L275 228L274 229L273 227L272 227L271 227L270 227L270 228L270 227L268 227L267 226L268 225L267 224L266 224L265 223L265 222L264 222L264 223L263 223L262 222L262 221L262 220L261 220L262 219L261 218L260 217L259 216L258 215L256 214L257 214L257 213L256 213L254 213L253 213L252 213L251 212L250 212L248 211L247 211L245 211L244 210L241 207L239 206L237 205L235 205L233 206L232 207L230 206L228 205L225 204L223 204L220 202L218 201L217 200L215 200L213 199L211 198L208 196L207 195L206 193L207 193L207 192L208 191L208 190L207 189L206 188L205 187L203 184L200 182L199 180L197 179L196 178L196 177L195 176L193 175L193 173L191 172L190 171L188 170L188 169L187 167L186 164L186 163L184 162L183 162L181 162L181 163L181 164L181 166L182 167L184 169L185 170L186 171L187 173L188 174L188 175L190 176L191 179L192 180L192 181L193 183L194 183L195 184L196 185L196 186L195 187L194 187L194 185L192 183L190 182L188 181L188 179L188 178L187 177L185 176L184 176L184 175L182 175L180 173L181 173L182 173L183 172L183 171L181 169L179 168L178 166L177 164L176 162L175 160L174 158L172 157L171 156L171 155L169 155L168 155L166 154L165 154L165 152L162 150L160 146L160 145L158 144L156 142L156 140L154 138L155 136L155 133L154 131L155 129L156 124L155 120L154 117L154 116L158 117L159 119L160 118L160 116L159 114L158 114L153 111L151 110L146 109L144 106L145 105L141 103L141 101L137 99L137 98L136 97L133 96L133 93L129 91L128 89L125 88L120 88L117 87L111 85L109 84L104 83L100 83L95 82L91 81L88 81L89 83L87 84L84 84L82 85L79 86L78 84L79 81L82 80L78 81L76 83L72 85L74 86L72 88L69 90L66 90L65 92L61 93L60 94L57 96L55 95L52 96L49 97L47 98L42 99L42 98L45 97L48 96L51 95L54 94L55 93L59 92L60 91L62 90L62 88L64 86L61 87L60 87L58 88L56 86L56 87L55 86L52 87L50 87L50 85L50 84L49 83L45 84L43 83L41 82L41 80L39 79L40 78L42 76L43 75L45 74L47 75L49 73L51 74L53 73L53 72L51 71L53 70L52 70L49 71L48 71L46 71L42 71L38 70L37 69L33 68L37 66L43 65L45 65L45 66L51 66L49 65L45 64L43 62L41 61L37 60L38 59L43 59L47 57L47 56L50 55L53 54L58 53L61 53L65 52L69 52L71 54L73 53L77 53L77 54L81 54L84 54L90 55L95 55L97 56L101 55L105 56L108 56L114 57L118 58L121 59L123 57L127 57L131 57L135 56L139 55L141 56L143 56L144 54L146 55L151 57L154 55L155 57L158 57L159 56L163 56L167 57L173 58L177 59L180 59L184 60L180 61L185 62L192 62L195 61L198 63L201 61L198 60L200 59L203 59L205 59L207 60L210 61L213 61L218 62L222 62L227 62L226 60L229 60L233 60L233 63L235 61L237 61L238 58L235 56L232 55L232 52L236 50L239 51L242 52L246 55L243 56L248 57ZM183 47L181 48L188 47L192 49L195 47L197 48L199 51L201 50L199 47L201 47L204 47L207 48L209 51L210 53L214 54L220 55L219 57L215 57L216 58L215 59L210 59L206 58L202 58L197 59L189 59L185 60L184 58L180 58L177 58L174 56L176 55L180 55L184 55L188 55L182 54L176 54L172 54L171 53L177 52L173 52L168 51L171 49L173 48L180 46L183 47ZM210 46L207 48L203 46L204 46L208 45L210 46ZM288 47L288 48L285 48L282 48L279 48L278 48L275 46L275 45L277 45L283 45L288 47ZM260 47L262 49L264 46L271 45L276 48L276 50L281 49L284 48L290 49L294 51L294 52L299 51L302 53L309 54L311 55L314 58L309 59L315 61L320 62L324 64L328 64L327 66L322 69L319 68L315 66L311 66L311 68L314 69L317 70L319 71L320 74L319 76L316 75L309 73L313 75L316 77L316 78L309 77L303 75L299 74L300 73L296 72L292 70L292 71L284 72L282 71L284 69L289 69L295 68L294 67L295 66L298 63L297 62L296 61L292 60L286 59L288 58L285 56L283 56L281 55L279 56L274 56L264 56L258 55L254 54L251 53L254 52L250 52L249 49L252 47L254 46L262 45L260 47ZM221 45L225 45L230 45L230 46L228 47L232 48L231 51L227 52L224 52L222 51L215 49L215 48L221 48L218 46L221 45ZM899 47L895 47L889 46L891 45L895 45L899 46L899 47ZM241 48L238 50L235 50L233 47L233 46L235 45L237 44L243 44L249 45L244 47L241 48ZM165 52L158 53L157 52L150 50L151 49L153 47L156 45L153 44L162 43L166 44L173 44L176 45L179 46L176 47L169 49L165 51L165 52ZM919 41L915 43L911 42L906 41L907 40L912 41L919 41ZM240 42L238 43L234 43L231 42L233 41L237 40L239 41L240 42ZM903 40L901 42L891 42L886 43L880 41L882 39L886 39L893 39L903 40ZM226 37L229 38L229 40L227 42L223 42L220 42L220 40L215 40L215 38L218 38L222 37L226 37ZM199 38L201 39L203 39L206 39L206 40L205 42L195 42L188 43L184 43L184 42L189 41L177 42L173 41L177 38L179 38L187 38L192 40L197 40L193 38L196 37L198 37L199 38ZM660 54L658 54L649 53L648 52L643 51L643 50L646 49L646 48L651 45L649 45L655 43L655 41L661 40L670 38L679 38L684 37L689 36L691 37L689 38L680 40L671 41L662 44L658 46L654 49L655 51L660 54ZM237 36L240 37L246 37L248 38L247 39L250 39L252 40L256 40L260 40L264 40L270 39L275 40L278 41L278 42L277 43L272 43L269 43L261 43L255 43L251 43L243 42L242 41L242 39L239 38L233 38L230 37L231 36L237 36ZM177 34L177 36L175 37L172 38L167 39L163 39L159 39L163 36L169 35L173 35L177 34ZM239 35L238 35L233 35L232 34L238 34L240 34L239 35ZM194 34L189 35L185 34L187 33L191 33L195 33L194 34ZM569 34L562 35L558 34L559 34L558 33L564 32L565 33L569 34ZM195 32L192 32L187 32L190 31L192 31L195 32ZM234 33L230 34L227 33L226 32L226 31L230 31L231 31L235 32L234 33ZM222 32L223 34L219 33L214 32L208 32L211 31L207 31L207 30L212 30L220 31L222 32ZM792 32L776 34L781 30L784 30L786 30L793 31L792 32ZM551 29L560 31L553 32L551 34L549 34L548 37L544 37L538 35L541 34L537 33L531 31L529 29L537 28L538 29L542 29L543 28L547 28L551 29ZM571 27L576 28L572 29L564 29L556 29L555 28L551 28L548 27L557 26L561 27L564 26L571 27ZM642 26L638 27L636 27L635 27L632 28L629 27L631 26L625 26L630 26L634 26L635 26L636 26L639 25L643 26L642 26ZM778 31L772 31L764 30L759 29L757 27L753 27L760 25L766 24L772 26L778 28L778 31ZM258 29L262 30L258 30L253 33L248 33L242 32L239 31L239 30L241 30L236 30L233 29L231 27L233 26L235 25L238 25L237 24L243 24L247 26L252 26L256 27L258 29ZM310 19L317 19L323 20L328 20L328 21L321 22L315 23L312 24L318 24L312 25L307 26L302 28L297 29L295 29L286 30L290 30L288 31L291 32L288 33L284 34L282 35L278 36L279 36L284 36L284 37L276 38L269 38L261 38L257 38L251 38L251 36L256 36L255 34L257 33L264 35L260 33L256 32L258 31L263 31L264 30L260 29L259 27L266 27L268 28L273 26L266 26L257 26L252 25L249 24L246 23L250 22L253 22L258 21L263 20L266 21L269 21L271 20L275 19L280 19L288 19L290 19L298 19L304 19L310 19ZM425 18L442 20L437 21L426 21L411 22L413 22L423 22L431 23L436 22L439 23L436 25L443 24L456 22L465 23L466 24L455 26L453 27L444 27L451 27L448 29L445 31L445 34L449 36L444 36L440 37L445 39L446 41L443 41L446 44L440 44L443 45L442 46L438 46L435 46L438 48L438 49L433 48L431 49L435 50L439 51L440 54L435 54L432 53L429 52L430 53L427 55L434 55L438 55L430 58L423 60L415 61L412 61L409 62L405 65L399 67L397 67L393 68L389 68L387 70L387 72L386 74L381 76L382 78L381 80L380 83L376 83L371 81L366 81L363 79L361 77L357 73L355 71L355 69L351 66L352 64L350 63L353 60L357 59L358 58L359 56L356 57L354 57L352 58L348 57L348 55L349 53L352 53L357 54L352 52L350 51L347 52L345 51L348 48L346 47L344 45L341 42L337 41L337 40L330 39L324 38L316 39L310 39L306 38L302 36L309 35L315 35L303 34L296 33L297 32L307 31L317 29L319 28L311 27L313 26L323 24L327 24L326 23L333 22L341 22L350 22L353 23L360 21L367 22L371 22L376 23L370 22L370 20L379 19L389 19L393 18L403 18L425 18Z";
+
   return {
     MILESTONES: MILESTONES, STRINGS: STRINGS,
     ERA_COLORS: ERA_COLORS,
@@ -8545,5 +8910,6 @@ const MILESTONES = [
     pickBestVoice: pickBestVoice,
     slugify: slugify,
     searchMilestones: searchMilestones,
+    WORLD_LAND: WORLD_LAND,
   };
 });

@@ -148,25 +148,24 @@ Then each panel adds:
 
 **Roadmap** (designed for, not yet built — every one is small against the current architecture)
 
-- 🔜 Quiz v2: drag-to-order, image quiz, era matching, teacher mode with CSV export
-- 🔜 Printable teacher packs (auto-generated PDF worksheet per era)
-- 🔜 Shareable permalinks via URL hash sync (already partially done)
-- 🔜 Curriculum tagging: each event mapped to science/history syllabus units
-- 🔜 i18n content (not just UI strings) — translate event content to Italian, Spanish, etc.
-- 🔜 Audio narration polish (speed slider, deep-dive narration)
-- 🔜 Map view (geographic coordinates → Leaflet or SVG map)
+- ✅ Quiz modes: order quiz, image quiz, era quiz + teacher mode with CSV export
+- ✅ Printable teacher packs (multi-page worksheet per era) + one-page handouts
+- ✅ Shareable permalinks via URL hash sync + iframe embeds
+- ✅ Curriculum tagging: each event mapped to subject units, filterable
+- 🔶 i18n content (UI in English + Italian; ~8 events translated, 400+ to go)
+- ✅ Audio narration polish (speed slider, ElevenLabs cloud voice, deep-dive narration)
+- ✅ Map view (offline SVG world, 342 geocoded events; cosmic events intentionally unmapped)
 - 🔜 Comparison tool ("show me two eras side by side")
 - 🔜 Admin edit mode (`?edit=1` for adding events in-browser)
-- 🔜 Split files (index.html + style.css + app.js)
-- 🔜 Image pipeline (download/resize/optimize — already started)
-- 🔜 Analytics (privacy-respecting page views)
+- 🔶 Split files (timeline.js extracted; style.css still inline)
+- ✅ Image pipeline (local `img/` cache + runtime caching; 422/422 events pictured)
+- ❌ Analytics (rejected: conflicts with the no-cookies, no-tracking stance)
 - 🔜 Feedback widget ("Was this event's description helpful?")
-- 🔜 Multiple viewpoints / "lens" toggle (already started)
-- 🔜 Timeline of the future (already started)
-- 🔜 Progress tracking (already started)
-- 🔜 "See also" links (already started)
+- ✅ Multiple viewpoints / "lens" toggle (scientific, religious, indigenous, chinese, islamic)
+- ✅ Timeline of the future (to 2100)
+- ✅ Progress tracking (read counter + badge)
+- ✅ "See also" links
 - 🔜 Multiple images per event
-- 🔜 Map view (already started with coords)
 
 ## Project structure
 
