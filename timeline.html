@@ -24,6 +24,13 @@
 
   * { box-sizing: border-box; }
 
+  /* Shown only when timeline.js fails to load (it hides this on boot) */
+  #js-load-warn {
+    color: #f88;
+    padding: 1rem;
+    margin: 0;
+  }
+
   html {
     background: var(--bg);
     height: 100%;
@@ -1369,58 +1376,9 @@ body > #bottom-strip, body > .site-footer { flex: none; }
 </footer>
 
 <script src="./timeline-core.js"></script>
-<script src="./timeline.js" onerror="document.body.insertAdjacentHTML('beforeend','<p style=&quot;color:#f88;padding:1rem;&quot;>Could not load timeline.js. Serve this folder over HTTP (e.g. npx http-server .) or check the file path.</p>')"></script>
-<script>
-/* -------------------------------------------------------------
-   Share / embed helpers
-   ------------------------------------------------------------- */
-(function shareFeature() {
-  const copyLinkBtn = document.getElementById("copy-link-btn");
-  const copyEmbedBtn = document.getElementById("copy-embed-btn");
-  if (!copyLinkBtn || !copyEmbedBtn) return;
+<script src="./timeline.js"></script>
+<p id="js-load-warn">Could not load timeline.js. Serve this folder over HTTP (e.g. npx http-server .) or check the file path.</p>
+<noscript><p style="color:#f88;padding:1rem;">This timeline needs JavaScript. Serve this folder over HTTP (e.g. npx http-server .) so the scripts can load.</p></noscript>
 
-  function currentSlug() {
-    const t = (document.getElementById("panel-title") || {}).textContent || "";
-    return (window.TimelineCore && window.TimelineCore.slugify) ? window.TimelineCore.slugify(t) : t.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-  }
-  function baseUrl() {
-    return location.origin + location.pathname;
-  }
-  function copy(text, btn) {
-    const done = () => { const prev = btn.textContent; btn.textContent = "✓ Copied"; setTimeout(() => { btn.textContent = prev; }, 1400); };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done).catch(() => { fallback(text); done(); });
-    } else { fallback(text); done(); }
-  }
-  function fallback(text) {
-    const ta = document.createElement("textarea");
-    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
-    document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta);
-  }
-
-  copyLinkBtn.addEventListener("click", function () {
-    const url = baseUrl() + "#event=" + currentSlug();
-    copy(url, copyLinkBtn);
-  });
-  copyEmbedBtn.addEventListener("click", function () {
-    const url = baseUrl() + "?event=" + currentSlug() + "&embed=1";
-    const code = '<iframe src="' + url + '" width="100%" height="420" style="border:0;border-radius:8px;" loading="lazy" title="Cosmic Timeline"></iframe>';
-    copy(code, copyEmbedBtn);
-  });
-})();
-
-/* -------------------------------------------------------------
-   Embed mode: ?embed=1 renders a compact chrome-less view
-   ------------------------------------------------------------- */
-(function embedMode() {
-  const params = new URLSearchParams(location.search);
-  if (params.get("embed") !== "1") return;
-  document.body.classList.add("embed-mode");
-  // hide heavy chrome
-  const style = document.createElement("style");
-  style.textContent = ".embed-mode header .header-controls, .embed-mode .legend, .embed-mode #progress-badge, .embed-mode .privacy-note { display:none !important; } .embed-mode .viewport { height: 260px; } .embed-mode .panel { max-height: 160px; }";
-  document.head.appendChild(style);
-})();
-</script>
 </body>
 </html>

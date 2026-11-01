@@ -208,10 +208,12 @@ Then each panel adds:
 
 ```bash
 npm install          # pulls selenium-webdriver (Selenium Manager auto-fetches ChromeDriver)
-npm test             # unit tests + headless Chrome E2E
-npm run test:unit    # just the 70 unit tests
+npm run check        # everything: lint + secrets + audit + all tests
+npm test             # unit tests + headless Chrome E2E + phone-viewport checks
+npm run test:unit    # just the unit tests
 npm run test:e2e     # just the browser walk-through
 SELENIUM_HEADLESS=0 npm run test:e2e   # watch Chrome drive the page
+npm run lint         # ESLint, zero-tolerance (see docs/CHECKS.md)
 ```
 
 **E2E coverage:** shell & content counts → hover → three-level panel → real image load → glossary chips + 26-term modal → search jump → era legend jump → Civilization/Deep-time zoom with gradient rebuild → ‹›‹ stepping with viewport glide → keyboard navigation → guided tour start/stop → panel close → service worker + image cache → quiz flow with feedback → permalink restore & hash tracking → printable handout → curriculum chips filter → story reader flips → language switch → a11y dialogs → console clean (no severe errors).
@@ -245,8 +247,8 @@ Milestone content is our own writing (three levels per event), fact-checked agai
 ## Contributing an event
 
 1. Add an entry to `MILESTONES` in `timeline-core.js` (the unit tests will demand kid/fun/summary/deep + a `LEARN_MORE` entry).
-2. Add a matching image entry to `EVENT_MEDIA` in `timeline.html` and a `LEARN_MORE` slug.
-3. Run `npm test` — the suite will reject any event that is out of order, under-sized, colourless or unlinked.
+2. Add a matching image entry to `EVENT_MEDIA` in `timeline.js` and a `LEARN_MORE` slug.
+3. Run `npm run check` — lint, secrets, audit and the suite will reject anything out of order, under-sized, colourless, unlinked or insecure. See `docs/CHECKS.md` for the full gate list.
 
 ---
 

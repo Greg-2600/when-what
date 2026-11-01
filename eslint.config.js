@@ -1,5 +1,60 @@
 import js from "@eslint/js";
 
+// Shared Node-ish globals for CommonJS sources (core, scripts, tests).
+const nodeGlobals = {
+  console: "readonly",
+  require: "readonly",
+  module: "readonly",
+  exports: "readonly",
+  process: "readonly",
+  Buffer: "readonly",
+  self: "readonly",
+  __dirname: "readonly",
+  __filename: "readonly",
+  setTimeout: "readonly",
+  clearTimeout: "readonly",
+  setInterval: "readonly",
+  clearInterval: "readonly",
+  fetch: "readonly",
+  URL: "readonly",
+  URLSearchParams: "readonly",
+  Blob: "readonly",
+};
+
+// Browser globals for the shipped app script.
+const browserGlobals = {
+  ...nodeGlobals,
+  TimelineCore: "readonly",
+  caches: "readonly",
+  window: "readonly",
+  self: "readonly",
+  document: "readonly",
+  navigator: "readonly",
+  location: "readonly",
+  history: "readonly",
+  localStorage: "readonly",
+  getComputedStyle: "readonly",
+  requestAnimationFrame: "readonly",
+  cancelAnimationFrame: "readonly",
+  MutationObserver: "readonly",
+  SpeechSynthesisUtterance: "readonly",
+  IntersectionObserver: "readonly",
+};
+
+// Service-worker globals.
+const workerGlobals = {
+  self: "readonly",
+  caches: "readonly",
+  fetch: "readonly",
+  console: "readonly",
+  setTimeout: "readonly",
+  clearTimeout: "readonly",
+  URL: "readonly",
+  URLSearchParams: "readonly",
+  location: "readonly",
+  navigator: "readonly",
+};
+
 export default [
   js.configs.recommended,
   {
@@ -8,7 +63,8 @@ export default [
       ecmaVersion: 2022,
       sourceType: "script",
       globals: {
-        // timeline-core.js globals
+        ...nodeGlobals,
+        // timeline-core.js public surface (also visible to timeline.js)
         TimelineCore: "readonly",
         MILESTONES: "readonly",
         ERA_COLORS: "readonly",
@@ -18,48 +74,62 @@ export default [
         EVENT_COLORS: "readonly",
         ERA_HUES: "readonly",
         MAX_YEARS: "readonly",
-        HUMAN_MAX: "readonly",
-        CURRICULUM_TAGS: "readonly",
+              CURRICULUM_TAGS: "readonly",
         curriculumTagsFor: "readonly",
-        I18N: "readonly",
         STRINGS: "readonly",
-        // timeline.html globals
+        // cross-file app state owned by timeline.js
         uiLang: "writable",
-        NARRATE_ON: "writable",
         zoom: "writable",
         scaleMode: "writable",
         pinnedIndex: "writable",
         hoveredIndex: "writable",
-        activeIndex: "writable",
         EVENT_MEDIA: "readonly",
         COMMONS_FILE: "readonly",
-        // Node/test globals
-        console: "readonly",
-        require: "readonly",
-        module: "readonly",
-        exports: "readonly",
-        process: "readonly",
-        __dirname: "readonly",
-        __filename: "readonly",
-        self: "readonly",
-        setTimeout: "readonly",
-        clearTimeout: "readonly",
-        setInterval: "readonly",
-        clearInterval: "readonly",
-        fetch: "readonly",
-        URL: "readonly",
-        URLSearchParams: "readonly",
       },
     },
     rules: {
-      "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+      "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
       "no-console": "off",
-      "semi": ["error", "always"],
-      "no-var": "warn",
-      "prefer-const": "warn",
+      semi: ["error", "always"],
+      "no-var": "error",
+      "prefer-const": "error",
     },
   },
   {
-    ignores: ["node_modules/**", "img/**"],
+    files: ["timeline.js"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "script",
+      globals: browserGlobals,
+    },
+    rules: {
+      "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      "no-console": "off",
+      semi: ["error", "always"],
+      "no-var": "error",
+      "prefer-const": "error",
+      // Shipped code must never interpret strings as code.
+      "no-eval": "error",
+      "no-new-func": "error",
+      "no-implied-eval": "error",
+    },
+  },
+  {
+    files: ["sw.js"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "script",
+      globals: workerGlobals,
+    },
+    rules: {
+      "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      "no-console": "off",
+      semi: ["error", "always"],
+      "no-var": "error",
+      "prefer-const": "error",
+    },
+  },
+  {
+    ignores: ["node_modules/**", "img/**", "h4k/**", "tests/screenshots/**"],
   },
 ];

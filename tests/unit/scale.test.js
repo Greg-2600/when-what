@@ -3,14 +3,14 @@ const assert = require("node:assert/strict");
 const core = require("../../timeline-core.js");
 
 const DEEP_MAX = core.MAX_YEARS;
-const HUMAN_MAX = core.HUMAN_MAX;
+const CIVIL_MAX = core.HUMAN_MAX;
 const M = core.MILESTONES;
 const frac = (ya, max) => core.fracFor(ya, max);
 
 test("Deep-time scale pins the extremes", () => {
   assert.equal(frac(DEEP_MAX), 0, "Big Bang must sit at the far left");
   assert.equal(frac(0), 1, "Present must sit at the far right");
-  assert.equal(core.fracFor(0, HUMAN_MAX), 1, "Present at far right in civilization view");
+  assert.equal(core.fracFor(0, CIVIL_MAX), 1, "Present at far right in civilization view");
 });
 
 test("Deep-time scale is monotonically increasing for every visible event", () => {
@@ -25,7 +25,7 @@ test("Deep-time scale is monotonically increasing for every visible event", () =
 
 test("Civilization view excludes pre-agriculture events and the Biblical/Powers tracks outright", () => {
   M.forEach((m) => {
-    const expected = m.yearsAgo <= HUMAN_MAX && m.era !== "Biblical" && m.era !== "World Powers";
+    const expected = m.yearsAgo <= CIVIL_MAX && m.era !== "Biblical" && m.era !== "World Powers";
     assert.equal(core.visibleInCivilization(m), expected, m.title + " visibility");
   });
   const included = M.filter((m) => core.visibleInCivilization(m));
@@ -33,7 +33,7 @@ test("Civilization view excludes pre-agriculture events and the Biblical/Powers 
 });
 
 test("Civilization view is monotonically increasing and well spread", () => {
-  const base = M.filter((m) => core.visibleInCivilization(m) && m.yearsAgo >= 0).map((m) => frac(m.yearsAgo, HUMAN_MAX));
+  const base = M.filter((m) => core.visibleInCivilization(m) && m.yearsAgo >= 0).map((m) => frac(m.yearsAgo, CIVIL_MAX));
   for (let i = 1; i < base.length; i++) assert.ok(base[i] > base[i - 1]);
   // the middle event of the view should fall near the middle of the line
   const mid = Math.floor(base.length / 2);

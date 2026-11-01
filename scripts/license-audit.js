@@ -9,13 +9,6 @@ const https = require("https");
 const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
-const HTML = fs.readFileSync(path.join(ROOT, "timeline.html"), "utf8");
-
-// Extract EVENT_MEDIA
-const start = HTML.indexOf("const EVENT_MEDIA = {");
-const end = HTML.indexOf("};", start) + 2;
-const code = HTML.slice(start, end).replace("const EVENT_MEDIA", "var EVENT_MEDIA") + "\n return EVENT_MEDIA;";
-const EVENT_MEDIA = new Function(code)();
 
 function fetchJson(url) {
   return new Promise((resolve, reject) => {
@@ -30,24 +23,6 @@ function fetchJson(url) {
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-async function auditFile(filename) {
-  // filename like "the-big-bang.jpg" -> Commons file name "CMB_Timeline75.jpg" unknown; use the url's FilePath basename
-  // We'll query by the url's filename portion
-  const url = `https://commons.wikimedia.org/w/api.php?action=query&titles=File:${encodeURIComponent(filename)}&prop=imageinfo&iiprop=extmetadata&format=json`;
-  try {
-    const j = await fetchJson(url);
-    const pages = j.query && j.query.pages;
-    if (!pages) return { license: "unknown", note: "no pages" };
-    const page = Object.values(pages)[0];
-    const ii = page.imageinfo && page.imageinfo[0];
-    const meta = ii && ii.extmetadata;
-    const lic = meta && (meta.LicenseShortName || meta.License) && (meta.LicenseShortName.value || meta.License.value);
-    return { license: lic || "unknown", artist: meta && meta.Artist && meta.Artist.value, credit: meta && meta.Credit && meta.Credit.value };
-  } catch (e) {
-    return { license: "error: " + e.message };
-  }
-}
 
 (async () => {
   const rows = [];

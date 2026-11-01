@@ -21,10 +21,6 @@ const HEADLESS = (process.env.SELENIUM_HEADLESS || "1") !== "0";
 
 let passed = 0;
 function ok(label) { passed += 1; console.log(`  ✔ ${label}`); }
-async function section(label, fn) {
-  process.stdout.write(`▪ ${label}\n`);
-  await fn();
-}
 
 async function main() {
   server.listen(PORT);
@@ -525,7 +521,7 @@ async function main() {
     try {
       fs.writeFileSync(shot, Buffer.from(await driver.takeScreenshot(), "base64"));
       console.error("failure screenshot saved to", shot);
-    } catch {}
+    } catch { /* screenshot is best-effort */ }
     console.error("\n❌ E2E FAILURE:", err.message);
   console.error(err.stack.split('\n').slice(1, 6).join('\n'));
     process.exitCode = 1;

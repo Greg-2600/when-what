@@ -32,7 +32,7 @@ test("every milestone has complete, non-empty content", () => {
 });
 
 test("kid text is genuinely simple (short sentences, no heavy jargon walls)", () => {
-  M.forEach((m, i) => {
+  M.forEach((m) => {
     const kidWords = m.kid.split(/\s+/).length;
     assert.ok(kidWords <= 90, `kid text too long on ${m.title} (${kidWords} words)`);
     assert.ok(m.kid.endsWith("!") || m.kid.includes("!") || m.kid.includes("?"), `kid text lacks punch on ${m.title}`);

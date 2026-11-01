@@ -20,7 +20,7 @@ test("formatTime is monotonic in magnitude (never says 'billion' for kya values)
 
 test("formatShort covers each bucket", () => {
   assert.equal(core.formatShort(0), "Present");
-  assert.equal(core.formatShort(0 === 0 ? 999 : 0), "999 ya");
+  assert.equal(core.formatShort(999), "999 ya");
   assert.equal(core.formatShort(1_000), "1 kya");
   assert.equal(core.formatShort(300_000), "300 kya");
   assert.equal(core.formatShort(600_000_000), "600 Mya");

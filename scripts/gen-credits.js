@@ -3,13 +3,11 @@ const html = fs.readFileSync("/Users/greg/Documents/Default Project/timeline.js"
 const start = html.indexOf("const EVENT_MEDIA = {");
 const end = html.indexOf("};", start) + 2;
 const src = html.slice(start, end);
-// eval in a sandbox-ish way
-const mod = { exports: {} };
-const fn = new Function(src + "\n return EVENT_MEDIA;");
-// EVENT_MEDIA is a const; re-declare as var via text replace
+// Parse the media table without executing app code: re-declare as var and
+// evaluate the object literal only. (Local build files only, never remote input.)
 const code = src.replace("const EVENT_MEDIA", "var EVENT_MEDIA") + "\n return EVENT_MEDIA;";
-const EVENT_MEDIA = new Function(code)();
-const entries = Object.entries(EVENT_MEDIA);
+const mediaByTitle = new Function(code)();
+const entries = Object.entries(mediaByTitle);
 
 const rows = entries.map(([title, m]) => {
   const url = m.url || "";
@@ -18,14 +16,14 @@ const rows = entries.map(([title, m]) => {
     ? "Wikimedia Commons (local cache)"
     : "Wikimedia Commons (remote)";
   return `      <tr>
-        <td>${escape(title)}</td>
-        <td>${escape(m.caption || "")}</td>
-        <td>${escape(url)}</td>
+        <td>${escapeHtml(title)}</td>
+        <td>${escapeHtml(m.caption || "")}</td>
+        <td>${escapeHtml(url)}</td>
         <td>${source}</td>
       </tr>`;
 }).join("\n");
 
-function escape(s) { return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function escapeHtml(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 
 const out = `<!DOCTYPE html>
 <html lang="en">

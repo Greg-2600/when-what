@@ -24,11 +24,20 @@ jobs:
       - name: Unit tests
         run: npm run test:unit
 
+      - name: Lint (ESLint, zero-tolerance)
+        run: npm run lint
+
+      - name: Secret scan (no credentials in repo)
+        run: npm run secrets
+
       - name: End-to-end (headless Chrome, best effort)
         run: node tests/selenium.js
         env:
           SELENIUM_HEADLESS: "1"
         continue-on-error: true
+
+      - name: Dependency audit (fails only on high/critical)
+        run: npm run audit
 
       - name: Mobile viewport (headless Chrome, best effort)
         run: node tests/mobile.js

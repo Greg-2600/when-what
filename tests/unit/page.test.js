@@ -56,7 +56,7 @@ test("the spectrum line, mode toggle and search all exist in the shipped page", 
 });
 
 test("images appear for every event and credit the source", () => {
-  const count = (HTML.match(/^  "(?:[^"\\]|\\.)*": \{/gm) || []).length;
+  const count = (HTML.match(/^ {2}"(?:[^"\\]|\\.)*": \{/gm) || []).length;
   assert.equal(count, 428, `expected 428 media entries, found ${count}`);
   assert.ok(HTML.includes('url: "./img/'), "media entries use local img/ paths");
   assert.ok(HTML.includes("COMMONS_FILE = (name) =>") || true, "Special:FilePath helper retained as fallback");

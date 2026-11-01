@@ -1,3 +1,9 @@
+/* Boot: the app loaded, so dismiss the load-failure note. */
+(function () {
+  const w = document.getElementById("js-load-warn");
+  if (w) w.style.display = "none";
+})();
+
 /* -------------------------------------------------------------
    Data: milestones from the Big Bang to the modern era.
    yearsAgo: years before present (present = 0).
@@ -1893,7 +1899,6 @@ function layoutLabels() {
   const items = Array.from(labelEls)
     .filter((el) => el.style.display !== "none")
     .map((el) => {
-      const r = el.getBoundingClientRect();
       // provisional
       el.style.top = `${lineTop - 10 - tierH}px`;
       const r2 = el.getBoundingClientRect();
@@ -2063,7 +2068,13 @@ function renderDetail(index) {
     const era = document.createElement("div");
   era.className = "era-chip";
   era.style.setProperty("--era-color", color);
-  era.innerHTML = `<span class="dot"></span>${m.era}`;
+  era.textContent = "";
+  {
+    const dot = document.createElement("span");
+    dot.className = "dot";
+    era.appendChild(dot);
+    era.appendChild(document.createTextNode(m.era));
+  }
 
   /* For young explorers — pitched at a 6-year-old */
   const kid = document.createElement("div");
@@ -2225,7 +2236,7 @@ function renderDetail(index) {
     }
     const badge = document.getElementById("progress-badge");
     if (badge) badge.textContent = read.length + " / " + MILESTONES.length + " read";
-  } catch (e) {}
+  } catch { /* best-effort: ignore failure and continue */ }
 
   if (LEARN_MORE[m.title]) {
     const more = document.createElement("a");
@@ -2448,7 +2459,6 @@ let zoom = 1;
 function buildLineGradient() {
   // Era-level bands: each era gets a colour stop at its first and last event.
   // This keeps the gradient string short enough for the browser to parse.
-  const eraStops = [];
   const eraOrder = [];
   const eraRanges = {};
   MILESTONES.forEach((m, i) => {
@@ -2469,7 +2479,6 @@ function buildLineGradient() {
     const r = eraRanges[era];
     const lo = Math.max(0, r.first * 100);
     const hi = Math.min(100, r.last * 100);
-    const mid = (lo + hi) / 2;
     stops.push(`${r.color} ${lo.toFixed(2)}%`);
     stops.push(`${r.color} ${hi.toFixed(2)}%`);
   });
@@ -2511,9 +2520,6 @@ function trackWidthVw() {
   return BASE_VW[scaleMode] * zoom;
 }
 
-function baseWidthVw() {
-  return BASE_VW[scaleMode];
-}
 
 function syncZoomUI() {
   const slider = document.getElementById("zoom-slider");
@@ -2642,7 +2648,7 @@ function zoomAnchor() {
     const viewX = r.left + r.width / 2 - vr.left;
     return { contentX, viewX };
   }
-  return { contentX: vp.scrollLeft + vp.clientWidth / 2, viewX: vp.clientWidth / 2 };
+  return { contentX: viewportEl.scrollLeft + viewportEl.clientWidth / 2, viewX: viewportEl.clientWidth / 2 };
 }
 function handleZoomKey(e) {
   const tag = (e.target && e.target.tagName) || "";
@@ -2697,6 +2703,7 @@ function selectEvent(i) {
   hoveredIndex = null;
   updatePanel();
   scrollToMarker(i);
+  if (NARRATE_ON) speakText(MILESTONES[i].kid);
 }
 
 /* Curriculum filter chips */
@@ -3392,7 +3399,7 @@ quizModal.addEventListener("click", function (e) {
   });
 })();
 
-I18N = TimelineCore.STRINGS;
+const I18N = TimelineCore.STRINGS;
 const browserLang = (navigator.language || navigator.userLanguage || 'en').slice(0, 2).toLowerCase();
 const urlLang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('ct-lang') || browserLang;
 let uiLang = (['en','it'].includes(urlLang)) ? urlLang : 'en';
@@ -3421,10 +3428,10 @@ function speakText(text) {
     u.lang = (uiLang === 'it') ? 'it-IT' : 'en-US';
     u.rate = 0.95;
     window.speechSynthesis.speak(u);
-  } catch (e) {}
+  } catch { /* best-effort: ignore failure and continue */ }
 }
 function stopSpeech() {
-  try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
+  try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch { /* best-effort: ignore failure and continue */ }
 }
 
 /* -------------------------------------------------------------
@@ -3450,7 +3457,7 @@ function stopSpeech() {
     idx = i; open = true; reader.hidden = false;
     document.body.style.overflow = 'hidden';
     render();
-    try { scrollToMarker(i); } catch (e) {}
+    try { scrollToMarker(i); } catch { /* best-effort: ignore failure and continue */ }
   }
   function closeReader() {
     open = false; reader.hidden = true;
@@ -3460,7 +3467,7 @@ function stopSpeech() {
   function flip(delta) {
     idx = (idx + delta + MILESTONES.length) % MILESTONES.length;
     render();
-    try { scrollToMarker(idx); } catch (e) {}
+    try { scrollToMarker(idx); } catch { /* best-effort: ignore failure and continue */ }
   }
   document.getElementById('reader-close').addEventListener('click', closeReader);
   document.getElementById('reader-prev').addEventListener('click', function () { flip(-1); });
@@ -3498,17 +3505,9 @@ function stopSpeech() {
       speakText(MILESTONES[idx].kid);
     } else stopSpeech();
   });
-  const obs = new MutationObserver(function () { /* allow narration refreshes on tours */ });
 })();
 
-/* tour speaks when narration is on */
-(function tourNarration() {
-  const origSelectEvent = selectEvent;
-  selectEvent = function (i) {
-    origSelectEvent(i);
-    if (NARRATE_ON) speakText(MILESTONES[i].kid);
-  };
-})();
+
 
 /* lang switch wiring */
 (function langFeature() {
@@ -3555,7 +3554,7 @@ function stopSpeech() {
       btn.addEventListener("click", function () {
         packsModal.hidden = true;
         buildEraPack(era);
-        try { window.print(); } catch (e) {}
+        try { window.print(); } catch { /* best-effort: ignore failure and continue */ }
       });
       packsList.appendChild(btn);
     });
@@ -3790,7 +3789,6 @@ const _hadHash = !!location.hash;
 (function panelResize() {
   const handle = document.getElementById("panel-resize-handle");
   const panel = document.getElementById("panel");
-  const viewport = document.querySelector(".viewport");
   if (!handle || !panel) return;
   const saved = localStorage.getItem("ct-panel-width");
   if (saved) {
@@ -3869,3 +3867,53 @@ if (new URLSearchParams(location.search).get("reset")) {
   // Images are cached on demand by the service worker's runtime cache,
   // so we no longer pre-fetch all 77 (which throttled the Wikimedia IP).
 }
+/* -------------------------------------------------------------
+   Share / embed helpers
+   ------------------------------------------------------------- */
+(function shareFeature() {
+  const copyLinkBtn = document.getElementById("copy-link-btn");
+  const copyEmbedBtn = document.getElementById("copy-embed-btn");
+  if (!copyLinkBtn || !copyEmbedBtn) return;
+
+  function currentSlug() {
+    const t = (document.getElementById("panel-title") || {}).textContent || "";
+    return (window.TimelineCore && window.TimelineCore.slugify) ? window.TimelineCore.slugify(t) : t.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  }
+  function baseUrl() {
+    return location.origin + location.pathname;
+  }
+  function copy(text, btn) {
+    const done = () => { const prev = btn.textContent; btn.textContent = "✓ Copied"; setTimeout(() => { btn.textContent = prev; }, 1400); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  }
+  function fallback(text) {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch { /* best-effort: ignore failure and continue */ } document.body.removeChild(ta);
+  }
+
+  copyLinkBtn.addEventListener("click", function () {
+    const url = baseUrl() + "#event=" + currentSlug();
+    copy(url, copyLinkBtn);
+  });
+  copyEmbedBtn.addEventListener("click", function () {
+    const url = baseUrl() + "?event=" + currentSlug() + "&embed=1";
+    const code = '<iframe src="' + url + '" width="100%" height="420" style="border:0;border-radius:8px;" loading="lazy" title="Cosmic Timeline"></iframe>';
+    copy(code, copyEmbedBtn);
+  });
+})();
+
+/* -------------------------------------------------------------
+   Embed mode: ?embed=1 renders a compact chrome-less view
+   ------------------------------------------------------------- */
+(function embedMode() {
+  const params = new URLSearchParams(location.search);
+  if (params.get("embed") !== "1") return;
+  document.body.classList.add("embed-mode");
+  // hide heavy chrome
+  const style = document.createElement("style");
+  style.textContent = ".embed-mode header .header-controls, .embed-mode .legend, .embed-mode #progress-badge, .embed-mode .privacy-note { display:none !important; } .embed-mode .viewport { height: 260px; } .embed-mode .panel { max-height: 160px; }";
+  document.head.appendChild(style);
+})();
