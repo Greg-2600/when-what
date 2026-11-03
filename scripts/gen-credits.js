@@ -10,14 +10,18 @@ const mediaByTitle = new Function(code)();
 const entries = Object.entries(mediaByTitle);
 
 const rows = entries.map(([title, m]) => {
-  const url = m.url || "";
-  const isLocal = url.startsWith("./img/");
+  const shots = [{ caption: m.caption || "", url: m.url || "", file: m.file || "" }]
+    .concat((m.more || []).map((e) => ({ caption: (e && e.caption) || "", url: "", file: (e && e.file) || "" })));
+  const filed = (s) => (s.file ? s.file + (s.url ? " (" + s.url + ")" : "") : (s.url || "—"));
+  const url = shots.map(filed).join("; ");
+  const isLocal = shots.some((s) => (s.url || "").startsWith("./img/"));
   const source = isLocal
     ? "Wikimedia Commons (local cache)"
     : "Wikimedia Commons (remote)";
+  const caps = shots.map((s) => s.caption).filter(Boolean).join(" · ");
   return `      <tr>
         <td>${escapeHtml(title)}</td>
-        <td>${escapeHtml(m.caption || "")}</td>
+        <td>${escapeHtml(caps)}</td>
         <td>${escapeHtml(url)}</td>
         <td>${source}</td>
       </tr>`;

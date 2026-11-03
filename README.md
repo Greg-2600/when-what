@@ -155,7 +155,7 @@ Then each panel adds:
 - 🔶 i18n content (UI in English + Italian; ~8 events translated, 400+ to go)
 - ✅ Audio narration polish (speed slider, ElevenLabs cloud voice, deep-dive narration)
 - ✅ Map view (offline SVG world, 342 geocoded events; cosmic events intentionally unmapped)
-- 🔜 Comparison tool ("show me two eras side by side")
+- ✅ Comparison tool (two eras side by side: counts, spans, bookends, avg gaps)
 - 🔜 Admin edit mode (`?edit=1` for adding events in-browser)
 - 🔶 Split files (timeline.js extracted; style.css still inline)
 - ✅ Image pipeline (local `img/` cache + runtime caching; 428/428 events pictured)
@@ -165,7 +165,7 @@ Then each panel adds:
 - ✅ Timeline of the future (to 2100)
 - ✅ Progress tracking (read counter + badge)
 - ✅ "See also" links
-- 🔜 Multiple images per event
+- ✅ Multiple images per event (gallery thumbnails swap the strip photo)
 
 ## Project structure
 

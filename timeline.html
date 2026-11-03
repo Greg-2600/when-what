@@ -578,6 +578,24 @@ body > #bottom-strip, body > .site-footer { flex: none; }
   }
   .story-reader[hidden] { display: none; }
 
+  /* Compare view */
+  .compare-card { width: min(860px, 94vw); }
+  .compare-pick { display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.6rem 0 1rem; }
+  .compare-pick label { display: flex; gap: 0.5rem; align-items: center; font-size: 0.85rem; }
+  .compare-grid { display: grid; grid-template-columns: auto 1fr 1fr; gap: 0.35rem 1rem; align-items: center; font-size: 0.85rem; }
+  .compare-grid .chead { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+  .compare-grid .cmetric { color: var(--muted); }
+  .compare-bar { height: 8px; border-radius: 4px; background: var(--line); margin-top: 0.25rem; }
+  .compare-bar > div { height: 100%; border-radius: 4px; }
+  .compare-view { margin-top: 0.2rem; font-size: 0.72rem; padding: 0.2rem 0.6rem; }
+
+  /* Panel gallery: extra shots for events with several images */
+  .more-images-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .more-images-thumb { padding: 0; border: 2px solid transparent; border-radius: 8px; background: none; cursor: pointer; }
+  .more-images-thumb img { display: block; width: 72px; height: 54px; object-fit: cover; border-radius: 6px; }
+  .more-images-thumb:hover { border-color: var(--accent); }
+  .more-images-thumb.picked { border-color: var(--accent); }
+
   /* Map view */
   .map-card { width: min(980px, 94vw); }
   #world-map { width: 100%; height: auto; display: block; background: #0d1526; border: 1px solid var(--border); border-radius: 12px; }
@@ -1191,6 +1209,7 @@ body > #bottom-strip, body > .site-footer { flex: none; }
             <button class="seg" id="glossary-btn" type="button" title="All words-to-know" data-i18n="btnGlossary">🔤 Glossary</button>
             <button class="seg" id="tour-btn" type="button" title="Step through the whole story automatically" data-i18n="btnTour">▶ Take the tour</button>
             <button class="seg" id="map-btn" type="button" title="Map view: where events happened">🗺 Map</button>
+            <button class="seg" id="compare-btn" type="button" title="Compare two eras side by side">⚖️ Compare</button>
             <button class="seg" id="print-btn" type="button" title="Print a one-page handout for the selected event">🖨 Handout</button>
             <button class="seg" id="packs-btn" type="button" title="Multi-page classroom worksheet for an era">📘 Packs</button>
             <button class="seg" id="read-btn" type="button" title="Full-screen reading mode" data-i18n="btnRead">📖 Read</button>
@@ -1267,6 +1286,19 @@ body > #bottom-strip, body > .site-footer { flex: none; }
       <g id="map-dots"></g>
     </svg>
     <p class="gl-sub" id="map-count"></p>
+  </div>
+</div>
+
+<div class="glossary-modal" id="compare-modal" role="dialog" aria-modal="true" hidden>
+  <div class="glossary-card compare-card">
+    <button class="glossary-close" id="compare-close" aria-label="Close comparison">✕</button>
+    <h2>⚖️ Compare two eras</h2>
+    <p class="gl-sub">Pick any two eras — counts, spans, bookends and average gaps, side by side.</p>
+    <div class="compare-pick">
+      <label>Era A <select id="compare-a" class="seg"></select></label>
+      <label>Era B <select id="compare-b" class="seg"></select></label>
+    </div>
+    <div id="compare-table"></div>
   </div>
 </div>
 

@@ -223,7 +223,25 @@ async function main() {
     assert.equal(navBack, navBefore, "before card returns to the original event");
     ok(`before card navigates back: "${navAfter}" → "${navBack}"`);
 
+    // ── 3e. Gallery: extra shots swap the strip photo ────────────────
+    await hoverEvent("Moon Landing");
+    await waitLoad(400);
+    const thumbCount = await driver.executeScript(
+      "return document.querySelectorAll('.more-images-thumb').length");
+    assert.equal(thumbCount, 3, "Moon Landing has 3 shots");
+    const stripBefore = await driver.executeScript(
+      "return [...document.querySelectorAll('#story-strip .story-card')].find(c => c.dataset.nav === 'now').querySelector('img').src");
+    await driver.executeScript("[...document.querySelectorAll('.more-images-thumb')][1].click()");
+    await waitLoad(400);
+    const stripAfter = await driver.executeScript(
+      "return [...document.querySelectorAll('#story-strip .story-card')].find(c => c.dataset.nav === 'now').querySelector('img').src");
+    assert.ok(stripAfter.includes("Apollo_11_launch"), `strip photo swapped (${stripAfter.split("/").pop()})`);
+    assert.notEqual(stripAfter, stripBefore, "photo actually changed");
+    ok("gallery swaps the strip photo");
+
     // ── 4. Glossary words-to-know + modal ────────────────────────────
+    await hoverEvent("Dinosaur Extinction");
+    await waitLoad(400);
     const chipCount = (await driver.findElements(By.css(".glossary-chip"))).length;
     assert.ok(chipCount >= 2, `expected glossary chips, got ${chipCount}`);
     await driver.executeScript("document.getElementById('glossary-btn').click()");
@@ -283,6 +301,45 @@ async function main() {
     );
     assert.equal(await driver.executeScript("return document.getElementById('map-modal').hidden"), true, "dot click closes the map");
     ok("map dot click → jumps to Moon Landing");
+
+    // ── 5c. Compare view: two eras side by side ──────────────────────
+    await driver.executeScript("document.getElementById('compare-btn').click()");
+    await waitLoad(300);
+    const cmpInfo = await driver.executeScript(`
+      const cells = [...document.querySelectorAll('#compare-table .compare-grid > div')];
+      const texts = cells.map(c => c.textContent);
+      return {
+        open: !document.getElementById('compare-modal').hidden,
+        optsA: document.getElementById('compare-a').options.length,
+        optsB: document.getElementById('compare-b').options.length,
+        hasLife40: texts.some(t => t.includes('40 events')),
+        hasModern205: texts.some(t => t.includes('205 events')),
+        hasBefore: texts.some(t => t.includes('What came before') || t.includes('First event')),
+        viewBtns: [...document.querySelectorAll('#compare-table .compare-view')].length
+      };
+    `);
+    assert.equal(cmpInfo.open, true, "compare modal opens");
+    assert.equal(cmpInfo.optsA, 11, "11 eras in select A");
+    assert.equal(cmpInfo.optsB, 11, "11 eras in select B");
+    assert.ok(cmpInfo.hasLife40 && cmpInfo.hasModern205, "default Life(40) vs Modern(205)");
+    assert.equal(cmpInfo.viewBtns, 2, "two View buttons");
+    ok("compare: Life vs Modern side by side (40 vs 205 events)");
+    await driver.executeScript(`
+      const sb = document.getElementById('compare-b');
+      sb.value = 'Future'; sb.dispatchEvent(new Event('change'));
+    `);
+    await waitLoad(300);
+    const cmpFuture = await driver.executeScript(`
+      const texts = [...document.querySelectorAll('#compare-table .compare-grid > div')].map(c => c.textContent);
+      return texts.some(t => t.includes('24 events'));
+    `);
+    assert.ok(cmpFuture, "switching select B re-renders (Future: 24 events)");
+    await driver.executeScript("[...document.querySelectorAll('#compare-table .compare-view')][0].click()");
+    await driver.wait(async () =>
+      (await driver.findElement(By.id("panel-title")).getText()).length > 2, 4000
+    );
+    assert.equal(await driver.executeScript("return document.getElementById('compare-modal').hidden"), true, "View jumps to era + closes modal");
+    ok("compare: switch eras + View jumps into Life");
 
     // ── 6. Era legend chip jumps ──────────────────────────────────────
     const chip = await driver.executeScript(
@@ -495,7 +552,7 @@ async function main() {
     // ── 16d. A11y debt: dialog roles, Escape closes, keyboard legend ─
     const dialogCount = await driver.executeScript(
       "return [...document.querySelectorAll('[role=dialog]')].length");
-    assert.equal(dialogCount, 8, "8 modals carry role=dialog (incl. map, settings, teacher quiz, order quiz)");
+    assert.equal(dialogCount, 9, "9 modals carry role=dialog (incl. compare, map, settings, teacher quiz, order quiz)");
 
     /* Escape closes the quiz */
     await driver.executeScript("document.getElementById('quiz-btn').click()");
@@ -516,7 +573,7 @@ async function main() {
     const keyboardLegend = await driver.executeScript(
       "return !!document.querySelector('.legend .chip[role=button][tabindex]')");
     assert.equal(keyboardLegend, true, "legend chips keyboard-focusable");
-    ok("a11y: 8 dialogs, Esc closes quiz/reader, keyboard legend chips");
+    ok("a11y: 9 dialogs, Esc closes quiz/reader, keyboard legend chips");
 
     // ── 16f. Teacher quiz + CSV export ───────────────────────────────
     await driver.executeScript("document.getElementById('teacher-quiz-btn').click()");

@@ -33,6 +33,10 @@ const EVENT_MEDIA = {
     caption: "The cosmic microwave background — the oldest light in the universe, mapped across the whole sky (ESA/Planck)",
     file: "CMB_Timeline75.jpg",
     url: "./img/the-big-bang.jpg",
+    more: [
+      { caption: "WMAP's map of the infant universe", file: "WMAP.jpg" },
+      { caption: "Nine years of microwave sky", file: "Ilc_9yr_moll4096.png" },
+    ],
   },
   "First Stars Ignite": {
     caption: "The Hubble Ultra Deep Field: a long exposure of mostly empty sky revealing thousands of galaxies (NASA/ESA)",
@@ -78,6 +82,10 @@ const EVENT_MEDIA = {
     caption: "The K-Pg boundary — fossil clay layer marking the asteroid impact, seen as a thin white line",
     file: "Thin_white_line = KT (now K-Pg) boundary (5090097984).jpg",
     url: "./img/dinosaur-extinction.jpg",
+    more: [
+      { caption: "Chicxulub crater, buried under Mexico", file: "Chicxulub.jpg" },
+      { caption: "Meteor Crater, Arizona \u2014 a fresher scar", file: "Meteor_Crater.jpg" },
+    ],
   },
   "First Hominids": {
     caption: "Lucy (AL 288-1), a 3.2-million-year-old hominid skeleton on display in Ethiopia",
@@ -103,6 +111,10 @@ const EVENT_MEDIA = {
     caption: "The pyramids of Giza seen from the desert plateau",
     file: "All_Gizah_Pyramids.jpg",
     url: "./img/great-pyramid-of-giza.jpg",
+    more: [
+      { caption: "The Great Sphinx", file: "Sphinx.jpg" },
+      { caption: "All three pyramids at sunset", file: "Giza_pyramids.jpg" },
+    ],
   },
   "Roman Empire": {
     caption: "The Colosseum in Rome — the empire largest amphitheatre",
@@ -133,6 +145,10 @@ const EVENT_MEDIA = {
     caption: "Buzz Aldrin on the Moon, photographed by Neil Armstrong, July 1969 (NASA)",
     file: "Aldrin_Apollo_11_original.jpg",
     url: "./img/moon-landing.jpg",
+    more: [
+      { caption: "Saturn V launches Apollo 11", file: "Apollo_11_launch.jpg" },
+      { caption: "Buzz Aldrin's bootprint", file: "Buzz_Aldrin.jpg" },
+    ],
   },
   "Internet & World Wide Web": {
     caption: "A globe of the modern internet — every dot a network, every thread a data connection",
@@ -436,6 +452,9 @@ const EVENT_MEDIA = {
   "The Space Shuttle": {
     caption: "Space Shuttle Columbia launch",
     file: "Space_Shuttle_Columbia.jpg",
+    more: [
+      { caption: "Challenger, 1986 \u2014 the program's darkest day", file: "Challenger_explosion.jpg" },
+    ],
   },
   "The International Space Station": {
     caption: "The International Space Station",
@@ -817,6 +836,10 @@ const EVENT_MEDIA = {
   "The Roman Empire": {
     caption: "The Colosseum, Rome",
     file: "Colosseum.jpg",
+    more: [
+      { caption: "The Pantheon, still roofed after 2,000 years", file: "Pantheon.jpg" },
+      { caption: "The Forum, Rome's downtown", file: "Roman_Forum.jpg" },
+    ],
   },
   "Augustus Founds the Empire": {
     caption: "Augustus of Prima Porta",
@@ -913,6 +936,10 @@ const EVENT_MEDIA = {
   "The Renaissance": {
     caption: "The Mona Lisa (Leonardo da Vinci)",
     file: "Mona_Lisa.jpg",
+    more: [
+      { caption: "The Last Supper", file: "The_Last_Supper.jpg" },
+      { caption: "The Sistine Chapel ceiling", file: "Sistine_Chapel.jpg" },
+    ],
   },
   "The Aztec Empire": {
     caption: "Aztec Sun Stone",
@@ -945,6 +972,9 @@ const EVENT_MEDIA = {
   "The Mughal Empire": {
     caption: "Taj Mahal",
     file: "Taj_Mahal.jpg",
+    more: [
+      { caption: "Agra Fort", file: "Agra_Fort.jpg" },
+    ],
   },
   "Copernicus Moves the Sun": {
     caption: "Nicolaus Copernicus",
@@ -1479,6 +1509,9 @@ const EVENT_MEDIA = {
   "The World Wide Web": {
     caption: "Tim Berners-Lee",
     file: "Tim_Berners-Lee.jpg",
+    more: [
+      { caption: "The first web server: a NeXT cube at CERN", file: "First_Web_Server.jpg" },
+    ],
   },
   "Stonewall Uprising": {
     caption: "Stonewall Inn",
@@ -2044,6 +2077,22 @@ function formatGap(years) {
   return r === 1 ? "1 year" : r + " years";
 }
 
+/* Gallery state: which shot of an event the strip shows (default: primary). */
+const stripImgChoice = {};
+
+function mediaShots(media, title) {
+  const shots = [];
+  if (media && (media.url || media.file)) {
+    shots.push({ caption: media.caption || title, src: media.url || COMMONS_FILE(media.file) });
+    (media.more || []).forEach(function (extra) {
+      if (extra && (extra.url || extra.file)) {
+        shots.push({ caption: extra.caption || title, src: extra.url || COMMONS_FILE(extra.file) });
+      }
+    });
+  }
+  return shots;
+}
+
 function renderDetail(index) {
   const m = MILESTONES[index];
   const lang = (typeof uiLang !== "undefined" ? uiLang : "en") || "en";
@@ -2173,11 +2222,13 @@ function renderDetail(index) {
       el.dataset.nav = c.nav;
       if (c.nav !== "now") el.type = "button";
       el.style.setProperty("--era-color", eventColor(c.idx));
-      if (cMedia && (cMedia.url || cMedia.file)) {
+      const shots = mediaShots(cMedia, cm.title);
+      if (shots.length) {
+        const pick = Math.min(stripImgChoice[cm.title] || 0, shots.length - 1);
         const img = document.createElement("img");
-        img.src = cMedia.url || COMMONS_FILE(cMedia.file);
+        img.src = shots[pick].src;
         img.referrerPolicy = "no-referrer";
-        img.alt = cMedia.caption || cm.title;
+        img.alt = shots[pick].caption;
         img.loading = "lazy";
         img.addEventListener("error", () => { img.style.display = "none"; });
         el.appendChild(img);
@@ -2268,6 +2319,39 @@ function renderDetail(index) {
       sa.appendChild(btn);
     });
     if (sa.children.length > 1) panelBody.appendChild(sa);
+  }
+
+  /* More images: thumbnails of every shot; picking one swaps the strip photo */
+  const myShots = mediaShots(EVENT_MEDIA[m.title], m.title);
+  if (myShots.length > 1) {
+    const gal = document.createElement("div");
+    gal.className = "detail-block more-images";
+    const galH = document.createElement("h3");
+    galH.textContent = "More images (" + myShots.length + ")";
+    gal.appendChild(galH);
+    const row = document.createElement("div");
+    row.className = "more-images-row";
+    myShots.forEach(function (shot, si) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "more-images-thumb" + ((stripImgChoice[m.title] || 0) === si ? " picked" : "");
+      b.title = shot.caption;
+      b.setAttribute("aria-label", "Show image: " + shot.caption);
+      const th = document.createElement("img");
+      th.src = shot.src;
+      th.alt = shot.caption;
+      th.loading = "lazy";
+      th.referrerPolicy = "no-referrer";
+      th.addEventListener("error", () => { b.style.display = "none"; });
+      b.appendChild(th);
+      b.addEventListener("click", function () {
+        stripImgChoice[m.title] = si;
+        updatePanel();
+      });
+      row.appendChild(b);
+    });
+    gal.appendChild(row);
+    panelBody.appendChild(gal);
   }
 }
 
@@ -2957,6 +3041,136 @@ const SVG_NS = "http://www.w3.org/2000/svg";
 function projectCoords(lat, lon) {
   return [(lon + 180) * (1000 / 360), (90 - lat) * (500 / 180)];
 }
+
+/* ------------------------------------------------------------
+   Compare view — two eras side by side: counts, spans, bookends.
+   ------------------------------------------------------------ */
+(function compareFeature() {
+  const btn = document.getElementById("compare-btn");
+  const modal = document.getElementById("compare-modal");
+  const closeBtn = document.getElementById("compare-close");
+  const selA = document.getElementById("compare-a");
+  const selB = document.getElementById("compare-b");
+  const table = document.getElementById("compare-table");
+  if (!btn || !modal) return;
+  const eras = Object.keys(ERA_INFO);
+  eras.forEach(function (era) {
+    [selA, selB].forEach(function (sel) {
+      const o = document.createElement("option");
+      o.value = era;
+      o.textContent = era;
+      sel.appendChild(o);
+    });
+  });
+  selA.value = "Life";
+  selB.value = "Modern";
+  function eraStats(era) {
+    const evs = MILESTONES.filter(function (m) { return m.era === era; });
+    const ages = evs.map(function (m) { return m.yearsAgo; });
+    const oldest = Math.max.apply(null, ages);
+    const youngest = Math.min.apply(null, ages);
+    return { count: evs.length, oldest: oldest, youngest: youngest,
+      span: oldest - youngest, first: evs[0], last: evs[evs.length - 1] };
+  }
+  function fmtSpan(y) {
+    return y < 1000 ? Math.round(y) + " years" : formatTime(y).replace(" ago", "");
+  }
+  function evCell(st) {
+    const d = document.createElement("div");
+    d.appendChild(document.createTextNode(st.title));
+    d.appendChild(document.createElement("br"));
+    const sp = document.createElement("span");
+    sp.style.color = "var(--muted)";
+    sp.textContent = formatTime(st.yearsAgo);
+    d.appendChild(sp);
+    return d;
+  }
+  function countCell(st, color, maxLog) {
+    const d = document.createElement("div");
+    const b = document.createElement("b");
+    b.textContent = st.count + " events";
+    d.appendChild(b);
+    const bar = document.createElement("div");
+    bar.className = "compare-bar";
+    const fill = document.createElement("div");
+    const pct = maxLog > 0 ? (Math.log10(st.span + 1) / maxLog) * 100 : 0;
+    fill.style.width = pct.toFixed(1) + "%";
+    fill.style.background = color;
+    bar.appendChild(fill);
+    d.appendChild(bar);
+    const sp = document.createElement("div");
+    sp.textContent = fmtSpan(st.span);
+    d.appendChild(sp);
+    return d;
+  }
+  function renderCompare() {
+    const a = eraStats(selA.value), b = eraStats(selB.value);
+    const maxLog = Math.max(Math.log10(a.span + 1), Math.log10(b.span + 1));
+    const ca = eventColor(MILESTONES.indexOf(a.first));
+    const cb = eventColor(MILESTONES.indexOf(b.first));
+    table.innerHTML = "";
+    const grid = document.createElement("div");
+    grid.className = "compare-grid";
+    [["", null, null],
+     ["Era A: " + selA.value, "A", ca],
+     ["Era B: " + selB.value, "B", cb]].forEach(function (h, i) {
+      const d = document.createElement("div");
+      d.className = "chead";
+      if (i === 0) { d.textContent = ""; }
+      else {
+        d.textContent = h[0] + " ";
+        const view = document.createElement("button");
+        view.type = "button";
+        view.className = "seg compare-view";
+        view.textContent = "View " + (i === 1 ? selA.value : selB.value) + " \u25b6";
+        view.dataset.side = h[1];
+        view.dataset.color = h[2];
+        view.addEventListener("click", function () {
+          closeCompare();
+          const era = view.dataset.side === "A" ? selA.value : selB.value;
+          const idx = MILESTONES.findIndex(function (m) { return m.era === era; });
+          if (idx !== -1) selectEvent(idx);
+        });
+        d.appendChild(view);
+      }
+      grid.appendChild(d);
+    });
+    function row(label, da, db) {
+      const lab = document.createElement("div");
+      lab.className = "cmetric";
+      lab.textContent = label;
+      grid.appendChild(lab);
+      grid.appendChild(da);
+      grid.appendChild(db);
+    }
+    row("Events + span", countCell(a, ca, maxLog), countCell(b, cb, maxLog));
+    row("First event", evCell(a.first), evCell(b.first));
+    row("Most recent", evCell(a.last), evCell(b.last));
+    function gapCell(st) {
+      const d = document.createElement("div");
+      d.textContent = fmtSpan(st.span / Math.max(1, st.count - 1));
+      return d;
+    }
+    row("Avg gap", gapCell(a), gapCell(b));
+    table.appendChild(grid);
+  }
+  function openCompare() {
+    renderCompare();
+    modal.hidden = false;
+    setTimeout(function () { closeBtn.focus(); }, 60);
+  }
+  function closeCompare() { modal.hidden = true; }
+  btn.addEventListener("click", function () {
+    if (modal.hidden) openCompare(); else closeCompare();
+  });
+  closeBtn.addEventListener("click", closeCompare);
+  modal.addEventListener("click", function (e) { if (e.target === modal) closeCompare(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !modal.hidden) closeCompare();
+  });
+  selA.addEventListener("change", renderCompare);
+  selB.addEventListener("change", renderCompare);
+})();
 
 function openMap() {
   document.getElementById("world-land").setAttribute("d", TimelineCore.WORLD_LAND);
