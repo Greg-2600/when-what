@@ -21,6 +21,6 @@
     "eslint": "^10.13.0",
     "pixelmatch": "^8.0.0",
     "pngjs": "^7.0.0",
-    "selenium-webdriver": "^4.51.0"
+    "selenium-webdriver": "^4.52.0"
   }
 }
